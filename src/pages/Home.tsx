@@ -7,84 +7,42 @@ import PriceCard from "@/components/PriceCard";
 import GoogleReviews from "@/components/GoogleReviews";
 import heroPersonPhone from "@/assets/hero-person-phone.jpg";
 import heroLaptop from "@/assets/hero-laptop.jpg";
-import { 
-  Car, 
-  Clock, 
-  FileText, 
-  Shield, 
-  CheckCircle, 
-  ArrowRight,
-  Star,
-  Phone
-} from "lucide-react";
+import { Car, Clock, FileText, Shield, CheckCircle, ArrowRight, Star, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const Home = () => {
-  const steps = [
-    {
-      icon: <FileText className="h-8 w-8 text-primary" />,
-      title: "Auftrag erstellen",
-      description: "Egal ob Auto oder Motorrad – online beauftragen und Wunschkennzeichen auswählen. Wir übernehmen den Rest."
-    },
-    {
-      icon: <Shield className="h-8 w-8 text-primary" />,
-      title: "Dokumente übermitteln",
-      description: "Einfach vorbeibringen, zusenden oder von uns abholen lassen – sicher und bequem."
-    },
-    {
-      icon: <CheckCircle className="h-8 w-8 text-primary" />,
-      title: "Zulassung innerhalb von 24h",
-      description: "Ihre Zulassung erfolgt am nächsten Werktag. Rückversand oder Abholung der fertigen Unterlagen inklusive."
-    }
-  ];
-
-  const services = [
-    "KFZ-Zulassung (Neu & Gebraucht)",
-    "Motorrad-Zulassung",
-    "Umschreibung",
-    "Kennzeichen-Reservierung",
-    "KFZ-Abmeldung",
-    "Hol- und Bringservice"
-  ];
-
-  const pricePackages = [
-    {
-      title: "BASIS",
-      price: "129 €",
-      features: [
-        "Zulassung innerhalb von 24h",
-        "Inkl. Euro-Kennzeichen",
-        "Wunschkennzeichen (+13 €)",
-        "Verwaltungsgebühren inkl.",
-        "Sie bringen Unterlagen zu uns"
-      ],
-      buttonText: "BASIS PAKET BESTELLEN"
-    },
-    {
-      title: "PREMIUM",
-      price: "159 €",
-      popular: true,
-      features: [
-        "Alles vom BASIS",
-        "Express-Rückversand inklusive",
-        "Wir holen und bringen die Unterlagen"
-      ],
-      buttonText: "PREMIUM PAKET BESTELLEN",
-      buttonVariant: "cta" as const
-    },
-    {
-      title: "ABMELDUNG",
-      price: "30 €",
-      features: [
-        "Abmeldung innerhalb 24h",
-        "Verwaltungsgebühren inkl."
-      ],
-      buttonText: "ONLINE BEANTRAGEN"
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const steps = [{
+    icon: <FileText className="h-8 w-8 text-primary" />,
+    title: "Auftrag erstellen",
+    description: "Egal ob Auto oder Motorrad – online beauftragen und Wunschkennzeichen auswählen. Wir übernehmen den Rest."
+  }, {
+    icon: <Shield className="h-8 w-8 text-primary" />,
+    title: "Dokumente übermitteln",
+    description: "Einfach vorbeibringen, zusenden oder von uns abholen lassen – sicher und bequem."
+  }, {
+    icon: <CheckCircle className="h-8 w-8 text-primary" />,
+    title: "Zulassung innerhalb von 24h",
+    description: "Ihre Zulassung erfolgt am nächsten Werktag. Rückversand oder Abholung der fertigen Unterlagen inklusive."
+  }];
+  const services = ["KFZ-Zulassung (Neu & Gebraucht)", "Motorrad-Zulassung", "Umschreibung", "Kennzeichen-Reservierung", "KFZ-Abmeldung", "Hol- und Bringservice"];
+  const pricePackages = [{
+    title: "BASIS",
+    price: "129 €",
+    features: ["Zulassung innerhalb von 24h", "Inkl. Euro-Kennzeichen", "Wunschkennzeichen (+13 €)", "Verwaltungsgebühren inkl.", "Sie bringen Unterlagen zu uns"],
+    buttonText: "BASIS PAKET BESTELLEN"
+  }, {
+    title: "PREMIUM",
+    price: "159 €",
+    popular: true,
+    features: ["Alles vom BASIS", "Express-Rückversand inklusive", "Wir holen und bringen die Unterlagen"],
+    buttonText: "PREMIUM PAKET BESTELLEN",
+    buttonVariant: "cta" as const
+  }, {
+    title: "ABMELDUNG",
+    price: "30 €",
+    features: ["Abmeldung innerhalb 24h", "Verwaltungsgebühren inkl."],
+    buttonText: "ONLINE BEANTRAGEN"
+  }];
+  return <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
@@ -140,11 +98,7 @@ const Home = () => {
               {/* Hero Images */}
               <div className="relative">
                 <div className="relative z-10">
-                  <img 
-                    src={heroPersonPhone} 
-                    alt="Person mit Smartphone für Online-Zulassung" 
-                    className="w-full max-w-md mx-auto lg:max-w-lg rounded-2xl shadow-2xl"
-                  />
+                  <img src={heroPersonPhone} alt="Person mit Smartphone für Online-Zulassung" className="w-full max-w-md mx-auto lg:max-w-lg rounded-2xl shadow-2xl" />
                 </div>
                 
                 {/* Floating Elements */}
@@ -192,8 +146,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, index) => (
-              <Card key={index} className="text-center border-2 hover:border-primary transition-colors">
+            {steps.map((step, index) => <Card key={index} className="text-center border-2 hover:border-primary transition-colors">
                 <CardHeader>
                   <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
                     {step.icon}
@@ -206,8 +159,7 @@ const Home = () => {
                 <CardContent>
                   <p className="text-muted-foreground">{step.description}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -225,14 +177,12 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
-              <div key={index} className="bg-background rounded-lg p-6 shadow-sm border">
+            {services.map((service, index) => <div key={index} className="bg-background rounded-lg p-6 shadow-sm border">
                 <div className="flex items-center space-x-3">
                   <CheckCircle className="h-6 w-6 text-trust-green" />
                   <span className="font-medium text-secondary">{service}</span>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -250,17 +200,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {pricePackages.map((pkg, index) => (
-              <PriceCard
-                key={index}
-                title={pkg.title}
-                price={pkg.price}
-                popular={pkg.popular}
-                features={pkg.features}
-                buttonText={pkg.buttonText}
-                buttonVariant={pkg.buttonVariant}
-              />
-            ))}
+            {pricePackages.map((pkg, index) => <PriceCard key={index} title={pkg.title} price={pkg.price} popular={pkg.popular} features={pkg.features} buttonText={pkg.buttonText} buttonVariant={pkg.buttonVariant} />)}
           </div>
         </div>
       </section>
@@ -282,7 +222,7 @@ const Home = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-secondary-foreground text-secondary-foreground hover:bg-secondary-foreground hover:text-secondary">
+            <Button size="lg" variant="outline" className="border-secondary-foreground hover:bg-secondary-foreground text-slate-950">
               <Phone className="mr-2 h-5 w-5" />
               Kostenlos anrufen
             </Button>
@@ -291,8 +231,6 @@ const Home = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
