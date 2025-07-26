@@ -4,6 +4,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TrustBadges from "@/components/TrustBadges";
 import PriceCard from "@/components/PriceCard";
+import GoogleReviews from "@/components/GoogleReviews";
+import heroPersonPhone from "@/assets/hero-person-phone.jpg";
+import heroLaptop from "@/assets/hero-laptop.jpg";
 import { 
   Car, 
   Clock, 
@@ -85,35 +88,42 @@ const Home = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary to-secondary text-primary-foreground py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
+      <section className="relative bg-gradient-to-br from-primary to-secondary text-primary-foreground py-16 sm:py-20 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-20 h-20 bg-white rounded-full"></div>
+          <div className="absolute bottom-20 right-20 w-32 h-32 bg-white rounded-full"></div>
+          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white rounded-full"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
                 Einfach. Schnell. Ohne Wartezeit.
               </h1>
-              <p className="text-xl mb-4 text-primary-foreground/90">
+              <p className="text-lg sm:text-xl mb-4 text-primary-foreground/90">
                 Online-Zulassung für den Kreis Lippe – inkl. 2 Kennzeichen
               </p>
-              <p className="text-lg mb-8 text-primary-foreground/80">
+              <p className="text-base sm:text-lg mb-8 text-primary-foreground/80">
                 Zulassung innerhalb von 24 Stunden garantiert
               </p>
               
               {/* USP Badges */}
-              <div className="flex flex-wrap gap-3 mb-8">
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium">
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 justify-center lg:justify-start">
+                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium">
                   ✓ Zulassen in 5 Minuten
                 </div>
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium">
+                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium">
                   ✓ Kein Behördengang
                 </div>
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-4 py-2 text-sm font-medium">
+                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium">
                   ✓ Kein Stress
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" variant="cta-large" className="bg-white text-primary hover:bg-gray-100" asChild>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button size="lg" variant="cta-large" asChild>
                   <Link to="/angebot">
                     JETZT BEAUFTRAGEN
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -126,13 +136,37 @@ const Home = () => {
               </div>
             </div>
             
-            <div className="relative">
-              <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8 border border-primary-foreground/20">
-                <Car className="h-16 w-16 text-primary-foreground mb-4 mx-auto" />
-                <div className="text-center">
-                  <div className="text-3xl font-bold mb-2">24h</div>
-                  <div className="text-lg">Garantierte Bearbeitung</div>
+            <div className="relative mt-8 lg:mt-0">
+              {/* Hero Images */}
+              <div className="relative">
+                <div className="relative z-10">
+                  <img 
+                    src={heroPersonPhone} 
+                    alt="Person mit Smartphone für Online-Zulassung" 
+                    className="w-full max-w-md mx-auto lg:max-w-lg rounded-2xl shadow-2xl"
+                  />
                 </div>
+                
+                {/* Floating Elements */}
+                <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-4 shadow-xl z-20 hidden sm:block">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-6 w-6 text-[hsl(var(--cta-orange))]" />
+                    <div>
+                      <div className="text-2xl font-bold text-secondary">24h</div>
+                      <div className="text-xs text-muted-foreground">Garantiert</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="absolute -bottom-4 -left-4 bg-white rounded-xl p-3 shadow-lg z-20 hidden sm:block">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-trust-green" />
+                    <span className="text-sm font-medium text-secondary">Volldigital</span>
+                  </div>
+                </div>
+                
+                {/* Background accent */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-white/10 rounded-full blur-3xl -z-10"></div>
               </div>
             </div>
           </div>
@@ -141,6 +175,9 @@ const Home = () => {
 
       {/* Trust Badges */}
       <TrustBadges />
+
+      {/* Google Reviews */}
+      <GoogleReviews />
 
       {/* How it Works */}
       <section className="py-20">
@@ -239,7 +276,7 @@ const Home = () => {
             Ihre Zulassung ist schon morgen fertig!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="cta-large" className="bg-primary hover:bg-primary/90" asChild>
+            <Button size="lg" variant="cta-large" asChild>
               <Link to="/angebot">
                 JETZT BEAUFTRAGEN
                 <ArrowRight className="ml-2 h-5 w-5" />
