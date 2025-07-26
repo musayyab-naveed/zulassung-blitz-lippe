@@ -87,7 +87,7 @@ const Home = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                <Button size="lg" variant="outline" className="border-white hover:bg-white text-cyan-400">
                   <Phone className="mr-2 h-5 w-5" />
                   +49 171 1507181
                 </Button>
