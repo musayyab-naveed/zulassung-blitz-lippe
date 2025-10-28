@@ -241,7 +241,9 @@ const UeberUns = () => {
                   <div>
                     <h3 className="font-semibold text-secondary">Telefon</h3>
                     <p className="text-muted-foreground">
-                      +49 171 1507181<br />
+                      <a href="tel:+4915142462280" className="hover:text-primary transition-colors">
+                        +4915142462280
+                      </a><br />
                       <span className="text-sm">Mo-Fr: 8:00-18:00 Uhr</span>
                     </p>
                   </div>

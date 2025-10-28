@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,14 +21,12 @@ const Header = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">S</span>
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-secondary">KFZ-Sofortzulassung</h1>
-              <p className="text-sm text-primary">Wir machen sie mobil.</p>
-            </div>
+          <Link to="/" className="flex items-center">
+            <img
+              src={logo}
+              alt="KFZ-Sofortzulassung Logo"
+              className="h-16 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -51,7 +50,9 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-secondary">
               <Phone className="h-4 w-4" />
-              <span className="text-sm font-medium">+49 171 1507181</span>
+              <a href="tel:+4915142462280" className="text-sm font-medium hover:text-primary transition-colors">
+                +4915142462280
+              </a>
             </div>
             <Button variant="cta" asChild>
               <Link to="/angebot">JETZT BEAUFTRAGEN</Link>
@@ -92,7 +93,9 @@ const Header = () => {
               <div className="pt-4 border-t border-border">
                 <div className="flex items-center space-x-2 text-secondary mb-4">
                   <Phone className="h-4 w-4" />
-                  <span className="text-sm font-medium">+49 171 1507181</span>
+                  <a href="tel:+4915142462280" className="text-sm font-medium hover:text-primary transition-colors">
+                    +4915142462280
+                  </a>
                 </div>
                 <Button variant="cta" className="w-full" asChild>
                   <Link to="/angebot">JETZT BEAUFTRAGEN</Link>

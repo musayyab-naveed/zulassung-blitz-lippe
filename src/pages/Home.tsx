@@ -5,10 +5,11 @@ import Footer from "@/components/Footer";
 import TrustBadges from "@/components/TrustBadges";
 import PriceCard from "@/components/PriceCard";
 import GoogleReviews from "@/components/GoogleReviews";
-import heroPersonPhone from "@/assets/hero-person-phone.jpg";
-import heroLaptop from "@/assets/hero-laptop.jpg";
-import { Car, Clock, FileText, Shield, CheckCircle, ArrowRight, Star, Phone } from "lucide-react";
+import heroImage from "@/assets/hero-image.jpg";
+import { Car, Clock, FileText, Shield, CheckCircle, ArrowRight, Star, Phone, MapPin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import Cal, { getCalApi } from "@calcom/embed-react";
+import { useEffect } from "react";
 const Home = () => {
   const steps = [{
     icon: <FileText className="h-8 w-8 text-primary" />,
@@ -24,6 +25,13 @@ const Home = () => {
     description: "Ihre Zulassung erfolgt am nächsten Werktag. Rückversand oder Abholung der fertigen Unterlagen inklusive."
   }];
   const services = ["KFZ-Zulassung (Neu & Gebraucht)", "Motorrad-Zulassung", "Umschreibung", "Kennzeichen-Reservierung", "KFZ-Abmeldung", "Hol- und Bringservice"];
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({"namespace":"15min"});
+      cal("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-brand":"#63ccff"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    })();
+  }, []);
   const pricePackages = [{
     title: "BASIS",
     price: "129 €",
@@ -87,9 +95,11 @@ const Home = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white hover:bg-white text-cyan-400">
-                  <Phone className="mr-2 h-5 w-5" />
-                  +49 171 1507181
+                <Button size="lg" variant="outline" className="border-white hover:bg-white hover:text-secondary text-cyan-400" asChild>
+                  <a href="tel:+4915142462280">
+                    <Phone className="mr-2 h-5 w-5" />
+                    +4915142462280
+                  </a>
                 </Button>
               </div>
             </div>
@@ -98,7 +108,7 @@ const Home = () => {
               {/* Hero Images */}
               <div className="relative">
                 <div className="relative z-10">
-                  <img src={heroPersonPhone} alt="Person mit Smartphone für Online-Zulassung" className="w-full max-w-md mx-auto lg:max-w-lg rounded-2xl shadow-2xl" />
+                  <img src={heroImage} alt="KFZ-Sofortzulassung Service" className="w-full max-w-md mx-auto lg:max-w-lg rounded-2xl shadow-2xl" />
                 </div>
                 
                 {/* Floating Elements */}
@@ -205,27 +215,120 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Location Section with Map */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-secondary mb-4">
+              Besuchen Sie uns
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Finden Sie uns in Bad Salzuflen, im Herzen des Kreises Lippe
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Map Container */}
+            <div className="rounded-2xl overflow-hidden shadow-xl">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2451.8275759481676!2d8.729726099999997!3d52.0828686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ba15cba7259a3b%3A0xcbf86083359865e5!2sKFZ-Sofortzulassung%20-%20Zulassungsdienst%2C%20Zulassungsservice%20und%20Kennzeichen!5e0!3m2!1sen!2sde!4v1761654634034!5m2!1sen!2sde"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full min-h-[400px]"
+                title="KFZ-Sofortzulassung Standort auf Google Maps"
+              />
+            </div>
+
+            {/* Contact Information */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-bold text-secondary mb-4">
+                  Wir sind direkt vor Ort für Sie da
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  Kommen Sie gerne vorbei oder kontaktieren Sie uns für eine persönliche Beratung.
+                  Unser Zulassungsdienst in Bad Salzuflen ist zentral im Kreis Lippe gelegen und
+                  leicht zu erreichen.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-start space-x-3">
+                  <MapPin className="h-6 w-6 text-primary mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-secondary">Adresse</h4>
+                    <p className="text-muted-foreground">
+                      Werler Straße 68<br />
+                      32105 Bad Salzuflen<br />
+                      Deutschland
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <Phone className="h-6 w-6 text-primary mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-secondary">Telefon</h4>
+                    <a href="tel:+4915142462280" className="text-primary hover:underline">
+                      +4915142462280
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <Mail className="h-6 w-6 text-primary mt-1" />
+                  <div>
+                    <h4 className="font-semibold text-secondary">E-Mail</h4>
+                    <a href="mailto:info@sofortzulassung.com" className="text-primary hover:underline">
+                      info@sofortzulassung.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <Button size="lg" variant="cta" className="w-full sm:w-auto" asChild>
+                  <Link to="/angebot">
+                    JETZT BEAUFTRAGEN
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Calendar Section */}
       <section className="py-20 bg-secondary text-secondary-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-            Bereit für Ihre schnelle Zulassung?
-          </h2>
-          <p className="text-xl mb-8 text-secondary-foreground/90">
-            Sparen Sie sich den Behördengang und beauftragen Sie uns noch heute.
-            Ihre Zulassung ist schon morgen fertig!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="cta-large" asChild>
-              <Link to="/angebot">
-                JETZT BEAUFTRAGEN
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-secondary-foreground hover:bg-secondary-foreground text-slate-950">
-              <Phone className="mr-2 h-5 w-5" />
-              Kostenlos anrufen
-            </Button>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-6">
+              Termin vereinbaren
+            </h2>
+            <p className="text-xl text-secondary-foreground/90">
+              Wählen Sie einen passenden Termin für Ihre KFZ-Zulassung.
+              Wir sind für Sie da und machen Sie mobil!
+            </p>
+          </div>
+
+          <div className="bg-background rounded-2xl shadow-xl p-6 max-h-[80vh] overflow-hidden">
+            <Cal
+              namespace="15min"
+              calLink="sofortzulassung/15min"
+              style={{width:"100%",height:"70vh",overflow:"scroll"}}
+              config={{"layout":"month_view","theme":"light"}}
+            />
+          </div>
+
+          <div className="mt-8 text-center">
+            <p className="text-sm text-secondary-foreground/80">
+              Fragen? Rufen Sie uns an: <a href="tel:+4915142462280" className="text-primary hover:underline">+4915142462280</a>
+            </p>
           </div>
         </div>
       </section>

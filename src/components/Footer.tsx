@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   return (
@@ -8,18 +9,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">S</span>
-              </div>
-              <div>
-                <h2 className="text-xl font-bold">KFZ-Sofortzulassung</h2>
-                <p className="text-sm text-primary">Wir machen sie mobil.</p>
-              </div>
+            <div className="flex items-center mb-4">
+              <img
+                src={logo}
+                alt="KFZ-Sofortzulassung Logo"
+                className="h-16 w-auto object-contain"
+              />
             </div>
             <p className="text-sm text-secondary-foreground/80 mb-4">
-              Ihre zuverlässigen Partner für schnelle und unkomplizierte KFZ-Zulassungen 
-              im Kreis Lippe und Umgebung. Sparen Sie Zeit und Nerven – wir übernehmen 
+              Ihre zuverlässigen Partner für schnelle und unkomplizierte KFZ-Zulassungen
+              im Kreis Lippe und Umgebung. Sparen Sie Zeit und Nerven – wir übernehmen
               den Behördengang für Sie.
             </p>
           </div>
@@ -61,7 +60,9 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <span>+49 171 1507181</span>
+                <a href="tel:+4915142462280" className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors">
+                  +4915142462280
+                </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-primary" />
