@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -11,34 +10,39 @@ const Header = () => {
   const navigation = [
     { name: "Startseite", href: "/" },
     { name: "Angebot", href: "/angebot" },
+    { name: "Blog", href: "/blog" },
+    { name: "Fahrzeugankauf", href: "/fahrzeugankauf" },
     { name: "Über uns", href: "/ueber-uns" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-background border-b border-border sticky top-0 z-50">
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur-xl">
+      <div className="hidden lg:block border-b border-border/60 bg-secondary text-secondary-foreground">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs flex items-center justify-between">
+          <span>Zulassungsdienst in Bad Salzuflen und Kreis Lippe</span>
+          <span>24h Bearbeitung und optionaler Fahrzeugankauf</span>
+        </div>
+      </div>
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img
-              src={logo}
-              alt="KFZ-Sofortzulassung Logo"
-              className="h-16 w-auto object-contain"
-            />
+          <Link to="/" className="flex items-center gap-3 shrink-0">
+            <img src={logo} alt="KFZ-Sofortzulassung Logo" className="h-14 w-auto object-contain" />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center gap-2 rounded-full border border-border/70 bg-background px-2 py-1 shadow-sm">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`rounded-full px-3 py-2 text-sm font-semibold transition-colors ${
                   isActive(item.href)
-                    ? "text-primary"
-                    : "text-foreground"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-foreground hover:bg-muted hover:text-secondary"
                 }`}
               >
                 {item.name}
@@ -46,22 +50,19 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Phone Number & CTA */}
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-secondary">
-              <Phone className="h-4 w-4" />
-              <a href="tel:+4915142462280" className="text-sm font-medium hover:text-primary transition-colors">
+          {/* Phone Number */}
+          <div className="hidden lg:flex items-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-secondary shadow-sm">
+              <Phone className="h-4 w-4 text-primary" />
+              <a href="tel:+4915142462280" className="text-sm font-semibold hover:text-primary transition-colors">
                 +4915142462280
               </a>
             </div>
-            <Button variant="cta" asChild>
-              <Link to="/angebot">JETZT BEAUFTRAGEN</Link>
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="lg:hidden rounded-lg border border-border/70 bg-background p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -74,16 +75,16 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-border py-4">
+          <div className="lg:hidden border-t border-border py-4">
             <nav className="flex flex-col space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${
                     isActive(item.href)
-                      ? "text-primary"
-                      : "text-foreground"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-muted hover:text-primary"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -91,15 +92,12 @@ const Header = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-border">
-                <div className="flex items-center space-x-2 text-secondary mb-4">
-                  <Phone className="h-4 w-4" />
-                  <a href="tel:+4915142462280" className="text-sm font-medium hover:text-primary transition-colors">
+                <div className="flex items-center space-x-2 text-secondary mb-1">
+                  <Phone className="h-4 w-4 text-primary" />
+                  <a href="tel:+4915142462280" className="text-sm font-semibold hover:text-primary transition-colors">
                     +4915142462280
                   </a>
                 </div>
-                <Button variant="cta" className="w-full" asChild>
-                  <Link to="/angebot">JETZT BEAUFTRAGEN</Link>
-                </Button>
               </div>
             </nav>
           </div>

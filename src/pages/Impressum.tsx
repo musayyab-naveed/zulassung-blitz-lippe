@@ -1,11 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 import { Mail, Phone, MapPin, FileText } from "lucide-react";
 
 const Impressum = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Impressum | KFZ-Sofortzulassung"
+        description="Impressum von KFZ-Sofortzulassung in Bad Salzuflen mit allen gesetzlichen Pflichtangaben und Kontaktinformationen."
+        path="/impressum"
+        image="/favicon.ico"
+      />
       <Header />
 
       <main className="py-16">

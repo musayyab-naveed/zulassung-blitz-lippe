@@ -1,11 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 import { Shield, Eye, Database, UserCheck, FileText, Mail } from "lucide-react";
 
 const Datenschutz = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Datenschutz | KFZ-Sofortzulassung"
+        description="Datenschutzerklärung von KFZ-Sofortzulassung: Informationen zur Verarbeitung personenbezogener Daten nach DSGVO."
+        path="/datenschutz"
+        image="/favicon.ico"
+      />
       <Header />
 
       <main className="py-16">

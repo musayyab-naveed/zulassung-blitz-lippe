@@ -119,6 +119,116 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: "Manrope", sans-serif;
+    letter-spacing: -0.01em;
+    background-image:
+      radial-gradient(circle at 15% -10%, hsl(197 100% 96% / 0.9), transparent 28%),
+      radial-gradient(circle at 95% 15%, hsl(197 92% 92% / 0.75), transparent 32%);
+    background-attachment: fixed;
+  }
+
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Sora", sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+}
+
+@layer utilities {
+  .surface-card {
+    @apply rounded-2xl border border-border/80 bg-white/85 shadow-[0_16px_40px_-22px_hsl(var(--secondary)/0.28)] backdrop-blur;
+  }
+
+  .surface-soft {
+    @apply rounded-2xl border border-border/70 bg-muted/45;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold text-secondary tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-base sm:text-lg text-muted-foreground;
+  }
+
+  .stagger-in {
+    animation: fade-up 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .stagger-delay-1 {
+    animation-delay: 90ms;
+  }
+
+  .stagger-delay-2 {
+    animation-delay: 180ms;
+  }
+
+  .stagger-delay-3 {
+    animation-delay: 270ms;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-left 135s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 8.5rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 4.5rem;
+    background-attachment: scroll;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-in,
+  .stagger-delay-1,
+  .stagger-delay-2,
+  .stagger-delay-3,
+  .marquee-track {
+    animation: none !important;
   }
 }

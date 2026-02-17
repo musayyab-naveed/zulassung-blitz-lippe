@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TrustBadges from "@/components/TrustBadges";
+import Seo from "@/components/Seo";
 import { 
   Users, 
   Clock, 
@@ -60,6 +61,12 @@ const UeberUns = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Über Uns | KFZ-Sofortzulassung Bad Salzuflen"
+        description="Lernen Sie KFZ-Sofortzulassung kennen: persönlicher Service, schnelle Bearbeitung und zuverlässige KFZ-Zulassung im Kreis Lippe."
+        path="/ueber-uns"
+        image="/favicon.ico"
+      />
       <Header />
       
       {/* Hero Section */}
@@ -254,7 +261,9 @@ const UeberUns = () => {
                   <div>
                     <h3 className="font-semibold text-secondary">E-Mail</h3>
                     <p className="text-muted-foreground">
-                      info@sofortzulassung.com<br />
+                      <a href="mailto:info@sofortzulassung.com" className="hover:text-primary transition-colors">
+                        info@sofortzulassung.com
+                      </a><br />
                       <span className="text-sm">Antwort innerhalb von 2 Stunden</span>
                     </p>
                   </div>
@@ -278,7 +287,7 @@ const UeberUns = () => {
                   
                   <div className="space-y-4">
                     <Button size="lg" variant="cta-large" className="w-full" asChild>
-                      <Link to="/angebot">
+                      <Link to="/angebot?paket=premium">
                         JETZT BEAUFTRAGEN
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>

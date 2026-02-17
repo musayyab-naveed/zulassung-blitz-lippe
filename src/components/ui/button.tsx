@@ -18,8 +18,8 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        cta: "bg-[hsl(var(--cta-orange))] text-white hover:bg-[hsl(var(--cta-orange-hover))] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300",
-        "cta-large": "bg-[hsl(var(--cta-orange))] text-white hover:bg-[hsl(var(--cta-orange-hover))] shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-lg font-bold py-6 px-8",
+        cta: "rounded-xl bg-[hsl(var(--cta-orange))] text-white hover:bg-[hsl(var(--cta-orange-hover))] shadow-[0_12px_28px_-16px_hsl(var(--cta-orange)/0.8)] hover:shadow-[0_16px_30px_-14px_hsl(var(--cta-orange)/0.85)] transition-all duration-200",
+        "cta-large": "rounded-xl bg-[hsl(var(--cta-orange))] text-white hover:bg-[hsl(var(--cta-orange-hover))] shadow-[0_16px_30px_-16px_hsl(var(--cta-orange)/0.85)] hover:shadow-[0_20px_36px_-14px_hsl(var(--cta-orange)/0.9)] transition-all duration-200 text-lg font-bold py-6 px-8",
       },
       size: {
         default: "h-10 px-4 py-2",
