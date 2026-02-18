@@ -331,16 +331,6 @@ const Angebot = () => {
     setLeadSendMessage("");
 
     try {
-      const healthResponse = await fetch("/api/health", { method: "GET" });
-      if (!healthResponse.ok) {
-        throw new Error("API-Server nicht erreichbar. Bitte `npm run dev:full` starten.");
-      }
-
-      const healthData = await healthResponse.json().catch(() => null);
-      if (!healthData?.smtpConfigured) {
-        throw new Error("SMTP ist nicht konfiguriert. Bitte `.env` prüfen und API neu starten.");
-      }
-
       const response = await fetch(leadApiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -380,10 +370,12 @@ const Angebot = () => {
       const message = error instanceof Error ? error.message : "";
       if (message.toLowerCase().includes("failed to fetch")) {
         setLeadSendError(
-          "E-Mail konnte nicht gesendet werden. API-Server nicht erreichbar. Starte bitte `npm run dev:api` oder `npm run dev:full`."
+          "Direktmail aktuell nicht erreichbar. Sie können trotzdem fortfahren; die Daten werden mit der Terminbuchung übertragen."
         );
       } else {
-        setLeadSendError(`E-Mail konnte nicht gesendet werden.${message ? ` ${message}` : ""}`);
+        setLeadSendError(
+          `Direktmail aktuell nicht verfügbar.${message ? ` ${message}` : " Sie können trotzdem fortfahren."}`
+        );
       }
       return false;
     } finally {
@@ -749,8 +741,7 @@ const Angebot = () => {
                       variant="cta"
                       disabled={!stepTwoCompleted || isSendingLead}
                       onClick={async () => {
-                        const sent = await sendOptionsByEmail();
-                        if (!sent) return;
+                        await sendOptionsByEmail();
                         setCurrentStep(3);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
