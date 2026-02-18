@@ -287,7 +287,7 @@ const UeberUns = () => {
                   
                   <div className="space-y-4">
                     <Button size="lg" variant="cta-large" className="w-full" asChild>
-                      <Link to="/angebot?paket=premium">
+                      <Link to="/angebot">
                         JETZT BEAUFTRAGEN
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Link>
