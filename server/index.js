@@ -158,46 +158,131 @@ function extractCalLead(payload) {
   };
 }
 
+function hasValue(value) {
+  if (value === null || value === undefined) return false;
+  if (typeof value === "string") return value.trim() !== "" && value.trim() !== "-";
+  if (Array.isArray(value)) return value.length > 0;
+  return true;
+}
+
+function formatSectionLines(title, fields) {
+  const visible = fields.filter((entry) => hasValue(entry.value));
+  if (visible.length === 0) return [];
+  return [title, ...visible.map((entry) => `- ${entry.label}: ${safeText(entry.value)}`), ""];
+}
+
+function isRedundantWebsiteNotes(value) {
+  const text = String(value || "").trim();
+  return text.startsWith("Vorauswahl Dienstleistungen:");
+}
+
 function formatWebsiteLeadEmail(lead) {
   const data = lead.responses || {};
   const fahrzeugdaten = data.fahrzeugdaten || {};
   const services = Array.isArray(data.services) ? data.services : [];
+  const notes = isRedundantWebsiteNotes(data.notes) ? "" : data.notes;
 
   const lines = [
     "Neue Anfrage vom Website-Formular",
     "",
-    "Service-Auswahl",
-    `- Paket: ${safeText(data.paket)}`,
-    `- Fahrzeugankauf: ${safeText(data.fahrzeugankauf)}`,
-    `- Premium-Abwicklung: ${safeText(data.premiumAbwicklung)}`,
-    `- Dienstleistungen: ${services.length ? services.join(", ") : "-"}`,
-    "",
-    "Fahrzeugdaten",
-    `- Marke: ${safeText(fahrzeugdaten.marke)}`,
-    `- Modell: ${safeText(fahrzeugdaten.modell)}`,
-    `- Baujahr: ${safeText(fahrzeugdaten.baujahr)}`,
-    `- Kilometerstand: ${safeText(fahrzeugdaten.kilometerstand)}`,
-    "",
-    "Kontakt",
-    `- Name: ${safeText(lead.name)}`,
-    `- E-Mail: ${safeText(lead.email)}`,
-    `- Telefon: ${safeText(lead.phone)}`,
-    "",
-    "Termin",
-    `- Start: ${safeText(lead.startTime)}`,
-    `- Ende: ${safeText(lead.endTime)}`,
-    `- Ort: ${safeText(lead.location)}`,
-    "",
-    "Zusätzliche Notizen",
-    safeText(data.notes),
-    "",
-    "Meta",
-    `- Anfrage-Typ: ${safeText(lead.eventType)}`,
-    `- Anfrage-ID: ${safeText(lead.bookingId)}`,
-    `- Übermittelt am: ${safeText(data.submittedAt)}`,
+    ...formatSectionLines("Service-Auswahl", [
+      { label: "Paket", value: data.paket },
+      { label: "Fahrzeugankauf", value: data.fahrzeugankauf },
+      { label: "Premium-Abwicklung", value: data.premiumAbwicklung },
+      { label: "Dienstleistungen", value: services.join(", ") },
+    ]),
+    ...formatSectionLines("Fahrzeugdaten", [
+      { label: "Marke", value: fahrzeugdaten.marke },
+      { label: "Modell", value: fahrzeugdaten.modell },
+      { label: "Baujahr", value: fahrzeugdaten.baujahr },
+      { label: "Kilometerstand", value: fahrzeugdaten.kilometerstand },
+    ]),
+    ...formatSectionLines("Kontakt", [
+      { label: "Name", value: lead.name },
+      { label: "E-Mail", value: lead.email },
+      { label: "Telefon", value: lead.phone },
+    ]),
+    ...formatSectionLines("Termin", [
+      { label: "Start", value: lead.startTime },
+      { label: "Ende", value: lead.endTime },
+      { label: "Ort", value: lead.location },
+    ]),
+    ...formatSectionLines("Zusätzliche Notizen", [{ label: "Notiz", value: notes }]),
+    ...formatSectionLines("Meta", [
+      { label: "Anfrage-Typ", value: lead.eventType },
+      { label: "Anfrage-ID", value: lead.bookingId },
+      { label: "Übermittelt am", value: data.submittedAt },
+    ]),
   ];
 
-  return lines.join("\n");
+  return lines.join("\n").trim();
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function renderHtmlSection(title, fields) {
+  const visible = fields.filter((entry) => hasValue(entry.value));
+  if (visible.length === 0) return "";
+  const rows = visible
+    .map(
+      (entry) =>
+        `<tr><td style="padding:6px 10px;color:#64748b;vertical-align:top;">${escapeHtml(entry.label)}</td><td style="padding:6px 10px;font-weight:600;color:#0f172a;">${escapeHtml(safeText(entry.value))}</td></tr>`
+    )
+    .join("");
+  return `<table style="width:100%;border:1px solid #e2e8f0;border-radius:10px;margin:0 0 14px 0;border-collapse:separate;border-spacing:0;">
+    <thead><tr><th colspan="2" style="text-align:left;padding:10px 12px;background:#f8fafc;color:#0f172a;font-size:15px;">${escapeHtml(
+      title
+    )}</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function formatLeadEmailHtml(lead) {
+  if (String(lead.eventType || "").startsWith("website.")) {
+    const data = lead.responses || {};
+    const fahrzeugdaten = data.fahrzeugdaten || {};
+    const services = Array.isArray(data.services) ? data.services : [];
+    const notes = isRedundantWebsiteNotes(data.notes) ? "" : data.notes;
+
+    return `<!doctype html><html><body style="font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:20px;">
+      <div style="max-width:760px;margin:0 auto;background:#ffffff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;">
+        <h2 style="margin:0 0 14px 0;color:#0f172a;">Neue Anfrage vom Website-Formular</h2>
+        ${renderHtmlSection("Service-Auswahl", [
+          { label: "Paket", value: data.paket },
+          { label: "Fahrzeugankauf", value: data.fahrzeugankauf },
+          { label: "Premium-Abwicklung", value: data.premiumAbwicklung },
+          { label: "Dienstleistungen", value: services.join(", ") },
+        ])}
+        ${renderHtmlSection("Fahrzeugdaten", [
+          { label: "Marke", value: fahrzeugdaten.marke },
+          { label: "Modell", value: fahrzeugdaten.modell },
+          { label: "Baujahr", value: fahrzeugdaten.baujahr },
+          { label: "Kilometerstand", value: fahrzeugdaten.kilometerstand },
+        ])}
+        ${renderHtmlSection("Kontakt", [
+          { label: "Name", value: lead.name },
+          { label: "E-Mail", value: lead.email },
+          { label: "Telefon", value: lead.phone },
+        ])}
+        ${renderHtmlSection("Termin", [
+          { label: "Start", value: lead.startTime },
+          { label: "Ende", value: lead.endTime },
+          { label: "Ort", value: lead.location },
+        ])}
+        ${renderHtmlSection("Zusätzliche Notizen", [{ label: "Notiz", value: notes }])}
+      </div>
+    </body></html>`;
+  }
+
+  return `<pre style="font-family:Arial,sans-serif;white-space:pre-wrap;">${escapeHtml(
+    formatLeadEmail(lead)
+  )}</pre>`;
 }
 
 function formatLeadEmail(lead) {
@@ -295,6 +380,7 @@ app.post("/api/lead", async (req, res) => {
       replyTo: lead.email || undefined,
       subject: `[Website] Neue Anfrage ${lead.name ? `- ${lead.name}` : ""}`,
       text: formatLeadEmail(lead),
+      html: formatLeadEmailHtml(lead),
     });
 
     res.status(200).json({ ok: true });
@@ -319,6 +405,7 @@ app.post("/api/cal/webhook", async (req, res) => {
       replyTo: lead.email || undefined,
       subject: `[Cal.com] Neue Buchung ${lead.name ? `- ${lead.name}` : ""}`,
       text: formatLeadEmail(lead),
+      html: formatLeadEmailHtml(lead),
     });
 
     return res.status(200).json({ ok: true });
