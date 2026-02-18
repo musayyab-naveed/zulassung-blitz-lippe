@@ -2,6 +2,7 @@ const {
   getSmtpConfig,
   createTransport,
   mapSmtpError,
+  normalizeImageAttachments,
   formatLeadEmail,
   formatLeadEmailHtml,
   formatLeadSubject,
@@ -24,6 +25,7 @@ exports.handler = async (event) => {
   }
 
   const body = parseJsonBody(event);
+  const attachments = normalizeImageAttachments(body || {});
   const lead = {
     eventType: body?.eventType || "website.manual",
     bookingId: body?.bookingId,
@@ -45,6 +47,7 @@ exports.handler = async (event) => {
       subject: formatLeadSubject(lead),
       text: formatLeadEmail(lead),
       html: formatLeadEmailHtml(lead),
+      attachments,
     });
     return json(200, { ok: true });
   } catch (error) {

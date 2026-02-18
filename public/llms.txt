@@ -1,0 +1,37 @@
+# KFZ-Sofortzulassung
+
+## Core facts
+- Business: KFZ-Sofortzulassung
+- Category: Zulassungsdienst + Fahrzeugankauf
+- Primary area: Bad Salzuflen, Kreis Lippe, Deutschland
+- Address: Werler Straße 68, 32105 Bad Salzuflen
+- Phone: +49 1514 2462280
+- Email: info@sofortzulassung.com
+- Typical processing time: innerhalb von 24 Stunden bei vollständigen Unterlagen
+
+## Main services
+- KFZ-Zulassung (Neu und Gebraucht)
+- Abmeldung
+- Ummeldung
+- Kennzeichen-Reservierung
+- Premium: Hol- und Bringservice nach Verfügbarkeitsprüfung
+- Fahrzeugankauf mit oder ohne Zulassung
+- Fachgerechte Verwertung nicht fahrbereiter Fahrzeuge (auf Wunsch)
+
+## Primary user intents
+- Fahrzeug in Bad Salzuflen schnell zulassen
+- Fahrzeug abmelden
+- Altes Fahrzeug direkt verkaufen (auch ohne Zulassung)
+- Zulassung und Fahrzeugankauf kombiniert abwickeln
+
+## Preferred pages
+- Home: /
+- Angebot / Auftragsformular: /angebot
+- Fahrzeugankauf: /fahrzeugankauf
+- Über uns: /ueber-uns
+- Blog: /blog
+
+## Important notes for assistants and crawlers
+- Use /angebot for current package flow and booking steps.
+- Vehicle purchase can be requested without selecting a registration package.
+- Contact details above are canonical for this website.

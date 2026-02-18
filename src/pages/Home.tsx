@@ -114,6 +114,23 @@ const Home = () => {
   ];
 
   const latestPosts = blogPosts.slice(0, 3);
+  const geoFaqs = [
+    {
+      question: "Wie schnell ist eine KFZ-Zulassung in Bad Salzuflen möglich?",
+      answer:
+        "Bei vollständigen Unterlagen erfolgt die Zulassung in der Regel innerhalb von 24 Stunden.",
+    },
+    {
+      question: "Kann ich mein altes Fahrzeug gleichzeitig verkaufen?",
+      answer:
+        "Ja. Sie können Fahrzeugankauf mit Zulassung, Abmeldung oder auch unabhängig davon beauftragen.",
+    },
+    {
+      question: "Bieten Sie Service nur in Bad Salzuflen an?",
+      answer:
+        "Der Schwerpunkt liegt auf Bad Salzuflen und dem Kreis Lippe, inklusive persönlicher Betreuung vor Ort.",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -124,20 +141,45 @@ const Home = () => {
         image="/favicon.ico"
         structuredData={{
           "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "KFZ-Sofortzulassung",
-          image: "/favicon.ico",
-          telephone: "+49 1514 2462280",
-          email: "info@sofortzulassung.com",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Werler Straße 68",
-            postalCode: "32105",
-            addressLocality: "Bad Salzuflen",
-            addressCountry: "DE",
-          },
-          areaServed: "Kreis Lippe",
-          url: "/",
+          "@graph": [
+            {
+              "@type": "LocalBusiness",
+              name: "KFZ-Sofortzulassung",
+              image: "/favicon.ico",
+              telephone: "+49 1514 2462280",
+              email: "info@sofortzulassung.com",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Werler Straße 68",
+                postalCode: "32105",
+                addressLocality: "Bad Salzuflen",
+                addressCountry: "DE",
+              },
+              areaServed: "Kreis Lippe",
+              url: "/",
+            },
+            {
+              "@type": "Service",
+              name: "KFZ-Zulassung und Fahrzeugankauf",
+              provider: {
+                "@type": "LocalBusiness",
+                name: "KFZ-Sofortzulassung",
+              },
+              serviceType: ["KFZ-Zulassung", "Abmeldung", "Fahrzeugankauf"],
+              areaServed: "Kreis Lippe",
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: geoFaqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.answer,
+                },
+              })),
+            },
+          ],
         }}
       />
       <Header />
@@ -263,6 +305,27 @@ const Home = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">{step.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 bg-muted/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="section-title mb-3">Direkte Antworten</h2>
+            <p className="section-subtitle">Kurze Antworten auf häufige Fragen zur Zulassung und zum Fahrzeugankauf.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {geoFaqs.map((faq) => (
+              <Card key={faq.question} className="surface-card">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base leading-snug text-secondary">{faq.question}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
                 </CardContent>
               </Card>
             ))}

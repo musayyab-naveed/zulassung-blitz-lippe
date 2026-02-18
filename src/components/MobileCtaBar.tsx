@@ -18,10 +18,18 @@ const MobileCtaBar = () => {
             Anrufen
           </a>
         </Button>
-        <Button variant="outline" size="sm" asChild>
-          <a href="https://wa.me/4915142462280" target="_blank" rel="noreferrer">
+        <Button
+          size="sm"
+          className="border border-[#20be5d] bg-[#25D366] text-white hover:bg-[#1fb658]"
+          asChild
+        >
+          <a
+            href="https://wa.me/4915142462280?text=Hallo%2C%20ich%20habe%20eine%20Frage%20zu%20Zulassung%20und%2Foder%20Fahrzeugankauf."
+            target="_blank"
+            rel="noreferrer"
+          >
             <MessageCircle className="h-4 w-4" />
-            WhatsApp
+            Fragen?
           </a>
         </Button>
         <Button variant="cta" size="sm" asChild>

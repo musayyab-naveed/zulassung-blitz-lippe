@@ -10,6 +10,28 @@ function safeText(value) {
   }
 }
 
+function normalizeImageAttachments(body = {}) {
+  const raw = Array.isArray(body.imageAttachments) ? body.imageAttachments : [];
+  return raw
+    .filter((item) => typeof item?.dataUrl === "string" && item.dataUrl.startsWith("data:"))
+    .map((item, index) => {
+      const matches = item.dataUrl.match(/^data:(.+?);base64,(.+)$/);
+      if (!matches) return null;
+      const contentType = String(item.type || matches[1] || "image/jpeg");
+      const extension = contentType.split("/")[1] || "jpg";
+      const safeName = String(item.name || `fahrzeugbild-${index + 1}.${extension}`)
+        .replace(/[^\w.\-() ]/g, "_")
+        .slice(0, 120);
+      return {
+        filename: safeName || `fahrzeugbild-${index + 1}.${extension}`,
+        content: matches[2],
+        encoding: "base64",
+        contentType,
+      };
+    })
+    .filter(Boolean);
+}
+
 function hasValue(value) {
   if (value === null || value === undefined) return false;
   if (typeof value === "string") return value.trim() !== "" && value.trim() !== "-";
@@ -115,6 +137,7 @@ function formatWebsiteLeadEmail(lead) {
   const data = lead.responses || {};
   const fahrzeugdaten = data.fahrzeugdaten || {};
   const services = Array.isArray(data.services) ? data.services : [];
+  const fahrzeugbilder = Array.isArray(data.fahrzeugbilder) ? data.fahrzeugbilder : [];
   const notes = isRedundantWebsiteNotes(data.notes) ? "" : data.notes;
 
   const lines = [
@@ -131,6 +154,7 @@ function formatWebsiteLeadEmail(lead) {
       { label: "Modell", value: fahrzeugdaten.modell },
       { label: "Baujahr", value: fahrzeugdaten.baujahr },
       { label: "Kilometerstand", value: fahrzeugdaten.kilometerstand },
+      { label: "Bilder", value: fahrzeugbilder.length > 0 ? fahrzeugbilder.map((img) => img.name).join(", ") : "-" },
     ]),
     ...formatSectionLines("Kontakt", [
       { label: "Name", value: lead.name },
@@ -169,6 +193,7 @@ function formatLeadEmailHtml(lead) {
     const data = lead.responses || {};
     const fahrzeugdaten = data.fahrzeugdaten || {};
     const services = Array.isArray(data.services) ? data.services : [];
+    const fahrzeugbilder = Array.isArray(data.fahrzeugbilder) ? data.fahrzeugbilder : [];
     const notes = isRedundantWebsiteNotes(data.notes) ? "" : data.notes;
 
     return `<!doctype html><html><body style="font-family:Arial,sans-serif;background:#f1f5f9;margin:0;padding:20px;">
@@ -185,6 +210,7 @@ function formatLeadEmailHtml(lead) {
           { label: "Modell", value: fahrzeugdaten.modell },
           { label: "Baujahr", value: fahrzeugdaten.baujahr },
           { label: "Kilometerstand", value: fahrzeugdaten.kilometerstand },
+          { label: "Bilder", value: fahrzeugbilder.length > 0 ? fahrzeugbilder.map((img) => img.name).join(", ") : "-" },
         ])}
         ${renderHtmlSection("Kontakt", [
           { label: "Name", value: lead.name },
@@ -237,6 +263,7 @@ module.exports = {
   getSmtpConfig,
   createTransport,
   mapSmtpError,
+  normalizeImageAttachments,
   formatLeadEmail,
   formatLeadEmailHtml,
   formatLeadSubject,

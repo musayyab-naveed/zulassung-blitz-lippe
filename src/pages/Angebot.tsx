@@ -6,8 +6,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PriceCard from "@/components/PriceCard";
 import Seo from "@/components/Seo";
-import { CheckCircle, Phone, Mail, ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle, Phone, Mail, ArrowLeft, ImagePlus, Upload, ArrowUp, ArrowDown, X } from "lucide-react";
+import { useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -22,6 +22,14 @@ interface PackageDef {
   buttonText: string;
   popular?: boolean;
   buttonVariant?: "default" | "cta";
+}
+
+interface UploadImageItem {
+  id: string;
+  name: string;
+  type: string;
+  size: number;
+  dataUrl: string;
 }
 
 const PACKAGES: PackageDef[] = [
@@ -81,6 +89,24 @@ const PACKAGES: PackageDef[] = [
   },
 ];
 
+const geoFaqs = [
+  {
+    question: "Welche Pakete kann ich online buchen?",
+    answer:
+      "Sie können BASIS, PREMIUM, ABMELDUNG oder nur Fahrzeugverkauf wählen. Die Auswahl erfolgt direkt im ersten Schritt.",
+  },
+  {
+    question: "Kann ich Fahrzeugankauf ohne Zulassung beauftragen?",
+    answer:
+      "Ja. Über die Option „Nur Fahrzeugverkauf“ können Sie Ihr Fahrzeug unabhängig von einer Zulassung anbieten.",
+  },
+  {
+    question: "Wann ist der Termin-Kalender freigeschaltet?",
+    answer:
+      "Sobald Paket und Pflichtangaben in Schritt 2 vollständig sind, wird Schritt 3 mit dem Kalender geöffnet.",
+  },
+];
+
 const Angebot = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const wantsAnkaufFromParam = searchParams.get("ankauf") === "1";
@@ -106,6 +132,10 @@ const Angebot = () => {
     baujahr: "",
     kilometerstand: "",
   });
+  const [vehicleImages, setVehicleImages] = useState<UploadImageItem[]>([]);
+  const [vehicleImagesError, setVehicleImagesError] = useState("");
+  const [isUploadDragActive, setIsUploadDragActive] = useState(false);
+  const vehicleImagesInputRef = useRef<HTMLInputElement | null>(null);
 
   const [pickupChoice, setPickupChoice] = useState<"pickup" | "shipping" | null>(null);
   const [pickupAddress, setPickupAddress] = useState({
@@ -155,6 +185,8 @@ const Angebot = () => {
       baujahr: "",
       kilometerstand: "",
     });
+    setVehicleImages([]);
+    setVehicleImagesError("");
     setPickupChoice(null);
     setPickupCheckResult(null);
     setPickupCheckError("");
@@ -182,6 +214,8 @@ const Angebot = () => {
       baujahr: "",
       kilometerstand: "",
     });
+    setVehicleImages([]);
+    setVehicleImagesError("");
     setPickupChoice(null);
     setPickupCheckResult(null);
     setPickupCheckError("");
@@ -199,6 +233,8 @@ const Angebot = () => {
       baujahr: "",
       kilometerstand: "",
     });
+    setVehicleImages([]);
+    setVehicleImagesError("");
     setPickupChoice(null);
     setPickupCheckResult(null);
     setPickupCheckError("");
@@ -307,11 +343,15 @@ const Angebot = () => {
         ].join(", ")
       : "kein Fahrzeugankauf";
 
+  const vehicleImagesText =
+    vehicleImages.length > 0 ? `${vehicleImages.length} Bild(er): ${vehicleImages.map((img) => img.name).join(", ")}` : "keine Bilder";
+
   const calNotesPrefill = [
     `Vorauswahl Dienstleistungen: ${calServicePrefill.join(", ") || "-"}`,
     `Gewähltes Paket: ${selectedPackage?.title || "-"}`,
     `Fahrzeugankauf: ${sellDecision === "yes" ? "Ja" : "Nein"}`,
     `Fahrzeugdaten: ${vehicleDetails}`,
+    `Fahrzeugbilder: ${vehicleImagesText}`,
     `Premium-Abwicklung: ${premiumMode}`,
   ].join("\n");
 
@@ -350,6 +390,15 @@ const Angebot = () => {
           paket: selectedPackage.title,
           fahrzeugankauf: sellDecision === "yes" ? "Ja" : "Nein",
           fahrzeugdaten: sellDecision === "yes" ? sellVehicleData : null,
+          fahrzeugbilder:
+            sellDecision === "yes"
+              ? vehicleImages.map((image) => ({
+                  name: image.name,
+                  type: image.type,
+                  size: image.size,
+                }))
+              : [],
+          imageAttachments: sellDecision === "yes" ? vehicleImages : [],
           premiumAbwicklung: premiumMode,
           premiumAdresse: isPremium && pickupChoice === "pickup" ? pickupAddress : null,
           pickupPruefung: pickupCheckResult,
@@ -394,6 +443,71 @@ const Angebot = () => {
     }
   };
 
+  const handleVehicleImageUpload = async (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+
+    const MAX_IMAGES = 4;
+    const freeSlots = Math.max(0, MAX_IMAGES - vehicleImages.length);
+    if (freeSlots === 0) {
+      setVehicleImagesError("Maximal 4 Bilder möglich.");
+      return;
+    }
+
+    const incoming = Array.from(files).slice(0, freeSlots);
+    const invalid = incoming.filter((file) => !file.type.startsWith("image/"));
+    if (invalid.length > 0) {
+      setVehicleImagesError("Nur Bilddateien sind erlaubt.");
+      return;
+    }
+
+    const oversized = incoming.find((file) => file.size > 2 * 1024 * 1024);
+    if (oversized) {
+      setVehicleImagesError("Ein Bild ist größer als 2 MB. Bitte kleinere Bilder wählen.");
+      return;
+    }
+
+    const asDataUrl = (file: File) =>
+      new Promise<UploadImageItem>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = typeof reader.result === "string" ? reader.result : "";
+          resolve({
+            id: `${file.name}-${file.lastModified}-${Math.random().toString(36).slice(2, 9)}`,
+            name: file.name,
+            type: file.type,
+            size: file.size,
+            dataUrl: result,
+          });
+        };
+        reader.onerror = () => reject(new Error("file_read_failed"));
+        reader.readAsDataURL(file);
+      });
+
+    try {
+      const next = await Promise.all(incoming.map(asDataUrl));
+      setVehicleImages((prev) => [...prev, ...next]);
+      setVehicleImagesError("");
+    } catch {
+      setVehicleImagesError("Bilder konnten nicht gelesen werden. Bitte erneut versuchen.");
+    }
+  };
+
+  const removeVehicleImage = (imageId: string) => {
+    setVehicleImages((prev) => prev.filter((image) => image.id !== imageId));
+  };
+
+  const moveVehicleImage = (index: number, direction: "up" | "down") => {
+    setVehicleImages((prev) => {
+      const targetIndex = direction === "up" ? index - 1 : index + 1;
+      if (targetIndex < 0 || targetIndex >= prev.length) return prev;
+      const next = [...prev];
+      const current = next[index];
+      next[index] = next[targetIndex];
+      next[targetIndex] = current;
+      return next;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Seo
@@ -401,6 +515,42 @@ const Angebot = () => {
         description="Wählen Sie Ihr Paket: Basis, Premium oder Abmeldung. Optional Fahrzeugankauf hinzufügen und Termin direkt online buchen."
         path="/angebot"
         image="/favicon.ico"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              name: "Online Auftragsformular KFZ-Sofortzulassung",
+              provider: {
+                "@type": "LocalBusiness",
+                name: "KFZ-Sofortzulassung",
+                telephone: "+49 1514 2462280",
+                email: "info@sofortzulassung.com",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "Werler Straße 68",
+                  postalCode: "32105",
+                  addressLocality: "Bad Salzuflen",
+                  addressCountry: "DE",
+                },
+              },
+              areaServed: "Kreis Lippe",
+              serviceType: ["KFZ-Zulassung", "Abmeldung", "Fahrzeugankauf"],
+              url: "/angebot",
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: geoFaqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.answer,
+                },
+              })),
+            },
+          ],
+        }}
       />
       <Header />
 
@@ -534,6 +684,8 @@ const Angebot = () => {
                             baujahr: "",
                             kilometerstand: "",
                           });
+                          setVehicleImages([]);
+                          setVehicleImagesError("");
                         }}
                         >
                           Nein, kein Ankauf
@@ -593,6 +745,110 @@ const Angebot = () => {
                           />
                         </div>
                       </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="sell-bilder">Bilder (empfohlen)</Label>
+                        <input
+                          ref={vehicleImagesInputRef}
+                          id="sell-bilder"
+                          className="sr-only"
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          onClick={(event) => {
+                            event.currentTarget.value = "";
+                          }}
+                          onChange={(event) => void handleVehicleImageUpload(event.target.files)}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => vehicleImagesInputRef.current?.click()}
+                          onDragOver={(event) => {
+                            event.preventDefault();
+                            setIsUploadDragActive(true);
+                          }}
+                          onDragLeave={() => setIsUploadDragActive(false)}
+                          onDrop={(event) => {
+                            event.preventDefault();
+                            setIsUploadDragActive(false);
+                            void handleVehicleImageUpload(event.dataTransfer.files);
+                          }}
+                          className={`w-full rounded-xl border-2 border-dashed p-4 text-left transition-colors sm:p-6 ${
+                            isUploadDragActive
+                              ? "border-primary bg-primary/5"
+                              : "border-border hover:border-primary/40 hover:bg-muted/40"
+                          }`}
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="grid h-14 w-14 place-items-center rounded-lg border bg-background text-primary">
+                              <ImagePlus className="h-7 w-7" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-secondary sm:text-base">
+                                Bilder hinzufügen
+                              </p>
+                              <p className="text-xs text-muted-foreground sm:text-sm">
+                                Auf dem Handy antippen oder am PC per Drag & Drop hochladen
+                              </p>
+                            </div>
+                          </div>
+                        </button>
+                        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                          <span className="inline-flex items-center gap-1">
+                            <Upload className="h-3.5 w-3.5" />
+                            Optional: bis zu 4 Bilder
+                          </span>
+                          <span>Je Bild max. 2 MB</span>
+                          <span>Ohne Bilder können Sie normal fortfahren</span>
+                        </div>
+                        {vehicleImagesError && (
+                          <p className="text-xs text-destructive">{vehicleImagesError}</p>
+                        )}
+                      </div>
+                      {vehicleImages.length > 0 && (
+                        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                          {vehicleImages.map((image, index) => (
+                            <div key={image.id} className="rounded-lg border bg-background p-2">
+                              <img
+                                src={image.dataUrl}
+                                alt={`Fahrzeugbild ${image.name}`}
+                                className="h-32 w-full rounded object-cover"
+                              />
+                              <div className="mt-2 flex items-center justify-between gap-2">
+                                <p className="truncate text-[11px] text-muted-foreground">{image.name}</p>
+                                <span className="text-[11px] font-semibold text-secondary">#{index + 1}</span>
+                              </div>
+                              <div className="mt-2 grid grid-cols-3 gap-2">
+                                <Button
+                                  type="button"
+                                  size="sm"
+                                  variant="outline"
+                                  disabled={index === 0}
+                                  onClick={() => moveVehicleImage(index, "up")}
+                                >
+                                  <ArrowUp className="h-4 w-4" />
+                                </Button>
+                                <Button
+                                  type="button"
+                                  size="sm"
+                                  variant="outline"
+                                  disabled={index === vehicleImages.length - 1}
+                                  onClick={() => moveVehicleImage(index, "down")}
+                                >
+                                  <ArrowDown className="h-4 w-4" />
+                                </Button>
+                                <Button
+                                  type="button"
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => removeVehicleImage(image.id)}
+                                >
+                                  <X className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
 
@@ -815,6 +1071,14 @@ const Angebot = () => {
                           </span>
                         </p>
                       )}
+                      {sellDecision === "yes" && (
+                        <p>
+                          Bilder:{" "}
+                          <span className="font-semibold text-secondary">
+                            {vehicleImages.length > 0 ? `${vehicleImages.length} hochgeladen` : "keine"}
+                          </span>
+                        </p>
+                      )}
                       {isPremium && (
                         <p>
                           Premium-Zustellung:{" "}
@@ -883,6 +1147,27 @@ const Angebot = () => {
           </div>
         </section>
       )}
+
+      <section className="py-12 bg-muted/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-secondary mb-3">Direkte Antworten</h2>
+            <p className="text-muted-foreground">Kurz und klar für schnelle Entscheidungen.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {geoFaqs.map((faq) => (
+              <Card key={faq.question} className="h-full">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base leading-snug text-secondary">{faq.question}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

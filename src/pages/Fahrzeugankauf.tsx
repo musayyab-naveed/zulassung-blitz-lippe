@@ -8,6 +8,24 @@ import { Link } from "react-router-dom";
 import autoankaufHeroImage from "@/assets/autoankauf-hero.jpeg";
 
 const Fahrzeugankauf = () => {
+  const geoFaqs = [
+    {
+      question: "Kann ich mein Fahrzeug auch ohne Zulassung verkaufen?",
+      answer:
+        "Ja. Fahrzeugankauf ist bei uns unabhängig von Zulassung, Ummeldung oder Abmeldung möglich.",
+    },
+    {
+      question: "Welche Daten braucht ihr für eine Ersteinschätzung?",
+      answer:
+        "Für den Start reichen Marke, Modell und Baujahr. Optional hilft der Kilometerstand für eine genauere Einschätzung.",
+    },
+    {
+      question: "Was passiert mit nicht fahrbereiten Fahrzeugen?",
+      answer:
+        "Auch nicht fahrbereite Fahrzeuge können wir übernehmen und die fachgerechte Verwertung koordinieren.",
+    },
+  ];
+
   const steps = [
     {
       title: "Ankauf-Interesse angeben",
@@ -41,6 +59,42 @@ const Fahrzeugankauf = () => {
         description="Fahrzeugverkauf in Bad Salzuflen mit oder ohne Zulassung: schnelle Ersteinschätzung, faire Ankaufprüfung und auf Wunsch kostenlose Abmeldung."
         path="/fahrzeugankauf"
         image="/favicon.ico"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Service",
+              name: "Fahrzeugankauf Bad Salzuflen",
+              provider: {
+                "@type": "LocalBusiness",
+                name: "KFZ-Sofortzulassung",
+                telephone: "+49 1514 2462280",
+                email: "info@sofortzulassung.com",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "Werler Straße 68",
+                  postalCode: "32105",
+                  addressLocality: "Bad Salzuflen",
+                  addressCountry: "DE",
+                },
+              },
+              serviceType: "Fahrzeugankauf",
+              areaServed: "Kreis Lippe",
+              url: "/fahrzeugankauf",
+            },
+            {
+              "@type": "FAQPage",
+              mainEntity: geoFaqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.answer,
+                },
+              })),
+            },
+          ],
+        }}
       />
       <Header />
 
@@ -163,6 +217,29 @@ const Fahrzeugankauf = () => {
                 </Button>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-secondary mb-3">Direkte Antworten</h2>
+            <p className="text-muted-foreground">
+              Die wichtigsten Fragen zum Fahrzeugankauf auf einen Blick.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {geoFaqs.map((faq) => (
+              <Card key={faq.question} className="h-full border-primary/20">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-base leading-snug text-secondary">{faq.question}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

@@ -12,6 +12,7 @@ import Datenschutz from "./pages/Datenschutz";
 import NotFound from "./pages/NotFound";
 import Fahrzeugankauf from "./pages/Fahrzeugankauf";
 import MobileCtaBar from "./components/MobileCtaBar";
+import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 
@@ -46,6 +47,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <WhatsAppFloatingButton />
         <MobileCtaBar />
       </BrowserRouter>
     </TooltipProvider>
