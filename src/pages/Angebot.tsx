@@ -6,13 +6,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PriceCard from "@/components/PriceCard";
 import Seo from "@/components/Seo";
-import { CheckCircle, Phone, Mail, ArrowLeft, Building2 } from "lucide-react";
-import { useRef, useState } from "react";
+import { CheckCircle, Phone, Mail, ArrowLeft } from "lucide-react";
+import { useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-type PackageKey = "basis" | "premium" | "abmeldung";
+type PackageKey = "basis" | "premium" | "abmeldung" | "ankauf_only";
 
 interface PackageDef {
   key: PackageKey;
@@ -33,6 +33,8 @@ const PACKAGES: PackageDef[] = [
       "Zulassung innerhalb von 24h",
       "Unterlagen vor Ort abgeben",
       "Verwaltungsgebühren inkl.",
+      "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
+      "Kostenlose Abmeldung bei Ankauf",
     ],
     buttonText: "BASIS WÄHLEN",
     buttonVariant: "cta" as const,
@@ -46,6 +48,8 @@ const PACKAGES: PackageDef[] = [
       "Alles vom BASIS",
       "Hol- und Bringservice möglich",
       "Express-Rückversand inklusive",
+      "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
+      "Kostenlose Abmeldung bei Ankauf",
     ],
     buttonText: "PREMIUM WÄHLEN",
     buttonVariant: "cta" as const,
@@ -54,20 +58,38 @@ const PACKAGES: PackageDef[] = [
     key: "abmeldung",
     title: "ABMELDUNG",
     price: "30 €",
-    features: ["Abmeldung innerhalb 24h", "Verwaltungsgebühren inkl."],
+    features: [
+      "Abmeldung innerhalb 24h",
+      "Verwaltungsgebühren inkl.",
+      "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
+      "Kostenlose Abmeldung bei Ankauf",
+    ],
     buttonText: "ABMELDUNG WÄHLEN",
+    buttonVariant: "cta" as const,
+  },
+  {
+    key: "ankauf_only",
+    title: "NUR FAHRZEUGVERKAUF",
+    price: "0 €",
+    features: [
+      "Unverbindliche Ankaufanfrage ohne Zulassungspaket",
+      "Fahrzeugdaten erfassen und Termin vereinbaren",
+      "Fachgerechte Verwertung nicht fahrbereiter Fahrzeuge möglich",
+    ],
+    buttonText: "NUR FAHRZEUGVERKAUF WÄHLEN",
     buttonVariant: "cta" as const,
   },
 ];
 
 const Angebot = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const wantsAnkaufFromParam = searchParams.get("ankauf") === "1";
   const [selectedPackageKey, setSelectedPackageKey] = useState<PackageKey | null>(null);
   const [sellDecision, setSellDecision] = useState<"yes" | "no" | null>(null);
   const [sellVehicleData, setSellVehicleData] = useState({
     marke: "",
     modell: "",
-    erstzulassung: "",
+    baujahr: "",
     kilometerstand: "",
   });
 
@@ -84,13 +106,14 @@ const Angebot = () => {
     message: string;
   } | null>(null);
   const [pickupCheckError, setPickupCheckError] = useState("");
-
-  const packageSectionRef = useRef<HTMLElement | null>(null);
-  const stepTwoRef = useRef<HTMLElement | null>(null);
-  const stepThreeRef = useRef<HTMLElement | null>(null);
+  const [isSendingLead, setIsSendingLead] = useState(false);
+  const [leadSendMessage, setLeadSendMessage] = useState("");
+  const [leadSendError, setLeadSendError] = useState("");
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
 
   const selectedPackage = PACKAGES.find((pkg) => pkg.key === selectedPackageKey) ?? null;
   const isPremium = selectedPackageKey === "premium";
+  const isAnkaufOnly = selectedPackageKey === "ankauf_only";
 
   useEffect(() => {
     (async function () {
@@ -114,32 +137,22 @@ const Angebot = () => {
     if (selectedPackageKey === packageFromParam.key) return;
 
     setSelectedPackageKey(packageFromParam.key);
-    setSellDecision(null);
+    setSellDecision(packageFromParam.key === "ankauf_only" ? "yes" : wantsAnkaufFromParam ? "yes" : null);
     setSellVehicleData({
       marke: "",
       modell: "",
-      erstzulassung: "",
+      baujahr: "",
       kilometerstand: "",
     });
     setPickupChoice(null);
     setPickupCheckResult(null);
     setPickupCheckError("");
-  }, [searchParams, selectedPackageKey]);
+    setCurrentStep(2);
+  }, [searchParams, selectedPackageKey, wantsAnkaufFromParam]);
 
   useEffect(() => {
-    if (!selectedPackageKey) return;
-
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 80);
-  }, [selectedPackageKey]);
-
-  useEffect(() => {
-    if (selectedPackageKey !== null) return;
-
-    setTimeout(() => {
-      packageSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 120);
+    if (selectedPackageKey) return;
+    setCurrentStep(1);
   }, [selectedPackageKey]);
 
   const normalize = (value: string) =>
@@ -151,20 +164,37 @@ const Angebot = () => {
 
   const selectPackage = (pkg: PackageDef) => {
     setSelectedPackageKey(pkg.key);
-    setSellDecision(null);
+    setSellDecision(pkg.key === "ankauf_only" ? "yes" : wantsAnkaufFromParam ? "yes" : null);
     setSellVehicleData({
       marke: "",
       modell: "",
-      erstzulassung: "",
+      baujahr: "",
       kilometerstand: "",
     });
     setPickupChoice(null);
     setPickupCheckResult(null);
     setPickupCheckError("");
+    setCurrentStep(2);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 80);
+  const resetWizard = () => {
+    setSearchParams({});
+    setSelectedPackageKey(null);
+    setSellDecision(null);
+    setSellVehicleData({
+      marke: "",
+      modell: "",
+      baujahr: "",
+      kilometerstand: "",
+    });
+    setPickupChoice(null);
+    setPickupCheckResult(null);
+    setPickupCheckError("");
+    setLeadSendError("");
+    setLeadSendMessage("");
+    setCurrentStep(1);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const checkPickupEligibility = () => {
@@ -224,13 +254,142 @@ const Angebot = () => {
     Boolean(
       sellVehicleData.marke.trim() &&
         sellVehicleData.modell.trim() &&
-        sellVehicleData.erstzulassung.trim() &&
-        sellVehicleData.kilometerstand.trim()
+        sellVehicleData.baujahr.trim()
     );
 
   const stepTwoCompleted = sellDecision !== null && sellVehicleDataComplete && pickupRequirementMet;
 
   const canBookAppointment = selectedPackage !== null && stepTwoCompleted;
+  const leadApiUrl = import.meta.env.VITE_LEAD_API_URL || "/api/lead";
+
+  const calendarServiceBase =
+    selectedPackageKey === "abmeldung"
+      ? "Abmeldung"
+      : selectedPackageKey === "ankauf_only"
+      ? "Fahrzeugankauf"
+      : selectedPackageKey
+      ? "Zulassung"
+      : "";
+
+  const calendarServices = [
+    calendarServiceBase,
+    ...(sellDecision === "yes" && calendarServiceBase !== "Fahrzeugankauf" ? ["Fahrzeugankauf"] : []),
+  ].filter(Boolean);
+
+  const calServicePrefill = calendarServices as string[];
+  const premiumMode =
+    !isPremium
+      ? "nicht relevant"
+      : pickupChoice === "pickup" && pickupCheckResult?.eligible
+      ? "Hol- und Bringservice"
+      : pickupChoice === "shipping"
+      ? "Versand"
+      : "noch nicht festgelegt";
+
+  const vehicleDetails =
+    sellDecision === "yes"
+      ? [
+          `Marke: ${sellVehicleData.marke || "-"}`,
+          `Modell: ${sellVehicleData.modell || "-"}`,
+          `Baujahr: ${sellVehicleData.baujahr || "-"}`,
+          `Kilometerstand: ${sellVehicleData.kilometerstand || "-"}`,
+        ].join(", ")
+      : "kein Fahrzeugankauf";
+
+  const calNotesPrefill = [
+    `Vorauswahl Dienstleistungen: ${calServicePrefill.join(", ") || "-"}`,
+    `Gewähltes Paket: ${selectedPackage?.title || "-"}`,
+    `Fahrzeugankauf: ${sellDecision === "yes" ? "Ja" : "Nein"}`,
+    `Fahrzeugdaten: ${vehicleDetails}`,
+    `Premium-Abwicklung: ${premiumMode}`,
+  ].join("\n");
+
+  const calServiceQuery = new URLSearchParams();
+  calServicePrefill.forEach((value) => {
+    calServiceQuery.append("dienstleistung", value);
+    calServiceQuery.append("service", value);
+    calServiceQuery.append("Dienstleistung wählen", value);
+    calServiceQuery.append("Dienstleistung waehlen", value);
+    calServiceQuery.append("dienstleistung_waehlen", value);
+    calServiceQuery.append("dienstleistung_wahlen", value);
+  });
+  calServiceQuery.append("notes", calNotesPrefill);
+  calServiceQuery.append("Zusätzliche Notizen", calNotesPrefill);
+  calServiceQuery.append("zusaetzliche_notizen", calNotesPrefill);
+  calServiceQuery.append("additionalNotes", calNotesPrefill);
+  const calLinkWithPrefill = `sofortzulassung/15min${calServiceQuery.toString() ? `?${calServiceQuery.toString()}` : ""}`;
+
+  const sendOptionsByEmail = async () => {
+    if (!selectedPackage || !stepTwoCompleted) {
+      setLeadSendError("Bitte zuerst alle Pflichtangaben in Schritt 2 ausfüllen.");
+      setLeadSendMessage("");
+      return false;
+    }
+
+    setIsSendingLead(true);
+    setLeadSendError("");
+    setLeadSendMessage("");
+
+    try {
+      const healthResponse = await fetch("/api/health", { method: "GET" });
+      if (!healthResponse.ok) {
+        throw new Error("API-Server nicht erreichbar. Bitte `npm run dev:full` starten.");
+      }
+
+      const healthData = await healthResponse.json().catch(() => null);
+      if (!healthData?.smtpConfigured) {
+        throw new Error("SMTP ist nicht konfiguriert. Bitte `.env` prüfen und API neu starten.");
+      }
+
+      const response = await fetch(leadApiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventType: "website.options_form",
+          paket: selectedPackage.title,
+          fahrzeugankauf: sellDecision === "yes" ? "Ja" : "Nein",
+          fahrzeugdaten: sellDecision === "yes" ? sellVehicleData : null,
+          premiumAbwicklung: premiumMode,
+          premiumAdresse: isPremium && pickupChoice === "pickup" ? pickupAddress : null,
+          pickupPruefung: pickupCheckResult,
+          services: calServicePrefill,
+          notes: calNotesPrefill,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (!response.ok) {
+        let detail = "";
+        try {
+          const data = await response.json();
+          detail = data?.detail || data?.error || "";
+        } catch {
+          try {
+            const text = await response.text();
+            detail = text?.slice(0, 180) || "";
+          } catch {
+            detail = "";
+          }
+        }
+        throw new Error(detail || `send_failed (HTTP ${response.status})`);
+      }
+
+      setLeadSendMessage("Formulardaten wurden per E-Mail an info@sofortzulassung.com gesendet.");
+      return true;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "";
+      if (message.toLowerCase().includes("failed to fetch")) {
+        setLeadSendError(
+          "E-Mail konnte nicht gesendet werden. API-Server nicht erreichbar. Starte bitte `npm run dev:api` oder `npm run dev:full`."
+        );
+      } else {
+        setLeadSendError(`E-Mail konnte nicht gesendet werden.${message ? ` ${message}` : ""}`);
+      }
+      return false;
+    } finally {
+      setIsSendingLead(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -249,22 +408,35 @@ const Angebot = () => {
             Klare 3-Schritt-Abwicklung: Paket wählen, Ankauf/Service klären, Termin buchen.
           </p>
           <div className="flex justify-center gap-3 text-sm flex-wrap">
-            <span className="bg-primary-foreground/20 rounded-full px-4 py-2">1. Paket</span>
-            <span className="bg-primary-foreground/20 rounded-full px-4 py-2">2. Optionen</span>
-            <span className="bg-primary-foreground/20 rounded-full px-4 py-2">3. Termin</span>
+            {[
+              { id: 1, label: "1. Paket" },
+              { id: 2, label: "2. Optionen" },
+              { id: 3, label: "3. Termin" },
+            ].map((step) => (
+              <span
+                key={step.id}
+                className={`rounded-full px-4 py-2 ${
+                  currentStep === step.id
+                    ? "bg-white text-secondary font-semibold"
+                    : "bg-primary-foreground/20"
+                }`}
+              >
+                {step.label}
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
-      {!selectedPackage && (
-        <section className="py-16" ref={packageSectionRef}>
+      {currentStep === 1 && (
+        <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-secondary mb-4">1. Paket auswählen</h2>
               <p className="text-lg text-muted-foreground">Wählen Sie nur die für Sie passende Serviceart.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {PACKAGES.map((pkg) => (
+              {PACKAGES.filter((pkg) => pkg.key !== "ankauf_only").map((pkg) => (
                 <PriceCard
                   key={pkg.key}
                   title={pkg.title}
@@ -277,13 +449,31 @@ const Angebot = () => {
                 />
               ))}
             </div>
+            <Card className="mt-8 border-2 border-primary/30 bg-primary/5">
+              <CardContent className="py-6 px-6 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <p className="text-lg font-semibold text-secondary">
+                    Keines dieser Pakete? Ich möchte nur mein Fahrzeug verkaufen.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Ohne Zulassungspaket direkt zur Ankaufanfrage mit Termin.
+                  </p>
+                </div>
+                <Button
+                  type="button"
+                  variant="cta"
+                  onClick={() => selectPackage(PACKAGES.find((pkg) => pkg.key === "ankauf_only")!)}
+                >
+                  Nur Fahrzeugverkauf
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </section>
       )}
 
-      {selectedPackage && (
-        <>
-          <section className="py-16" ref={stepTwoRef}>
+      {selectedPackage && currentStep === 2 && (
+        <section className="py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
               <Card className="border-2 border-primary/20">
                 <CardHeader>
@@ -293,20 +483,7 @@ const Angebot = () => {
                       variant="outline"
                       size="sm"
                       type="button"
-                      onClick={() => {
-                        setSearchParams({});
-                        setSelectedPackageKey(null);
-                        setSellDecision(null);
-                        setSellVehicleData({
-                          marke: "",
-                          modell: "",
-                          erstzulassung: "",
-                          kilometerstand: "",
-                        });
-                        setPickupChoice(null);
-                        setPickupCheckResult(null);
-                        setPickupCheckError("");
-                      }}
+                      onClick={resetWizard}
                     >
                       <ArrowLeft className="h-4 w-4" />
                       Paket ändern
@@ -317,35 +494,50 @@ const Angebot = () => {
                   </p>
                 </CardHeader>
                 <CardContent className="space-y-5">
-                  <div>
-                    <Label className="text-base font-semibold text-secondary">
-                      Möchten Sie Ihr altes Fahrzeug verkaufen?
-                    </Label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                      <Button
-                        type="button"
-                        variant={sellDecision === "yes" ? "cta" : "outline"}
-                        onClick={() => setSellDecision("yes")}
-                      >
-                        Ja, Ankauf hinzufügen
-                      </Button>
-                      <Button
-                        type="button"
-                        variant={sellDecision === "no" ? "secondary" : "outline"}
+                  {isAnkaufOnly ? (
+                    <div className="rounded-lg border border-primary/25 bg-primary/5 p-4">
+                      <Label className="text-base font-semibold text-secondary">
+                        Nur Fahrzeugverkauf aktiv
+                      </Label>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        Sie haben „Nur Fahrzeugverkauf“ gewählt. Es wird kein Zulassungspaket gebucht.
+                      </p>
+                    </div>
+                  ) : (
+                    <div>
+                      <Label className="text-base font-semibold text-secondary">
+                        Möchten Sie Ihr altes Fahrzeug verkaufen?
+                      </Label>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        Gerne kaufen wir Ihr altes Fahrzeug an. Falls es nicht mehr fahrbereit ist,
+                        kümmern wir uns auch um die fachgerechte Verwertung.
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                        <Button
+                          type="button"
+                          variant={sellDecision === "yes" ? "cta" : "outline"}
+                          onClick={() => setSellDecision("yes")}
+                        >
+                          Ja, Ankauf hinzufügen
+                        </Button>
+                        <Button
+                          type="button"
+                          variant={sellDecision === "no" ? "secondary" : "outline"}
                         onClick={() => {
                           setSellDecision("no");
                           setSellVehicleData({
                             marke: "",
                             modell: "",
-                            erstzulassung: "",
+                            baujahr: "",
                             kilometerstand: "",
                           });
                         }}
-                      >
-                        Nein, kein Ankauf
-                      </Button>
+                        >
+                          Nein, kein Ankauf
+                        </Button>
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   {sellDecision === "yes" && (
                     <div className="rounded-lg border border-border bg-muted/40 p-4 space-y-4">
@@ -376,13 +568,13 @@ const Angebot = () => {
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="sell-erstzulassung">Erstzulassung (MM/JJJJ)</Label>
+                          <Label htmlFor="sell-baujahr">Baujahr</Label>
                           <Input
-                            id="sell-erstzulassung"
-                            placeholder="z. B. 04/2022"
-                            value={sellVehicleData.erstzulassung}
+                            id="sell-baujahr"
+                            placeholder="z. B. 2022"
+                            value={sellVehicleData.baujahr}
                             onChange={(event) =>
-                              setSellVehicleData((prev) => ({ ...prev, erstzulassung: event.target.value }))
+                              setSellVehicleData((prev) => ({ ...prev, baujahr: event.target.value }))
                             }
                           />
                         </div>
@@ -538,94 +730,156 @@ const Angebot = () => {
                       )}
                     </div>
                   )}
+
+                  <div className="border-t pt-5">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+                      <p className="text-sm text-muted-foreground">
+                        Diese Angaben jetzt direkt an <span className="font-semibold">info@sofortzulassung.com</span> senden.
+                      </p>
+                    </div>
+                    {leadSendMessage && <p className="mt-3 text-sm text-trust-green">{leadSendMessage}</p>}
+                    {leadSendError && <p className="mt-3 text-sm text-destructive">{leadSendError}</p>}
+                  </div>
+                  <div className="border-t pt-5 flex flex-col sm:flex-row gap-3 sm:justify-end">
+                    <Button type="button" variant="outline" onClick={resetWizard}>
+                      Zurück zu Paketen
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="cta"
+                      disabled={!stepTwoCompleted || isSendingLead}
+                      onClick={async () => {
+                        const sent = await sendOptionsByEmail();
+                        if (!sent) return;
+                        setCurrentStep(3);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      {isSendingLead ? "Wird gesendet..." : "Senden & weiter zu Termin"}
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-muted/40 border-border">
-                <CardContent className="pt-6 text-sm text-muted-foreground">
-                  <div className="flex items-start gap-2">
-                    <Building2 className="h-4 w-4 mt-0.5 text-primary" />
-                    <p>
-                      Fokus ist eine einfache Abwicklung. Wenn Hol- und Bringservice nicht möglich ist,
-                      läuft das Premium-Paket automatisch über Versand weiter.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </section>
+      )}
 
-          <section className="py-16 bg-muted" ref={stepThreeRef}>
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              {canBookAppointment ? (
-                <>
-                  <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-secondary mb-4">3. Termin buchen</h2>
-                    <p className="text-lg text-muted-foreground">Wählen Sie jetzt Ihren passenden Termin.</p>
+      {selectedPackage && currentStep === 3 && (
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Card className="border-2 border-primary/20">
+              <CardHeader>
+                <div className="flex items-center justify-between gap-4">
+                  <CardTitle className="text-secondary">3. Termin buchen</CardTitle>
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        setCurrentStep(2);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      <ArrowLeft className="h-4 w-4" />
+                      Zurück zu Optionen
+                    </Button>
+                    <Button type="button" variant="outline" onClick={resetWizard}>
+                      Paket neu wählen
+                    </Button>
                   </div>
-
-                  <div className="mb-6 rounded-xl border bg-background p-4 text-sm text-muted-foreground">
-                    <p>
-                      Paket: <span className="font-semibold text-secondary">{selectedPackage?.title}</span>
-                    </p>
-                    <p>
-                      Fahrzeugankauf:{" "}
-                      <span className="font-semibold text-secondary">
-                        {sellDecision === "yes" ? "inklusive" : "exklusive"}
-                      </span>
-                    </p>
-                    {sellDecision === "yes" && (
+                </div>
+                <p className="text-muted-foreground">Wählen Sie jetzt Ihren passenden Termin.</p>
+              </CardHeader>
+              <CardContent>
+                {canBookAppointment ? (
+                  <>
+                    <div className="mb-6 rounded-xl border bg-background p-4 text-sm text-muted-foreground">
                       <p>
-                        Ankaufdaten:{" "}
+                        Paket: <span className="font-semibold text-secondary">{selectedPackage?.title}</span>
+                      </p>
+                      <p>
+                        Fahrzeugankauf:{" "}
                         <span className="font-semibold text-secondary">
-                          {sellVehicleData.marke} {sellVehicleData.modell}, EZ {sellVehicleData.erstzulassung},{" "}
-                          {sellVehicleData.kilometerstand}
+                          {sellDecision === "yes" ? "inklusive" : "exklusive"}
                         </span>
                       </p>
-                    )}
-                    {isPremium && (
-                      <p>
-                        Premium-Zustellung:{" "}
-                        <span className="font-semibold text-secondary">
-                          {pickupChoice === "pickup" && pickupCheckResult?.eligible
-                            ? "Abholung inklusive"
-                            : "Versand"}
-                        </span>
+                      {sellDecision === "yes" && (
+                        <p>
+                          Ankaufdaten:{" "}
+                          <span className="font-semibold text-secondary">
+                            {sellVehicleData.marke} {sellVehicleData.modell}, Baujahr {sellVehicleData.baujahr}
+                            {sellVehicleData.kilometerstand ? `, ${sellVehicleData.kilometerstand}` : ""}
+                          </span>
+                        </p>
+                      )}
+                      {isPremium && (
+                        <p>
+                          Premium-Zustellung:{" "}
+                          <span className="font-semibold text-secondary">
+                            {pickupChoice === "pickup" && pickupCheckResult?.eligible
+                              ? "Abholung inklusive"
+                              : "Versand"}
+                          </span>
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="bg-background rounded-2xl shadow-xl p-6 max-h-[80vh] overflow-hidden">
+                      <Cal
+                        namespace="15min"
+                        calLink={calLinkWithPrefill}
+                        style={{ width: "100%", height: "70vh", overflow: "scroll" }}
+                        config={{
+                          layout: "month_view",
+                          theme: "light",
+                          dienstleistung: calServicePrefill,
+                          service: calServicePrefill,
+                          services: calServicePrefill,
+                          "Dienstleistung wählen": calServicePrefill,
+                          "Dienstleistung waehlen": calServicePrefill,
+                          dienstleistung_waehlen: calServicePrefill,
+                          dienstleistung_wahlen: calServicePrefill,
+                          fahrzeugankauf: sellDecision === "yes" ? "Ja" : "Nein",
+                          ankauf: sellDecision === "yes" ? "Ja" : "Nein",
+                          notes: calNotesPrefill,
+                          additionalNotes: calNotesPrefill,
+                          "Zusätzliche Notizen": calNotesPrefill,
+                          zusaetzliche_notizen: calNotesPrefill,
+                          metadata: {
+                            paket: selectedPackage?.title || "-",
+                            dienstleistungen: calServicePrefill.join(", ") || "-",
+                            fahrzeugankauf: sellDecision === "yes" ? "Ja" : "Nein",
+                            fahrzeugdaten: vehicleDetails,
+                            premiumAbwicklung: premiumMode,
+                          },
+                        }}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <Card className="border-2 border-dashed border-primary/30 bg-background">
+                    <CardContent className="py-10 text-center">
+                      <h2 className="text-2xl font-bold text-secondary mb-3">3. Termin buchen</h2>
+                      <p className="text-muted-foreground">
+                        Bitte Schritt 2 abschließen, dann wird der Kalender freigeschaltet.
                       </p>
-                    )}
-                  </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </CardContent>
+            </Card>
 
-                  <div className="bg-background rounded-2xl shadow-xl p-6 max-h-[80vh] overflow-hidden">
-                    <Cal
-                      namespace="15min"
-                      calLink="sofortzulassung/15min"
-                      style={{ width: "100%", height: "70vh", overflow: "scroll" }}
-                      config={{ layout: "month_view", theme: "light" }}
-                    />
-                  </div>
-                </>
-              ) : (
-                <Card className="border-2 border-dashed border-primary/30 bg-background">
-                  <CardContent className="py-10 text-center">
-                    <h2 className="text-2xl font-bold text-secondary mb-3">3. Termin buchen</h2>
-                    <p className="text-muted-foreground">
-                      Bitte Schritt 2 abschließen, dann wird der Kalender freigeschaltet.
-                    </p>
-                  </CardContent>
-                </Card>
-              )}
-
-              <div className="mt-8 text-center">
-                <p className="text-sm text-muted-foreground">
-                  Fragen? Rufen Sie uns an:{" "}
-                  <a href="tel:+4915142462280" className="text-primary hover:underline">
-                    +4915142462280
-                  </a>
-                </p>
-              </div>
+            <div className="mt-8 text-center">
+              <p className="text-sm text-muted-foreground">
+                Fragen? Rufen Sie uns an:{" "}
+                <a href="tel:+4915142462280" className="text-primary hover:underline">
+                  +4915142462280
+                </a>
+              </p>
             </div>
-          </section>
-        </>
+          </div>
+        </section>
       )}
 
       <section className="py-16">

@@ -71,3 +71,60 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## SMTP-Weiterleitung (Zoho) für Formularanfragen
+
+Für die Weiterleitung von Anfragen an `info@sofortzulassung.com` ist ein kleiner API-Service enthalten:
+
+- `POST /api/cal/webhook` für Cal.com Webhooks
+- `POST /api/lead` für manuelle Website-Formulare
+
+### 1) Umgebungsvariablen setzen
+
+```sh
+cp .env.example .env
+```
+
+Dann in `.env` die SMTP-Daten eintragen:
+
+- `SMTP_USER=info@sofortzulassung.com`
+- `SMTP_PASS=<Zoho App Password>`
+- `LEAD_RECEIVER=info@sofortzulassung.com`
+- optional `CAL_WEBHOOK_SECRET=<dein webhook secret>`
+
+Zoho Hinweise:
+
+- Nutze ein **App Password** (kein normales Zoho-Login-Passwort).
+- Host/Port:
+  - EU meist `smtppro.zoho.eu` oder
+  - global `smtppro.zoho.com`
+  - Port `587`, `SMTP_SECURE=false`
+- Falls dein Account nur SSL nutzt: Port `465`, `SMTP_SECURE=true`.
+
+### 2) API starten
+
+```sh
+npm run dev:api
+```
+
+Health-Check:
+
+```sh
+curl http://localhost:8787/api/health
+
+SMTP Testmail auslösen:
+
+```sh
+curl -X POST http://localhost:8787/api/smtp/test
+```
+```
+
+### 3) Cal.com verbinden
+
+In Cal.com beim Event einen Webhook anlegen:
+
+- URL: `https://<deine-domain>/api/cal/webhook`
+- Events: Buchung erstellt/verschoben/storniert (nach Bedarf)
+- Secret: identisch zu `CAL_WEBHOOK_SECRET`
+
+Danach werden Buchungsdaten per SMTP an `info@sofortzulassung.com` gesendet.

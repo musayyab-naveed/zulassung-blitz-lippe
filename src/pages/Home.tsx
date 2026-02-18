@@ -9,8 +9,19 @@ import heroImage from "@/assets/hero-image-optimized.jpg";
 import { blogPosts } from "@/content/blogPosts";
 import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, CalendarDays } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { MouseEvent } from "react";
 
 const Home = () => {
+  const scrollToPackages = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const target = document.getElementById("pakete-focus");
+    if (!target) return;
+    const header = document.querySelector("header");
+    const headerHeight = header ? header.getBoundingClientRect().height : 120;
+    const top = window.scrollY + target.getBoundingClientRect().top - headerHeight - 24;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
   const steps = [
     {
       icon: <FileText className="h-8 w-8 text-primary" />,
@@ -51,6 +62,8 @@ const Home = () => {
         "Wunschkennzeichen (+13 €)",
         "Verwaltungsgebühren inkl.",
         "Sie bringen Unterlagen zu uns",
+        "Altfahrzeug? Wir kaufen es auf Wunsch direkt mit an",
+        "Abmeldung beim Ankauf gratis - keine Zusatzgebühr",
       ],
       buttonText: "BASIS PAKET BESTELLEN",
       buttonVariant: "cta" as const,
@@ -64,6 +77,8 @@ const Home = () => {
         "Alles vom BASIS",
         "Express-Rückversand inklusive",
         "Wir holen und bringen die Unterlagen",
+        "Altfahrzeug? Wir kaufen es auf Wunsch direkt mit an",
+        "Abmeldung beim Ankauf gratis - keine Zusatzgebühr",
       ],
       buttonText: "PREMIUM PAKET BESTELLEN",
       buttonVariant: "cta" as const,
@@ -72,7 +87,12 @@ const Home = () => {
     {
       title: "ABMELDUNG",
       price: "30 €",
-      features: ["Abmeldung innerhalb 24h", "Verwaltungsgebühren inkl."],
+      features: [
+        "Abmeldung innerhalb 24h",
+        "Verwaltungsgebühren inkl.",
+        "Altfahrzeug? Wir kaufen es auf Wunsch direkt mit an",
+        "Abmeldung beim Ankauf gratis - keine Zusatzgebühr",
+      ],
       buttonText: "ONLINE BEANTRAGEN",
       buttonVariant: "cta" as const,
       ctaHref: "/angebot?paket=abmeldung",
@@ -85,6 +105,7 @@ const Home = () => {
         "Faire Ankaufprüfung vor Ort",
         "Kostenlose Abmeldung bei Ankauf",
         "Abholung des Fahrzeugs möglich",
+        "Nicht fahrbereites Fahrzeug? Fachgerechte Verwertung möglich",
       ],
       buttonText: "ANKAUF ANFRAGEN",
       buttonVariant: "cta" as const,
@@ -145,7 +166,7 @@ const Home = () => {
                 Zulassung innerhalb von 24 Stunden garantiert
               </p>
 
-              <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 justify-center lg:justify-start stagger-in stagger-delay-1">
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 justify-center lg:justify-start">
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
                   ✓ Zulassung in 24 Stunden
                 </div>
@@ -157,9 +178,9 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center lg:justify-start stagger-in stagger-delay-2">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center lg:justify-start relative z-30">
                 <Button size="lg" variant="cta-large" asChild>
-                  <a href="#pakete">
+                  <a href="#pakete" onClick={scrollToPackages}>
                     JETZT BEAUFTRAGEN
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
@@ -175,6 +196,12 @@ const Home = () => {
                   </Link>
                 </Button>
               </div>
+              <p className="mt-4 text-sm sm:text-base text-primary-foreground/85">
+                Sie möchten Ihr altes Fahrzeug verkaufen? Klicken Sie direkt auf
+                {" "}
+                <span className="font-semibold text-white">Fahrzeugankauf</span>.
+                Auch nicht fahrbereite Fahrzeuge lassen wir fachgerecht verwerten.
+              </p>
             </div>
 
             <div className="relative mt-8 lg:mt-0 z-10 stagger-in stagger-delay-2">
@@ -306,12 +333,12 @@ const Home = () => {
       <section className="py-14 scroll-mt-28 lg:scroll-mt-40" id="pakete">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="surface-soft p-6 sm:p-8">
-          <div className="text-center mb-10">
+          <div className="text-center mb-10" id="pakete-focus">
             <h2 className="section-title mb-4">Preisübersicht</h2>
             <p className="section-subtitle">Transparente Preise - keine versteckten Kosten</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" id="pakete-grid">
             {pricePackages.map((pkg, index) => (
               <PriceCard
                 key={index}
