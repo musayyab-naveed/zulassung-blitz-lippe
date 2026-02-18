@@ -84,8 +84,22 @@ const PACKAGES: PackageDef[] = [
 const Angebot = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const wantsAnkaufFromParam = searchParams.get("ankauf") === "1";
-  const [selectedPackageKey, setSelectedPackageKey] = useState<PackageKey | null>(null);
-  const [sellDecision, setSellDecision] = useState<"yes" | "no" | null>(null);
+  const paketParam = (searchParams.get("paket") || "").trim().toLowerCase();
+  const packageFromQuery =
+    PACKAGES.find((pkg) => pkg.key === paketParam || pkg.title.toLowerCase() === paketParam) ?? null;
+
+  const [selectedPackageKey, setSelectedPackageKey] = useState<PackageKey | null>(
+    packageFromQuery?.key ?? null
+  );
+  const [sellDecision, setSellDecision] = useState<"yes" | "no" | null>(
+    packageFromQuery
+      ? packageFromQuery.key === "ankauf_only"
+        ? "yes"
+        : wantsAnkaufFromParam
+        ? "yes"
+        : null
+      : null
+  );
   const [sellVehicleData, setSellVehicleData] = useState({
     marke: "",
     modell: "",
@@ -109,7 +123,7 @@ const Angebot = () => {
   const [isSendingLead, setIsSendingLead] = useState(false);
   const [leadSendMessage, setLeadSendMessage] = useState("");
   const [leadSendError, setLeadSendError] = useState("");
-  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(packageFromQuery ? 2 : 1);
 
   const selectedPackage = PACKAGES.find((pkg) => pkg.key === selectedPackageKey) ?? null;
   const isPremium = selectedPackageKey === "premium";
@@ -128,10 +142,7 @@ const Angebot = () => {
   }, []);
 
   useEffect(() => {
-    const paketParam = (searchParams.get("paket") || "").trim().toLowerCase();
-    const packageFromParam = PACKAGES.find(
-      (pkg) => pkg.key === paketParam || pkg.title.toLowerCase() === paketParam
-    );
+    const packageFromParam = packageFromQuery;
 
     if (!packageFromParam) return;
     if (selectedPackageKey === packageFromParam.key) return;
@@ -148,7 +159,7 @@ const Angebot = () => {
     setPickupCheckResult(null);
     setPickupCheckError("");
     setCurrentStep(2);
-  }, [searchParams, selectedPackageKey, wantsAnkaufFromParam]);
+  }, [packageFromQuery, selectedPackageKey, wantsAnkaufFromParam]);
 
   useEffect(() => {
     if (selectedPackageKey) return;

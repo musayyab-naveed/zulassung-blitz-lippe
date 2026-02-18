@@ -176,6 +176,15 @@ function isRedundantWebsiteNotes(value) {
   return text.startsWith("Vorauswahl Dienstleistungen:");
 }
 
+function getWebsiteLeadSummary(data) {
+  const fahrzeugdaten = data?.fahrzeugdaten || {};
+  const modelText = [fahrzeugdaten.marke, fahrzeugdaten.modell].filter(Boolean).join(" ");
+  return {
+    paket: safeText(data?.paket),
+    fahrzeug: modelText || "-",
+  };
+}
+
 function formatWebsiteLeadEmail(lead) {
   const data = lead.responses || {};
   const fahrzeugdaten = data.fahrzeugdaten || {};
@@ -208,11 +217,7 @@ function formatWebsiteLeadEmail(lead) {
       { label: "Ort", value: lead.location },
     ]),
     ...formatSectionLines("Zusätzliche Notizen", [{ label: "Notiz", value: notes }]),
-    ...formatSectionLines("Meta", [
-      { label: "Anfrage-Typ", value: lead.eventType },
-      { label: "Anfrage-ID", value: lead.bookingId },
-      { label: "Übermittelt am", value: data.submittedAt },
-    ]),
+    ...formatSectionLines("Übermittelt", [{ label: "Zeit", value: data.submittedAt }]),
   ];
 
   return lines.join("\n").trim();
@@ -276,6 +281,7 @@ function formatLeadEmailHtml(lead) {
           { label: "Ort", value: lead.location },
         ])}
         ${renderHtmlSection("Zusätzliche Notizen", [{ label: "Notiz", value: notes }])}
+        ${renderHtmlSection("Übermittelt", [{ label: "Zeit", value: data.submittedAt }])}
       </div>
     </body></html>`;
   }
@@ -283,6 +289,14 @@ function formatLeadEmailHtml(lead) {
   return `<pre style="font-family:Arial,sans-serif;white-space:pre-wrap;">${escapeHtml(
     formatLeadEmail(lead)
   )}</pre>`;
+}
+
+function formatLeadSubject(lead) {
+  if (String(lead.eventType || "").startsWith("website.")) {
+    const summary = getWebsiteLeadSummary(lead.responses || {});
+    return `[Website] ${summary.paket} | ${summary.fahrzeug}`;
+  }
+  return `[Cal.com] Neue Buchung ${lead.name ? `- ${lead.name}` : ""}`;
 }
 
 function formatLeadEmail(lead) {
@@ -378,7 +392,7 @@ app.post("/api/lead", async (req, res) => {
       from: smtpFrom,
       to: leadReceiver,
       replyTo: lead.email || undefined,
-      subject: `[Website] Neue Anfrage ${lead.name ? `- ${lead.name}` : ""}`,
+      subject: formatLeadSubject(lead),
       text: formatLeadEmail(lead),
       html: formatLeadEmailHtml(lead),
     });
@@ -403,7 +417,7 @@ app.post("/api/cal/webhook", async (req, res) => {
       from: smtpFrom,
       to: leadReceiver,
       replyTo: lead.email || undefined,
-      subject: `[Cal.com] Neue Buchung ${lead.name ? `- ${lead.name}` : ""}`,
+      subject: formatLeadSubject(lead),
       text: formatLeadEmail(lead),
       html: formatLeadEmailHtml(lead),
     });

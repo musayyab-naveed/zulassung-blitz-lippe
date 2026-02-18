@@ -128,3 +128,23 @@ In Cal.com beim Event einen Webhook anlegen:
 - Secret: identisch zu `CAL_WEBHOOK_SECRET`
 
 Danach werden Buchungsdaten per SMTP an `info@sofortzulassung.com` gesendet.
+
+## Netlify Deployment
+
+Auf Netlify läuft der lokale Express-Server (`server/index.js`) nicht dauerhaft.  
+Für Produktion sind daher Netlify Functions eingerichtet:
+
+- `/api/health` -> `/.netlify/functions/health`
+- `/api/lead` -> `/.netlify/functions/lead`
+- `/api/smtp/test` -> `/.netlify/functions/smtp-test`
+
+In Netlify unter **Site settings -> Environment variables** setzen:
+
+- `SMTP_HOST` (z. B. `smtppro.zoho.eu`)
+- `SMTP_PORT` (`587`)
+- `SMTP_SECURE` (`false`)
+- `SMTP_USER` (`info@sofortzulassung.com`)
+- `SMTP_PASS` (Zoho App Password)
+- `SMTP_FROM` (`info@sofortzulassung.com`)
+- `LEAD_RECEIVER` (`info@sofortzulassung.com`)
+- `CAL_WEBHOOK_SECRET` (optional, für Webhook-Signatur)
