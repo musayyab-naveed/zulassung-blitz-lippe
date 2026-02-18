@@ -44,7 +44,7 @@ const Footer = () => {
                   to="/angebot" 
                   className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
                 >
-                  Antragsformular
+                  Angebot
                 </Link>
               </li>
               <li>
