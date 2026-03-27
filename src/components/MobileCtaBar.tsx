@@ -33,7 +33,7 @@ const MobileCtaBar = () => {
           </a>
         </Button>
         <Button variant="cta" size="sm" asChild>
-          <Link to="/angebot?paket=premium">Starten</Link>
+          <Link to="/angebot">Beauftragen</Link>
         </Button>
       </div>
     </div>

@@ -242,6 +242,47 @@ const Home = () => {
                 Starten Sie Ihre Zulassung oder bieten Sie Ihr Fahrzeug direkt zum Verkauf an.
                 Auch nicht fahrbereite Fahrzeuge lassen wir fachgerecht verwerten.
               </p>
+
+              <div className="mt-6 grid grid-cols-1 gap-3 text-left sm:grid-cols-[1fr_1fr_1.18fr]">
+                <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+                  <div className="flex items-center gap-2 text-primary-foreground">
+                    <Clock className="h-4 w-4 text-primary" />
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/70">
+                      Oeffnungszeiten
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm font-medium leading-snug text-white">
+                    <span className="block">Mo-Fr: 9:00-18:00 Uhr</span>
+                    <span className="block">Sa: 15:00-18:00 Uhr</span>
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+                  <div className="flex items-center gap-2 text-primary-foreground">
+                    <MapPin className="h-4 w-4 text-primary" />
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/70">
+                      Adresse
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm font-medium leading-snug text-white">
+                    <span className="block">Werler Strasse 68</span>
+                    <span className="block">32105 Bad Salzuflen</span>
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
+                  <div className="flex items-center gap-2 text-primary-foreground">
+                    <Mail className="h-4 w-4 text-primary" />
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/70">
+                      E-Mail
+                    </span>
+                  </div>
+                  <a
+                    href="mailto:info@sofortzulassung.com"
+                    className="mt-2 block text-[13px] font-medium leading-snug text-white transition-opacity hover:opacity-80 sm:text-sm"
+                  >
+                    info@sofortzulassung.com
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div className="relative mt-8 lg:mt-0 z-10 stagger-in stagger-delay-2">
@@ -351,6 +392,32 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="py-14 scroll-mt-28 lg:scroll-mt-40" id="pakete">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="surface-soft p-6 sm:p-8">
+          <div className="text-center mb-10" id="pakete-focus">
+            <h2 className="section-title mb-4">Unsere Preise</h2>
+            <p className="section-subtitle">Transparente Preise - keine versteckten Kosten</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" id="pakete-grid">
+            {pricePackages.map((pkg, index) => (
+              <PriceCard
+                key={index}
+                title={pkg.title}
+                price={pkg.price}
+                popular={pkg.popular}
+                features={pkg.features}
+                buttonText={pkg.buttonText}
+                buttonVariant={pkg.buttonVariant}
+                ctaHref={pkg.ctaHref}
+              />
+            ))}
+          </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
@@ -387,32 +454,6 @@ const Home = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-14 scroll-mt-28 lg:scroll-mt-40" id="pakete">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="surface-soft p-6 sm:p-8">
-          <div className="text-center mb-10" id="pakete-focus">
-            <h2 className="section-title mb-4">Preisübersicht</h2>
-            <p className="section-subtitle">Transparente Preise - keine versteckten Kosten</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" id="pakete-grid">
-            {pricePackages.map((pkg, index) => (
-              <PriceCard
-                key={index}
-                title={pkg.title}
-                price={pkg.price}
-                popular={pkg.popular}
-                features={pkg.features}
-                buttonText={pkg.buttonText}
-                buttonVariant={pkg.buttonVariant}
-                ctaHref={pkg.ctaHref}
-              />
-            ))}
-          </div>
           </div>
         </div>
       </section>

@@ -28,28 +28,27 @@ const Fahrzeugankauf = () => {
 
   const steps = [
     {
-      title: "Ankauf-Interesse angeben",
+      title: "Fahrzeugdaten angeben",
       description:
-        "Sie können Ihr Fahrzeug unabhängig von einer Zulassung direkt zum Verkauf anbieten.",
+        "Marke, Modell und Baujahr reichen für den Start.",
     },
     {
-      title: "Kurze Fahrzeugbewertung",
+      title: "Kurze Prüfung",
       description:
-        "Wir erfassen die wichtigsten Daten zu Ihrem Fahrzeug und bereiten eine faire Einschätzung vor.",
+        "Wir schauen uns Ihr Fahrzeug an und bereiten eine faire Einschätzung vor.",
     },
     {
-      title: "Angebot und Abwicklung",
+      title: "Angebot erhalten",
       description:
-        "Nach der Prüfung erhalten Sie auf Wunsch direkt ein Ankaufangebot und den nächsten Schritt zur Abwicklung.",
+        "Danach besprechen wir direkt den nächsten Schritt mit Ihnen.",
     },
   ];
 
   const benefits = [
-    "Fahrzeugverkauf mit oder ohne Zulassung möglich",
-    "Kein zusätzlicher Aufwand mit mehreren Ansprechpartnern",
-    "Schnelle Ersteinschätzung bei Ihrem Termin",
-    "Auch nicht fahrbereite Fahrzeuge können wir für Sie fachgerecht verwerten lassen",
-    "Persönliche Betreuung in Bad Salzuflen und Umgebung",
+    "Mit oder ohne Zulassung verkaufen",
+    "Auf Wunsch direkt mit Abmeldung kombinieren",
+    "Auch Abholung und Verwertung möglich",
+    "Persönliche Betreuung in Bad Salzuflen",
   ];
 
   return (
@@ -103,13 +102,25 @@ const Fahrzeugankauf = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="max-w-3xl">
               <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-                Fahrzeugankauf mit oder ohne Zulassung
+                Auto verkaufen.
+                <br />
+                Schnell und unkompliziert.
               </h1>
               <p className="text-xl text-primary-foreground/90 mb-8">
-                Sie möchten Ihr altes Fahrzeug verkaufen? Das ist bei uns auch ohne
-                Zulassung möglich. Auf Wunsch kombinieren wir den Ankauf zusätzlich mit
-                An-, Um- oder Abmeldung.
+                Verkaufen Sie Ihr Fahrzeug mit oder ohne Zulassung. Auf Wunsch direkt
+                zusammen mit Abmeldung oder neuer Zulassung.
               </p>
+              <div className="flex flex-wrap gap-2 sm:gap-3 mb-8">
+                <div className="rounded-full bg-white/15 px-4 py-2 text-sm font-medium text-white">
+                  Mit oder ohne Zulassung
+                </div>
+                <div className="rounded-full bg-white/15 px-4 py-2 text-sm font-medium text-white">
+                  Abholung möglich
+                </div>
+                <div className="rounded-full bg-white/15 px-4 py-2 text-sm font-medium text-white">
+                  Verwertung möglich
+                </div>
+              </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" variant="cta-large" asChild>
                   <Link to="/angebot?ankauf=1">
@@ -156,10 +167,10 @@ const Fahrzeugankauf = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-secondary mb-3">
-              So funktioniert der Ankauf bei uns
+              So einfach geht's
             </h2>
             <p className="text-muted-foreground">
-              Sie entscheiden selbst: nur Fahrzeugverkauf oder Kombination mit Zulassung.
+              In 3 kurzen Schritten zum Verkauf.
             </p>
           </div>
 
@@ -186,7 +197,7 @@ const Fahrzeugankauf = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-3xl font-bold text-secondary mb-5">
-                Ihre Vorteile beim Fahrzeugankauf
+                Warum Kunden uns ihr Fahrzeug anbieten
               </h3>
               <ul className="space-y-4">
                 {benefits.map((benefit) => (
@@ -201,19 +212,16 @@ const Fahrzeugankauf = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-secondary">
                   <Car className="h-6 w-6 text-primary" />
-                  Jetzt kombinieren
+                  Direkt starten
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-6">
-                  Beauftragen Sie Ihre Zulassung und markieren Sie im Formular
-                  direkt, dass Sie Ihr Fahrzeug verkaufen möchten – oder wählen Sie
-                  nur den Fahrzeugverkauf ohne Paket. Bei
-                  nicht fahrbereiten Fahrzeugen unterstützen wir Sie zusätzlich bei der
-                  Verwertung.
+                  Sie möchten verkaufen, abmelden oder direkt mit einer neuen Zulassung
+                  kombinieren? Starten Sie einfach im Formular.
                 </p>
                 <Button variant="cta" className="w-full" asChild>
-                  <Link to="/angebot?ankauf=1">Zum Auftragsformular</Link>
+                  <Link to="/angebot?ankauf=1">Jetzt Fahrzeug verkaufen</Link>
                 </Button>
               </CardContent>
             </Card>
