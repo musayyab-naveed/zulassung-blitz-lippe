@@ -223,7 +223,7 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center lg:justify-start relative z-30">
                 <Button size="lg" variant="cta-large" asChild>
                   <a href="#pakete" onClick={scrollToPackages}>
-                    ZULASSUNG STARTEN
+                    JETZT ZULASSUNG STARTEN
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
@@ -233,13 +233,13 @@ const Home = () => {
                   asChild
                 >
                   <Link to="/fahrzeugankauf">
-                    FAHRZEUG VERKAUFEN
+                    JETZT AUTO VERKAUFEN
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
               </div>
               <p className="mt-4 text-sm sm:text-base text-primary-foreground/85">
-                Links starten Sie Zulassung/Abmeldung, rechts bieten Sie Ihr Fahrzeug direkt zum Verkauf an.
+                Starten Sie Ihre Zulassung oder bieten Sie Ihr Fahrzeug direkt zum Verkauf an.
                 Auch nicht fahrbereite Fahrzeuge lassen wir fachgerecht verwerten.
               </p>
             </div>

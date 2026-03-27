@@ -131,6 +131,7 @@ const Angebot = () => {
     modell: "",
     baujahr: "",
     kilometerstand: "",
+    telefon: "",
   });
   const [vehicleImages, setVehicleImages] = useState<UploadImageItem[]>([]);
   const [vehicleImagesError, setVehicleImagesError] = useState("");
@@ -184,6 +185,7 @@ const Angebot = () => {
       modell: "",
       baujahr: "",
       kilometerstand: "",
+      telefon: "",
     });
     setVehicleImages([]);
     setVehicleImagesError("");
@@ -213,6 +215,7 @@ const Angebot = () => {
       modell: "",
       baujahr: "",
       kilometerstand: "",
+      telefon: "",
     });
     setVehicleImages([]);
     setVehicleImagesError("");
@@ -232,6 +235,7 @@ const Angebot = () => {
       modell: "",
       baujahr: "",
       kilometerstand: "",
+      telefon: "",
     });
     setVehicleImages([]);
     setVehicleImagesError("");
@@ -301,7 +305,8 @@ const Angebot = () => {
     Boolean(
       sellVehicleData.marke.trim() &&
         sellVehicleData.modell.trim() &&
-        sellVehicleData.baujahr.trim()
+        sellVehicleData.baujahr.trim() &&
+        sellVehicleData.telefon.trim()
     );
 
   const stepTwoCompleted = sellDecision !== null && sellVehicleDataComplete && pickupRequirementMet;
@@ -340,6 +345,7 @@ const Angebot = () => {
           `Modell: ${sellVehicleData.modell || "-"}`,
           `Baujahr: ${sellVehicleData.baujahr || "-"}`,
           `Kilometerstand: ${sellVehicleData.kilometerstand || "-"}`,
+          `Telefon: ${sellVehicleData.telefon || "-"}`,
         ].join(", ")
       : "kein Fahrzeugankauf";
 
@@ -671,11 +677,11 @@ const Angebot = () => {
                           variant={sellDecision === "yes" ? "cta" : "outline"}
                           onClick={() => setSellDecision("yes")}
                         >
-                          Ja, Ankauf hinzufügen
+                          Ja, Verkauf hinzufügen
                         </Button>
                         <Button
                           type="button"
-                          variant={sellDecision === "no" ? "secondary" : "outline"}
+                          variant={sellDecision === "no" ? "cta" : "outline"}
                         onClick={() => {
                           setSellDecision("no");
                           setSellVehicleData({
@@ -683,12 +689,19 @@ const Angebot = () => {
                             modell: "",
                             baujahr: "",
                             kilometerstand: "",
+                            telefon: "",
                           });
                           setVehicleImages([]);
                           setVehicleImagesError("");
+                          setLeadSendError("");
+                          setLeadSendMessage("");
+                          if (!isPremium) {
+                            setCurrentStep(3);
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }
                         }}
                         >
-                          Nein, kein Ankauf
+                          Nein, kein Verkauf
                         </Button>
                       </div>
                     </div>
@@ -699,7 +712,7 @@ const Angebot = () => {
                       <Label className="text-base font-semibold text-secondary">
                         Basisfragen zum Fahrzeugankauf
                       </Label>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <Label htmlFor="sell-marke">Marke</Label>
                           <Input
@@ -741,6 +754,18 @@ const Angebot = () => {
                             value={sellVehicleData.kilometerstand}
                             onChange={(event) =>
                               setSellVehicleData((prev) => ({ ...prev, kilometerstand: event.target.value }))
+                            }
+                          />
+                        </div>
+                        <div className="space-y-2 md:col-span-2">
+                          <Label htmlFor="sell-telefon">Telefonnummer</Label>
+                          <Input
+                            id="sell-telefon"
+                            type="tel"
+                            placeholder="z. B. 0151 23456789"
+                            value={sellVehicleData.telefon}
+                            onChange={(event) =>
+                              setSellVehicleData((prev) => ({ ...prev, telefon: event.target.value }))
                             }
                           />
                         </div>
@@ -871,7 +896,7 @@ const Angebot = () => {
                         </Button>
                         <Button
                           type="button"
-                          variant={pickupChoice === "shipping" ? "secondary" : "outline"}
+                          variant={pickupChoice === "shipping" ? "cta" : "outline"}
                           onClick={() => {
                             setPickupChoice("shipping");
                             resetPickupCheck();
@@ -965,9 +990,6 @@ const Angebot = () => {
                               }`}
                             >
                               <p className="font-medium text-secondary">{pickupCheckResult.message}</p>
-                              <p className="text-sm text-muted-foreground mt-1">
-                                Fahrzeit: ca. {pickupCheckResult.oneWayMinutes} Min. je Strecke (gesamt ca. {pickupCheckResult.roundTripMinutes} Min.)
-                              </p>
                               {!pickupCheckResult.eligible && (
                                 <div className="mt-3">
                                   <Button
@@ -990,15 +1012,17 @@ const Angebot = () => {
                     </div>
                   )}
 
-                  <div className="border-t pt-5">
-                    <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-                      <p className="text-sm text-muted-foreground">
-                        Diese Angaben jetzt direkt an <span className="font-semibold">info@sofortzulassung.com</span> senden.
-                      </p>
+                  {sellDecision === "yes" && (
+                    <div className="border-t pt-5">
+                      <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+                        <p className="text-sm text-muted-foreground">
+                          Diese Angaben jetzt direkt an <span className="font-semibold">info@sofortzulassung.com</span> senden.
+                        </p>
+                      </div>
+                      {leadSendMessage && <p className="mt-3 text-sm text-trust-green">{leadSendMessage}</p>}
+                      {leadSendError && <p className="mt-3 text-sm text-destructive">{leadSendError}</p>}
                     </div>
-                    {leadSendMessage && <p className="mt-3 text-sm text-trust-green">{leadSendMessage}</p>}
-                    {leadSendError && <p className="mt-3 text-sm text-destructive">{leadSendError}</p>}
-                  </div>
+                  )}
                   <div className="border-t pt-5 flex flex-col sm:flex-row gap-3 sm:justify-end">
                     <Button type="button" variant="outline" onClick={resetWizard}>
                       Zurück zu Paketen
@@ -1008,12 +1032,18 @@ const Angebot = () => {
                       variant="cta"
                       disabled={!stepTwoCompleted || isSendingLead}
                       onClick={async () => {
-                        await sendOptionsByEmail();
+                        if (sellDecision === "yes") {
+                          await sendOptionsByEmail();
+                        }
                         setCurrentStep(3);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                     >
-                      {isSendingLead ? "Wird gesendet..." : "Senden & weiter zu Termin"}
+                      {isSendingLead
+                        ? "Wird gesendet..."
+                        : sellDecision === "yes"
+                        ? "Senden & weiter zu Termin"
+                        : "Weiter zu Termin"}
                     </Button>
                   </div>
                 </CardContent>
@@ -1068,6 +1098,7 @@ const Angebot = () => {
                           <span className="font-semibold text-secondary">
                             {sellVehicleData.marke} {sellVehicleData.modell}, Baujahr {sellVehicleData.baujahr}
                             {sellVehicleData.kilometerstand ? `, ${sellVehicleData.kilometerstand}` : ""}
+                            {sellVehicleData.telefon ? `, Tel. ${sellVehicleData.telefon}` : ""}
                           </span>
                         </p>
                       )}
