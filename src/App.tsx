@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Home from "./pages/Home";
 import Angebot from "./pages/Angebot";
-import Dokumente from "./pages/Dokumente";
 import UeberUns from "./pages/UeberUns";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
@@ -39,7 +38,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/angebot" element={<Angebot />} />
-          <Route path="/dokumente" element={<Dokumente />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
           <Route path="/blog" element={<Blog />} />
