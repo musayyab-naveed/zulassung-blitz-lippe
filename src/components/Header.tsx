@@ -10,7 +10,7 @@ const Header = () => {
   const navigation = [
     { name: "Startseite", href: "/" },
     { name: "Angebot", href: "/angebot" },
-    { name: "Blog", href: "/blog" },
+    { name: "FAQ", href: "/faq" },
     { name: "Fahrzeugankauf", href: "/fahrzeugankauf" },
     { name: "Über uns", href: "/ueber-uns" },
   ];
@@ -22,7 +22,7 @@ const Header = () => {
       <div className="hidden lg:block border-b border-border/60 bg-secondary text-secondary-foreground">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs flex items-center justify-between">
           <span>Zulassungsdienst in Bad Salzuflen und Kreis Lippe</span>
-          <span>24h Bearbeitung und optionaler Fahrzeugankauf</span>
+          <span>⚡ NEU: Sofort-Zulassung in ca. 20 Minuten</span>
         </div>
       </div>
 

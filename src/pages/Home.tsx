@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PriceCard from "@/components/PriceCard";
 import GoogleReviews from "@/components/GoogleReviews";
 import Seo from "@/components/Seo";
+import { generalFaqs } from "@/content/faqs";
 import heroImage from "@/assets/hero-image-optimized.jpg";
-import { blogPosts } from "@/content/blogPosts";
-import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, CalendarDays } from "lucide-react";
+import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { MouseEvent } from "react";
 
@@ -37,10 +38,25 @@ const Home = () => {
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-primary" />,
-      title: "Zulassung innerhalb von 24h",
+      title: "Zugelassen in 20 Min oder 24h",
       description:
-        "Ihre Zulassung erfolgt am nächsten Werktag. Rückversand oder Abholung inklusive.",
+        "Sofort-Zulassung: in ca. 20 Minuten direkt losfahren. Klassisch: fertig am nächsten Werktag inkl. Rückversand oder Abholung.",
     },
+  ];
+
+  const checklistZulassung = [
+    "Personalausweis oder Reisepass",
+    "eVB-Nummer Ihrer KFZ-Versicherung",
+    "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+    "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+    "HU-Nachweis bei Gebrauchtwagen – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist",
+    "IBAN für die KFZ-Steuer",
+  ];
+
+  const checklistAbmeldung = [
+    "Beide Kennzeichenschilder",
+    "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+    "Personalausweis oder Reisepass",
   ];
 
   const services = [
@@ -53,6 +69,21 @@ const Home = () => {
   ];
 
   const pricePackages = [
+    {
+      title: "SOFORT",
+      price: "ab 129 €",
+      popular: true,
+      features: [
+        "Zulassung digital in ca. 20 Minuten",
+        "Direkt losfahren",
+        "Wunschkennzeichen möglich (+13 €)",
+        "Verwaltungsgebühren inkl.",
+      ],
+      highlight: "Kennzeichen besorgen Sie selbst – vor oder nach der Zulassung. Zugelassen sind Sie in jedem Fall.",
+      buttonText: "SOFORT-ZULASSUNG STARTEN",
+      buttonVariant: "cta" as const,
+      ctaHref: "/angebot?paket=sofort",
+    },
     {
       title: "BASIS",
       price: "129 €",
@@ -72,7 +103,6 @@ const Home = () => {
     {
       title: "PREMIUM",
       price: "159 €",
-      popular: true,
       features: [
         "Alles vom BASIS",
         "Express-Rückversand inklusive",
@@ -113,30 +143,11 @@ const Home = () => {
     },
   ];
 
-  const latestPosts = blogPosts.slice(0, 3);
-  const geoFaqs = [
-    {
-      question: "Wie schnell ist eine KFZ-Zulassung in Bad Salzuflen möglich?",
-      answer:
-        "Bei vollständigen Unterlagen erfolgt die Zulassung in der Regel innerhalb von 24 Stunden.",
-    },
-    {
-      question: "Kann ich mein altes Fahrzeug gleichzeitig verkaufen?",
-      answer:
-        "Ja. Sie können Fahrzeugankauf mit Zulassung, Abmeldung oder auch unabhängig davon beauftragen.",
-    },
-    {
-      question: "Bieten Sie Service nur in Bad Salzuflen an?",
-      answer:
-        "Der Schwerpunkt liegt auf Bad Salzuflen und dem Kreis Lippe, inklusive persönlicher Betreuung vor Ort.",
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Zulassungsdienst Bad Salzuflen | KFZ-Zulassung in 24h"
-        description="KFZ-Zulassung in Bad Salzuflen und Kreis Lippe: Anmelden, Ummelden, Abmelden innerhalb von 24 Stunden. Optional mit Fahrzeugankauf."
+        title="Zulassungsdienst Bad Salzuflen | Sofort-Zulassung in ca. 20 Min"
+        description="KFZ-Zulassung in Bad Salzuflen und Kreis Lippe: Neu mit Sofort-Zulassung digital in ca. 20 Minuten – oder klassisch innerhalb von 24 Stunden. Optional mit Fahrzeugankauf."
         path="/"
         image="/favicon.ico"
         structuredData={{
@@ -170,7 +181,7 @@ const Home = () => {
             },
             {
               "@type": "FAQPage",
-              mainEntity: geoFaqs.map((faq) => ({
+              mainEntity: generalFaqs.map((faq) => ({
                 "@type": "Question",
                 name: faq.question,
                 acceptedAnswer: {
@@ -195,28 +206,29 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="text-center lg:text-left relative z-20 stagger-in">
-              <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide mb-5 text-primary-foreground">
-                Vor Ort in Bad Salzuflen
+              <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide mb-5 text-primary-foreground">
+                <Zap className="h-4 w-4 text-[hsl(var(--cta-orange))]" />
+                NEU: Sofort-Zulassung in ca. 20 Minuten
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
-                Einfach. Schnell. Ohne Wartezeit.
+                Zugelassen, bevor andere einen Termin haben.
               </h1>
               <p className="text-lg sm:text-xl mb-4 text-primary-foreground/90">
-                Online-Zulassung für den Kreis Lippe inkl. 2 Kennzeichen
+                Sofort-Zulassung: digital in ca. 20 Minuten – Kennzeichen montieren und direkt losfahren
               </p>
               <p className="text-base sm:text-lg mb-8 text-primary-foreground/80">
-                Zulassung innerhalb von 24 Stunden garantiert
+                Oder klassisch: Unterlagen abgeben, Zulassung innerhalb von 24 Stunden garantiert
               </p>
 
               <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 justify-center lg:justify-start">
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ✓ Zulassung in 24 Stunden
+                  ⚡ Sofort in ca. 20 Min
                 </div>
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
                   ✓ Kein Behördengang
                 </div>
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ✓ Kein Stress
+                  ✓ Direkt losfahren
                 </div>
               </div>
 
@@ -299,10 +311,10 @@ const Home = () => {
 
                 <div className="absolute -top-6 -right-6 bg-white rounded-2xl p-4 shadow-xl z-20 hidden sm:block">
                   <div className="flex items-center gap-2">
-                    <Clock className="h-6 w-6 text-[hsl(var(--cta-orange))]" />
+                    <Zap className="h-6 w-6 text-[hsl(var(--cta-orange))]" />
                     <div>
-                      <div className="text-2xl font-bold text-secondary">24h</div>
-                      <div className="text-xs text-muted-foreground">Garantiert</div>
+                      <div className="text-2xl font-bold text-secondary">20 Min</div>
+                      <div className="text-xs text-muted-foreground">Sofort-Zulassung</div>
                     </div>
                   </div>
                 </div>
@@ -320,6 +332,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
 
       <GoogleReviews />
 
@@ -351,24 +364,132 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 bg-muted/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="section-title mb-3">Direkte Antworten</h2>
-            <p className="section-subtitle">Kurze Antworten auf häufige Fragen zur Zulassung und zum Fahrzeugankauf.</p>
+      <section className="py-14 scroll-mt-28 lg:scroll-mt-40" id="pakete">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="surface-soft p-6 sm:p-8">
+          <div className="text-center mb-10" id="pakete-focus">
+            <h2 className="section-title mb-4">Unsere Preise</h2>
+            <p className="section-subtitle">Transparente Preise - keine versteckten Kosten</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {geoFaqs.map((faq) => (
-              <Card key={faq.question} className="surface-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base leading-snug text-secondary">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
-                </CardContent>
-              </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="pakete-grid">
+            {pricePackages.map((pkg, index) => (
+              <PriceCard
+                key={index}
+                title={pkg.title}
+                price={pkg.price}
+                popular={pkg.popular}
+                features={pkg.features}
+                highlight={"highlight" in pkg ? pkg.highlight : undefined}
+                buttonText={pkg.buttonText}
+                buttonVariant={pkg.buttonVariant}
+                ctaHref={pkg.ctaHref}
+              />
             ))}
           </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 bg-muted/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="section-title mb-4">Checkliste: Das bringen Sie mit</h2>
+            <p className="section-subtitle">Mit diesen Unterlagen klappt Ihr Termin ohne Verzögerung</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="surface-card">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-xl text-secondary">Zulassung & Umschreibung</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-2.5">
+                  {checklistZulassung.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <CheckCircle className="h-5 w-5 text-trust-green mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex items-start gap-2 rounded-lg border border-[hsl(var(--cta-orange))]/40 bg-[hsl(var(--cta-orange))]/10 px-3 py-2.5">
+                  <AlertCircle className="h-4 w-4 text-[hsl(var(--cta-orange))] mt-0.5 flex-shrink-0" />
+                  <span className="text-sm font-semibold text-secondary">
+                    Sofort-Zulassung: Kennzeichen besorgen Sie selbst, wann Sie möchten – für die
+                    Zulassung selbst sind sie nicht nötig
+                  </span>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="surface-card">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-xl text-secondary">Abmeldung</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <ul className="space-y-2.5">
+                  {checklistAbmeldung.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <CheckCircle className="h-5 w-5 text-trust-green mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-foreground">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex items-start gap-2 rounded-lg border border-trust-green/40 bg-trust-green/10 px-3 py-2.5">
+                  <CheckCircle className="h-4 w-4 text-trust-green mt-0.5 flex-shrink-0" />
+                  <span className="text-sm font-semibold text-secondary">
+                    Verkauf an uns? Dann ist die Abmeldung gratis
+                  </span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-6 flex items-start gap-3 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3.5">
+            <FileText className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+            <p className="text-sm text-foreground">
+              <span className="font-semibold text-secondary">Vollmacht und SEPA-Lastschriftmandat</span>{" "}
+              müssen Sie nicht vorbereiten – beide Formulare bekommen Sie bei uns und füllen sie einfach
+              vor Ort aus.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="py-14 bg-muted/50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="section-title mb-4">Häufige Fragen</h2>
+            <p className="section-subtitle">
+              Alles Wichtige zu Zulassung, Sofort-Zulassung und Fahrzeugankauf – kurz beantwortet
+            </p>
+          </div>
+
+          <Accordion type="single" collapsible className="space-y-3">
+            {generalFaqs.map((faq, index) => (
+              <AccordionItem
+                key={faq.question}
+                value={`faq-${index}`}
+                className="surface-card rounded-xl border px-5"
+              >
+                <AccordionTrigger className="text-left text-base font-semibold text-secondary hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+
+          <p className="mt-8 text-center text-sm text-muted-foreground">
+            Alle Vorgänge und Unterlagen im Detail finden Sie in unserem{" "}
+            <Link to="/faq" className="font-semibold text-primary hover:underline">
+              FAQ-Bereich
+            </Link>
+            .
+          </p>
         </div>
       </section>
 
@@ -392,71 +513,6 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 scroll-mt-28 lg:scroll-mt-40" id="pakete">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="surface-soft p-6 sm:p-8">
-          <div className="text-center mb-10" id="pakete-focus">
-            <h2 className="section-title mb-4">Unsere Preise</h2>
-            <p className="section-subtitle">Transparente Preise - keine versteckten Kosten</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" id="pakete-grid">
-            {pricePackages.map((pkg, index) => (
-              <PriceCard
-                key={index}
-                title={pkg.title}
-                price={pkg.price}
-                popular={pkg.popular}
-                features={pkg.features}
-                buttonText={pkg.buttonText}
-                buttonVariant={pkg.buttonVariant}
-                ctaHref={pkg.ctaHref}
-              />
-            ))}
-          </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-14">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
-            <div>
-              <h2 className="section-title mb-2">Ratgeber & Blog</h2>
-              <p className="section-subtitle">
-                Hilfreiche Beiträge für Zulassung, Abmeldung und Fahrzeugverkauf
-              </p>
-            </div>
-            <Button variant="outline" asChild>
-              <Link to="/blog">Alle Artikel ansehen</Link>
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {latestPosts.map((post) => (
-              <Card key={post.slug} className="surface-card h-full flex flex-col">
-                <CardHeader>
-                  <p className="text-xs font-semibold text-primary uppercase tracking-wide">{post.category}</p>
-                  <CardTitle className="text-xl leading-snug">{post.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-col flex-1">
-                  <p className="text-sm text-muted-foreground mb-4 flex-1">{post.excerpt}</p>
-                  <p className="text-xs text-muted-foreground inline-flex items-center gap-1 mb-4">
-                    <CalendarDays className="h-3.5 w-3.5" />
-                    {post.publishedAt}
-                  </p>
-                  <Button variant="cta" asChild className="w-full">
-                    <Link to={`/blog/${post.slug}`}>
-                      Artikel lesen
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

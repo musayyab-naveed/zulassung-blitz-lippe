@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "lucide-react";
+import { Check, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface PriceCardProps {
@@ -9,6 +9,7 @@ interface PriceCardProps {
   price: string;
   popular?: boolean;
   features: string[];
+  highlight?: string;
   buttonText: string;
   buttonVariant?: "default" | "cta";
   onSelect?: () => void;
@@ -16,11 +17,12 @@ interface PriceCardProps {
   selected?: boolean;
 }
 
-const PriceCard = ({ 
-  title, 
-  price, 
-  popular = false, 
-  features, 
+const PriceCard = ({
+  title,
+  price,
+  popular = false,
+  features,
+  highlight,
   buttonText,
   buttonVariant = "default",
   onSelect,
@@ -49,7 +51,14 @@ const PriceCard = ({
             </li>
           ))}
         </ul>
-        
+
+        {highlight && (
+          <div className="mb-6 flex items-start gap-2 rounded-lg border border-[hsl(var(--cta-orange))]/40 bg-[hsl(var(--cta-orange))]/10 px-3 py-2.5">
+            <AlertCircle className="h-4 w-4 text-[hsl(var(--cta-orange))] mt-0.5 flex-shrink-0" />
+            <span className="text-sm font-semibold text-secondary">{highlight}</span>
+          </div>
+        )}
+
         {onSelect ? (
           <Button variant={buttonVariant} className="w-full" type="button" onClick={onSelect}>
             {buttonText}

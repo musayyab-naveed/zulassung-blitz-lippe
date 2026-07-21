@@ -58,6 +58,9 @@ const GoogleReviews = () => {
     { name: "Mary Birdrock", rating: 5, time: "vor einem Jahr", text: "Sehr gute Erfahrung und schneller Ablauf." },
   ];
 
+  // Gesamtzahl der Bewertungen laut Google-Profil (bei neuen Bewertungen hier aktualisieren)
+  const totalReviews = 46;
+
   const avgRating = useMemo(
     () => (reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length).toFixed(1),
     [reviews]
@@ -128,7 +131,7 @@ const GoogleReviews = () => {
             ))}
             <span className="text-2xl font-bold text-secondary ml-2">{avgRating}</span>
           </div>
-          <p className="text-muted-foreground">Basierend auf {reviews.length}+ echten Bewertungen</p>
+          <p className="text-muted-foreground">Basierend auf {totalReviews} echten Bewertungen</p>
         </div>
 
         <Carousel

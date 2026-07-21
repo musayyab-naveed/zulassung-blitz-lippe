@@ -4,21 +4,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PriceCard from "@/components/PriceCard";
 import Seo from "@/components/Seo";
+import PriceCard from "@/components/PriceCard";
 import { CheckCircle, Phone, Mail, ArrowLeft, ImagePlus, Upload, ArrowUp, ArrowDown, X } from "lucide-react";
 import { useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-type PackageKey = "basis" | "premium" | "abmeldung" | "ankauf_only";
+type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "ankauf_only";
 
 interface PackageDef {
   key: PackageKey;
   title: string;
   price: string;
   features: string[];
+  highlight?: string;
   buttonText: string;
   popular?: boolean;
   buttonVariant?: "default" | "cta";
@@ -33,6 +34,21 @@ interface UploadImageItem {
 }
 
 const PACKAGES: PackageDef[] = [
+  {
+    key: "sofort",
+    title: "SOFORT",
+    price: "ab 129 €",
+    popular: true,
+    features: [
+      "Zulassung digital in ca. 20 Minuten",
+      "Direkt losfahren",
+      "Wunschkennzeichen möglich (+13 €)",
+      "Verwaltungsgebühren inkl.",
+    ],
+    highlight: "Kennzeichen besorgen Sie selbst – vor oder nach der Zulassung. Zugelassen sind Sie in jedem Fall.",
+    buttonText: "SOFORT WÄHLEN",
+    buttonVariant: "cta" as const,
+  },
   {
     key: "basis",
     title: "BASIS",
@@ -51,7 +67,6 @@ const PACKAGES: PackageDef[] = [
     key: "premium",
     title: "PREMIUM",
     price: "159 €",
-    popular: true,
     features: [
       "Alles vom BASIS",
       "Hol- und Bringservice möglich",
@@ -93,7 +108,7 @@ const geoFaqs = [
   {
     question: "Welche Pakete kann ich online buchen?",
     answer:
-      "Sie können BASIS, PREMIUM, ABMELDUNG oder nur Fahrzeugverkauf wählen. Die Auswahl erfolgt direkt im ersten Schritt.",
+      "Sie können SOFORT (Zulassung in ca. 20 Minuten), BASIS, PREMIUM, ABMELDUNG oder nur Fahrzeugverkauf wählen. Die Auswahl erfolgt direkt im ersten Schritt.",
   },
   {
     question: "Kann ich Fahrzeugankauf ohne Zulassung beauftragen?",
@@ -592,9 +607,9 @@ const Angebot = () => {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-secondary mb-4">1. Paket auswählen</h2>
-              <p className="text-lg text-muted-foreground">Wählen Sie nur die für Sie passende Serviceart.</p>
+              <p className="text-lg text-muted-foreground">Wählen Sie die für Sie passende Serviceart.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
               {PACKAGES.filter((pkg) => pkg.key !== "ankauf_only").map((pkg) => (
                 <PriceCard
                   key={pkg.key}
@@ -602,6 +617,7 @@ const Angebot = () => {
                   price={pkg.price}
                   popular={pkg.popular}
                   features={pkg.features}
+                  highlight={pkg.highlight}
                   buttonText={pkg.buttonText}
                   buttonVariant={pkg.buttonVariant}
                   onSelect={() => selectPackage(pkg)}
