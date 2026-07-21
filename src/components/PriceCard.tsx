@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 interface PriceCardProps {
   title: string;
   price: string;
+  subtitle?: string;
   popular?: boolean;
   features: string[];
   highlight?: string;
@@ -20,6 +21,7 @@ interface PriceCardProps {
 const PriceCard = ({
   title,
   price,
+  subtitle,
   popular = false,
   features,
   highlight,
@@ -40,6 +42,9 @@ const PriceCard = ({
       <CardHeader className="text-center pb-8">
         <CardTitle className="text-2xl font-bold text-secondary mb-2">{title}</CardTitle>
         <div className="text-4xl font-bold text-primary mb-1 tracking-tight">{price}</div>
+        {subtitle && (
+          <p className="text-sm font-semibold text-[hsl(var(--cta-orange))]">{subtitle}</p>
+        )}
       </CardHeader>
       
       <CardContent className="pt-0 flex flex-col flex-1">

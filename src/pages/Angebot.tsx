@@ -18,6 +18,7 @@ interface PackageDef {
   key: PackageKey;
   title: string;
   price: string;
+  subtitle?: string;
   features: string[];
   highlight?: string;
   buttonText: string;
@@ -38,6 +39,7 @@ const PACKAGES: PackageDef[] = [
     key: "sofort",
     title: "SOFORT",
     price: "ab 129 €",
+    subtitle: "Fertig in ca. 20 Min – Sie warten kurz vor Ort",
     popular: true,
     features: [
       "Zulassung digital in ca. 20 Minuten",
@@ -53,6 +55,7 @@ const PACKAGES: PackageDef[] = [
     key: "basis",
     title: "BASIS",
     price: "129 €",
+    subtitle: "Fertig am nächsten Werktag – Sie bringen & holen die Unterlagen",
     features: [
       "Zulassung innerhalb von 24h",
       "Unterlagen vor Ort abgeben",
@@ -67,6 +70,7 @@ const PACKAGES: PackageDef[] = [
     key: "premium",
     title: "PREMIUM",
     price: "159 €",
+    subtitle: "Fertig am nächsten Werktag – wir holen & bringen alles",
     features: [
       "Alles vom BASIS",
       "Hol- und Bringservice möglich",
@@ -615,6 +619,7 @@ const Angebot = () => {
                   key={pkg.key}
                   title={pkg.title}
                   price={pkg.price}
+                  subtitle={pkg.subtitle}
                   popular={pkg.popular}
                   features={pkg.features}
                   highlight={pkg.highlight}

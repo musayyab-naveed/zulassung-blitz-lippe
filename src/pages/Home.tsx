@@ -72,6 +72,7 @@ const Home = () => {
     {
       title: "SOFORT",
       price: "ab 129 €",
+      subtitle: "Fertig in ca. 20 Min – Sie warten kurz vor Ort",
       popular: true,
       features: [
         "Zulassung digital in ca. 20 Minuten",
@@ -87,6 +88,7 @@ const Home = () => {
     {
       title: "BASIS",
       price: "129 €",
+      subtitle: "Fertig am nächsten Werktag – Sie bringen & holen die Unterlagen",
       features: [
         "Zulassung innerhalb von 24h",
         "Inkl. Euro-Kennzeichen",
@@ -103,6 +105,7 @@ const Home = () => {
     {
       title: "PREMIUM",
       price: "159 €",
+      subtitle: "Fertig am nächsten Werktag – wir holen & bringen alles",
       features: [
         "Alles vom BASIS",
         "Express-Rückversand inklusive",
@@ -378,6 +381,7 @@ const Home = () => {
                 key={index}
                 title={pkg.title}
                 price={pkg.price}
+                subtitle={"subtitle" in pkg ? pkg.subtitle : undefined}
                 popular={pkg.popular}
                 features={pkg.features}
                 highlight={"highlight" in pkg ? pkg.highlight : undefined}

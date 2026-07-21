@@ -28,6 +28,11 @@ export const generalFaqs: FaqItem[] = [
       "Die eVB-Nummer Ihrer Versicherung, Ihren Personalausweis, die Zulassungsbescheinigung Teil I und II sowie Ihre IBAN für die KFZ-Steuer – nach ca. 20 Minuten sind Sie zugelassen. Die Kennzeichen besorgen Sie selbst, wann Sie möchten (Wunschkennzeichen möglich, +13 €): vor dem Termin oder danach. Zugelassen sind Sie in jedem Fall – losfahren dürfen Sie, sobald die Schilder montiert sind.",
   },
   {
+    question: "Was ist der Unterschied zwischen SOFORT, BASIS und PREMIUM?",
+    answer:
+      "SOFORT: Sie kommen kurz vorbei, die Zulassung läuft digital in ca. 20 Minuten – die Kennzeichen besorgen Sie selbst. BASIS: Sie geben die Unterlagen ab und holen am nächsten Werktag alles fertig inklusive Kennzeichen wieder ab. PREMIUM: wie BASIS, aber wir holen und bringen die Unterlagen – Sie müssen gar nicht erst zu uns kommen.",
+  },
+  {
     question: "Was kostet die Zulassung?",
     answer:
       "Die Zulassung gibt es ab 129 €, die Abmeldung für 30 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Ein Wunschkennzeichen kostet 13 € Aufpreis.",
