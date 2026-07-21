@@ -83,15 +83,18 @@ const PACKAGES: PackageDef[] = [
   },
   {
     key: "abmeldung",
-    title: "ABMELDUNG",
-    price: "30 €",
+    title: "BLITZABMELDUNG",
+    price: "40 €",
+    subtitle: "Sofort vor Ort abgemeldet – Sie warten kurz",
     features: [
-      "Abmeldung innerhalb 24h",
+      "Abmeldung digital direkt vor Ort",
       "Verwaltungsgebühren inkl.",
       "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
       "Kostenlose Abmeldung bei Ankauf",
     ],
-    buttonText: "ABMELDUNG WÄHLEN",
+    highlight:
+      "Voraussetzung: Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen (Zulassung ab 2015)",
+    buttonText: "BLITZABMELDUNG WÄHLEN",
     buttonVariant: "cta" as const,
   },
   {
@@ -112,7 +115,7 @@ const geoFaqs = [
   {
     question: "Welche Pakete kann ich online buchen?",
     answer:
-      "Sie können SOFORT (Zulassung in ca. 20 Minuten), BASIS, PREMIUM, ABMELDUNG oder nur Fahrzeugverkauf wählen. Die Auswahl erfolgt direkt im ersten Schritt.",
+      "Sie können SOFORT (Zulassung in ca. 20 Minuten), BASIS, PREMIUM, BLITZABMELDUNG oder nur Fahrzeugverkauf wählen. Die Auswahl erfolgt direkt im ersten Schritt.",
   },
   {
     question: "Kann ich Fahrzeugankauf ohne Zulassung beauftragen?",

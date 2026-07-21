@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { Star } from "lucide-react";
+import { Star, Receipt, Banknote } from "lucide-react";
+import paypalLogo from "@/assets/payments/paypal.svg";
+import mastercardLogo from "@/assets/payments/mastercard.svg";
+import visaLogo from "@/assets/payments/visa.svg";
+import applePayLogo from "@/assets/payments/applepay.svg";
+import sepaLogo from "@/assets/payments/sepa.svg";
 import {
   Carousel,
   CarouselApi,
@@ -85,33 +90,19 @@ const GoogleReviews = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
           <p className="text-[15px] sm:text-[17px] font-normal text-secondary">Sicher bezahlen mit</p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-7 gap-y-4 text-[#0a4d7a]">
-            <div className="text-[clamp(0.95rem,1.45vw,1.45rem)] font-bold italic tracking-tight">
-              <span className="text-[#0b5c8e]">Pay</span>
-              <span className="text-[#1aa6b8]">Pal</span>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+            <img src={paypalLogo} alt="PayPal" className="h-7 w-auto" loading="lazy" />
+            <div className="flex items-center gap-2 text-[#0a4d7a]" aria-label="Kauf auf Rechnung">
+              <Receipt className="h-6 w-6" strokeWidth={2.4} />
+              <span className="text-lg font-extrabold uppercase tracking-tight">Rechnung</span>
             </div>
-            <div className="flex items-center gap-2 text-[clamp(0.9rem,1.35vw,1.35rem)] font-extrabold uppercase tracking-tight text-[#0a4d7a]">
-              <span className="inline-block h-4 w-3.5 border-2 border-current border-r-[3px]" />
-              <span>Rechnung</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="relative inline-flex h-7 w-10 items-center justify-center">
-                <span className="absolute left-0 h-7 w-7 rounded-full bg-[#0a4d7a]" />
-                <span className="absolute right-0 h-7 w-7 rounded-full bg-[#2aaec0]" />
-              </span>
-              <span className="text-[clamp(0.72rem,0.95vw,0.92rem)] font-medium lowercase tracking-tight text-[#0a4d7a]">mastercard</span>
-            </div>
-            <div className="text-[clamp(1.05rem,1.65vw,1.8rem)] font-black uppercase tracking-[0.04em] text-[#0a4d7a]">
-              Visa
-            </div>
-            <div className="text-[clamp(1.05rem,1.65vw,1.8rem)] font-black uppercase tracking-[0.04em] text-[#0a4d7a]">
-              SEPA
-            </div>
-            <div className="text-[clamp(0.95rem,1.4vw,1.35rem)] font-semibold tracking-tight text-[#0a4d7a]">
-              Apple Pay
-            </div>
-            <div className="text-[clamp(0.95rem,1.4vw,1.35rem)] font-semibold tracking-tight text-[#0a4d7a]">
-              Bar
+            <img src={mastercardLogo} alt="Mastercard" className="h-9 w-auto" loading="lazy" />
+            <img src={visaLogo} alt="Visa" className="h-5 w-auto" loading="lazy" />
+            <img src={sepaLogo} alt="SEPA-Lastschrift" className="h-6 w-auto" loading="lazy" />
+            <img src={applePayLogo} alt="Apple Pay" className="h-7 w-auto" loading="lazy" />
+            <div className="flex items-center gap-1.5 text-[#0a4d7a]" aria-label="Barzahlung">
+              <Banknote className="h-7 w-7" strokeWidth={2.2} />
+              <span className="text-xl font-semibold tracking-tight">Bar</span>
             </div>
           </div>
         </div>

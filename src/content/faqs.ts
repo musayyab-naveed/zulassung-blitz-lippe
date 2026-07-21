@@ -35,7 +35,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Was kostet die Zulassung?",
     answer:
-      "Die Zulassung gibt es ab 129 €, die Abmeldung für 30 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Ein Wunschkennzeichen kostet 13 € Aufpreis.",
+      "Die Zulassung gibt es ab 129 €, die Blitzabmeldung direkt vor Ort für 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Ein Wunschkennzeichen kostet 13 € Aufpreis.",
   },
   {
     question: "Muss ich selbst zur Zulassungsstelle?",
@@ -99,11 +99,12 @@ export const vorgangChecklists: VorgangChecklist[] = [
   },
   {
     key: "abmeldung",
-    title: "Abmeldung (Außerbetriebsetzung)",
+    title: "Blitzabmeldung (Außerbetriebsetzung)",
     items: [
       "Beide Kennzeichenschilder",
       "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
       "Personalausweis oder Reisepass",
+      "Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen-Plaketten (bei Zulassung ab 2015 vorhanden)",
       "Bei Verschrottung: Verwertungsnachweis",
     ],
     hint: "Verkaufen Sie Ihr Fahrzeug an uns, ist die Abmeldung gratis.",

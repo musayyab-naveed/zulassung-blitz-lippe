@@ -72,6 +72,7 @@ const Home = () => {
     "Beide Kennzeichenschilder",
     "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
     "Personalausweis oder Reisepass",
+    "Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen-Plaketten (bei Zulassung ab 2015 vorhanden)",
   ];
 
   const services = [
@@ -133,14 +134,17 @@ const Home = () => {
       ctaHref: "/angebot?paket=premium",
     },
     {
-      title: "ABMELDUNG",
-      price: "30 €",
+      title: "BLITZABMELDUNG",
+      price: "40 €",
+      subtitle: "Sofort vor Ort abgemeldet – Sie warten kurz",
       features: [
-        "Abmeldung innerhalb 24h",
+        "Abmeldung digital direkt vor Ort",
         "Verwaltungsgebühren inkl.",
         "Altfahrzeug? Wir kaufen es auf Wunsch direkt mit an",
         "Abmeldung beim Ankauf gratis - keine Zusatzgebühr",
       ],
+      highlight:
+        "Voraussetzung: Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen (Zulassung ab 2015)",
       buttonText: "ONLINE BEANTRAGEN",
       buttonVariant: "cta" as const,
       ctaHref: "/angebot?paket=abmeldung",
@@ -443,7 +447,7 @@ const Home = () => {
 
             <Card className="surface-card">
               <CardHeader className="pb-3">
-                <CardTitle className="text-xl text-secondary">Abmeldung</CardTitle>
+                <CardTitle className="text-xl text-secondary">Blitzabmeldung</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="space-y-2.5">
