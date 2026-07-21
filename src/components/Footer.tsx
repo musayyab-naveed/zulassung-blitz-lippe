@@ -13,7 +13,7 @@ const Footer = () => {
         <div className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">
-            <div className="flex items-center mb-4">
+            <div className="mb-4 inline-flex items-center rounded-xl bg-white px-4 py-2">
               <img
                 src={logo}
                 alt="KFZ-Sofortzulassung Logo"
