@@ -10,7 +10,7 @@ import { CheckCircle, Phone, Mail, ArrowLeft, ImagePlus, Upload, ArrowUp, ArrowD
 import { useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "ankauf_only";
 
@@ -39,7 +39,8 @@ const PACKAGES: PackageDef[] = [
     key: "sofort",
     title: "SOFORT",
     price: "ab 129 €",
-    subtitle: "Fertig in ca. 20 Min – Sie warten kurz vor Ort",
+    subtitle:
+      "Fertig in ca. 20 Min – Sie warten kurz vor Ort. Kennzeichen besorgen Sie selbst, vor oder nach der Zulassung – zugelassen sind Sie in jedem Fall.",
     popular: true,
     features: [
       "Zulassung digital in ca. 20 Minuten",
@@ -47,7 +48,6 @@ const PACKAGES: PackageDef[] = [
       "Wunschkennzeichen möglich (+13 €)",
       "Verwaltungsgebühren inkl.",
     ],
-    highlight: "Kennzeichen besorgen Sie selbst – vor oder nach der Zulassung. Zugelassen sind Sie in jedem Fall.",
     buttonText: "SOFORT WÄHLEN",
     buttonVariant: "cta" as const,
   },
@@ -128,6 +128,12 @@ const geoFaqs = [
 
 const Angebot = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  // Zurück zur Paketauswahl auf der Startseite (eine zentrale Anlaufstelle)
+  const backToPakete = () => {
+    navigate("/#pakete");
+  };
   const wantsAnkaufFromParam = searchParams.get("ankauf") === "1";
   const paketParam = (searchParams.get("paket") || "").trim().toLowerCase();
   const packageFromQuery =
@@ -242,28 +248,6 @@ const Angebot = () => {
     setPickupCheckResult(null);
     setPickupCheckError("");
     setCurrentStep(2);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const resetWizard = () => {
-    setSearchParams({});
-    setSelectedPackageKey(null);
-    setSellDecision(null);
-    setSellVehicleData({
-      marke: "",
-      modell: "",
-      baujahr: "",
-      kilometerstand: "",
-      telefon: "",
-    });
-    setVehicleImages([]);
-    setVehicleImagesError("");
-    setPickupChoice(null);
-    setPickupCheckResult(null);
-    setPickupCheckError("");
-    setLeadSendError("");
-    setLeadSendMessage("");
-    setCurrentStep(1);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -663,7 +647,7 @@ const Angebot = () => {
                       variant="outline"
                       size="sm"
                       type="button"
-                      onClick={resetWizard}
+                      onClick={backToPakete}
                     >
                       <ArrowLeft className="h-4 w-4" />
                       Paket ändern
@@ -1045,7 +1029,7 @@ const Angebot = () => {
                     </div>
                   )}
                   <div className="border-t pt-5 flex flex-col sm:flex-row gap-3 sm:justify-end">
-                    <Button type="button" variant="outline" onClick={resetWizard}>
+                    <Button type="button" variant="outline" onClick={backToPakete}>
                       Zurück zu Paketen
                     </Button>
                     <Button
@@ -1093,7 +1077,7 @@ const Angebot = () => {
                       <ArrowLeft className="h-4 w-4" />
                       Zurück zu Optionen
                     </Button>
-                    <Button type="button" variant="outline" onClick={resetWizard}>
+                    <Button type="button" variant="outline" onClick={backToPakete}>
                       Paket neu wählen
                     </Button>
                   </div>

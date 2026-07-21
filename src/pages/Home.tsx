@@ -9,19 +9,34 @@ import Seo from "@/components/Seo";
 import { generalFaqs } from "@/content/faqs";
 import heroImage from "@/assets/hero-image-optimized.jpg";
 import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import type { MouseEvent } from "react";
 
 const Home = () => {
-  const scrollToPackages = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
+  const location = useLocation();
+
+  const scrollToPakete = (behavior: ScrollBehavior) => {
     const target = document.getElementById("pakete-focus");
     if (!target) return;
     const header = document.querySelector("header");
     const headerHeight = header ? header.getBoundingClientRect().height : 120;
     const top = window.scrollY + target.getBoundingClientRect().top - headerHeight - 24;
-    window.scrollTo({ top, behavior: "smooth" });
+    window.scrollTo({ top, behavior });
   };
+
+  const scrollToPackages = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    scrollToPakete("smooth");
+  };
+
+  // Direktsprung zu den Paketen, wenn die Startseite mit /#pakete aufgerufen wird
+  // (z. B. über die "Zurück zu Paketen"-Buttons in der Buchungsstrecke)
+  useEffect(() => {
+    if (location.hash !== "#pakete") return;
+    const timer = window.setTimeout(() => scrollToPakete("auto"), 80);
+    return () => window.clearTimeout(timer);
+  }, [location.hash]);
 
   const steps = [
     {
@@ -72,7 +87,8 @@ const Home = () => {
     {
       title: "SOFORT",
       price: "ab 129 €",
-      subtitle: "Fertig in ca. 20 Min – Sie warten kurz vor Ort",
+      subtitle:
+        "Fertig in ca. 20 Min – Sie warten kurz vor Ort. Kennzeichen besorgen Sie selbst, vor oder nach der Zulassung – zugelassen sind Sie in jedem Fall.",
       popular: true,
       features: [
         "Zulassung digital in ca. 20 Minuten",
@@ -80,7 +96,6 @@ const Home = () => {
         "Wunschkennzeichen möglich (+13 €)",
         "Verwaltungsgebühren inkl.",
       ],
-      highlight: "Kennzeichen besorgen Sie selbst – vor oder nach der Zulassung. Zugelassen sind Sie in jedem Fall.",
       buttonText: "SOFORT-ZULASSUNG STARTEN",
       buttonVariant: "cta" as const,
       ctaHref: "/angebot?paket=sofort",
