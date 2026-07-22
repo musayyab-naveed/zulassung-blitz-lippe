@@ -55,7 +55,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Wie buche ich einen Termin?",
     answer:
-      "Paket auswählen, kurz die Optionen beantworten und direkt online einen Termin buchen – alles in unter 2 Minuten.",
+      "Im Assistenten ein paar kurze Fragen beantworten und direkt online den Termin buchen – alles in unter 2 Minuten.",
   },
 ];
 
@@ -121,8 +121,8 @@ export const vorgangChecklists: VorgangChecklist[] = [
     key: "wunschkennzeichen",
     title: "Wunschkennzeichen / Kennzeichen-Reservierung",
     items: [
-      "Keine besonderen Unterlagen nötig – Wunschkombination genügt",
-      "Reservierung übernehmen wir für Sie (+13 €)",
+      "Ihre Wunschkombination – mehr braucht es nicht",
+      "Entweder direkt bei uns vor Ort beauftragen (+13 €) oder vorher selbst online reservieren",
     ],
   },
 ];

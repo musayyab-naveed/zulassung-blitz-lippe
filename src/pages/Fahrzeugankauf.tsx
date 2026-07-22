@@ -3,15 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
-import { CheckCircle, ArrowRight, Car, Phone, MessageCircle } from "lucide-react";
+import { CheckCircle, ArrowRight, Car, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import autoankaufHeroImage from "@/assets/autoankauf-hero.jpeg";
-
-const WHATSAPP_SELL_URL =
-  "https://wa.me/4915142462280?text=" +
-  encodeURIComponent(
-    "Hallo, ich möchte mein Fahrzeug verkaufen.\nMarke/Modell: \nBaujahr: \nKilometerstand: \nFotos schicke ich gleich mit."
-  );
 
 const Fahrzeugankauf = () => {
   const geoFaqs = [
@@ -133,20 +127,10 @@ const Fahrzeugankauf = () => {
               </div>
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
                 <Button size="lg" variant="cta-large" asChild>
-                  <Link to="/angebot?paket=ankauf_only">
+                  <Link to="/angebot?start=verkauf">
                     Jetzt Fahrzeug verkaufen
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
-                </Button>
-                <Button
-                  size="lg"
-                  className="border border-[#20be5d] bg-[#25D366] text-white hover:bg-[#1fb658]"
-                  asChild
-                >
-                  <a href={WHATSAPP_SELL_URL} target="_blank" rel="noreferrer">
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    Fotos per WhatsApp schicken
-                  </a>
                 </Button>
                 <Button
                   size="lg"
@@ -241,16 +225,7 @@ const Fahrzeugankauf = () => {
                   kombinieren? Starten Sie einfach im Formular.
                 </p>
                 <Button variant="cta" className="w-full" asChild>
-                  <Link to="/angebot?paket=ankauf_only">Jetzt Fahrzeug verkaufen</Link>
-                </Button>
-                <Button
-                  className="mt-3 w-full border border-[#20be5d] bg-[#25D366] text-white hover:bg-[#1fb658]"
-                  asChild
-                >
-                  <a href={WHATSAPP_SELL_URL} target="_blank" rel="noreferrer">
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    Oder Fotos per WhatsApp schicken
-                  </a>
+                  <Link to="/angebot?start=verkauf">Jetzt Fahrzeug verkaufen</Link>
                 </Button>
               </CardContent>
             </Card>

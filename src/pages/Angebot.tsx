@@ -6,7 +6,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import ZulassungsAssistent, { AnswerCard } from "@/components/ZulassungsAssistent";
-import { CheckCircle, Phone, Mail, ArrowLeft, ArrowRight, Car, ImagePlus, Upload, ArrowUp, ArrowDown, X } from "lucide-react";
+import { checkPickupAddress } from "@/lib/pickupCheck";
+import { CheckCircle, Phone, Mail, ArrowLeft, ArrowRight, Car, ImagePlus, Upload, ArrowUp, ArrowDown, X, Pencil } from "lucide-react";
 import { useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
@@ -182,6 +183,10 @@ const Angebot = () => {
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(packageFromQuery ? 2 : 1);
   // Nur Fahrzeugverkauf: Kunde wählt zwischen Termin und Rückruf
   const [ankaufContactChoice, setAnkaufContactChoice] = useState<"termin" | "rueckruf" | null>(null);
+  // Premium-Abwicklung wurde bereits im Assistenten geklärt -> in Schritt 2 nur Zusammenfassung
+  const [premiumFromWizard, setPremiumFromWizard] = useState(false);
+  // Antwort-Weg aus dem Assistenten (Chips) – wird an Terminbuchung und Lead-Mail übergeben
+  const [wizardSummary, setWizardSummary] = useState("");
 
   const selectedPackage = PACKAGES.find((pkg) => pkg.key === selectedPackageKey) ?? null;
 
@@ -201,6 +206,7 @@ const Angebot = () => {
     setPickupCheckResult(null);
     setPickupCheckError("");
     setAnkaufContactChoice(null);
+    setPremiumFromWizard(false);
     setCurrentStep(2);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -219,7 +225,7 @@ const Angebot = () => {
 
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi({ namespace: "15min" });
+      const cal = await getCalApi({ namespace: "30min" });
       cal("ui", {
         theme: "light",
         cssVarsPerTheme: { light: { "cal-brand": "#63ccff" } },
@@ -254,13 +260,6 @@ const Angebot = () => {
 
 
 
-  const normalize = (value: string) =>
-    value
-      .trim()
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-
   const checkPickupEligibility = () => {
     setPickupCheckError("");
     setPickupCheckResult(null);
@@ -270,37 +269,7 @@ const Angebot = () => {
       return;
     }
 
-    const city = normalize(pickupAddress.city);
-    const postalCode = pickupAddress.postalCode.trim();
-
-    const cityMinuteMap: Record<string, number> = {
-      "bad salzuflen": 8,
-      herford: 12,
-      lage: 13,
-      bielefeld: 16,
-      lemgo: 18,
-      detmold: 20,
-    };
-
-    let oneWayMinutes = cityMinuteMap[city];
-    if (!oneWayMinutes) {
-      if (postalCode.startsWith("321")) oneWayMinutes = 12;
-      else if (postalCode.startsWith("320")) oneWayMinutes = 13;
-      else if (postalCode.startsWith("336")) oneWayMinutes = 16;
-      else oneWayMinutes = 20;
-    }
-
-    const roundTripMinutes = oneWayMinutes * 2;
-    const eligible = roundTripMinutes <= 25;
-
-    setPickupCheckResult({
-      eligible,
-      oneWayMinutes,
-      roundTripMinutes,
-      message: eligible
-        ? "Hol- und Bringservice ist möglich."
-        : "Hol- und Bringservice ist nicht möglich. Premium per Versand bleibt möglich.",
-    });
+    setPickupCheckResult(checkPickupAddress(pickupAddress.city, pickupAddress.postalCode));
   };
 
   const resetPickupCheck = () => {
@@ -365,14 +334,25 @@ const Angebot = () => {
   const vehicleImagesText =
     vehicleImages.length > 0 ? `${vehicleImages.length} Bild(er): ${vehicleImages.map((img) => img.name).join(", ")}` : "keine Bilder";
 
+  const premiumAdresseText =
+    isPremium && pickupChoice === "pickup"
+      ? `${pickupAddress.street}, ${pickupAddress.postalCode} ${pickupAddress.city}`
+      : isPremium && pickupChoice === "shipping"
+      ? "Versand an uns, Express zurück"
+      : "-";
+
   const calNotesPrefill = [
-    `Vorauswahl Dienstleistungen: ${calServicePrefill.join(", ") || "-"}`,
     `Gewähltes Paket: ${selectedPackage?.title || "-"}`,
+    wizardSummary ? `Assistent: ${wizardSummary}` : null,
+    `Vorauswahl Dienstleistungen: ${calServicePrefill.join(", ") || "-"}`,
     `Fahrzeugankauf: ${sellDecision === "yes" ? "Ja" : "Nein"}`,
     `Fahrzeugdaten: ${vehicleDetails}`,
     `Fahrzeugbilder: ${vehicleImagesText}`,
     `Premium-Abwicklung: ${premiumMode}`,
-  ].join("\n");
+    `Premium-Adresse: ${premiumAdresseText}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   const calServiceQuery = new URLSearchParams();
   calServicePrefill.forEach((value) => {
@@ -387,7 +367,7 @@ const Angebot = () => {
   calServiceQuery.append("Zusätzliche Notizen", calNotesPrefill);
   calServiceQuery.append("zusaetzliche_notizen", calNotesPrefill);
   calServiceQuery.append("additionalNotes", calNotesPrefill);
-  const calLinkWithPrefill = `sofortzulassung/15min${calServiceQuery.toString() ? `?${calServiceQuery.toString()}` : ""}`;
+  const calLinkWithPrefill = `sofortzulassung/30min${calServiceQuery.toString() ? `?${calServiceQuery.toString()}` : ""}`;
 
   const sendOptionsByEmail = async (kontaktwunsch: "termin" | "rueckruf" = "termin") => {
     if (!selectedPackage || !stepTwoCompleted) {
@@ -419,6 +399,7 @@ const Angebot = () => {
               : [],
           imageAttachments: sellDecision === "yes" ? vehicleImages : [],
           premiumAbwicklung: premiumMode,
+          assistentAntworten: wizardSummary || "-",
           premiumAdresse: isPremium && pickupChoice === "pickup" ? pickupAddress : null,
           pickupPruefung: pickupCheckResult,
           services: calServicePrefill,
@@ -534,8 +515,8 @@ const Angebot = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Jetzt Beauftragen | KFZ-Zulassung, Premium oder Abmeldung"
-        description="Wählen Sie Ihr Paket: Basis, Premium oder Abmeldung. Optional Fahrzeugankauf hinzufügen und Termin direkt online buchen."
+        title="Zulassung starten | KFZ-Sofortzulassung Bad Salzuflen"
+        description="Unser Assistent führt Sie in wenigen Klicks zur passenden Zulassung, Blitzabmeldung oder Ankaufanfrage – Termin direkt online buchen."
         path="/angebot"
         image="/favicon.ico"
         structuredData={{
@@ -581,7 +562,19 @@ const Angebot = () => {
         <section className="py-12 sm:py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <ZulassungsAssistent
-              onSelectPackage={(key) => selectPackage(PACKAGES.find((pkg) => pkg.key === key)!)}
+              initialScreen={searchParams.get("start") === "verkauf" ? "verkauf" : undefined}
+              onSelectPackage={(key, premium, summary) => {
+                selectPackage(PACKAGES.find((pkg) => pkg.key === key)!);
+                setWizardSummary(summary || "");
+                if (key === "premium" && premium) {
+                  setPremiumFromWizard(true);
+                  setPickupChoice(premium.mode);
+                  if (premium.mode === "pickup" && premium.address && premium.result) {
+                    setPickupAddress(premium.address);
+                    setPickupCheckResult(premium.result);
+                  }
+                }
+              }}
             />
           </div>
         </section>
@@ -662,6 +655,15 @@ const Angebot = () => {
                     </div>
                   )}
 
+                  {sellDecision === "yes" && selectedPackageKey === "abmeldung" && (
+                    <div className="flex items-start gap-2 rounded-lg border border-trust-green/40 bg-trust-green/10 px-3 py-2.5">
+                      <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-trust-green" />
+                      <span className="text-sm font-semibold text-secondary">
+                        Super: Beim Ankauf ist die Abmeldung gratis – die 40 € entfallen.
+                      </span>
+                    </div>
+                  )}
+
                   {sellDecision === "yes" && (
                     <div className="rounded-lg border border-border bg-muted/40 p-4 space-y-4">
                       <Label className="text-base font-semibold text-secondary">
@@ -714,15 +716,20 @@ const Angebot = () => {
                         </div>
                         <div className="space-y-2 md:col-span-2">
                           <Label htmlFor="sell-telefon">Telefonnummer</Label>
-                          <Input
-                            id="sell-telefon"
-                            type="tel"
-                            placeholder="z. B. 0151 23456789"
-                            value={sellVehicleData.telefon}
-                            onChange={(event) =>
-                              setSellVehicleData((prev) => ({ ...prev, telefon: event.target.value }))
-                            }
-                          />
+                          <div className="relative">
+                            <Input
+                              id="sell-telefon"
+                              type="tel"
+                              placeholder="z. B. 0151 23456789"
+                              value={sellVehicleData.telefon}
+                              onChange={(event) =>
+                                setSellVehicleData((prev) => ({ ...prev, telefon: event.target.value }))
+                              }
+                            />
+                            {sellVehicleData.telefon.replace(/[^0-9]/g, "").length >= 8 && (
+                              <CheckCircle className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-trust-green" />
+                            )}
+                          </div>
                         </div>
                       </div>
                       <div className="space-y-2">
@@ -832,7 +839,37 @@ const Angebot = () => {
                     </div>
                   )}
 
-                  {isPremium && (
+                  {isPremium && premiumFromWizard && (
+                    <div className="border-t pt-5 space-y-3">
+                      <Label className="text-base font-semibold text-secondary">
+                        Premium-Abwicklung
+                      </Label>
+                      {pickupChoice === "pickup" ? (
+                        <div className="flex items-start gap-2 rounded-lg border border-trust-green/40 bg-trust-green/10 px-3 py-2.5">
+                          <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-trust-green" />
+                          <span className="text-sm text-foreground">
+                            <span className="font-semibold text-secondary">Abholung & Rückbringung:</span>{" "}
+                            {pickupAddress.street}, {pickupAddress.postalCode} {pickupAddress.city}
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="rounded-lg border bg-muted/40 px-3 py-2.5 text-sm">
+                          <p>
+                            <span className="font-semibold text-secondary">Versand:</span>{" "}
+                            Senden Sie Ihre Unterlagen an{" "}
+                            <span className="font-semibold text-secondary">
+                              KFZ-Sofortzulassung · Werler Straße 68 · 32105 Bad Salzuflen
+                            </span>
+                          </p>
+                          <p className="mt-1 text-xs text-muted-foreground">
+                            Am besten versichert mit Sendungsverfolgung (z. B. DHL). Den Express-Rückversand übernehmen wir.
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {isPremium && !premiumFromWizard && (
                     <div className="border-t pt-5 space-y-4">
                       <Label className="text-base font-semibold text-secondary">
                         Premium-Abwicklung wählen
@@ -892,7 +929,7 @@ const Angebot = () => {
                       {pickupChoice === "pickup" && (
                         <div className="space-y-4">
                           <p className="text-sm text-muted-foreground">
-                            Prüfung mit Regel: Hin- und Rückweg zusammen maximal 25 Minuten.
+                            Abholung möglich im Umkreis von ca. 10 Minuten Fahrweg rund um Bad Salzuflen.
                           </p>
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-2 md:col-span-2">
@@ -1104,14 +1141,33 @@ const Angebot = () => {
                 ) : canBookAppointment ? (
                   <>
                     <div className="mb-6 rounded-xl border bg-background p-4 text-sm text-muted-foreground">
-                      <p>
+                      <p className="flex items-center gap-2">
                         Paket: <span className="font-semibold text-secondary">{selectedPackage?.title}</span>
+                        <button
+                          type="button"
+                          title="Paket ändern"
+                          onClick={backToPakete}
+                          className="text-muted-foreground transition-colors hover:text-primary"
+                        >
+                          <Pencil className="h-3.5 w-3.5" />
+                        </button>
                       </p>
-                      <p>
+                      <p className="flex items-center gap-2">
                         Fahrzeugankauf:{" "}
                         <span className="font-semibold text-secondary">
                           {sellDecision === "yes" ? "inklusive" : "exklusive"}
                         </span>
+                        <button
+                          type="button"
+                          title="Optionen ändern"
+                          onClick={() => {
+                            setCurrentStep(2);
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }}
+                          className="text-muted-foreground transition-colors hover:text-primary"
+                        >
+                          <Pencil className="h-3.5 w-3.5" />
+                        </button>
                       </p>
                       {sellDecision === "yes" && (
                         <p>
@@ -1145,7 +1201,7 @@ const Angebot = () => {
 
                     <div className="bg-background rounded-2xl shadow-xl p-6 max-h-[80vh] overflow-hidden">
                       <Cal
-                        namespace="15min"
+                        namespace="30min"
                         calLink={calLinkWithPrefill}
                         style={{ width: "100%", height: "70vh", overflow: "scroll" }}
                         config={{
@@ -1170,6 +1226,7 @@ const Angebot = () => {
                             fahrzeugankauf: sellDecision === "yes" ? "Ja" : "Nein",
                             fahrzeugdaten: vehicleDetails,
                             premiumAbwicklung: premiumMode,
+          assistentAntworten: wizardSummary || "-",
                           },
                         }}
                       />

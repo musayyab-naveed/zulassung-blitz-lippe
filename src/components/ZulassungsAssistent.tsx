@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { checkPickupAddress, type PickupCheckResult } from "@/lib/pickupCheck";
 import {
   Car,
   FileX,
@@ -15,6 +18,10 @@ import {
   MessageCircle,
   FileText,
   RotateCcw,
+  Pencil,
+  Sparkles,
+  User,
+  Building2,
 } from "lucide-react";
 import fahrzeugbriefImg from "@/assets/dokumente/fahrzeugbrief-zb2.jpg";
 import zb1CodeImg from "@/assets/dokumente/zb1-code-verdeckt.jpg";
@@ -26,15 +33,26 @@ type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "ankauf_only";
 type Screen =
   | "start"
   | "verkauf"
+  | "condition"
+  | "holder"
   | "speed"
   | "codecheck-zulassung"
   | "delivery"
+  | "pickup-check"
   | "codecheck-abmeldung"
   | "abmeldung-unmoeglich"
   | "result";
 
+export interface PremiumDeliveryOptions {
+  mode: "pickup" | "shipping";
+  address?: { street: string; postalCode: string; city: string };
+  result?: PickupCheckResult;
+}
+
 interface Props {
-  onSelectPackage: (key: PackageKey) => void;
+  onSelectPackage: (key: PackageKey, premium?: PremiumDeliveryOptions, summary?: string) => void;
+  /** Optional direkt bei einer bestimmten Frage einsteigen (z. B. Verkauf) */
+  initialScreen?: Extract<Screen, "start" | "verkauf">;
 }
 
 const WHATSAPP_CHECK_URL =
@@ -46,7 +64,7 @@ const WHATSAPP_CHECK_URL =
 const WHATSAPP_SELL_URL =
   "https://wa.me/4915142462280?text=" +
   encodeURIComponent(
-    "Hallo, ich m\u00f6chte mein Fahrzeug verkaufen.\nMarke/Modell: \nBaujahr: \nKilometerstand: \nFotos schicke ich gleich mit."
+    "Hallo, ich möchte mein Fahrzeug verkaufen.\nMarke/Modell: \nBaujahr: \nKilometerstand: \nFotos schicke ich gleich mit."
   );
 
 interface ResultInfo {
@@ -54,7 +72,6 @@ interface ResultInfo {
   price: string;
   tagline: string;
   extras?: string;
-  checklist: string[];
   kennzeichenHinweis?: string;
 }
 
@@ -63,14 +80,7 @@ const RESULTS: Record<Exclude<PackageKey, "ankauf_only">, ResultInfo> = {
     title: "SOFORT-Zulassung",
     price: "ab 129 €",
     tagline: "Digital zugelassen in ca. 20 Minuten – Sie warten kurz vor Ort und fahren direkt los.",
-    extras: "Optionale Extras: Wunschkennzeichen +13 \u20ac \u00b7 Feinstaubplakette +6 \u20ac",
-    checklist: [
-      "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Personalausweis oder Reisepass",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
-      "IBAN für die KFZ-Steuer",
-    ],
+    extras: "Optionale Extras: Wunschkennzeichen +13 € · Feinstaubplakette +6 €",
     kennzeichenHinweis:
       "Kennzeichen besorgen Sie selbst – vor oder nach der Zulassung (Wunschkennzeichen +13 €). Zugelassen sind Sie in jedem Fall.",
   },
@@ -78,40 +88,62 @@ const RESULTS: Record<Exclude<PackageKey, "ankauf_only">, ResultInfo> = {
     title: "BASIS",
     price: "129 €",
     tagline: "Unterlagen abgeben, am nächsten Werktag alles fertig abholen – inklusive Kennzeichen.",
-    extras: "Optionale Extras: Wunschkennzeichen +13 \u20ac \u00b7 Feinstaubplakette +6 \u20ac",
-    checklist: [
-      "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Personalausweis oder Reisepass",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
-      "HU-Nachweis – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist",
-      "IBAN für die KFZ-Steuer",
-    ],
+    extras: "Optionale Extras: Wunschkennzeichen +13 € · Feinstaubplakette +6 €",
   },
   premium: {
     title: "PREMIUM",
     price: "159 €",
     tagline: "Wir holen Ihre Unterlagen ab und bringen alles fertig zurück – Sie müssen nirgendwo hin.",
-    extras: "Optionale Extras: Wunschkennzeichen +13 \u20ac \u00b7 Feinstaubplakette +6 \u20ac",
-    checklist: [
-      "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Personalausweis oder Reisepass",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
-      "HU-Nachweis – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist",
-      "IBAN für die KFZ-Steuer",
-    ],
+    extras: "Optionale Extras: Wunschkennzeichen +13 € · Feinstaubplakette +6 €",
   },
   abmeldung: {
     title: "BLITZABMELDUNG",
     price: "40 €",
     tagline: "Sofort vor Ort abgemeldet – Sie warten kurz und alles ist erledigt.",
-    checklist: [
+  },
+};
+
+type Condition = "neu" | "gebraucht";
+type Holder = "privat" | "firma";
+
+// Checkliste passend zu den Antworten zusammenstellen
+const buildChecklist = (
+  key: Exclude<PackageKey, "ankauf_only">,
+  condition: Condition | null,
+  holder: Holder | null
+): string[] => {
+  if (key === "abmeldung") {
+    return [
       "Beide Kennzeichenschilder",
       "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
       "Personalausweis oder Reisepass",
-    ],
-  },
+    ];
+  }
+
+  const items = ["eVB-Nummer Ihrer KFZ-Versicherung", "Personalausweis oder Reisepass"];
+
+  if (condition === "neu") {
+    items.push(
+      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "EU-Übereinstimmungsbescheinigung (COC-Papiere vom Händler)"
+    );
+  } else {
+    items.push(
+      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)"
+    );
+    if (key !== "sofort") {
+      items.push("HU-Nachweis – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist");
+    }
+  }
+
+  items.push("IBAN für die KFZ-Steuer");
+
+  if (holder === "firma") {
+    items.push("Gewerbeanmeldung oder Handelsregisterauszug (bei Firmenfahrzeugen)");
+  }
+
+  return items;
 };
 
 export const AnswerCard = ({
@@ -156,23 +188,40 @@ export const AnswerCard = ({
   </button>
 );
 
-const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
-  const [screen, setScreen] = useState<Screen>("start");
+const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
+  const [screen, setScreen] = useState<Screen>(initialScreen ?? "start");
   const [history, setHistory] = useState<Screen[]>([]);
+  // Antwort-Chips: ein Eintrag pro beantworteter Frage, parallel zur history
+  const [answers, setAnswers] = useState<string[]>([]);
   const [resultKey, setResultKey] = useState<Exclude<PackageKey, "ankauf_only">>("sofort");
   // Sofort-Zulassung nicht möglich -> Kunde wurde in den 24h-Weg umgeleitet
   const [sofortFallback, setSofortFallback] = useState(false);
 
+  // Antworten der neuen Fragen (steuern Siegel-Check und Checkliste)
+  const [condition, setCondition] = useState<Condition | null>(null);
+  const [holder, setHolder] = useState<Holder | null>(null);
+
+  // Premium: Abwicklung inkl. geprüfter Abholadresse
+  const [premiumDelivery, setPremiumDelivery] = useState<PremiumDeliveryOptions | null>(null);
+  const [pickupAddress, setPickupAddress] = useState({ street: "", postalCode: "", city: "Bad Salzuflen" });
+  const [pickupError, setPickupError] = useState("");
+  const [pickupResult, setPickupResult] = useState<PickupCheckResult | null>(null);
+
   const containerRef = useRef<HTMLDivElement | null>(null);
   const historyRef = useRef<Screen[]>([]);
+  const answersRef = useRef<string[]>([]);
   const isFirstRender = useRef(true);
+  // Popstates, die wir selbst ausgelöst haben (Aufräumen/Chip-Sprung) und ignorieren
+  const skipPopsRef = useRef(0);
 
-  const go = (next: Screen) => {
+  // Ein Verlaufseintrag pro Frage: jeder Browser-Zurück ist garantiert genau
+  // EIN Schritt im Assistenten – auch bei schnellen Doppel-Klicks
+  const go = (label: string, next: Screen) => {
     historyRef.current = [...historyRef.current, screen];
+    answersRef.current = [...answersRef.current, label];
     setHistory(historyRef.current);
+    setAnswers(answersRef.current);
     setScreen(next);
-    // eigener Verlaufseintrag pro Frage, damit der Browser-Zurück-Button
-    // einen Schritt im Assistenten zurückgeht statt die Seite zu verlassen
     window.history.pushState({ assistent: true }, "");
   };
 
@@ -181,12 +230,34 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
     const copy = [...historyRef.current];
     const last = copy.pop()!;
     historyRef.current = copy;
+    answersRef.current = answersRef.current.slice(0, copy.length);
     setHistory(copy);
+    setAnswers(answersRef.current);
     setScreen(last);
   };
 
+  // Chip angeklickt: direkt zu dieser Frage zurückspringen
+  const jumpTo = (index: number) => {
+    if (index >= historyRef.current.length) return;
+    const steps = historyRef.current.length - index;
+    const target = historyRef.current[index];
+    historyRef.current = historyRef.current.slice(0, index);
+    answersRef.current = answersRef.current.slice(0, index);
+    setHistory(historyRef.current);
+    setAnswers(answersRef.current);
+    setScreen(target);
+    skipPopsRef.current += 1;
+    window.history.go(-steps);
+  };
+
   useEffect(() => {
-    const onPop = () => stepBack();
+    const onPop = () => {
+      if (skipPopsRef.current > 0) {
+        skipPopsRef.current -= 1;
+        return;
+      }
+      stepBack();
+    };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -197,10 +268,34 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
     window.history.back();
   };
 
-  const restart = () => {
+  // Assistenten-Einträge aus dem Verlauf entfernen, bevor er verlassen wird –
+  // sonst bleiben stumme Einträge zurück
+  const clearGuard = () => {
+    const steps = historyRef.current.length;
+    if (steps > 0) {
+      skipPopsRef.current += 1;
+      window.history.go(-steps);
+    }
     historyRef.current = [];
+    answersRef.current = [];
     setHistory([]);
+    setAnswers([]);
+  };
+
+  const exitWith = (key: PackageKey, premium?: PremiumDeliveryOptions) => {
+    const summary = answersRef.current.join(" · ");
+    clearGuard();
+    onSelectPackage(key, premium, summary);
+  };
+
+  const restart = () => {
+    clearGuard();
     setSofortFallback(false);
+    setCondition(null);
+    setHolder(null);
+    setPremiumDelivery(null);
+    setPickupResult(null);
+    setPickupError("");
     setScreen("start");
   };
 
@@ -217,20 +312,26 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
     window.scrollTo({ top: Math.max(top, 0), behavior: "auto" });
   }, [screen]);
 
-  const finish = (key: Exclude<PackageKey, "ankauf_only">) => {
+  const finish = (label: string, key: Exclude<PackageKey, "ankauf_only">) => {
     setResultKey(key);
-    go("result");
+    go(label, "result");
   };
 
   const stepNumber =
-    screen === "start" ? 1 : screen === "result" || screen === "abmeldung-unmoeglich" ? 4 : history.length + 1;
+    screen === "start"
+      ? 1
+      : screen === "result" || screen === "abmeldung-unmoeglich"
+      ? 4
+      : Math.min(4, history.length + 1);
 
   const result = RESULTS[resultKey];
+  const checklist = buildChecklist(resultKey, condition, holder);
+  const plzValid = /^\d{5}$/.test(pickupAddress.postalCode.trim());
 
   return (
     <div ref={containerRef} className="mx-auto max-w-2xl">
       {/* Fortschritt + Zurück */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between">
         {history.length > 0 ? (
           <Button type="button" variant="ghost" size="sm" onClick={back}>
             <ArrowLeft className="h-4 w-4" />
@@ -251,6 +352,24 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
         </div>
       </div>
 
+      {/* Antwort-Chips: bisheriger Weg, antippen = dort weitermachen */}
+      {answers.length > 0 && (
+        <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
+          {answers.map((label, index) => (
+            <button
+              key={`${index}-${label}`}
+              type="button"
+              onClick={() => jumpTo(index)}
+              title="Antippen zum Ändern"
+              className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-3 py-1 text-xs font-semibold text-secondary transition-colors hover:border-primary hover:bg-primary/10"
+            >
+              {label}
+              <Pencil className="h-3 w-3 text-muted-foreground" />
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Frage 1: Anliegen */}
       {screen === "start" && (
         <div key="start" className="animate-in slide-in-from-right-8 fade-in duration-300 space-y-3">
@@ -261,19 +380,19 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
             icon={<Car className="h-7 w-7 text-primary" />}
             title="Fahrzeug zulassen"
             sub="Neuzulassung, Umschreibung oder Wiederzulassung"
-            onClick={() => go("speed")}
+            onClick={() => go("Zulassen", "condition")}
           />
           <AnswerCard
             icon={<FileX className="h-7 w-7 text-primary" />}
             title="Fahrzeug abmelden"
             sub="Blitzabmeldung direkt vor Ort"
-            onClick={() => go("codecheck-abmeldung")}
+            onClick={() => go("Abmelden", "codecheck-abmeldung")}
           />
           <AnswerCard
             icon={<HandCoins className="h-7 w-7 text-primary" />}
             title="Fahrzeug verkaufen"
             sub="Kostenlose und unverbindliche Ankaufanfrage"
-            onClick={() => go("verkauf")}
+            onClick={() => go("Verkaufen", "verkauf")}
           />
         </div>
       )}
@@ -295,12 +414,65 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
             icon={<Car className="h-7 w-7 text-primary" />}
             title="Formular ausfüllen"
             sub="Fahrzeugdaten angeben, dann Termin oder Rückruf wählen"
-            onClick={() => onSelectPackage("ankauf_only")}
+            onClick={() => exitWith("ankauf_only")}
           />
         </div>
       )}
 
-      {/* Frage 2: Tempo */}
+      {/* Frage 2: Neu oder gebraucht (steuert die Checkliste) */}
+      {screen === "condition" && (
+        <div key="condition" className="animate-in slide-in-from-right-8 fade-in duration-300 space-y-3">
+          <h2 className="mb-6 text-center text-2xl font-bold text-secondary sm:text-3xl">
+            Neu- oder Gebrauchtfahrzeug?
+          </h2>
+          <AnswerCard
+            icon={<Sparkles className="h-7 w-7 text-primary" />}
+            title="Neufahrzeug"
+            sub="Erstzulassung – noch nie zugelassen"
+            onClick={() => {
+              setCondition("neu");
+              go("Neufahrzeug", "holder");
+            }}
+          />
+          <AnswerCard
+            icon={<Car className="h-7 w-7 text-primary" />}
+            title="Gebrauchtfahrzeug"
+            sub="Umschreibung oder Wiederzulassung"
+            onClick={() => {
+              setCondition("gebraucht");
+              go("Gebraucht", "holder");
+            }}
+          />
+        </div>
+      )}
+
+      {/* Frage 3: Privat oder Firma (steuert die Checkliste) */}
+      {screen === "holder" && (
+        <div key="holder" className="animate-in slide-in-from-right-8 fade-in duration-300 space-y-3">
+          <h2 className="mb-6 text-center text-2xl font-bold text-secondary sm:text-3xl">
+            Auf wen wird zugelassen?
+          </h2>
+          <AnswerCard
+            icon={<User className="h-7 w-7 text-primary" />}
+            title="Privatperson"
+            onClick={() => {
+              setHolder("privat");
+              go("Privat", "speed");
+            }}
+          />
+          <AnswerCard
+            icon={<Building2 className="h-7 w-7 text-primary" />}
+            title="Firma"
+            sub="Zusätzlich Gewerbeanmeldung oder Handelsregisterauszug mitbringen"
+            onClick={() => {
+              setHolder("firma");
+              go("Firma", "speed");
+            }}
+          />
+        </div>
+      )}
+
+      {/* Frage 4: Tempo */}
       {screen === "speed" && (
         <div key="speed" className="animate-in slide-in-from-right-8 fade-in duration-300 space-y-3">
           <h2 className="mb-6 text-center text-2xl font-bold text-secondary sm:text-3xl">
@@ -313,7 +485,7 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
             sub="Digital vor Ort, kurz warten, direkt losfahren"
             onClick={() => {
               setSofortFallback(false);
-              go("codecheck-zulassung");
+              go("Sofort (20 Min)", "codecheck-zulassung");
             }}
           />
           <AnswerCard
@@ -322,23 +494,29 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
             sub="Unterlagen abgeben, fertig abholen – inkl. Kennzeichen"
             onClick={() => {
               setSofortFallback(false);
-              go("delivery");
+              go("Bis nächsten Werktag", "delivery");
             }}
           />
         </div>
       )}
 
-      {/* Frage 3a: Sicherheitscode-Check für Sofort-Zulassung */}
+      {/* Siegel-Check für Sofort-Zulassung */}
       {screen === "codecheck-zulassung" && (
         <div key="cc-zul" className="animate-in slide-in-from-right-8 fade-in duration-300">
           <h2 className="mb-2 text-center text-2xl font-bold text-secondary sm:text-3xl">
             Kurzer Siegel-Check
           </h2>
           <p className="mb-5 text-center text-muted-foreground">
-            Für die Sofort-Zulassung müssen diese zwei Siegel vorhanden sein:
+            {condition === "neu"
+              ? "Für die Sofort-Zulassung muss dieses Siegel auf Ihrem Fahrzeugbrief vorhanden sein:"
+              : "Für die Sofort-Zulassung müssen diese zwei Siegel vorhanden sein:"}
           </p>
 
-          <div className="mx-auto mb-3 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
+          <div
+            className={`mx-auto mb-3 grid max-w-xl grid-cols-1 gap-3 ${
+              condition === "neu" ? "sm:max-w-md" : "sm:grid-cols-2"
+            }`}
+          >
             <div className="relative overflow-hidden rounded-xl border shadow-md">
               <img
                 src={fahrzeugbriefImg}
@@ -356,21 +534,25 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
                 ← Siegel
               </span>
               <span className="absolute bottom-0 left-0 right-0 bg-secondary/80 px-2 py-1 text-center text-[11px] text-white">
-                1. Fahrzeugbrief (großes Papier)
+                {condition === "neu"
+                  ? "Fahrzeugbrief (großes Papier)"
+                  : "1. Fahrzeugbrief (großes Papier)"}
               </span>
             </div>
-            <div className="relative overflow-hidden rounded-xl border shadow-md">
-              <div className="h-full w-full overflow-hidden">
-                <img
-                  src={zb1CodeImg}
-                  alt="Fahrzeugschein mit Siegel-Aufkleber auf der Rückseite"
-                  className="h-full w-[200%] max-w-none object-cover"
-                />
+            {condition !== "neu" && (
+              <div className="relative overflow-hidden rounded-xl border shadow-md">
+                <div className="h-full w-full overflow-hidden">
+                  <img
+                    src={zb1CodeImg}
+                    alt="Fahrzeugschein mit Siegel-Aufkleber auf der Rückseite"
+                    className="h-full w-[200%] max-w-none object-cover"
+                  />
+                </div>
+                <span className="absolute bottom-0 left-0 right-0 bg-secondary/80 px-2 py-1 text-center text-[11px] text-white">
+                  2. Fahrzeugschein (Rückseite): Aufkleber
+                </span>
               </div>
-              <span className="absolute bottom-0 left-0 right-0 bg-secondary/80 px-2 py-1 text-center text-[11px] text-white">
-                2. Fahrzeugschein (Rückseite): Aufkleber
-              </span>
-            </div>
+            )}
           </div>
           <p className="mx-auto mb-6 max-w-md text-center text-xs text-muted-foreground">
             Nichts freirubbeln – das machen wir gemeinsam beim Termin.
@@ -379,17 +561,17 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
           <div className="space-y-3">
             <AnswerCard
               icon={<CheckCircle className="h-7 w-7 text-trust-green" />}
-              title="Ja, beide Siegel sind da"
+              title={condition === "neu" ? "Ja, das Siegel ist da" : "Ja, beide Siegel sind da"}
               sub="Super – die Sofort-Zulassung ist möglich"
-              onClick={() => finish("sofort")}
+              onClick={() => finish("Siegel ✓", "sofort")}
             />
             <AnswerCard
               icon={<FileX className="h-7 w-7 text-muted-foreground" />}
-              title="Nein, ein Siegel fehlt"
+              title={condition === "neu" ? "Nein, das Siegel fehlt" : "Nein, ein Siegel fehlt"}
               sub="Kein Problem – wir übernehmen klassisch innerhalb von 24h"
               onClick={() => {
                 setSofortFallback(true);
-                go("delivery");
+                go("Ohne Siegel → 24h", "delivery");
               }}
             />
           </div>
@@ -408,7 +590,7 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
         </div>
       )}
 
-      {/* Frage 3b: Bringen oder holen (24h-Weg) */}
+      {/* Bringen oder holen (24h-Weg) */}
       {screen === "delivery" && (
         <div key="delivery" className="animate-in slide-in-from-right-8 fade-in duration-300 space-y-3">
           {sofortFallback && (
@@ -426,19 +608,168 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
           <AnswerCard
             icon={<Store className="h-7 w-7 text-primary" />}
             title="Ich bringe sie vorbei"
-            sub="Abgeben und am nächsten Werktag fertig abholen"
-            onClick={() => finish("basis")}
+            sub="BASIS-Paket: Abgeben und am nächsten Werktag fertig abholen"
+            onClick={() => {
+              setPremiumDelivery(null);
+              finish("Selbst bringen", "basis");
+            }}
           />
           <AnswerCard
             icon={<Truck className="h-7 w-7 text-primary" />}
-            title="Bitte holen und bringen"
-            sub="Wir holen die Unterlagen ab und liefern alles fertig zurück"
-            onClick={() => finish("premium")}
+            title="Bitte holen und bringen (+30 €)"
+            sub="Unser PREMIUM-Paket: Wir holen die Unterlagen ab und liefern alles fertig zurück"
+            onClick={() => {
+              setPickupResult(null);
+              setPickupError("");
+              go("Abholung", "pickup-check");
+            }}
           />
         </div>
       )}
 
-      {/* Frage 2b: Sicherheitscode-Check für Blitzabmeldung */}
+      {/* Premium: Abholadresse prüfen */}
+      {screen === "pickup-check" && (
+        <div key="pickup-check" className="animate-in slide-in-from-right-8 fade-in duration-300">
+          <h2 className="mb-2 text-center text-2xl font-bold text-secondary sm:text-3xl">
+            Wohin sollen wir kommen?
+          </h2>
+          <p className="mb-6 text-center text-muted-foreground">
+            Unser Hol- und Bringservice fährt bis ca. 10 Minuten rund um Bad Salzuflen.
+          </p>
+
+          <div className="mx-auto max-w-md space-y-4 rounded-2xl border-2 border-border bg-white p-5 sm:p-6">
+            <div className="space-y-2">
+              <Label htmlFor="assist-pickup-street">Straße und Hausnummer</Label>
+              <div className="relative">
+                <Input
+                  id="assist-pickup-street"
+                  placeholder="z. B. Musterstraße 12"
+                  value={pickupAddress.street}
+                  onChange={(event) =>
+                    setPickupAddress((prev) => ({ ...prev, street: event.target.value }))
+                  }
+                />
+                {pickupAddress.street.trim().length >= 5 && (
+                  <CheckCircle className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-trust-green" />
+                )}
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="assist-pickup-plz">PLZ</Label>
+                <div className="relative">
+                  <Input
+                    id="assist-pickup-plz"
+                    placeholder="z. B. 32105"
+                    value={pickupAddress.postalCode}
+                    onChange={(event) => {
+                      setPickupAddress((prev) => ({ ...prev, postalCode: event.target.value }));
+                      setPickupResult(null);
+                      setPickupError("");
+                    }}
+                  />
+                  {plzValid && (
+                    <CheckCircle className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-trust-green" />
+                  )}
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="assist-pickup-city">Ort</Label>
+                <div className="relative">
+                  <Input
+                    id="assist-pickup-city"
+                    placeholder="z. B. Bad Salzuflen"
+                    value={pickupAddress.city}
+                    onChange={(event) => {
+                      setPickupAddress((prev) => ({ ...prev, city: event.target.value }));
+                      setPickupResult(null);
+                      setPickupError("");
+                    }}
+                  />
+                  {pickupAddress.city.trim().length >= 3 && (
+                    <CheckCircle className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-trust-green" />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {!pickupResult && (
+              <Button
+                type="button"
+                variant="cta"
+                className="w-full"
+                onClick={() => {
+                  if (!pickupAddress.street.trim() || !pickupAddress.postalCode.trim() || !pickupAddress.city.trim()) {
+                    setPickupError("Bitte vollständige Adresse eingeben.");
+                    return;
+                  }
+                  setPickupError("");
+                  setPickupResult(checkPickupAddress(pickupAddress.city, pickupAddress.postalCode));
+                }}
+              >
+                Adresse prüfen
+              </Button>
+            )}
+            {pickupError && <p className="text-sm text-destructive">{pickupError}</p>}
+          </div>
+
+          {pickupResult?.eligible && (
+            <div className="mx-auto mt-4 max-w-md space-y-3">
+              <div className="flex items-start gap-2 rounded-lg border border-trust-green/40 bg-trust-green/10 px-3 py-2.5">
+                <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-trust-green" />
+                <span className="text-sm font-semibold text-secondary">
+                  Passt – wir holen und bringen bei Ihnen!
+                </span>
+              </div>
+              <Button
+                type="button"
+                variant="cta"
+                size="lg"
+                className="w-full"
+                onClick={() => {
+                  const delivery = { mode: "pickup" as const, address: pickupAddress, result: pickupResult };
+                  setPremiumDelivery(delivery);
+                  finish(`Abholung: ${pickupAddress.postalCode} ${pickupAddress.city}`, "premium");
+                }}
+              >
+                WEITER
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+          )}
+
+          {pickupResult && !pickupResult.eligible && (
+            <div className="mx-auto mt-4 max-w-md space-y-3">
+              <div className="flex items-start gap-2 rounded-lg border border-[hsl(var(--cta-orange))]/40 bg-[hsl(var(--cta-orange))]/10 px-3 py-2.5">
+                <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-[hsl(var(--cta-orange))]" />
+                <span className="text-sm font-semibold text-secondary">
+                  {pickupResult.message} Kein Problem – so geht es weiter:
+                </span>
+              </div>
+              <AnswerCard
+                icon={<Truck className="h-7 w-7 text-primary" />}
+                title="Unterlagen per Versand"
+                sub="Bleibt PREMIUM: versichert einsenden, Express-Rückversand inklusive"
+                onClick={() => {
+                  setPremiumDelivery({ mode: "shipping" });
+                  finish("Versand", "premium");
+                }}
+              />
+              <AnswerCard
+                icon={<Store className="h-7 w-7 text-primary" />}
+                title="Ich bringe sie doch selbst vorbei"
+                sub="Abgeben und am nächsten Werktag fertig abholen"
+                onClick={() => {
+                  setPremiumDelivery(null);
+                  finish("Selbst bringen", "basis");
+                }}
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Sicherheitscode-Check für Blitzabmeldung */}
       {screen === "codecheck-abmeldung" && (
         <div key="cc-abm" className="animate-in slide-in-from-right-8 fade-in duration-300">
           <h2 className="mb-2 text-center text-2xl font-bold text-secondary sm:text-3xl">
@@ -480,13 +811,13 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
               icon={<CheckCircle className="h-7 w-7 text-trust-green" />}
               title="Ja, mein Fahrzeug ist ab 2015 zugelassen"
               sub="Die Codes sind vorhanden – Blitzabmeldung möglich"
-              onClick={() => finish("abmeldung")}
+              onClick={() => finish("ab 2015 ✓", "abmeldung")}
             />
             <AnswerCard
               icon={<FileX className="h-7 w-7 text-muted-foreground" />}
               title="Nein, älter als 2015"
               sub="Dann sind keine Sicherheitscodes vorhanden"
-              onClick={() => go("abmeldung-unmoeglich")}
+              onClick={() => go("vor 2015", "abmeldung-unmoeglich")}
             />
           </div>
           <p className="mt-4 text-center text-sm text-muted-foreground">
@@ -522,7 +853,7 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
               Abmeldung gratis – wir kümmern uns darum.
             </p>
             <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
-              <Button type="button" variant="cta" onClick={() => onSelectPackage("ankauf_only")}>
+              <Button type="button" variant="cta" onClick={() => exitWith("ankauf_only")}>
                 Fahrzeug verkaufen
               </Button>
               <Button type="button" variant="outline" onClick={restart}>
@@ -549,11 +880,31 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
             {result.extras && (
               <p className="mt-1 text-sm text-muted-foreground">({result.extras})</p>
             )}
+            {resultKey === "premium" && premiumDelivery && (
+              <>
+                <p className="mt-2 text-sm font-semibold text-secondary">
+                  {premiumDelivery.mode === "pickup" && premiumDelivery.address
+                    ? `Abholung & Rückbringung: ${premiumDelivery.address.street}, ${premiumDelivery.address.postalCode} ${premiumDelivery.address.city}`
+                    : "Abwicklung per Versand – Express-Rückversand inklusive"}
+                </p>
+                {premiumDelivery.mode === "shipping" && (
+                  <div className="mt-2 rounded-lg border bg-muted/40 px-3 py-2.5 text-sm">
+                    <p className="font-semibold text-secondary">Senden Sie Ihre Unterlagen an:</p>
+                    <p className="text-muted-foreground">
+                      KFZ-Sofortzulassung · Werler Straße 68 · 32105 Bad Salzuflen
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Am besten versichert mit Sendungsverfolgung (z. B. DHL). Den Express-Rückversand übernehmen wir.
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
 
             <div className="mt-5 border-t pt-5">
               <p className="mb-3 font-semibold text-secondary">Das bringen Sie mit:</p>
               <ul className="space-y-2.5">
-                {result.checklist.map((item) => (
+                {checklist.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">
                     <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-trust-green" />
                     <span className="text-sm text-foreground">{item}</span>
@@ -568,12 +919,16 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
                 </div>
               )}
 
-              <div className="mt-3 flex items-start gap-2 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2.5">
-                <FileText className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
-                <span className="text-sm text-foreground">
-                  Vollmacht und SEPA-Lastschriftmandat füllen Sie einfach bei uns vor Ort aus.
-                </span>
-              </div>
+              {resultKey !== "abmeldung" && (
+                <div className="mt-3 flex items-start gap-2 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2.5">
+                  <FileText className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                  <span className="text-sm text-foreground">
+                    {resultKey === "premium"
+                      ? "Vollmacht und SEPA-Lastschriftmandat müssen Sie nicht vorbereiten – wir bringen die Formulare mit bzw. legen sie bei und füllen sie gemeinsam mit Ihnen aus."
+                      : "Vollmacht und SEPA-Lastschriftmandat füllen Sie einfach bei uns vor Ort aus."}
+                  </span>
+                </div>
+              )}
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-between">
@@ -581,7 +936,14 @@ const ZulassungsAssistent = ({ onSelectPackage }: Props) => {
                 <RotateCcw className="h-4 w-4" />
                 Neu starten
               </Button>
-              <Button type="button" variant="cta" size="lg" onClick={() => onSelectPackage(resultKey)}>
+              <Button
+                type="button"
+                variant="cta"
+                size="lg"
+                onClick={() =>
+                  exitWith(resultKey, resultKey === "premium" ? premiumDelivery ?? { mode: "pickup" } : undefined)
+                }
+              >
                 WEITER ZUR BUCHUNG
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

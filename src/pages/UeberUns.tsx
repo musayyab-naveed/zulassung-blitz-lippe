@@ -43,7 +43,7 @@ const UeberUns = () => {
 
   const stats = [
     { number: "1000+", label: "Zufriedene Kunden" },
-    { number: "24h", label: "Bearbeitungszeit" },
+    { number: "20 Min", label: "Sofort-Zulassung" },
     { number: "4.9★", label: "Google Bewertung" },
     { number: "5+", label: "Jahre Erfahrung" }
   ];
@@ -294,9 +294,9 @@ const UeberUns = () => {
                     </Button>
                     
                     <p className="text-sm text-muted-foreground">
+                      ✓ NEU: Sofort-Zulassung in ca. 20 Minuten<br />
                       ✓ Kostenlose Beratung<br />
-                      ✓ Unverbindliches Angebot<br />
-                      ✓ 24h Bearbeitungsgarantie
+                      ✓ 24h Bearbeitungsgarantie für den klassischen Weg
                     </p>
                   </div>
                 </CardContent>

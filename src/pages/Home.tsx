@@ -17,7 +17,7 @@ const Home = () => {
       icon: <FileText className="h-8 w-8 text-primary" />,
       title: "Auftrag erstellen",
       description:
-        "Einfach online beauftragen und Wunschkennzeichen auswählen. Wir übernehmen den Rest.",
+        "Im Assistenten in wenigen Klicks das passende Paket finden. Wir übernehmen den Rest.",
     },
     {
       icon: <Shield className="h-8 w-8 text-primary" />,
@@ -341,6 +341,15 @@ const Home = () => {
               vor Ort aus.
             </p>
           </div>
+
+          <div className="mt-8 text-center">
+            <Button size="lg" variant="cta-large" asChild>
+              <Link to="/angebot">
+                JETZT ZULASSUNG STARTEN
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -378,6 +387,15 @@ const Home = () => {
             </Link>
             .
           </p>
+
+          <div className="mt-6 text-center">
+            <Button size="lg" variant="cta-large" asChild>
+              <Link to="/angebot">
+                JETZT ZULASSUNG STARTEN
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 

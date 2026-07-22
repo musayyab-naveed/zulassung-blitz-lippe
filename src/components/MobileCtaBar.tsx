@@ -9,9 +9,12 @@ const MobileCtaBar = () => {
     return null;
   }
 
+  // Auf der Assistenten-Seite ist der Kunde bereits im Vorgang
+  const imVorgang = location.pathname === "/angebot";
+
   return (
     <div className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-background/95 backdrop-blur lg:hidden">
-      <div className="max-w-6xl mx-auto px-4 py-3 grid grid-cols-3 gap-2">
+      <div className={`max-w-6xl mx-auto px-4 py-3 grid gap-2 ${imVorgang ? "grid-cols-2" : "grid-cols-3"}`}>
         <Button variant="outline" size="sm" asChild>
           <a href="tel:+4915142462280">
             <Phone className="h-4 w-4" />
@@ -32,9 +35,11 @@ const MobileCtaBar = () => {
             Fragen?
           </a>
         </Button>
-        <Button variant="cta" size="sm" asChild>
-          <Link to="/angebot">Beauftragen</Link>
-        </Button>
+        {!imVorgang && (
+          <Button variant="cta" size="sm" asChild>
+            <Link to="/angebot">Beauftragen</Link>
+          </Button>
+        )}
       </div>
     </div>
   );
