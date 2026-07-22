@@ -3,9 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
-import { CheckCircle, ArrowRight, Car, Phone } from "lucide-react";
+import { CheckCircle, ArrowRight, Car, Phone, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import autoankaufHeroImage from "@/assets/autoankauf-hero.jpeg";
+
+const WHATSAPP_SELL_URL =
+  "https://wa.me/4915142462280?text=" +
+  encodeURIComponent(
+    "Hallo, ich möchte mein Fahrzeug verkaufen.\nMarke/Modell: \nBaujahr: \nKilometerstand: \nFotos schicke ich gleich mit."
+  );
 
 const Fahrzeugankauf = () => {
   const geoFaqs = [
@@ -17,7 +23,7 @@ const Fahrzeugankauf = () => {
     {
       question: "Welche Daten braucht ihr für eine Ersteinschätzung?",
       answer:
-        "Für den Start reichen Marke, Modell und Baujahr. Optional hilft der Kilometerstand für eine genauere Einschätzung.",
+        "Marke, Modell, Baujahr und Ihre Telefonnummer reichen für den Start. Fotos und Kilometerstand helfen für eine genauere Einschätzung – gern auch direkt per WhatsApp.",
     },
     {
       question: "Was passiert mit nicht fahrbereiten Fahrzeugen?",
@@ -30,7 +36,7 @@ const Fahrzeugankauf = () => {
     {
       title: "Fahrzeugdaten angeben",
       description:
-        "Marke, Modell und Baujahr reichen für den Start.",
+        "Marke, Modell, Baujahr und Ihre Telefonnummer – mehr braucht es für den Start nicht.",
     },
     {
       title: "Kurze Prüfung",
@@ -40,15 +46,16 @@ const Fahrzeugankauf = () => {
     {
       title: "Angebot erhalten",
       description:
-        "Danach besprechen wir direkt den nächsten Schritt mit Ihnen.",
+        "Termin aussuchen oder Rückruf erhalten – ganz wie Sie möchten.",
     },
   ];
 
   const benefits = [
+    "Kostenlose Abmeldung beim Ankauf",
     "Mit oder ohne Zulassung verkaufen",
-    "Auf Wunsch direkt mit Abmeldung kombinieren",
     "Auch Abholung und Verwertung möglich",
     "Persönliche Betreuung in Bad Salzuflen",
+    "Kostenlos & unverbindlich anfragen",
   ];
 
   return (
@@ -112,6 +119,9 @@ const Fahrzeugankauf = () => {
               </p>
               <div className="flex flex-wrap gap-2 sm:gap-3 mb-8">
                 <div className="rounded-full bg-white/15 px-4 py-2 text-sm font-medium text-white">
+                  Kostenlos & unverbindlich
+                </div>
+                <div className="rounded-full bg-white/15 px-4 py-2 text-sm font-medium text-white">
                   Mit oder ohne Zulassung
                 </div>
                 <div className="rounded-full bg-white/15 px-4 py-2 text-sm font-medium text-white">
@@ -121,12 +131,22 @@ const Fahrzeugankauf = () => {
                   Verwertung möglich
                 </div>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
                 <Button size="lg" variant="cta-large" asChild>
-                  <Link to="/angebot?ankauf=1">
+                  <Link to="/angebot?paket=ankauf_only">
                     Jetzt Fahrzeug verkaufen
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
+                </Button>
+                <Button
+                  size="lg"
+                  className="border border-[#20be5d] bg-[#25D366] text-white hover:bg-[#1fb658]"
+                  asChild
+                >
+                  <a href={WHATSAPP_SELL_URL} target="_blank" rel="noreferrer">
+                    <MessageCircle className="mr-2 h-5 w-5" />
+                    Fotos per WhatsApp schicken
+                  </a>
                 </Button>
                 <Button
                   size="lg"
@@ -221,7 +241,16 @@ const Fahrzeugankauf = () => {
                   kombinieren? Starten Sie einfach im Formular.
                 </p>
                 <Button variant="cta" className="w-full" asChild>
-                  <Link to="/angebot?ankauf=1">Jetzt Fahrzeug verkaufen</Link>
+                  <Link to="/angebot?paket=ankauf_only">Jetzt Fahrzeug verkaufen</Link>
+                </Button>
+                <Button
+                  className="mt-3 w-full border border-[#20be5d] bg-[#25D366] text-white hover:bg-[#1fb658]"
+                  asChild
+                >
+                  <a href={WHATSAPP_SELL_URL} target="_blank" rel="noreferrer">
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    Oder Fotos per WhatsApp schicken
+                  </a>
                 </Button>
               </CardContent>
             </Card>

@@ -35,7 +35,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Was kostet die Zulassung?",
     answer:
-      "Die Zulassung gibt es ab 129 €, die Blitzabmeldung direkt vor Ort für 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Ein Wunschkennzeichen kostet 13 € Aufpreis.",
+      "Die Zulassung gibt es ab 129 €, die Blitzabmeldung direkt vor Ort für 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Optionale Extras: Wunschkennzeichen +13 €, Feinstaubplakette +6 €.",
   },
   {
     question: "Muss ich selbst zur Zulassungsstelle?",

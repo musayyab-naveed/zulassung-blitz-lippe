@@ -5,8 +5,8 @@ import { Label } from "@/components/ui/label";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
-import PriceCard from "@/components/PriceCard";
-import { CheckCircle, Phone, Mail, ArrowLeft, ImagePlus, Upload, ArrowUp, ArrowDown, X } from "lucide-react";
+import ZulassungsAssistent, { AnswerCard } from "@/components/ZulassungsAssistent";
+import { CheckCircle, Phone, Mail, ArrowLeft, ArrowRight, Car, ImagePlus, Upload, ArrowUp, ArrowDown, X } from "lucide-react";
 import { useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
@@ -115,7 +115,7 @@ const geoFaqs = [
   {
     question: "Welche Pakete kann ich online buchen?",
     answer:
-      "Sie können SOFORT (Zulassung in ca. 20 Minuten), BASIS, PREMIUM, BLITZABMELDUNG oder nur Fahrzeugverkauf wählen. Die Auswahl erfolgt direkt im ersten Schritt.",
+      "Sie können SOFORT (Zulassung in ca. 20 Minuten), BASIS, PREMIUM, BLITZABMELDUNG oder nur Fahrzeugverkauf wählen. Die Auswahl erfolgt über den Assistenten – er führt Sie in wenigen Klicks zum passenden Paket.",
   },
   {
     question: "Kann ich Fahrzeugankauf ohne Zulassung beauftragen?",
@@ -125,18 +125,15 @@ const geoFaqs = [
   {
     question: "Wann ist der Termin-Kalender freigeschaltet?",
     answer:
-      "Sobald Paket und Pflichtangaben in Schritt 2 vollständig sind, wird Schritt 3 mit dem Kalender geöffnet.",
+      "Sobald der Assistent durchlaufen ist und die Pflichtangaben vollständig sind, öffnet sich der Kalender.",
   },
 ];
 
 const Angebot = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  // Zurück zur Paketauswahl auf der Startseite (eine zentrale Anlaufstelle)
-  const backToPakete = () => {
-    navigate("/#pakete");
-  };
+
   const wantsAnkaufFromParam = searchParams.get("ankauf") === "1";
   const paketParam = (searchParams.get("paket") || "").trim().toLowerCase();
   const packageFromQuery =
@@ -183,8 +180,40 @@ const Angebot = () => {
   const [leadSendMessage, setLeadSendMessage] = useState("");
   const [leadSendError, setLeadSendError] = useState("");
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(packageFromQuery ? 2 : 1);
+  // Nur Fahrzeugverkauf: Kunde wählt zwischen Termin und Rückruf
+  const [ankaufContactChoice, setAnkaufContactChoice] = useState<"termin" | "rueckruf" | null>(null);
 
   const selectedPackage = PACKAGES.find((pkg) => pkg.key === selectedPackageKey) ?? null;
+
+  const selectPackage = (pkg: PackageDef) => {
+    setSelectedPackageKey(pkg.key);
+    setSellDecision(pkg.key === "ankauf_only" ? "yes" : wantsAnkaufFromParam ? "yes" : null);
+    setSellVehicleData({
+      marke: "",
+      modell: "",
+      baujahr: "",
+      kilometerstand: "",
+      telefon: "",
+    });
+    setVehicleImages([]);
+    setVehicleImagesError("");
+    setPickupChoice(null);
+    setPickupCheckResult(null);
+    setPickupCheckError("");
+    setAnkaufContactChoice(null);
+    setCurrentStep(2);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Zurück zum Assistenten (Schritt 1) – Query-Param entfernen, sonst springt
+  // der packageFromQuery-Effect sofort wieder in Schritt 2.
+  const backToPakete = () => {
+    setSelectedPackageKey(null);
+    setAnkaufContactChoice(null);
+    setCurrentStep(1);
+    navigate("/angebot", { replace: true });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const isPremium = selectedPackageKey === "premium";
   const isAnkaufOnly = selectedPackageKey === "ankauf_only";
 
@@ -223,10 +252,7 @@ const Angebot = () => {
     setCurrentStep(2);
   }, [packageFromQuery, selectedPackageKey, wantsAnkaufFromParam]);
 
-  useEffect(() => {
-    if (selectedPackageKey) return;
-    setCurrentStep(1);
-  }, [selectedPackageKey]);
+
 
   const normalize = (value: string) =>
     value
@@ -234,25 +260,6 @@ const Angebot = () => {
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "");
-
-  const selectPackage = (pkg: PackageDef) => {
-    setSelectedPackageKey(pkg.key);
-    setSellDecision(pkg.key === "ankauf_only" ? "yes" : wantsAnkaufFromParam ? "yes" : null);
-    setSellVehicleData({
-      marke: "",
-      modell: "",
-      baujahr: "",
-      kilometerstand: "",
-      telefon: "",
-    });
-    setVehicleImages([]);
-    setVehicleImagesError("");
-    setPickupChoice(null);
-    setPickupCheckResult(null);
-    setPickupCheckError("");
-    setCurrentStep(2);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const checkPickupEligibility = () => {
     setPickupCheckError("");
@@ -382,7 +389,7 @@ const Angebot = () => {
   calServiceQuery.append("additionalNotes", calNotesPrefill);
   const calLinkWithPrefill = `sofortzulassung/15min${calServiceQuery.toString() ? `?${calServiceQuery.toString()}` : ""}`;
 
-  const sendOptionsByEmail = async () => {
+  const sendOptionsByEmail = async (kontaktwunsch: "termin" | "rueckruf" = "termin") => {
     if (!selectedPackage || !stepTwoCompleted) {
       setLeadSendError("Bitte zuerst alle Pflichtangaben in Schritt 2 ausfüllen.");
       setLeadSendMessage("");
@@ -416,6 +423,10 @@ const Angebot = () => {
           pickupPruefung: pickupCheckResult,
           services: calServicePrefill,
           notes: calNotesPrefill,
+          kontaktwunsch:
+            kontaktwunsch === "rueckruf"
+              ? "Rückruf gewünscht – bitte innerhalb von 24h melden"
+              : "Termin wird online gebucht",
           submittedAt: new Date().toISOString(),
         }),
       });
@@ -566,75 +577,12 @@ const Angebot = () => {
       />
       <Header />
 
-      <section className="bg-gradient-to-br from-primary to-secondary text-primary-foreground py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">Jetzt beauftragen</h1>
-          <p className="text-xl text-primary-foreground/90 mb-8">
-            Klare 3-Schritt-Abwicklung: Paket wählen, Ankauf/Service klären, Termin buchen.
-          </p>
-          <div className="flex justify-center gap-3 text-sm flex-wrap">
-            {[
-              { id: 1, label: "1. Paket" },
-              { id: 2, label: "2. Optionen" },
-              { id: 3, label: "3. Termin" },
-            ].map((step) => (
-              <span
-                key={step.id}
-                className={`rounded-full px-4 py-2 ${
-                  currentStep === step.id
-                    ? "bg-white text-secondary font-semibold"
-                    : "bg-primary-foreground/20"
-                }`}
-              >
-                {step.label}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {currentStep === 1 && (
-        <section className="py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-secondary mb-4">1. Paket auswählen</h2>
-              <p className="text-lg text-muted-foreground">Wählen Sie die für Sie passende Serviceart.</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-              {PACKAGES.filter((pkg) => pkg.key !== "ankauf_only").map((pkg) => (
-                <PriceCard
-                  key={pkg.key}
-                  title={pkg.title}
-                  price={pkg.price}
-                  subtitle={pkg.subtitle}
-                  popular={pkg.popular}
-                  features={pkg.features}
-                  highlight={pkg.highlight}
-                  buttonText={pkg.buttonText}
-                  buttonVariant={pkg.buttonVariant}
-                  onSelect={() => selectPackage(pkg)}
-                />
-              ))}
-            </div>
-            <Card className="mt-8 border-2 border-primary/30 bg-primary/5">
-              <CardContent className="py-6 px-6 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                  <p className="text-lg font-semibold text-secondary">
-                    Keines dieser Pakete? Ich möchte nur mein Fahrzeug verkaufen.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Ohne Zulassungspaket direkt zur Ankaufanfrage mit Termin.
-                  </p>
-                </div>
-                <Button
-                  type="button"
-                  variant="cta"
-                  onClick={() => selectPackage(PACKAGES.find((pkg) => pkg.key === "ankauf_only")!)}
-                >
-                  Nur Fahrzeugverkauf
-                </Button>
-              </CardContent>
-            </Card>
+        <section className="py-12 sm:py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ZulassungsAssistent
+              onSelectPackage={(key) => selectPackage(PACKAGES.find((pkg) => pkg.key === key)!)}
+            />
           </div>
         </section>
       )}
@@ -645,16 +593,19 @@ const Angebot = () => {
               <Card className="border-2 border-primary/20">
                 <CardHeader>
                   <div className="flex items-center justify-between gap-4">
-                    <CardTitle className="text-secondary">2. Optionen festlegen</CardTitle>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      type="button"
-                      onClick={backToPakete}
-                    >
-                      <ArrowLeft className="h-4 w-4" />
-                      Paket ändern
-                    </Button>
+                    <div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        type="button"
+                        className="-ml-2 mb-2"
+                        onClick={backToPakete}
+                      >
+                        <ArrowLeft className="h-4 w-4" />
+                        Zurück
+                      </Button>
+                      <CardTitle className="text-secondary">Optionen festlegen</CardTitle>
+                    </div>
                   </div>
                   <p className="text-muted-foreground">
                     Gewählt: <span className="font-semibold text-secondary">{selectedPackage.title}</span>
@@ -672,45 +623,41 @@ const Angebot = () => {
                     </div>
                   ) : (
                     <div>
-                      <Label className="text-base font-semibold text-secondary">
+                      <h3 className="mb-4 text-center text-xl font-bold text-secondary sm:text-2xl">
                         Möchten Sie Ihr altes Fahrzeug verkaufen?
-                      </Label>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        Gerne kaufen wir Ihr altes Fahrzeug an. Falls es nicht mehr fahrbereit ist,
-                        kümmern wir uns auch um die fachgerechte Verwertung.
-                      </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                        <Button
-                          type="button"
-                          variant={sellDecision === "yes" ? "cta" : "outline"}
+                      </h3>
+                      <div className="space-y-3">
+                        <AnswerCard
+                          icon={<Car className="h-7 w-7 text-primary" />}
+                          title="Ja, Fahrzeug verkaufen"
+                          sub="Wir kaufen es direkt mit an – auch nicht fahrbereite Fahrzeuge"
+                          selected={sellDecision === "yes"}
                           onClick={() => setSellDecision("yes")}
-                        >
-                          Ja, Verkauf hinzufügen
-                        </Button>
-                        <Button
-                          type="button"
-                          variant={sellDecision === "no" ? "cta" : "outline"}
-                        onClick={() => {
-                          setSellDecision("no");
-                          setSellVehicleData({
-                            marke: "",
-                            modell: "",
-                            baujahr: "",
-                            kilometerstand: "",
-                            telefon: "",
-                          });
-                          setVehicleImages([]);
-                          setVehicleImagesError("");
-                          setLeadSendError("");
-                          setLeadSendMessage("");
-                          if (!isPremium) {
-                            setCurrentStep(3);
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }
-                        }}
-                        >
-                          Nein, kein Verkauf
-                        </Button>
+                        />
+                        <AnswerCard
+                          icon={<ArrowRight className="h-7 w-7 text-primary" />}
+                          title="Nein, kein Verkauf"
+                          sub="Direkt weiter zur Terminbuchung"
+                          selected={sellDecision === "no"}
+                          onClick={() => {
+                            setSellDecision("no");
+                            setSellVehicleData({
+                              marke: "",
+                              modell: "",
+                              baujahr: "",
+                              kilometerstand: "",
+                              telefon: "",
+                            });
+                            setVehicleImages([]);
+                            setVehicleImagesError("");
+                            setLeadSendError("");
+                            setLeadSendMessage("");
+                            if (!isPremium) {
+                              setCurrentStep(3);
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            }
+                          }}
+                        />
                       </div>
                     </div>
                   )}
@@ -1033,16 +980,33 @@ const Angebot = () => {
                   )}
                   <div className="border-t pt-5 flex flex-col sm:flex-row gap-3 sm:justify-end">
                     <Button type="button" variant="outline" onClick={backToPakete}>
-                      Zurück zu Paketen
+                      Zurück zum Start
                     </Button>
+                    {isAnkaufOnly && (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        disabled={!stepTwoCompleted || isSendingLead}
+                        onClick={async () => {
+                          const ok = await sendOptionsByEmail("rueckruf");
+                          if (!ok) return;
+                          setAnkaufContactChoice("rueckruf");
+                          setCurrentStep(3);
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                      >
+                        {isSendingLead ? "Wird gesendet..." : "Senden & Rückruf erhalten"}
+                      </Button>
+                    )}
                     <Button
                       type="button"
                       variant="cta"
                       disabled={!stepTwoCompleted || isSendingLead}
                       onClick={async () => {
                         if (sellDecision === "yes") {
-                          await sendOptionsByEmail();
+                          await sendOptionsByEmail("termin");
                         }
+                        setAnkaufContactChoice("termin");
                         setCurrentStep(3);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
@@ -1050,10 +1014,15 @@ const Angebot = () => {
                       {isSendingLead
                         ? "Wird gesendet..."
                         : sellDecision === "yes"
-                        ? "Senden & weiter zu Termin"
+                        ? "Senden & Termin aussuchen"
                         : "Weiter zu Termin"}
                     </Button>
                   </div>
+                  {!stepTwoCompleted && (
+                    <p className="pt-2 text-right text-xs text-muted-foreground">
+                      Bitte beantworten Sie zuerst die Fragen oben, dann geht es weiter.
+                    </p>
+                  )}
                 </CardContent>
               </Card>
 
@@ -1066,29 +1035,73 @@ const Angebot = () => {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="border-2 border-primary/20">
               <CardHeader>
-                <div className="flex items-center justify-between gap-4">
-                  <CardTitle className="text-secondary">3. Termin buchen</CardTitle>
-                  <div className="flex flex-col sm:flex-row gap-2">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
                     <Button
+                      variant="ghost"
+                      size="sm"
                       type="button"
-                      variant="outline"
+                      className="-ml-2 mb-2"
                       onClick={() => {
                         setCurrentStep(2);
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       }}
                     >
                       <ArrowLeft className="h-4 w-4" />
-                      Zurück zu Optionen
+                      Zurück
                     </Button>
-                    <Button type="button" variant="outline" onClick={backToPakete}>
-                      Paket neu wählen
-                    </Button>
+                    <CardTitle className="text-secondary">
+                      {isAnkaufOnly && ankaufContactChoice === "rueckruf"
+                        ? "Anfrage eingegangen"
+                        : "Termin buchen"}
+                    </CardTitle>
                   </div>
+                  <Button type="button" variant="outline" size="sm" onClick={backToPakete}>
+                    Neu starten
+                  </Button>
                 </div>
-                <p className="text-muted-foreground">Wählen Sie jetzt Ihren passenden Termin.</p>
+                <p className="text-muted-foreground">
+                  {isAnkaufOnly && ankaufContactChoice === "rueckruf"
+                    ? "Vielen Dank für Ihre Ankaufanfrage!"
+                    : "Wählen Sie jetzt Ihren passenden Termin."}
+                </p>
               </CardHeader>
               <CardContent>
-                {canBookAppointment ? (
+                {isAnkaufOnly && ankaufContactChoice === "rueckruf" ? (
+                  <div className="rounded-xl border border-trust-green/40 bg-trust-green/10 p-6 text-center">
+                    <CheckCircle className="mx-auto mb-3 h-10 w-10 text-trust-green" />
+                    <h3 className="mb-2 text-xl font-bold text-secondary">
+                      Ihre Anfrage ist bei uns eingegangen
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Wir melden uns innerhalb von 24 Stunden
+                      {sellVehicleData.telefon ? (
+                        <>
+                          {" "}unter <span className="font-semibold text-secondary">{sellVehicleData.telefon}</span>
+                        </>
+                      ) : null}{" "}
+                      mit einer ersten Einschätzung zu Ihrem Fahrzeug
+                      {sellVehicleData.marke ? (
+                        <>
+                          {" "}(<span className="font-semibold text-secondary">
+                            {sellVehicleData.marke} {sellVehicleData.modell}
+                          </span>)
+                        </>
+                      ) : null}
+                      .
+                    </p>
+                    <p className="mt-3 text-sm text-muted-foreground">
+                      Sie möchten doch lieber direkt einen Termin?{" "}
+                      <button
+                        type="button"
+                        className="font-semibold text-primary hover:underline"
+                        onClick={() => setAnkaufContactChoice("termin")}
+                      >
+                        Hier Termin aussuchen
+                      </button>
+                    </p>
+                  </div>
+                ) : canBookAppointment ? (
                   <>
                     <div className="mb-6 rounded-xl border bg-background p-4 text-sm text-muted-foreground">
                       <p>
@@ -1165,7 +1178,7 @@ const Angebot = () => {
                 ) : (
                   <Card className="border-2 border-dashed border-primary/30 bg-background">
                     <CardContent className="py-10 text-center">
-                      <h2 className="text-2xl font-bold text-secondary mb-3">3. Termin buchen</h2>
+                      <h2 className="text-2xl font-bold text-secondary mb-3">Termin buchen</h2>
                       <p className="text-muted-foreground">
                         Bitte Schritt 2 abschließen, dann wird der Kalender freigeschaltet.
                       </p>

@@ -3,40 +3,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PriceCard from "@/components/PriceCard";
 import GoogleReviews from "@/components/GoogleReviews";
 import Seo from "@/components/Seo";
 import { generalFaqs } from "@/content/faqs";
 import heroImage from "@/assets/hero-image-optimized.jpg";
 import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import type { MouseEvent } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const location = useLocation();
-
-  const scrollToPakete = (behavior: ScrollBehavior) => {
-    const target = document.getElementById("pakete-focus");
-    if (!target) return;
-    const header = document.querySelector("header");
-    const headerHeight = header ? header.getBoundingClientRect().height : 120;
-    const top = window.scrollY + target.getBoundingClientRect().top - headerHeight - 24;
-    window.scrollTo({ top, behavior });
-  };
-
-  const scrollToPackages = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    scrollToPakete("smooth");
-  };
-
-  // Direktsprung zu den Paketen, wenn die Startseite mit /#pakete aufgerufen wird
-  // (z. B. über die "Zurück zu Paketen"-Buttons in der Buchungsstrecke)
-  useEffect(() => {
-    if (location.hash !== "#pakete") return;
-    const timer = window.setTimeout(() => scrollToPakete("auto"), 80);
-    return () => window.clearTimeout(timer);
-  }, [location.hash]);
 
   const steps = [
     {
@@ -82,87 +56,6 @@ const Home = () => {
     "Umschreibung",
     "Kennzeichen-Reservierung",
     "Hol- und Bringservice",
-  ];
-
-  const pricePackages = [
-    {
-      title: "SOFORT",
-      price: "ab 129 €",
-      subtitle:
-        "Fertig in ca. 20 Min – Sie warten kurz vor Ort. Kennzeichen besorgen Sie selbst, vor oder nach der Zulassung – zugelassen sind Sie in jedem Fall.",
-      popular: true,
-      features: [
-        "Zulassung digital in ca. 20 Minuten",
-        "Direkt losfahren",
-        "Wunschkennzeichen möglich (+13 €)",
-        "Verwaltungsgebühren inkl.",
-      ],
-      buttonText: "SOFORT-ZULASSUNG STARTEN",
-      buttonVariant: "cta" as const,
-      ctaHref: "/angebot?paket=sofort",
-    },
-    {
-      title: "BASIS",
-      price: "129 €",
-      subtitle: "Fertig am nächsten Werktag – Sie bringen & holen die Unterlagen",
-      features: [
-        "Zulassung innerhalb von 24h",
-        "Inkl. Euro-Kennzeichen",
-        "Wunschkennzeichen (+13 €)",
-        "Verwaltungsgebühren inkl.",
-        "Sie bringen Unterlagen zu uns",
-        "Altfahrzeug? Wir kaufen es auf Wunsch direkt mit an",
-        "Abmeldung beim Ankauf gratis - keine Zusatzgebühr",
-      ],
-      buttonText: "BASIS PAKET BESTELLEN",
-      buttonVariant: "cta" as const,
-      ctaHref: "/angebot?paket=basis",
-    },
-    {
-      title: "PREMIUM",
-      price: "159 €",
-      subtitle: "Fertig am nächsten Werktag – wir holen & bringen alles",
-      features: [
-        "Alles vom BASIS",
-        "Express-Rückversand inklusive",
-        "Wir holen und bringen die Unterlagen",
-        "Altfahrzeug? Wir kaufen es auf Wunsch direkt mit an",
-        "Abmeldung beim Ankauf gratis - keine Zusatzgebühr",
-      ],
-      buttonText: "PREMIUM PAKET BESTELLEN",
-      buttonVariant: "cta" as const,
-      ctaHref: "/angebot?paket=premium",
-    },
-    {
-      title: "BLITZABMELDUNG",
-      price: "40 €",
-      subtitle: "Sofort vor Ort abgemeldet – Sie warten kurz",
-      features: [
-        "Abmeldung digital direkt vor Ort",
-        "Verwaltungsgebühren inkl.",
-        "Altfahrzeug? Wir kaufen es auf Wunsch direkt mit an",
-        "Abmeldung beim Ankauf gratis - keine Zusatzgebühr",
-      ],
-      highlight:
-        "Voraussetzung: Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen (Zulassung ab 2015)",
-      buttonText: "ONLINE BEANTRAGEN",
-      buttonVariant: "cta" as const,
-      ctaHref: "/angebot?paket=abmeldung",
-    },
-    {
-      title: "FAHRZEUGANKAUF",
-      price: "Kostenlos",
-      features: [
-        "Unverbindliche Ersteinschätzung",
-        "Faire Ankaufprüfung vor Ort",
-        "Kostenlose Abmeldung bei Ankauf",
-        "Abholung des Fahrzeugs möglich",
-        "Nicht fahrbereites Fahrzeug? Fachgerechte Verwertung möglich",
-      ],
-      buttonText: "ANKAUF ANFRAGEN",
-      buttonVariant: "cta" as const,
-      ctaHref: "/fahrzeugankauf",
-    },
   ];
 
   return (
@@ -256,10 +149,10 @@ const Home = () => {
 
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center lg:justify-start relative z-30">
                 <Button size="lg" variant="cta-large" asChild>
-                  <a href="#pakete" onClick={scrollToPackages}>
+                  <Link to="/angebot">
                     JETZT ZULASSUNG STARTEN
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
+                  </Link>
                 </Button>
                 <Button
                   size="lg"
@@ -382,34 +275,6 @@ const Home = () => {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-14 scroll-mt-28 lg:scroll-mt-40" id="pakete">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="surface-soft p-6 sm:p-8">
-          <div className="text-center mb-10" id="pakete-focus">
-            <h2 className="section-title mb-4">Unsere Preise</h2>
-            <p className="section-subtitle">Transparente Preise - keine versteckten Kosten</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="pakete-grid">
-            {pricePackages.map((pkg, index) => (
-              <PriceCard
-                key={index}
-                title={pkg.title}
-                price={pkg.price}
-                subtitle={"subtitle" in pkg ? pkg.subtitle : undefined}
-                popular={pkg.popular}
-                features={pkg.features}
-                highlight={"highlight" in pkg ? pkg.highlight : undefined}
-                buttonText={pkg.buttonText}
-                buttonVariant={pkg.buttonVariant}
-                ctaHref={pkg.ctaHref}
-              />
-            ))}
-          </div>
           </div>
         </div>
       </section>
@@ -608,7 +473,7 @@ const Home = () => {
 
               <div className="pt-6">
                 <Button size="lg" variant="cta" className="w-full sm:w-auto" asChild>
-                  <Link to="/angebot?paket=premium">
+                  <Link to="/angebot">
                     JETZT BEAUFTRAGEN
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
