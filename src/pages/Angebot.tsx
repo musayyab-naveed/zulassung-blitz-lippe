@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
-import ZulassungsAssistent, { AnswerCard } from "@/components/ZulassungsAssistent";
+import ZulassungsAssistent, { AnswerCard, clearSavedWizardState } from "@/components/ZulassungsAssistent";
 import { checkPickupAddress } from "@/lib/pickupCheck";
 import { CheckCircle, Phone, Mail, ArrowLeft, ArrowRight, Car, ImagePlus, Upload, ArrowUp, ArrowDown, X, Pencil } from "lucide-react";
 import { useRef, useState } from "react";
@@ -58,7 +58,7 @@ const PACKAGES: PackageDef[] = [
     price: "129 €",
     subtitle: "Fertig am nächsten Werktag – Sie bringen & holen die Unterlagen",
     features: [
-      "Zulassung innerhalb von 24h",
+      "Fertig am nächsten Werktag",
       "Unterlagen vor Ort abgeben",
       "Verwaltungsgebühren inkl.",
       "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
@@ -207,15 +207,95 @@ const Angebot = () => {
     setPickupCheckError("");
     setAnkaufContactChoice(null);
     setPremiumFromWizard(false);
+    setLeadSendError("");
+    setLeadSendMessage("");
     setCurrentStep(2);
+    window.history.pushState({ buchung: 2 }, "");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Zurück zum Assistenten (Schritt 1) – Query-Param entfernen, sonst springt
-  // der packageFromQuery-Effect sofort wieder in Schritt 2.
+  // Spiegel-Refs fuer den popstate-Handler
+  const currentStepRef = useRef(currentStep);
+  currentStepRef.current = currentStep;
+  const selectedPackageKeyRef = useRef(selectedPackageKey);
+  selectedPackageKeyRef.current = selectedPackageKey;
+  // Kam der Kunde per Direktlink (?paket=...) in Schritt 2? Dann gibt es keinen
+  // Assistenten-Verlauf darunter.
+  const enteredViaQueryRef = useRef(Boolean(packageFromQuery));
+
+  const goToStep = (step: 2 | 3) => {
+    setCurrentStep(step);
+    window.history.pushState({ buchung: step }, "");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Browser-Zurueck/-Vorwaerts bewegt sich zwischen Assistent (1), Optionen (2)
+  // und Termin (3) – ohne Eingaben zu verlieren (A1)
+  useEffect(() => {
+    const onPop = (event: PopStateEvent) => {
+      const state = event.state as { buchung?: 2 | 3; assistent?: boolean } | null;
+      if (state?.buchung && selectedPackageKeyRef.current) {
+        setCurrentStep(state.buchung);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (currentStepRef.current > 1) {
+        // Assistent- oder Basis-Eintrag erreicht -> zurueck zu Schritt 1,
+        // der Assistent stellt sich aus dem Zwischenspeicher wieder her
+        setCurrentStep(1);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // Direktlink ?paket=...: Schritt 2 als Verlaufs-Zustand markieren, ohne Extra-Eintrag
+  useEffect(() => {
+    if (enteredViaQueryRef.current) {
+      window.history.replaceState({ buchung: 2 }, "");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Zurueck zum Assistenten: einen bzw. zwei Verlaufsschritte zurueck –
+  // die Antworten des Assistenten bleiben dank Zwischenspeicher erhalten
   const backToPakete = () => {
+    const state = window.history.state as { buchung?: 2 | 3 } | null;
+    if (enteredViaQueryRef.current) {
+      // Ohne Assistenten-Verlauf: klassisch zuruecksetzen
+      setSelectedPackageKey(null);
+      setAnkaufContactChoice(null);
+      setCurrentStep(1);
+      navigate("/angebot", { replace: true });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    if (state?.buchung) {
+      window.history.go(state.buchung === 3 ? -2 : -1);
+    } else {
+      setCurrentStep(1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const currentStepScrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  void currentStepScrollTop;
+
+  // Kompletter Neustart (wischt alle Eingaben + Assistenten-Antworten)
+  const resetAll = () => {
+    clearSavedWizardState();
     setSelectedPackageKey(null);
+    setSellDecision(null);
+    setSellVehicleData({ marke: "", modell: "", baujahr: "", kilometerstand: "", telefon: "" });
+    setVehicleImages([]);
+    setVehicleImagesError("");
+    setPickupChoice(null);
+    setPickupCheckResult(null);
+    setPickupCheckError("");
+    setLeadSendError("");
+    setLeadSendMessage("");
     setAnkaufContactChoice(null);
+    setPremiumFromWizard(false);
+    setWizardSummary("");
     setCurrentStep(1);
     navigate("/angebot", { replace: true });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -432,15 +512,10 @@ const Angebot = () => {
       return true;
     } catch (error) {
       const message = error instanceof Error ? error.message : "";
-      if (message.toLowerCase().includes("failed to fetch")) {
-        setLeadSendError(
-          "Direktmail aktuell nicht erreichbar. Sie können trotzdem fortfahren; die Daten werden mit der Terminbuchung übertragen."
-        );
-      } else {
-        setLeadSendError(
-          `Direktmail aktuell nicht verfügbar.${message ? ` ${message}` : " Sie können trotzdem fortfahren."}`
-        );
-      }
+      setLeadSendError(
+        "Senden fehlgeschlagen – bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut. Ihre Eingaben bleiben erhalten." +
+          (message && !message.toLowerCase().includes("failed to fetch") ? ` (${message})` : "")
+      );
       return false;
     } finally {
       setIsSendingLead(false);
@@ -464,27 +539,46 @@ const Angebot = () => {
       return;
     }
 
-    const oversized = incoming.find((file) => file.size > 2 * 1024 * 1024);
+    const oversized = incoming.find((file) => file.size > 15 * 1024 * 1024);
     if (oversized) {
-      setVehicleImagesError("Ein Bild ist größer als 2 MB. Bitte kleinere Bilder wählen.");
+      setVehicleImagesError("Ein Bild ist größer als 15 MB. Bitte kleinere Bilder wählen.");
       return;
     }
 
+    // Bilder vor dem Versand verkleinern (max. 1280px, JPEG) – sonst sprengen
+    // vier Handyfotos das Limit des E-Mail-Versands
     const asDataUrl = (file: File) =>
       new Promise<UploadImageItem>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const result = typeof reader.result === "string" ? reader.result : "";
+        const objectUrl = URL.createObjectURL(file);
+        const img = new Image();
+        img.onload = () => {
+          URL.revokeObjectURL(objectUrl);
+          const maxDim = 1280;
+          const scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.max(1, Math.round(img.width * scale));
+          canvas.height = Math.max(1, Math.round(img.height * scale));
+          const ctx = canvas.getContext("2d");
+          if (!ctx) {
+            reject(new Error("canvas_failed"));
+            return;
+          }
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.8);
+          const approxBytes = Math.round((dataUrl.length * 3) / 4);
           resolve({
             id: `${file.name}-${file.lastModified}-${Math.random().toString(36).slice(2, 9)}`,
-            name: file.name,
-            type: file.type,
-            size: file.size,
-            dataUrl: result,
+            name: file.name.replace(/\.[^.]+$/, "") + ".jpg",
+            type: "image/jpeg",
+            size: approxBytes,
+            dataUrl,
           });
         };
-        reader.onerror = () => reject(new Error("file_read_failed"));
-        reader.readAsDataURL(file);
+        img.onerror = () => {
+          URL.revokeObjectURL(objectUrl);
+          reject(new Error("file_read_failed"));
+        };
+        img.src = objectUrl;
       });
 
     try {
@@ -625,7 +719,11 @@ const Angebot = () => {
                           title="Ja, Fahrzeug verkaufen"
                           sub="Wir kaufen es direkt mit an – auch nicht fahrbereite Fahrzeuge"
                           selected={sellDecision === "yes"}
-                          onClick={() => setSellDecision("yes")}
+                          onClick={() => {
+                            setSellDecision("yes");
+                            setLeadSendError("");
+                            setLeadSendMessage("");
+                          }}
                         />
                         <AnswerCard
                           icon={<ArrowRight className="h-7 w-7 text-primary" />}
@@ -645,9 +743,8 @@ const Angebot = () => {
                             setVehicleImagesError("");
                             setLeadSendError("");
                             setLeadSendMessage("");
-                            if (!isPremium) {
-                              setCurrentStep(3);
-                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            if (!isPremium || premiumFromWizard) {
+                              goToStep(3);
                             }
                           }}
                         />
@@ -784,7 +881,7 @@ const Angebot = () => {
                             <Upload className="h-3.5 w-3.5" />
                             Optional: bis zu 4 Bilder
                           </span>
-                          <span>Je Bild max. 2 MB</span>
+                          <span>Bilder werden automatisch verkleinert</span>
                           <span>Ohne Bilder können Sie normal fortfahren</span>
                         </div>
                         {vehicleImagesError && (
@@ -1028,8 +1125,7 @@ const Angebot = () => {
                           const ok = await sendOptionsByEmail("rueckruf");
                           if (!ok) return;
                           setAnkaufContactChoice("rueckruf");
-                          setCurrentStep(3);
-                          window.scrollTo({ top: 0, behavior: "smooth" });
+                          goToStep(3);
                         }}
                       >
                         {isSendingLead ? "Wird gesendet..." : "Senden & Rückruf erhalten"}
@@ -1041,11 +1137,11 @@ const Angebot = () => {
                       disabled={!stepTwoCompleted || isSendingLead}
                       onClick={async () => {
                         if (sellDecision === "yes") {
-                          await sendOptionsByEmail("termin");
+                          const ok = await sendOptionsByEmail("termin");
+                          if (!ok) return;
                         }
                         setAnkaufContactChoice("termin");
-                        setCurrentStep(3);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        goToStep(3);
                       }}
                     >
                       {isSendingLead
@@ -1079,10 +1175,7 @@ const Angebot = () => {
                       size="sm"
                       type="button"
                       className="-ml-2 mb-2"
-                      onClick={() => {
-                        setCurrentStep(2);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
+                      onClick={() => window.history.back()}
                     >
                       <ArrowLeft className="h-4 w-4" />
                       Zurück
@@ -1093,7 +1186,7 @@ const Angebot = () => {
                         : "Termin buchen"}
                     </CardTitle>
                   </div>
-                  <Button type="button" variant="outline" size="sm" onClick={backToPakete}>
+                  <Button type="button" variant="outline" size="sm" onClick={resetAll}>
                     Neu starten
                   </Button>
                 </div>
@@ -1160,10 +1253,7 @@ const Angebot = () => {
                         <button
                           type="button"
                           title="Optionen ändern"
-                          onClick={() => {
-                            setCurrentStep(2);
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                          }}
+                          onClick={() => window.history.back()}
                           className="text-muted-foreground transition-colors hover:text-primary"
                         >
                           <Pencil className="h-3.5 w-3.5" />

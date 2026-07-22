@@ -22,7 +22,7 @@ const UeberUns = () => {
     {
       icon: <Clock className="h-8 w-8 text-primary" />,
       title: "Schnelligkeit",
-      description: "24-Stunden-Garantie für alle Zulassungen – darauf können Sie sich verlassen."
+      description: "Sofort-Zulassung in ca. 20 Minuten oder klassisch am nächsten Werktag – verlässlich und planbar."
     },
     {
       icon: <Shield className="h-8 w-8 text-primary" />,
@@ -37,25 +37,25 @@ const UeberUns = () => {
     {
       icon: <Award className="h-8 w-8 text-primary" />,
       title: "Qualität",
-      description: "Über 1000 zufriedene Kunden und 4.9 Sterne bei Google sprechen für uns."
+      description: "Über 1000 zufriedene Kunden und 5,0 Sterne bei Google sprechen für uns."
     }
   ];
 
   const stats = [
     { number: "1000+", label: "Zufriedene Kunden" },
     { number: "20 Min", label: "Sofort-Zulassung" },
-    { number: "4.9★", label: "Google Bewertung" },
+    { number: "5,0★", label: "Google Bewertung" },
     { number: "5+", label: "Jahre Erfahrung" }
   ];
 
   const services = [
+    "Sofort-Zulassung in ca. 20 Minuten",
     "KFZ-Neuzulassung",
-    "KFZ-Umschreibung", 
-    "Motorrad-Zulassung",
+    "KFZ-Umschreibung",
+    "Blitzabmeldung",
+    "Fahrzeugankauf",
     "Kennzeichen-Reservierung",
-    "KFZ-Abmeldung",
     "Hol- und Bringservice",
-    "Express-Bearbeitung",
     "Wunschkennzeichen"
   ];
 
@@ -181,9 +181,10 @@ const UeberUns = () => {
               
               <Card className="border-l-4 border-l-primary">
                 <CardContent className="pt-6">
-                  <h3 className="font-semibold text-secondary mb-2">Unsere Garantie</h3>
+                  <h3 className="font-semibold text-secondary mb-2">Unser Versprechen</h3>
                   <p className="text-muted-foreground">
-                    24-Stunden-Bearbeitung oder Sie erhalten Ihr Geld zurück.
+                    Sofort-Zulassung in ca. 20 Minuten – oder klassisch: Unterlagen abgeben,
+                    am nächsten Werktag fertig.
                   </p>
                 </CardContent>
               </Card>
@@ -251,7 +252,7 @@ const UeberUns = () => {
                       <a href="tel:+4915142462280" className="hover:text-primary transition-colors">
                         +4915142462280
                       </a><br />
-                      <span className="text-sm">Mo-Fr: 8:00-18:00 Uhr</span>
+                      <span className="text-sm">Mo-Fr: 9:00-18:00 Uhr · Sa: 15:00-18:00 Uhr</span>
                     </p>
                   </div>
                 </div>
@@ -264,7 +265,7 @@ const UeberUns = () => {
                       <a href="mailto:info@sofortzulassung.com" className="hover:text-primary transition-colors">
                         info@sofortzulassung.com
                       </a><br />
-                      <span className="text-sm">Antwort innerhalb von 2 Stunden</span>
+                      <span className="text-sm">Antwort innerhalb von 24 Stunden</span>
                     </p>
                   </div>
                 </div>
@@ -281,8 +282,8 @@ const UeberUns = () => {
                 </CardHeader>
                 <CardContent className="text-center space-y-6">
                   <p className="text-muted-foreground">
-                    Beauftragen Sie uns noch heute und haben Sie morgen 
-                    Ihre fertigen Zulassungsunterlagen in den Händen.
+                    Mit der Sofort-Zulassung sind Sie in ca. 20 Minuten zugelassen –
+                    oder Sie geben die Unterlagen ab und holen am nächsten Werktag alles fertig ab.
                   </p>
                   
                   <div className="space-y-4">

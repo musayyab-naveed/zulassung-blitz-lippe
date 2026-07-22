@@ -43,11 +43,32 @@ type Screen =
   | "abmeldung-unmoeglich"
   | "result";
 
+type Condition = "neu" | "gebraucht";
+type Holder = "privat" | "firma";
+
 export interface PremiumDeliveryOptions {
   mode: "pickup" | "shipping";
   address?: { street: string; postalCode: string; city: string };
   result?: PickupCheckResult;
 }
+
+// Zwischenspeicher: Antworten bleiben erhalten, wenn der Kunde aus der Buchung
+// zurueck zum Assistenten wechselt (B3). "Neu starten" leert ihn.
+interface SavedWizardState {
+  screen: Screen;
+  trail: Screen[];
+  answers: string[];
+  condition: Condition | null;
+  holder: Holder | null;
+  resultKey: Exclude<PackageKey, "ankauf_only">;
+  sofortFallback: boolean;
+  premiumDelivery: PremiumDeliveryOptions | null;
+  pickupAddress: { street: string; postalCode: string; city: string };
+}
+let savedWizardState: SavedWizardState | null = null;
+export const clearSavedWizardState = () => {
+  savedWizardState = null;
+};
 
 interface Props {
   onSelectPackage: (key: PackageKey, premium?: PremiumDeliveryOptions, summary?: string) => void;
@@ -103,14 +124,12 @@ const RESULTS: Record<Exclude<PackageKey, "ankauf_only">, ResultInfo> = {
   },
 };
 
-type Condition = "neu" | "gebraucht";
-type Holder = "privat" | "firma";
-
 // Checkliste passend zu den Antworten zusammenstellen
 const buildChecklist = (
   key: Exclude<PackageKey, "ankauf_only">,
   condition: Condition | null,
-  holder: Holder | null
+  holder: Holder | null,
+  premiumMode?: "pickup" | "shipping"
 ): string[] => {
   if (key === "abmeldung") {
     return [
@@ -120,7 +139,12 @@ const buildChecklist = (
     ];
   }
 
-  const items = ["eVB-Nummer Ihrer KFZ-Versicherung", "Personalausweis oder Reisepass"];
+  const ausweis =
+    key === "premium" && premiumMode === "shipping"
+      ? "Kopie von Personalausweis oder Reisepass (dem Umschlag beilegen)"
+      : "Personalausweis oder Reisepass";
+
+  const items = ["eVB-Nummer Ihrer KFZ-Versicherung", ausweis];
 
   if (condition === "neu") {
     items.push(
@@ -130,11 +154,9 @@ const buildChecklist = (
   } else {
     items.push(
       "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)"
+      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "HU-Nachweis – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist"
     );
-    if (key !== "sofort") {
-      items.push("HU-Nachweis – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist");
-    }
   }
 
   items.push("IBAN für die KFZ-Steuer");
@@ -189,107 +211,173 @@ export const AnswerCard = ({
 );
 
 const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
-  const [screen, setScreen] = useState<Screen>(initialScreen ?? "start");
+  const restored = initialScreen ? null : savedWizardState;
+  const [screen, setScreen] = useState<Screen>(restored?.screen ?? initialScreen ?? "start");
   const [history, setHistory] = useState<Screen[]>([]);
-  // Antwort-Chips: ein Eintrag pro beantworteter Frage, parallel zur history
-  const [answers, setAnswers] = useState<string[]>([]);
-  const [resultKey, setResultKey] = useState<Exclude<PackageKey, "ankauf_only">>("sofort");
+  // Antwort-Chips: ein Eintrag pro beantworteter Frage
+  const [answers, setAnswers] = useState<string[]>(restored?.answers ?? []);
+  const [resultKey, setResultKey] = useState<Exclude<PackageKey, "ankauf_only">>(
+    restored?.resultKey ?? "sofort"
+  );
   // Sofort-Zulassung nicht möglich -> Kunde wurde in den 24h-Weg umgeleitet
-  const [sofortFallback, setSofortFallback] = useState(false);
+  const [sofortFallback, setSofortFallback] = useState(restored?.sofortFallback ?? false);
 
   // Antworten der neuen Fragen (steuern Siegel-Check und Checkliste)
-  const [condition, setCondition] = useState<Condition | null>(null);
-  const [holder, setHolder] = useState<Holder | null>(null);
+  const [condition, setCondition] = useState<Condition | null>(restored?.condition ?? null);
+  const [holder, setHolder] = useState<Holder | null>(restored?.holder ?? null);
 
   // Premium: Abwicklung inkl. geprüfter Abholadresse
-  const [premiumDelivery, setPremiumDelivery] = useState<PremiumDeliveryOptions | null>(null);
-  const [pickupAddress, setPickupAddress] = useState({ street: "", postalCode: "", city: "Bad Salzuflen" });
+  const [premiumDelivery, setPremiumDelivery] = useState<PremiumDeliveryOptions | null>(
+    restored?.premiumDelivery ?? null
+  );
+  const [pickupAddress, setPickupAddress] = useState(
+    restored?.pickupAddress ?? { street: "", postalCode: "", city: "Bad Salzuflen" }
+  );
   const [pickupError, setPickupError] = useState("");
   const [pickupResult, setPickupResult] = useState<PickupCheckResult | null>(null);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const historyRef = useRef<Screen[]>([]);
-  const answersRef = useRef<string[]>([]);
+  // Pfad der besuchten Frage-Screens nach Tiefe: trail[0] = Startfrage, trail[d] = Screen nach d Antworten.
+  // Beim Zurueckgehen wird NICHT gekuerzt, damit Browser-Vorwaerts wieder vorspulen kann.
+  const trailRef = useRef<Screen[]>(
+    restored?.trail.length ? [...restored.trail] : [initialScreen ?? "start"]
+  );
+  const answersAllRef = useRef<string[]>(restored ? [...restored.answers] : []);
+  const depthRef = useRef<number>(restored?.trail.length ? restored.trail.length - 1 : 0);
+
+  // Spiegel-Refs fuer das Sichern beim Unmount
+  const conditionRef = useRef(condition);
+  conditionRef.current = condition;
+  const holderRef = useRef(holder);
+  holderRef.current = holder;
+  const resultKeyRef = useRef(resultKey);
+  resultKeyRef.current = resultKey;
+  const sofortFallbackRef = useRef(sofortFallback);
+  sofortFallbackRef.current = sofortFallback;
+  const premiumDeliveryRef = useRef(premiumDelivery);
+  premiumDeliveryRef.current = premiumDelivery;
+  const pickupAddressRef = useRef(pickupAddress);
+  pickupAddressRef.current = pickupAddress;
   const isFirstRender = useRef(true);
   // Popstates, die wir selbst ausgelöst haben (Aufräumen/Chip-Sprung) und ignorieren
   const skipPopsRef = useRef(0);
 
-  // Ein Verlaufseintrag pro Frage: jeder Browser-Zurück ist garantiert genau
-  // EIN Schritt im Assistenten – auch bei schnellen Doppel-Klicks
+  const syncView = () => {
+    const d = depthRef.current;
+    setScreen(trailRef.current[d]);
+    setAnswers(answersAllRef.current.slice(0, d));
+    setHistory(trailRef.current.slice(0, d));
+  };
+
+  // Ein Verlaufseintrag pro Frage mit Tiefen-Angabe: Browser-Zurueck UND -Vorwaerts
+  // bewegen sich damit exakt einen Frage-Schritt (A2)
   const go = (label: string, next: Screen) => {
-    historyRef.current = [...historyRef.current, screen];
-    answersRef.current = [...answersRef.current, label];
-    setHistory(historyRef.current);
-    setAnswers(answersRef.current);
-    setScreen(next);
-    window.history.pushState({ assistent: true }, "");
+    const d = depthRef.current;
+    trailRef.current = [...trailRef.current.slice(0, d + 1), next];
+    answersAllRef.current = [...answersAllRef.current.slice(0, d), label];
+    depthRef.current = d + 1;
+    syncView();
+    window.history.pushState({ assistent: true, depth: d + 1 }, "");
   };
 
-  const stepBack = () => {
-    if (historyRef.current.length === 0) return;
-    const copy = [...historyRef.current];
-    const last = copy.pop()!;
-    historyRef.current = copy;
-    answersRef.current = answersRef.current.slice(0, copy.length);
-    setHistory(copy);
-    setAnswers(answersRef.current);
-    setScreen(last);
+  const goToDepth = (target: number) => {
+    depthRef.current = Math.max(0, Math.min(target, trailRef.current.length - 1));
+    syncView();
   };
 
-  // Chip angeklickt: direkt zu dieser Frage zurückspringen
+  // Chip angeklickt: direkt zu dieser Frage springen
   const jumpTo = (index: number) => {
-    if (index >= historyRef.current.length) return;
-    const steps = historyRef.current.length - index;
-    const target = historyRef.current[index];
-    historyRef.current = historyRef.current.slice(0, index);
-    answersRef.current = answersRef.current.slice(0, index);
-    setHistory(historyRef.current);
-    setAnswers(answersRef.current);
-    setScreen(target);
-    skipPopsRef.current += 1;
-    window.history.go(-steps);
+    if (index >= depthRef.current) return;
+    if (window.history.state?.assistent) {
+      window.history.go(index - depthRef.current);
+    } else {
+      goToDepth(index);
+    }
   };
 
   useEffect(() => {
-    const onPop = () => {
+    const onPop = (event: PopStateEvent) => {
       if (skipPopsRef.current > 0) {
         skipPopsRef.current -= 1;
         return;
       }
-      stepBack();
+      const state = event.state as { assistent?: boolean; depth?: number } | null;
+      if (state?.assistent && typeof state.depth === "number") {
+        goToDepth(state.depth);
+      } else if (depthRef.current > 0) {
+        // Basis-/fremder Eintrag erreicht -> zur Startfrage
+        goToDepth(0);
+      }
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Zurück-Button nutzt den Browser-Verlauf, damit beide Wege identisch sind
-  const back = () => {
-    window.history.back();
-  };
-
-  // Assistenten-Einträge aus dem Verlauf entfernen, bevor er verlassen wird –
-  // sonst bleiben stumme Einträge zurück
-  const clearGuard = () => {
-    const steps = historyRef.current.length;
-    if (steps > 0) {
+  // Verwaiste Assistent-Eintraege aus frueheren Besuchen beim Einstieg aufraeumen (B12)
+  useEffect(() => {
+    const state = window.history.state as { assistent?: boolean; depth?: number } | null;
+    if (state?.assistent && typeof state.depth === "number" && state.depth > 0 && depthRef.current === 0) {
       skipPopsRef.current += 1;
-      window.history.go(-steps);
+      window.history.go(-state.depth);
     }
-    historyRef.current = [];
-    answersRef.current = [];
-    setHistory([]);
-    setAnswers([]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Zurueck-Button: Browser-Verlauf nutzen; nach Wiederherstellung ohne Eintraege intern
+  const back = () => {
+    if (depthRef.current === 0) return;
+    if (window.history.state?.assistent) {
+      window.history.back();
+    } else {
+      goToDepth(depthRef.current - 1);
+    }
   };
 
+  // Beim Wechsel in die Buchung bleiben die Frage-Eintraege im Verlauf stehen:
+  // die Buchungsschritte stapeln sich darauf, Browser-Zurueck laeuft nahtlos
+  // durch Buchung UND Assistent zurueck (kein Aufraeum-Wettlauf mehr)
   const exitWith = (key: PackageKey, premium?: PremiumDeliveryOptions) => {
-    const summary = answersRef.current.join(" · ");
-    clearGuard();
+    const summary = answersAllRef.current.slice(0, depthRef.current).join(" · ");
     onSelectPackage(key, premium, summary);
   };
 
+  // Beim Unmount (Wechsel in die Buchung o. Ae.) Antworten fuer die Rueckkehr sichern (B3)
+  useEffect(() => {
+    return () => {
+      // Sackgassen nicht einfrieren – sonst landet der Kunde nach der Rueckkehr
+      // wieder auf "Blitzabmeldung nicht moeglich"
+      if (trailRef.current[depthRef.current] === "abmeldung-unmoeglich") {
+        savedWizardState = null;
+        return;
+      }
+      if (depthRef.current > 0) {
+        savedWizardState = {
+          screen: trailRef.current[depthRef.current],
+          trail: trailRef.current.slice(0, depthRef.current + 1),
+          answers: answersAllRef.current.slice(0, depthRef.current),
+          condition: conditionRef.current,
+          holder: holderRef.current,
+          resultKey: resultKeyRef.current,
+          sofortFallback: sofortFallbackRef.current,
+          premiumDelivery: premiumDeliveryRef.current,
+          pickupAddress: pickupAddressRef.current,
+        };
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const restart = () => {
-    clearGuard();
+    // Kein asynchrones Zurueckspulen (Wettlauf-Gefahr) – aktueller Eintrag wird
+    // einfach zum neuen Nullpunkt erklaert
+    window.history.replaceState({ assistent: true, depth: 0 }, "");
+    savedWizardState = null;
+    trailRef.current = ["start"];
+    answersAllRef.current = [];
+    depthRef.current = 0;
+    setHistory([]);
+    setAnswers([]);
     setSofortFallback(false);
     setCondition(null);
     setHolder(null);
@@ -317,22 +405,31 @@ const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
     go(label, "result");
   };
 
-  const stepNumber =
-    screen === "start"
-      ? 1
-      : screen === "result" || screen === "abmeldung-unmoeglich"
-      ? 4
-      : Math.min(4, history.length + 1);
+  // Fortschritt in Prozent je Screen (B1) – ehrlicher als eine feste Punktzahl
+  const PROGRESS: Record<Screen, number> = {
+    start: 8,
+    verkauf: 60,
+    condition: 25,
+    holder: 40,
+    speed: 55,
+    "codecheck-zulassung": 75,
+    delivery: 75,
+    "pickup-check": 88,
+    "codecheck-abmeldung": 60,
+    "abmeldung-unmoeglich": 100,
+    result: 100,
+  };
+  const progressPercent = PROGRESS[screen];
 
   const result = RESULTS[resultKey];
-  const checklist = buildChecklist(resultKey, condition, holder);
+  const checklist = buildChecklist(resultKey, condition, holder, premiumDelivery?.mode);
   const plzValid = /^\d{5}$/.test(pickupAddress.postalCode.trim());
 
   return (
     <div ref={containerRef} className="mx-auto max-w-2xl">
       {/* Fortschritt + Zurück */}
       <div className="mb-4 flex items-center justify-between">
-        {history.length > 0 ? (
+        {answers.length > 0 ? (
           <Button type="button" variant="ghost" size="sm" onClick={back}>
             <ArrowLeft className="h-4 w-4" />
             Zurück
@@ -340,15 +437,11 @@ const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
         ) : (
           <span />
         )}
-        <div className="flex items-center gap-1.5">
-          {[1, 2, 3, 4].map((dot) => (
-            <span
-              key={dot}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                dot <= stepNumber ? "w-6 bg-primary" : "w-2 bg-muted-foreground/25"
-              }`}
-            />
-          ))}
+        <div className="h-2 w-32 overflow-hidden rounded-full bg-muted-foreground/20 sm:w-44">
+          <div
+            className="h-full rounded-full bg-primary transition-all duration-500"
+            style={{ width: `${progressPercent}%` }}
+          />
         </div>
       </div>
 
@@ -416,6 +509,22 @@ const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
             sub="Fahrzeugdaten angeben, dann Termin oder Rückruf wählen"
             onClick={() => exitWith("ankauf_only")}
           />
+          {answers.length === 0 && (
+            <p className="pt-2 text-center text-sm text-muted-foreground">
+              Doch etwas anderes?{" "}
+              <button
+                type="button"
+                className="font-semibold text-primary hover:underline"
+                onClick={() => {
+                  trailRef.current = ["start"];
+                  depthRef.current = 0;
+                  setScreen("start");
+                }}
+              >
+                Zulassung oder Abmeldung starten
+              </button>
+            </p>
+          )}
         </div>
       )}
 
@@ -482,7 +591,7 @@ const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
             accent
             icon={<Zap className="h-7 w-7 text-[hsl(var(--cta-orange))]" />}
             title="Sofort – in ca. 20 Minuten"
-            sub="Digital vor Ort, kurz warten, direkt losfahren"
+            sub="Digital vor Ort, direkt losfahren. Kennzeichen besorgen Sie selbst – vor oder nach dem Termin"
             onClick={() => {
               setSofortFallback(false);
               go("Sofort (20 Min)", "codecheck-zulassung");
@@ -902,7 +1011,13 @@ const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
             )}
 
             <div className="mt-5 border-t pt-5">
-              <p className="mb-3 font-semibold text-secondary">Das bringen Sie mit:</p>
+              <p className="mb-3 font-semibold text-secondary">
+                {resultKey === "premium"
+                  ? premiumDelivery?.mode === "shipping"
+                    ? "Das legen Sie dem Umschlag bei:"
+                    : "Das legen Sie zur Abholung bereit:"
+                  : "Das bringen Sie mit:"}
+              </p>
               <ul className="space-y-2.5">
                 {checklist.map((item) => (
                   <li key={item} className="flex items-start gap-2.5">

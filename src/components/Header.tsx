@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -49,14 +50,17 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Phone Number */}
-          <div className="hidden lg:flex items-center">
+          {/* Phone Number + CTA */}
+          <div className="hidden lg:flex items-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-secondary shadow-sm">
               <Phone className="h-4 w-4 text-primary" />
               <a href="tel:+4915142462280" className="text-sm font-semibold hover:text-primary transition-colors">
                 +4915142462280
               </a>
             </div>
+            <Button variant="cta" size="sm" asChild>
+              <Link to="/angebot">Jetzt starten</Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}

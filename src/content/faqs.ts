@@ -20,7 +20,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Wie schnell ist eine KFZ-Zulassung möglich?",
     answer:
-      "Mit unserer neuen Sofort-Zulassung erfolgt die Zulassung digital in ca. 20 Minuten. Klassisch mit Abgabe der Unterlagen dauert es maximal 24 Stunden.",
+      "Mit unserer neuen Sofort-Zulassung erfolgt die Zulassung digital in ca. 20 Minuten. Klassisch mit Abgabe der Unterlagen ist alles am nächsten Werktag fertig.",
   },
   {
     question: "Was brauche ich für die Sofort-Zulassung?",
@@ -30,7 +30,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Was ist der Unterschied zwischen SOFORT, BASIS und PREMIUM?",
     answer:
-      "SOFORT: Sie kommen kurz vorbei, die Zulassung läuft digital in ca. 20 Minuten – die Kennzeichen besorgen Sie selbst. BASIS: Sie geben die Unterlagen ab und holen am nächsten Werktag alles fertig inklusive Kennzeichen wieder ab. PREMIUM: wie BASIS, aber wir holen und bringen die Unterlagen – Sie müssen gar nicht erst zu uns kommen.",
+      "SOFORT: Sie kommen kurz vorbei, die Zulassung läuft digital in ca. 20 Minuten – die Kennzeichen besorgen Sie selbst. BASIS: Sie geben die Unterlagen ab und holen am nächsten Werktag alles fertig inklusive Kennzeichen wieder ab. PREMIUM: wie BASIS, aber wir holen und bringen die Unterlagen (Abholung im Raum Bad Salzuflen, ca. 10 Minuten Fahrweg – sonst bequem per Versand).",
   },
   {
     question: "Was kostet die Zulassung?",

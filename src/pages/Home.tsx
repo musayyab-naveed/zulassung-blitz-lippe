@@ -27,9 +27,9 @@ const Home = () => {
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-primary" />,
-      title: "Zugelassen in 20 Min oder 24h",
+      title: "Zugelassen in 20 Min – oder am nächsten Werktag",
       description:
-        "Sofort-Zulassung: in ca. 20 Minuten direkt losfahren. Klassisch: fertig am nächsten Werktag inkl. Rückversand oder Abholung.",
+        "Sofort-Zulassung: in ca. 20 Minuten direkt losfahren. Klassisch: am nächsten Werktag fertig, inkl. Rückversand oder Abholung.",
     },
   ];
 
@@ -62,7 +62,7 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <Seo
         title="Zulassungsdienst Bad Salzuflen | Sofort-Zulassung in ca. 20 Min"
-        description="KFZ-Zulassung in Bad Salzuflen und Kreis Lippe: Neu mit Sofort-Zulassung digital in ca. 20 Minuten – oder klassisch innerhalb von 24 Stunden. Optional mit Fahrzeugankauf."
+        description="KFZ-Zulassung in Bad Salzuflen und Kreis Lippe: Neu mit Sofort-Zulassung digital in ca. 20 Minuten – oder klassisch am nächsten Werktag fertig. Optional mit Fahrzeugankauf."
         path="/"
         image="/favicon.ico"
         structuredData={{
@@ -132,7 +132,7 @@ const Home = () => {
                 Sofort-Zulassung: digital in ca. 20 Minuten – Kennzeichen montieren und direkt losfahren
               </p>
               <p className="text-base sm:text-lg mb-8 text-primary-foreground/80">
-                Oder klassisch: Unterlagen abgeben, Zulassung innerhalb von 24 Stunden garantiert
+                Oder klassisch: Unterlagen abgeben, am nächsten Werktag fertig – inklusive Kennzeichen
               </p>
 
               <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 justify-center lg:justify-start">
