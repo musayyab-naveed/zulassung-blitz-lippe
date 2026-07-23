@@ -11,7 +11,7 @@ import { CheckCircle, Phone, Mail, ArrowLeft, ArrowRight, Car, ImagePlus, Upload
 import { useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useNavigationType, useSearchParams } from "react-router-dom";
 
 type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "ankauf_only";
 
@@ -133,6 +133,8 @@ const geoFaqs = [
 const Angebot = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const navigationType = useNavigationType();
 
 
   const wantsAnkaufFromParam = searchParams.get("ankauf") === "1";
@@ -187,6 +189,10 @@ const Angebot = () => {
   const [premiumFromWizard, setPremiumFromWizard] = useState(false);
   // Antwort-Weg aus dem Assistenten (Chips) – wird an Terminbuchung und Lead-Mail übergeben
   const [wizardSummary, setWizardSummary] = useState("");
+  // "Bitte mitbringen"-Liste passend zum gewaehlten Paket
+  const [wizardChecklist, setWizardChecklist] = useState<string[]>([]);
+  // Zaehler: bei bewusstem Klick auf einen Start-Button wird der Assistent frisch gemountet
+  const [wizardEpoch, setWizardEpoch] = useState(0);
 
   const selectedPackage = PACKAGES.find((pkg) => pkg.key === selectedPackageKey) ?? null;
 
@@ -247,6 +253,34 @@ const Angebot = () => {
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
+
+  // Bewusster Klick auf einen Start-Button (Header/Hero/Checkliste/FAQ) = frischer
+  // Durchlauf. Nur Browser-Zurueck (POP) stellt einen angefangenen Durchlauf wieder her.
+  useEffect(() => {
+    // Link-Klick auf die aktuelle Seite ist in React Router ein REPLACE –
+    // nur echtes Browser-Zurueck/Vorwaerts (POP) darf wiederherstellen
+    if (navigationType === "POP") return;
+    clearSavedWizardState();
+    setWizardEpoch((epoch) => epoch + 1);
+    if (!packageFromQuery) {
+      setSelectedPackageKey(null);
+      setSellDecision(null);
+      setSellVehicleData({ marke: "", modell: "", baujahr: "", kilometerstand: "", telefon: "" });
+      setVehicleImages([]);
+      setVehicleImagesError("");
+      setPickupChoice(null);
+      setPickupCheckResult(null);
+      setPickupCheckError("");
+      setLeadSendError("");
+      setLeadSendMessage("");
+      setAnkaufContactChoice(null);
+      setPremiumFromWizard(false);
+      setWizardSummary("");
+      setWizardChecklist([]);
+      setCurrentStep(1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.key]);
 
   // Direktlink ?paket=...: Schritt 2 als Verlaufs-Zustand markieren, ohne Extra-Eintrag
   useEffect(() => {
@@ -421,6 +455,47 @@ const Angebot = () => {
       ? "Versand an uns, Express zurück"
       : "-";
 
+  // Fallback-Checklisten fuer Direktlinks ohne Assistenten-Durchlauf
+  const FALLBACK_CHECKLIST: Record<string, string[]> = {
+    sofort: [
+      "eVB-Nummer Ihrer KFZ-Versicherung",
+      "Personalausweis oder Reisepass",
+      "Zulassungsbescheinigung Teil I und II",
+      "IBAN für die KFZ-Steuer",
+      "Kennzeichen besorgen Sie selbst – vor oder nach dem Termin",
+    ],
+    basis: [
+      "eVB-Nummer Ihrer KFZ-Versicherung",
+      "Personalausweis oder Reisepass",
+      "Zulassungsbescheinigung Teil I und II",
+      "HU-Nachweis – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist",
+      "IBAN für die KFZ-Steuer",
+    ],
+    premium: [
+      "eVB-Nummer Ihrer KFZ-Versicherung",
+      "Personalausweis oder Reisepass",
+      "Zulassungsbescheinigung Teil I und II",
+      "HU-Nachweis – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist",
+      "IBAN für die KFZ-Steuer",
+    ],
+    abmeldung: [
+      "Beide Kennzeichenschilder",
+      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+      "Personalausweis oder Reisepass",
+    ],
+  };
+  const effectiveChecklist =
+    wizardChecklist.length > 0
+      ? wizardChecklist
+      : selectedPackageKey && selectedPackageKey !== "ankauf_only"
+      ? FALLBACK_CHECKLIST[selectedPackageKey] ?? []
+      : [];
+  // Leerzeile davor, Ueberschrift in Grossbuchstaben, jeder Punkt in eigener Zeile
+  const checklistText =
+    effectiveChecklist.length > 0
+      ? `\nBITTE MITBRINGEN:\n${effectiveChecklist.map((item) => `– ${item}`).join("\n")}`
+      : null;
+
   const calNotesPrefill = [
     `Gewähltes Paket: ${selectedPackage?.title || "-"}`,
     wizardSummary ? `Assistent: ${wizardSummary}` : null,
@@ -430,6 +505,7 @@ const Angebot = () => {
     `Fahrzeugbilder: ${vehicleImagesText}`,
     `Premium-Abwicklung: ${premiumMode}`,
     `Premium-Adresse: ${premiumAdresseText}`,
+    checklistText,
   ]
     .filter(Boolean)
     .join("\n");
@@ -480,6 +556,7 @@ const Angebot = () => {
           imageAttachments: sellDecision === "yes" ? vehicleImages : [],
           premiumAbwicklung: premiumMode,
           assistentAntworten: wizardSummary || "-",
+          checkliste: effectiveChecklist,
           premiumAdresse: isPremium && pickupChoice === "pickup" ? pickupAddress : null,
           pickupPruefung: pickupCheckResult,
           services: calServicePrefill,
@@ -656,10 +733,12 @@ const Angebot = () => {
         <section className="py-12 sm:py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <ZulassungsAssistent
+              key={wizardEpoch}
               initialScreen={searchParams.get("start") === "verkauf" ? "verkauf" : undefined}
-              onSelectPackage={(key, premium, summary) => {
+              onSelectPackage={(key, premium, summary, checklist) => {
                 selectPackage(PACKAGES.find((pkg) => pkg.key === key)!);
                 setWizardSummary(summary || "");
+                setWizardChecklist(checklist ?? []);
                 if (key === "premium" && premium) {
                   setPremiumFromWizard(true);
                   setPickupChoice(premium.mode);
@@ -1317,6 +1396,7 @@ const Angebot = () => {
                             fahrzeugdaten: vehicleDetails,
                             premiumAbwicklung: premiumMode,
           assistentAntworten: wizardSummary || "-",
+          checkliste: effectiveChecklist,
                           },
                         }}
                       />

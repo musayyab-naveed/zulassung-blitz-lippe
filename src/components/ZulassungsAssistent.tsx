@@ -71,7 +71,12 @@ export const clearSavedWizardState = () => {
 };
 
 interface Props {
-  onSelectPackage: (key: PackageKey, premium?: PremiumDeliveryOptions, summary?: string) => void;
+  onSelectPackage: (
+    key: PackageKey,
+    premium?: PremiumDeliveryOptions,
+    summary?: string,
+    checklist?: string[]
+  ) => void;
   /** Optional direkt bei einer bestimmten Frage einsteigen (z. B. Verkauf) */
   initialScreen?: Extract<Screen, "start" | "verkauf">;
 }
@@ -339,7 +344,18 @@ const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
   // durch Buchung UND Assistent zurueck (kein Aufraeum-Wettlauf mehr)
   const exitWith = (key: PackageKey, premium?: PremiumDeliveryOptions) => {
     const summary = answersAllRef.current.slice(0, depthRef.current).join(" · ");
-    onSelectPackage(key, premium, summary);
+    // Paketgenaue Checkliste mitgeben – landet in Cal.com-Notizen und damit in
+    // der Bestaetigungs-Mail des Kunden sowie im Kalendereintrag
+    const checklist =
+      key === "ankauf_only"
+        ? undefined
+        : [
+            ...buildChecklist(key as Exclude<PackageKey, "ankauf_only">, conditionRef.current, holderRef.current, premium?.mode),
+            ...(key === "sofort"
+              ? ["Kennzeichen besorgen Sie selbst – vor oder nach dem Termin"]
+              : []),
+          ];
+    onSelectPackage(key, premium, summary, checklist);
   };
 
   // Beim Unmount (Wechsel in die Buchung o. Ae.) Antworten fuer die Rueckkehr sichern (B3)
