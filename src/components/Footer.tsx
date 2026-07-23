@@ -56,6 +56,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link
+                  to="/dokumente"
+                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                >
+                  Formulare
+                </Link>
+              </li>
+              <li>
                 <Link 
                   to="/ueber-uns" 
                   className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"

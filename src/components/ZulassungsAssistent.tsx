@@ -22,6 +22,7 @@ import {
   Sparkles,
   User,
   Building2,
+  Download,
 } from "lucide-react";
 import fahrzeugbriefImg from "@/assets/dokumente/fahrzeugbrief-zb2.jpg";
 import zb1CodeImg from "@/assets/dokumente/zb1-code-verdeckt.jpg";
@@ -1021,6 +1022,15 @@ const ZulassungsAssistent = ({ onSelectPackage, initialScreen }: Props) => {
                     <p className="mt-1 text-xs text-muted-foreground">
                       Am besten versichert mit Sendungsverfolgung (z. B. DHL). Den Express-Rückversand übernehmen wir.
                     </p>
+                    <a
+                      href="/dokumente"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                    >
+                      <Download className="h-4 w-4" />
+                      Vollmacht & SEPA-Mandat herunterladen (zum Beilegen)
+                    </a>
                   </div>
                 )}
               </>

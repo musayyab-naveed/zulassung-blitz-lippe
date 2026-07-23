@@ -14,6 +14,7 @@ import Fahrzeugankauf from "./pages/Fahrzeugankauf";
 import MobileCtaBar from "./components/MobileCtaBar";
 import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import Faq from "./pages/Faq";
+import Dokumente from "./pages/Dokumente";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/dokumente" element={<Dokumente />} />
           <Route path="/blog" element={<Navigate to="/faq" replace />} />
           <Route path="/blog/:slug" element={<Navigate to="/faq" replace />} />
           <Route path="/impressum" element={<Impressum />} />

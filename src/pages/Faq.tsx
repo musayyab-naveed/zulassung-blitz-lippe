@@ -88,7 +88,11 @@ const Faq = () => {
             <p className="text-sm text-foreground">
               <span className="font-semibold text-secondary">Vollmacht und SEPA-Lastschriftmandat</span>{" "}
               müssen Sie nicht vorbereiten – beide Formulare bekommen Sie bei uns und füllen sie einfach
-              vor Ort aus.
+              vor Ort aus. Wenn Sie uns die Unterlagen zusenden möchten, finden Sie die Formulare{" "}
+              <Link to="/dokumente" className="font-semibold text-primary hover:underline">
+                hier zum Ausdrucken
+              </Link>
+              .
             </p>
           </div>
 

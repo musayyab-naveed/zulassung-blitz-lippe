@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import ZulassungsAssistent, { AnswerCard, clearSavedWizardState } from "@/components/ZulassungsAssistent";
 import { checkPickupAddress } from "@/lib/pickupCheck";
-import { CheckCircle, Phone, Mail, ArrowLeft, ArrowRight, Car, ImagePlus, Upload, ArrowUp, ArrowDown, X, Pencil } from "lucide-react";
+import { CheckCircle, Phone, Mail, ArrowLeft, ArrowRight, Car, ImagePlus, Upload, ArrowUp, ArrowDown, X, Pencil, Download } from "lucide-react";
 import { useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
@@ -1040,6 +1040,15 @@ const Angebot = () => {
                           <p className="mt-1 text-xs text-muted-foreground">
                             Am besten versichert mit Sendungsverfolgung (z. B. DHL). Den Express-Rückversand übernehmen wir.
                           </p>
+                          <a
+                            href="/dokumente"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                          >
+                            <Download className="h-4 w-4" />
+                            Vollmacht & SEPA-Mandat herunterladen (zum Beilegen)
+                          </a>
                         </div>
                       )}
                     </div>
