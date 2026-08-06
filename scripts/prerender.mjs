@@ -187,9 +187,16 @@ for (const route of routes) {
     `  <script type="application/ld+json" data-seo="static">${jsonLd}</script>\n  </head>`
   );
 
-  const targetDir = route.path === "/" ? distDir : join(distDir, route.path);
-  mkdirSync(targetDir, { recursive: true });
-  writeFileSync(join(targetDir, "index.html"), html, "utf8");
+  // Flache Dateien (faq.html statt faq/index.html): Netlify liefert /faq dann
+  // direkt aus, ohne 301-Umleitung auf /faq/ – sonst widerspricht die
+  // ausgelieferte URL dem Canonical-Tag.
+  if (route.path === "/") {
+    writeFileSync(join(distDir, "index.html"), html, "utf8");
+  } else {
+    const target = join(distDir, `${route.path.replace(/^\//, "")}.html`);
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, html, "utf8");
+  }
   written += 1;
 }
 
