@@ -33,6 +33,11 @@ export const generalFaqs: FaqItem[] = [
       "SOFORT: Sie kommen kurz vorbei, die Zulassung läuft digital in ca. 20 Minuten – die Kennzeichen besorgen Sie selbst. BASIS: Sie geben die Unterlagen ab und holen am nächsten Werktag alles fertig inklusive Kennzeichen wieder ab. PREMIUM: wie BASIS, aber wir holen und bringen die Unterlagen (Abholung im Raum Bad Salzuflen, ca. 10 Minuten Fahrweg – sonst bequem per Versand).",
   },
   {
+    question: "Bekomme ich die Kennzeichen bei Ihnen?",
+    answer:
+      "Ja – bei BASIS und PREMIUM sind die Kennzeichen im Preis enthalten, Sie bekommen alles fertig zurück. Bei der Sofort-Zulassung besorgen Sie die Schilder selbst, vor oder nach dem Termin (Wunschkennzeichen möglich, +13 €). Zugelassen sind Sie in jedem Fall. Hinweis: Kennzeichen geben wir nur zusammen mit einer Zulassung aus – reine Schilderprägung bieten wir nicht an.",
+  },
+  {
     question: "Was kostet die Zulassung?",
     answer:
       "Die Zulassung gibt es ab 129 €, die Blitzabmeldung direkt vor Ort für 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Optionale Extras: Wunschkennzeichen +13 €, Feinstaubplakette +6 €.",

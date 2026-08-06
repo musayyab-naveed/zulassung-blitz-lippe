@@ -40,7 +40,7 @@ export interface RouteSeo {
 export const ROUTE_SEO: RouteSeo[] = [
   {
     path: "/",
-    title: "Zulassungsdienst Bad Salzuflen – Auto zulassen in 20 Min | Kreis Lippe",
+    title: "Zulassungsdienst Bad Salzuflen – KFZ-Zulassung in 20 Min | Kreis Lippe",
     description:
       "KFZ-Zulassung in Bad Salzuflen ohne Behördentermin: Sofort-Zulassung digital in ca. 20 Minuten ab 129 €, klassisch zum nächsten Werktag, Blitzabmeldung 40 €. 5,0 ★ bei 46 Bewertungen. Auch samstags geöffnet.",
   },
