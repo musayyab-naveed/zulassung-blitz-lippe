@@ -55,10 +55,7 @@ const Fahrzeugankauf = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Fahrzeugankauf in Bad Salzuflen | Mit oder ohne Zulassung"
-        description="Fahrzeugverkauf in Bad Salzuflen mit oder ohne Zulassung: schnelle Ersteinschätzung, faire Ankaufprüfung und auf Wunsch kostenlose Abmeldung."
         path="/fahrzeugankauf"
-        image="/favicon.ico"
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
@@ -80,7 +77,7 @@ const Fahrzeugankauf = () => {
               },
               serviceType: "Fahrzeugankauf",
               areaServed: "Kreis Lippe",
-              url: "/fahrzeugankauf",
+              url: "https://sofortzulassung.com/fahrzeugankauf",
             },
             {
               "@type": "FAQPage",

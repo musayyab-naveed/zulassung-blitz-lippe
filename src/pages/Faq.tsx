@@ -12,10 +12,7 @@ const Faq = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="FAQ & Unterlagen | KFZ-Sofortzulassung Bad Salzuflen"
-        description="Alle Unterlagen für Zulassung, Umschreibung, Wiederzulassung und Abmeldung im Kreis Lippe – plus Antworten auf die häufigsten Fragen zur Sofort-Zulassung."
         path="/faq"
-        image="/favicon.ico"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "FAQPage",

@@ -34,10 +34,7 @@ const Dokumente = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Formulare zum Download | Vollmacht & SEPA-Mandat"
-        description="Vollmacht für Zulassung und Abmeldung sowie SEPA-Lastschriftmandat als PDF zum Ausdrucken – für Kunden im Kreis Lippe, die uns die Unterlagen zusenden."
         path="/dokumente"
-        image="/favicon.ico"
       />
       <Header />
 

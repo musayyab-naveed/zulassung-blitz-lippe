@@ -11,27 +11,12 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://sofortzulassung.com/fahrzeugankauf</loc>
-    <changefreq>weekly</changefreq>
+    <loc>https://sofortzulassung.com/faq</loc>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://sofortzulassung.com/ueber-uns</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://sofortzulassung.com/impressum</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://sofortzulassung.com/datenschutz</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://sofortzulassung.com/faq</loc>
+    <loc>https://sofortzulassung.com/fahrzeugankauf</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -39,5 +24,10 @@
     <loc>https://sofortzulassung.com/dokumente</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://sofortzulassung.com/ueber-uns</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

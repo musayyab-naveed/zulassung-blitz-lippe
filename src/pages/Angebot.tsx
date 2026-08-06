@@ -686,10 +686,7 @@ const Angebot = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Zulassung starten | KFZ-Sofortzulassung Bad Salzuflen"
-        description="Unser Assistent führt Sie in wenigen Klicks zur passenden Zulassung, Blitzabmeldung oder Ankaufanfrage – Termin direkt online buchen."
         path="/angebot"
-        image="/favicon.ico"
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
@@ -713,17 +710,6 @@ const Angebot = () => {
               serviceType: ["KFZ-Zulassung", "Abmeldung", "Fahrzeugankauf"],
               url: "/angebot",
             },
-            {
-              "@type": "FAQPage",
-              mainEntity: geoFaqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.answer,
-                },
-              })),
-            },
           ],
         }}
       />
@@ -732,6 +718,9 @@ const Angebot = () => {
       {currentStep === 1 && (
         <section className="py-12 sm:py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 className="mb-8 text-center text-2xl font-bold text-secondary sm:text-3xl">
+              KFZ-Zulassung online beauftragen – Bad Salzuflen &amp; Kreis Lippe
+            </h1>
             <ZulassungsAssistent
               key={wizardEpoch}
               initialScreen={searchParams.get("start") === "verkauf" ? "verkauf" : undefined}

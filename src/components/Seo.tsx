@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { SITE_URL, getRouteSeo } from "@/content/seoRoutes";
 
 interface SeoProps {
-  title: string;
-  description: string;
+  /** Optional – ohne Angabe wird der Titel aus src/content/seoRoutes.ts genutzt */
+  title?: string;
+  description?: string;
   path?: string;
   image?: string;
   robots?: string;
@@ -23,8 +25,8 @@ const ensureMetaTag = (selector: string, attrs: Record<string, string>, content:
 };
 
 const Seo = ({
-  title,
-  description,
+  title: titleProp,
+  description: descriptionProp,
   path,
   image = "/favicon.ico",
   robots = "index, follow",
@@ -34,8 +36,11 @@ const Seo = ({
 
   useEffect(() => {
     const siteName = "KFZ-Sofortzulassung";
-    const configuredSiteUrl = import.meta.env.VITE_SITE_URL as string | undefined;
-    const siteUrl = configuredSiteUrl?.replace(/\/+$/, "") || window.location.origin;
+    const configuredSiteUrl = (import.meta.env.VITE_SITE_URL as string | undefined) || SITE_URL;
+    const siteUrl = configuredSiteUrl.replace(/\/+$/, "");
+    const routeSeo = getRouteSeo(path ?? location.pathname);
+    const title = titleProp ?? routeSeo?.title ?? siteName;
+    const description = descriptionProp ?? routeSeo?.description ?? "";
     const currentPath = path ?? `${location.pathname}${location.search}`;
     const canonicalUrl = `${siteUrl}${currentPath.startsWith("/") ? currentPath : `/${currentPath}`}`;
     const imageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
@@ -84,7 +89,7 @@ const Seo = ({
     } else if (existingSchema) {
       existingSchema.remove();
     }
-  }, [title, description, path, image, robots, structuredData, location.pathname, location.search]);
+  }, [titleProp, descriptionProp, path, image, robots, structuredData, location.pathname, location.search]);
 
   return null;
 };

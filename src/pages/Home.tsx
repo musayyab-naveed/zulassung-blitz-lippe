@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import GoogleReviews from "@/components/GoogleReviews";
 import Seo from "@/components/Seo";
 import { generalFaqs } from "@/content/faqs";
+import { buildLocalBusinessSchema } from "@/content/seoRoutes";
 import heroImage from "@/assets/hero-image-optimized.jpg";
 import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -61,39 +62,11 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Zulassungsdienst Bad Salzuflen | Sofort-Zulassung in ca. 20 Min"
-        description="KFZ-Zulassung in Bad Salzuflen und Kreis Lippe: Neu mit Sofort-Zulassung digital in ca. 20 Minuten – oder klassisch am nächsten Werktag fertig. Optional mit Fahrzeugankauf."
         path="/"
-        image="/favicon.ico"
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
-            {
-              "@type": "LocalBusiness",
-              name: "KFZ-Sofortzulassung",
-              image: "/favicon.ico",
-              telephone: "+49 1514 2462280",
-              email: "info@sofortzulassung.com",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Werler Straße 68",
-                postalCode: "32105",
-                addressLocality: "Bad Salzuflen",
-                addressCountry: "DE",
-              },
-              areaServed: "Kreis Lippe",
-              url: "/",
-            },
-            {
-              "@type": "Service",
-              name: "KFZ-Zulassung und Fahrzeugankauf",
-              provider: {
-                "@type": "LocalBusiness",
-                name: "KFZ-Sofortzulassung",
-              },
-              serviceType: ["KFZ-Zulassung", "Abmeldung", "Fahrzeugankauf"],
-              areaServed: "Kreis Lippe",
-            },
+            buildLocalBusinessSchema(),
             {
               "@type": "FAQPage",
               mainEntity: generalFaqs.map((faq) => ({

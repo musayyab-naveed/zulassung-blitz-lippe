@@ -62,10 +62,7 @@ const UeberUns = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Über Uns | KFZ-Sofortzulassung Bad Salzuflen"
-        description="Lernen Sie KFZ-Sofortzulassung kennen: persönlicher Service, schnelle Bearbeitung und zuverlässige KFZ-Zulassung im Kreis Lippe."
         path="/ueber-uns"
-        image="/favicon.ico"
       />
       <Header />
       
