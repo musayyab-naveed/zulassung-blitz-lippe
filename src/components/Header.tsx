@@ -10,6 +10,7 @@ const Header = () => {
 
   const navigation = [
     { name: "Startseite", href: "/" },
+    { name: "Preise", href: "/preise" },
     { name: "FAQ", href: "/faq" },
     { name: "Fahrzeugankauf", href: "/fahrzeugankauf" },
     { name: "Über uns", href: "/ueber-uns" },

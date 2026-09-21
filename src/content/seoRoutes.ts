@@ -1,3 +1,5 @@
+import { buildOfferCatalog } from "./preise";
+
 // Zentrale SEO-Daten je Seite.
 // Wird von den React-Seiten UND vom Prerender-Schritt (scripts/prerender.mjs)
 // genutzt, damit Suchmaschinen schon im ausgelieferten HTML den richtigen
@@ -49,6 +51,12 @@ export const ROUTE_SEO: RouteSeo[] = [
     title: "Zulassung online beauftragen – Termin buchen | KFZ-Sofortzulassung",
     description:
       "Auto zulassen, ummelden oder abmelden im Kreis Lippe: In wenigen Klicks zum passenden Paket und direkt online einen Termin in Bad Salzuflen buchen – ohne Wartezeit bei der Zulassungsstelle.",
+  },
+  {
+    path: "/preise",
+    title: "Preise KFZ-Zulassung Bad Salzuflen – ab 129 € inkl. Gebühren",
+    description:
+      "Alle Preise auf einen Blick: Sofort-Zulassung ab 129 €, Zulassung mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Blitzabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten – Zulassungsdienst im Kreis Lippe.",
   },
   {
     path: "/faq",
@@ -138,62 +146,6 @@ export const buildLocalBusinessSchema = () => ({
     { "@type": "City", name: "Herford" },
     { "@type": "AdministrativeArea", name: "Kreis Lippe" },
   ],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Leistungen",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        name: "Sofort-Zulassung (digital, ca. 20 Minuten)",
-        price: "129",
-        priceCurrency: "EUR",
-        description:
-          "Digitale Zulassung vor Ort in ca. 20 Minuten. Kennzeichen besorgen Sie selbst, vor oder nach dem Termin.",
-      },
-      {
-        "@type": "Offer",
-        name: "BASIS – Zulassung zum nächsten Werktag",
-        price: "129",
-        priceCurrency: "EUR",
-        description: "Unterlagen abgeben, am nächsten Werktag alles fertig abholen – inklusive Kennzeichen.",
-      },
-      {
-        "@type": "Offer",
-        name: "PREMIUM – mit Hol- und Bringservice",
-        price: "159",
-        priceCurrency: "EUR",
-        description:
-          "Wir holen die Unterlagen ab und bringen alles fertig zurück (Raum Bad Salzuflen) oder wickeln per Versand ab.",
-      },
-      {
-        "@type": "Offer",
-        name: "Blitzabmeldung (Außerbetriebsetzung)",
-        price: "40",
-        priceCurrency: "EUR",
-        description: "Fahrzeug direkt vor Ort digital abmelden – Sie warten nur kurz.",
-      },
-      {
-        "@type": "Offer",
-        name: "Wunschkennzeichen-Reservierung",
-        price: "13",
-        priceCurrency: "EUR",
-        description: "Wunschkombination für den Kreis Lippe reservieren lassen.",
-      },
-      {
-        "@type": "Offer",
-        name: "Feinstaubplakette",
-        price: "6",
-        priceCurrency: "EUR",
-        description: "Grüne Umweltplakette direkt mit der Zulassung.",
-      },
-      {
-        "@type": "Offer",
-        name: "Fahrzeugankauf",
-        price: "0",
-        priceCurrency: "EUR",
-        description:
-          "Kostenlose und unverbindliche Ankaufanfrage – beim Ankauf ist die Abmeldung gratis.",
-      },
-    ],
-  },
+  // Preise kommen aus src/content/preise.ts – dort werden sie gepflegt.
+  hasOfferCatalog: buildOfferCatalog(),
 });

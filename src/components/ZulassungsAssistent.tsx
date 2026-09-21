@@ -29,7 +29,7 @@ import zb1CodeImg from "@/assets/dokumente/zb1-code-verdeckt.jpg";
 import plaketteImg from "@/assets/dokumente/plakette-verdeckt.jpg";
 // Hinweis: zb1/zb2/plakette sind offizielle Abbildungen des BMV (bmv.de, i-Kfz-Infoseite)
 
-type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "ankauf_only";
+import { PACKAGES, EXTRAS, type PackageKey } from "@/content/preise";
 
 type Screen =
   | "start"
@@ -102,30 +102,37 @@ interface ResultInfo {
   kennzeichenHinweis?: string;
 }
 
+// Preise kommen aus src/content/preise.ts – hier steht keine zweite Kopie.
+const preisVon = (key: Exclude<PackageKey, "ankauf_only">) =>
+  PACKAGES.find((pkg) => pkg.key === key)?.price ?? "";
+
+const wunschkennzeichen = EXTRAS.find((e) => e.name === "Wunschkennzeichen")?.price ?? "";
+const feinstaubplakette = EXTRAS.find((e) => e.name === "Feinstaubplakette")?.price ?? "";
+const extrasZeile = `Optionale Extras: Wunschkennzeichen ${wunschkennzeichen} · Feinstaubplakette ${feinstaubplakette}`;
+
 const RESULTS: Record<Exclude<PackageKey, "ankauf_only">, ResultInfo> = {
   sofort: {
     title: "SOFORT-Zulassung",
-    price: "ab 129 €",
+    price: preisVon("sofort"),
     tagline: "Digital zugelassen in ca. 20 Minuten – Sie warten kurz vor Ort und fahren direkt los.",
-    extras: "Optionale Extras: Wunschkennzeichen +13 € · Feinstaubplakette +6 €",
-    kennzeichenHinweis:
-      "Kennzeichen besorgen Sie selbst – vor oder nach der Zulassung (Wunschkennzeichen +13 €). Zugelassen sind Sie in jedem Fall.",
+    extras: extrasZeile,
+    kennzeichenHinweis: `Kennzeichen besorgen Sie selbst – vor oder nach der Zulassung (Wunschkennzeichen ${wunschkennzeichen}). Zugelassen sind Sie in jedem Fall.`,
   },
   basis: {
     title: "BASIS",
-    price: "129 €",
+    price: preisVon("basis"),
     tagline: "Unterlagen abgeben, am nächsten Werktag alles fertig abholen – inklusive Kennzeichen.",
-    extras: "Optionale Extras: Wunschkennzeichen +13 € · Feinstaubplakette +6 €",
+    extras: extrasZeile,
   },
   premium: {
     title: "PREMIUM",
-    price: "159 €",
+    price: preisVon("premium"),
     tagline: "Wir holen Ihre Unterlagen ab und bringen alles fertig zurück – Sie müssen nirgendwo hin.",
-    extras: "Optionale Extras: Wunschkennzeichen +13 € · Feinstaubplakette +6 €",
+    extras: extrasZeile,
   },
   abmeldung: {
     title: "BLITZABMELDUNG",
-    price: "40 €",
+    price: preisVon("abmeldung"),
     tagline: "Sofort vor Ort abgemeldet – Sie warten kurz und alles ist erledigt.",
   },
 };

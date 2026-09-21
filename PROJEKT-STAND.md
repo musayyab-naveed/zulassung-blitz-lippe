@@ -15,6 +15,12 @@ Kurzübergabe für die nächste Arbeitssitzung. Alles hier Beschriebene ist live
   Titel/Canonical/Schema. Vorher sagte jede Unterseite Google "ich bin die Startseite".
 - Schema mit 5,0★ / 46 Bewertungen, Öffnungszeiten, Koordinaten, allen Preisen
 - SEO-Texte zentral in `src/content/seoRoutes.ts` (eine Quelle für React + Build-Schritt)
+- **Preisseite `/preise`** gebaut: Preistabelle, Pakete im Detail, Zusatzleistungen,
+  "enthalten / nicht enthalten", 7 Preis-Fragen mit FAQ-Auszeichnung für Google.
+  Verlinkt aus Menü, Fußzeile, Startseite und FAQ; in der Sitemap eingetragen.
+- **Preise stehen jetzt nur noch in `src/content/preise.ts`.** Preisseite, Buchungsseite
+  `/angebot`, der Assistent und das Google-Schema holen sich die Zahlen von dort.
+  Preisänderung = eine Zeile in dieser Datei, überall gleichzeitig korrekt.
 
 ## Angebot (Stand jetzt)
 | Paket | Preis | Inhalt |
@@ -37,11 +43,12 @@ Nicht im Angebot: Kurzzeitkennzeichen, Ausfuhrkennzeichen, reine Schilderprägun
 1. Buchungslink im Unternehmensprofil auf `sofortzulassung.com/angebot` setzen
 2. Fotos ergänzen
 3. Google Search Console anlegen + Sitemap `sofortzulassung.com/sitemap.xml` einreichen
+   (enthält jetzt auch `/preise`)
 4. **Profilnamen NICHT ändern** – die Keywords darin bringen Sichtbarkeit
 
 ### Neue Seiten (SEO, noch nicht gebaut)
 Reihenfolge nach Wirkung:
-1. `/preise` – kein regionaler Wettbewerber zeigt Preise
+1. ~~`/preise`~~ – **erledigt**
 2. `/zulassungsstelle-bad-salzuflen` – "zulassungsstelle" ist mit 761 Anfragen der Top-Suchbegriff
 3. "Samstags & ohne Termin" prominenter auf der Startseite
 4. `/auto-abmelden` (242 Anfragen), `/wunschkennzeichen` (230 Anfragen)

@@ -7,25 +7,12 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import ZulassungsAssistent, { AnswerCard, clearSavedWizardState } from "@/components/ZulassungsAssistent";
 import { checkPickupAddress } from "@/lib/pickupCheck";
+import { PACKAGES, type PackageDef, type PackageKey } from "@/content/preise";
 import { CheckCircle, Phone, Mail, ArrowLeft, ArrowRight, Car, ImagePlus, Upload, ArrowUp, ArrowDown, X, Pencil, Download } from "lucide-react";
 import { useRef, useState } from "react";
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 import { useLocation, useNavigate, useNavigationType, useSearchParams } from "react-router-dom";
-
-type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "ankauf_only";
-
-interface PackageDef {
-  key: PackageKey;
-  title: string;
-  price: string;
-  subtitle?: string;
-  features: string[];
-  highlight?: string;
-  buttonText: string;
-  popular?: boolean;
-  buttonVariant?: "default" | "cta";
-}
 
 interface UploadImageItem {
   id: string;
@@ -34,83 +21,6 @@ interface UploadImageItem {
   size: number;
   dataUrl: string;
 }
-
-const PACKAGES: PackageDef[] = [
-  {
-    key: "sofort",
-    title: "SOFORT",
-    price: "ab 129 €",
-    subtitle:
-      "Fertig in ca. 20 Min – Sie warten kurz vor Ort. Kennzeichen besorgen Sie selbst, vor oder nach der Zulassung – zugelassen sind Sie in jedem Fall.",
-    popular: true,
-    features: [
-      "Zulassung digital in ca. 20 Minuten",
-      "Direkt losfahren",
-      "Wunschkennzeichen möglich (+13 €)",
-      "Verwaltungsgebühren inkl.",
-    ],
-    buttonText: "SOFORT WÄHLEN",
-    buttonVariant: "cta" as const,
-  },
-  {
-    key: "basis",
-    title: "BASIS",
-    price: "129 €",
-    subtitle: "Fertig am nächsten Werktag – Sie bringen & holen die Unterlagen",
-    features: [
-      "Fertig am nächsten Werktag",
-      "Unterlagen vor Ort abgeben",
-      "Verwaltungsgebühren inkl.",
-      "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
-      "Kostenlose Abmeldung bei Ankauf",
-    ],
-    buttonText: "BASIS WÄHLEN",
-    buttonVariant: "cta" as const,
-  },
-  {
-    key: "premium",
-    title: "PREMIUM",
-    price: "159 €",
-    subtitle: "Fertig am nächsten Werktag – wir holen & bringen alles",
-    features: [
-      "Alles vom BASIS",
-      "Hol- und Bringservice möglich",
-      "Express-Rückversand inklusive",
-      "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
-      "Kostenlose Abmeldung bei Ankauf",
-    ],
-    buttonText: "PREMIUM WÄHLEN",
-    buttonVariant: "cta" as const,
-  },
-  {
-    key: "abmeldung",
-    title: "BLITZABMELDUNG",
-    price: "40 €",
-    subtitle: "Sofort vor Ort abgemeldet – Sie warten kurz",
-    features: [
-      "Abmeldung digital direkt vor Ort",
-      "Verwaltungsgebühren inkl.",
-      "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
-      "Kostenlose Abmeldung bei Ankauf",
-    ],
-    highlight:
-      "Voraussetzung: Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen (Zulassung ab 2015)",
-    buttonText: "BLITZABMELDUNG WÄHLEN",
-    buttonVariant: "cta" as const,
-  },
-  {
-    key: "ankauf_only",
-    title: "NUR FAHRZEUGVERKAUF",
-    price: "0 €",
-    features: [
-      "Unverbindliche Ankaufanfrage ohne Zulassungspaket",
-      "Fahrzeugdaten erfassen und Termin vereinbaren",
-      "Fachgerechte Verwertung nicht fahrbereiter Fahrzeuge möglich",
-    ],
-    buttonText: "NUR FAHRZEUGVERKAUF WÄHLEN",
-    buttonVariant: "cta" as const,
-  },
-];
 
 const geoFaqs = [
   {
@@ -139,6 +49,8 @@ const Angebot = () => {
 
   const wantsAnkaufFromParam = searchParams.get("ankauf") === "1";
   const paketParam = (searchParams.get("paket") || "").trim().toLowerCase();
+  // Woher kam der Kunde? (?von=preise) -> "Zurueck" fuehrt dorthin zurueck
+  const herkunftParam = (searchParams.get("von") || "").trim().toLowerCase();
   const packageFromQuery =
     PACKAGES.find((pkg) => pkg.key === paketParam || pkg.title.toLowerCase() === paketParam) ?? null;
 
@@ -228,6 +140,10 @@ const Angebot = () => {
   // Kam der Kunde per Direktlink (?paket=...) in Schritt 2? Dann gibt es keinen
   // Assistenten-Verlauf darunter.
   const enteredViaQueryRef = useRef(Boolean(packageFromQuery));
+  const herkunftRef = useRef(herkunftParam);
+  // Ist der Kunde per Klick hierher gekommen (statt die Adresse direkt zu oeffnen)?
+  // Dann fuehrt echtes Browser-Zurueck sauber auf die vorige Seite samt Scrollposition.
+  const cameByClickRef = useRef(navigationType === "PUSH");
 
   const goToStep = (step: 2 | 3) => {
     setCurrentStep(step);
@@ -299,6 +215,15 @@ const Angebot = () => {
       setSelectedPackageKey(null);
       setAnkaufContactChoice(null);
       setCurrentStep(1);
+      // Kam der Kunde ueber die Preisseite, gehoert "Zurueck" auch dorthin
+      if (herkunftRef.current === "preise") {
+        if (cameByClickRef.current) {
+          navigate(-1);
+        } else {
+          navigate("/preise");
+        }
+        return;
+      }
       navigate("/angebot", { replace: true });
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;

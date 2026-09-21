@@ -15,6 +15,7 @@ import MobileCtaBar from "./components/MobileCtaBar";
 import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import Faq from "./pages/Faq";
 import Dokumente from "./pages/Dokumente";
+import Preise from "./pages/Preise";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/angebot" element={<Angebot />} />
+          <Route path="/preise" element={<Preise />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
           <Route path="/faq" element={<Faq />} />

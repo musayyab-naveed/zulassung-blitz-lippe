@@ -118,6 +118,12 @@ const Home = () => {
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
                   ✓ Direkt losfahren
                 </div>
+                <Link
+                  to="/preise"
+                  className="rounded-full bg-primary-foreground/20 px-3 py-2 text-xs font-semibold text-primary-foreground underline-offset-4 backdrop-blur-sm transition-colors hover:bg-primary-foreground/30 hover:underline sm:px-4 sm:text-sm"
+                >
+                  ab 129 € – alle Preise ansehen
+                </Link>
               </div>
 
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center lg:justify-start relative z-30">
@@ -357,6 +363,10 @@ const Home = () => {
             Alle Vorgänge und Unterlagen im Detail finden Sie in unserem{" "}
             <Link to="/faq" className="font-semibold text-primary hover:underline">
               FAQ-Bereich
+            </Link>
+            . Was das jeweils kostet, steht auf der{" "}
+            <Link to="/preise" className="font-semibold text-primary hover:underline">
+              Preisübersicht
             </Link>
             .
           </p>

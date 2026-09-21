@@ -128,7 +128,13 @@ const Faq = () => {
           </Accordion>
 
           <div className="mt-10 text-center">
-            <p className="mb-4 text-muted-foreground">Alle Unterlagen beisammen? Dann direkt starten:</p>
+            <p className="mb-4 text-muted-foreground">
+              Alle Preise mit Erklärung finden Sie auf der{" "}
+              <Link to="/preise" className="font-semibold text-primary hover:underline">
+                Preisübersicht
+              </Link>
+              . Alle Unterlagen beisammen? Dann direkt starten:
+            </p>
             <Button size="lg" variant="cta" asChild>
               <Link to="/angebot">
                 JETZT ZULASSUNG STARTEN
