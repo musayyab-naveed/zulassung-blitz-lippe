@@ -55,7 +55,7 @@ const Home = () => {
 
   const services = [
     { name: "KFZ-Zulassung (neu & gebraucht)", href: "/preise" },
-    { name: "Kfz-Versicherung vergleichen", href: "/kfz-versicherung" },
+    { name: "eVB-Nummer beantragen & Versicherung vergleichen", href: "/kfz-versicherung" },
     { name: "Auto abmelden", href: "/auto-abmelden" },
     { name: "Auto ummelden & Umschreibung", href: "/auto-ummelden" },
     { name: "Wunschkennzeichen LIP, DT, LE", href: "/wunschkennzeichen" },
@@ -137,20 +137,16 @@ const Home = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button
-                  size="lg"
-                  asChild
-                  className="h-auto rounded-xl bg-white px-8 py-6 text-lg font-bold text-secondary shadow-lg hover:bg-white/90"
-                >
+                <Button size="lg" variant="cta-large" asChild>
                   <Link to="/kfz-versicherung">
-                    <ShieldCheck className="mr-2 h-5 w-5 text-trust-green" />
-                    KFZ-VERSICHERUNG VERGLEICHEN
+                    <ShieldCheck className="mr-2 h-5 w-5" />
+                    EVB-NUMMER BEANTRAGEN
                   </Link>
                 </Button>
               </div>
               <p className="mt-4 text-sm sm:text-base text-primary-foreground/85">
-                Noch keine Versicherung? Hier vergleichen – die eVB-Nummer kommt per E-Mail, danach
-                lassen wir Ihr Auto ohne Termin zu.
+                Noch keine eVB-Nummer? Kfz-Versicherung vergleichen und abschließen – die eVB-Nummer
+                kommt per E-Mail, danach lassen wir Ihr Auto ohne Termin zu.
               </p>
 
               <div className="mt-6 grid grid-cols-1 gap-3 text-left sm:grid-cols-[1fr_1fr_1.18fr]">
@@ -241,16 +237,16 @@ const Home = () => {
           <div className="flex items-center gap-3">
             <ShieldCheck className="hidden h-10 w-10 flex-none text-trust-green sm:block" />
             <div>
-              <p className="text-lg font-bold text-secondary">Noch keine Kfz-Versicherung?</p>
+              <p className="text-lg font-bold text-secondary">Noch keine eVB-Nummer?</p>
               <p className="text-sm text-muted-foreground">
-                Tarife vergleichen, eVB-Nummer per E-Mail erhalten – und danach ohne Termin bei uns
-                zulassen.
+                Kfz-Versicherung vergleichen und abschließen – die eVB-Nummer kommt per E-Mail. Danach
+                ohne Termin bei uns zulassen.
               </p>
             </div>
           </div>
           <Button size="lg" variant="cta" asChild className="w-full flex-none md:w-auto">
             <Link to="/kfz-versicherung">
-              Versicherung vergleichen
+              eVB-Nummer beantragen
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>

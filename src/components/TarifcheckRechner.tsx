@@ -46,7 +46,7 @@ const TarifcheckRechner = () => {
             .
           </p>
           <Button size="lg" variant="cta" onClick={() => setGeladen(true)}>
-            Kfz-Versicherungen vergleichen*
+            Jetzt vergleichen & eVB-Nummer erhalten*
           </Button>
         </div>
       )}

@@ -256,7 +256,7 @@ const Datenschutz = () => {
               <p>
                 Auf der Seite „Kfz-Versicherung vergleichen“ binden wir einen Vergleichsrechner der
                 TARIFCHECK24 GmbH, Zollstr. 11b, 21465 Wentorf bei Hamburg, ein. Der Rechner wird erst
-                geladen, wenn Sie auf „Kfz-Versicherungen vergleichen“ klicken. Erst dann wird eine
+                geladen, wenn Sie auf „Jetzt vergleichen &amp; eVB-Nummer erhalten“ klicken. Erst dann wird eine
                 Verbindung zu den Servern von TARIFCHECK24 (partner-versicherung.de) aufgebaut; dabei
                 wird unter anderem Ihre IP-Adresse übertragen.
               </p>

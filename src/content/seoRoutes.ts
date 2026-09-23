@@ -96,9 +96,9 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/kfz-versicherung",
-    title: "Kfz-Versicherung vergleichen & direkt zulassen – Lippe",
+    title: "eVB-Nummer beantragen & Kfz-Versicherung vergleichen",
     description:
-      "Neues Auto im Kreis Lippe? Kfz-Versicherung vergleichen, eVB-Nummer per E-Mail erhalten und danach ohne Termin in Bad Salzuflen zulassen – in ca. 20 Minuten.",
+      "eVB-Nummer beantragen: Kfz-Versicherung vergleichen, abschließen, eVB meist sofort per E-Mail erhalten – und danach ohne Termin in Bad Salzuflen zulassen.",
   },
   {
     path: "/faq",

@@ -165,7 +165,7 @@ const EvbNummer = () => {
                   Sie möchten das Auto zulassen und suchen noch eine Versicherung? Einen Vergleich
                   finden Sie auf unserer Seite{" "}
                   <Link to="/kfz-versicherung" className="font-semibold text-link hover:underline">
-                    Kfz-Versicherung vergleichen
+                    eVB-Nummer beantragen
                   </Link>
                   .
                 </p>

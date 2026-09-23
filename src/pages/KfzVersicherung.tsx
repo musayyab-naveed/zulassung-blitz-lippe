@@ -47,15 +47,15 @@ const KfzVersicherung = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-primary" />
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/80">
-            Neues Auto? Erst versichern, dann zulassen
+            eVB-Nummer in wenigen Minuten
           </p>
           <h1 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
-            Kfz-Versicherung vergleichen – und danach direkt bei uns zulassen
+            eVB-Nummer beantragen: Kfz-Versicherung vergleichen und direkt bei uns zulassen
           </h1>
           <p className="mx-auto max-w-3xl text-lg text-primary-foreground/90">
-            Ohne Versicherung keine Zulassung: Beim Abschluss bekommen Sie die eVB-Nummer, die wir
-            für die Zulassung brauchen. Hier können Sie Tarife vergleichen – und kommen danach ohne
-            Termin zu uns nach Bad Salzuflen.
+            Die eVB-Nummer bekommen Sie, sobald Sie eine Kfz-Versicherung abschließen – meist sofort
+            per E-Mail. Hier können Sie Tarife vergleichen und direkt abschließen. Danach kommen Sie
+            ohne Termin zu uns nach Bad Salzuflen.
           </p>
         </div>
       </section>
@@ -81,7 +81,7 @@ const KfzVersicherung = () => {
       {/* Rechner */}
       <section className="bg-muted/50 py-14">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-4 text-center">Kfz-Versicherungen vergleichen</h2>
+          <h2 className="section-title mb-4 text-center">Versicherung vergleichen und eVB-Nummer erhalten</h2>
           <p className="section-subtitle mx-auto mb-8 max-w-2xl text-center">
             Bitte nutzen Sie den Vergleich nur, wenn Sie das Fahrzeug auch wirklich versichern und
             zulassen möchten.

@@ -315,12 +315,12 @@ const Angebot = () => {
                     <span className="flex-1">
                       <span className="block font-bold text-secondary">
                         {evb === "nein"
-                          ? "Zuerst: Kfz-Versicherung abschließen"
+                          ? "Zuerst: eVB-Nummer beantragen"
                           : "Kfz-Versicherung vergleichen"}
                       </span>
                       <span className="block text-sm text-muted-foreground">
                         {evb === "nein"
-                          ? "Tarife vergleichen und online abschließen – die eVB-Nummer kommt per E-Mail. Danach schicken Sie uns einfach die Nachricht unten."
+                          ? "Kfz-Versicherung vergleichen und online abschließen – die eVB-Nummer kommt per E-Mail. Danach schicken Sie uns einfach die Nachricht unten."
                           : "Schauen Sie, ob es günstiger geht – Ihre Anfrage bei uns können Sie trotzdem gleich abschicken."}
                       </span>
                     </span>
