@@ -246,5 +246,23 @@
       "question": "Was passiert mit nicht fahrbereiten Fahrzeugen?",
       "answer": "Auch nicht fahrbereite Fahrzeuge können wir übernehmen und die fachgerechte Verwertung koordinieren."
     }
+  ],
+  "/kfz-versicherung": [
+    {
+      "question": "Brauche ich eine Versicherung, bevor ich das Auto zulassen kann?",
+      "answer": "Ja. Ohne Kfz-Haftpflichtversicherung gibt es keine Zulassung. Beim Abschluss bekommen Sie die eVB-Nummer, die wir für die Zulassung brauchen."
+    },
+    {
+      "question": "Wie schnell bekomme ich die eVB-Nummer?",
+      "answer": "Bei den meisten Versicherern kommt die eVB-Nummer direkt nach dem Abschluss per E-Mail. Damit können Sie sofort zu uns kommen."
+    },
+    {
+      "question": "Kann ich meine bisherige Versicherung behalten?",
+      "answer": "Wenn Sie ein Auto ersetzen, können Sie Ihren Vertrag oft auf das neue Fahrzeug übertragen. Fragen Sie dazu direkt bei Ihrer Versicherung nach – die schickt Ihnen dann eine neue eVB-Nummer."
+    },
+    {
+      "question": "Beraten Sie auch zu Versicherungen?",
+      "answer": "Nein. Wir sind Zulassungsdienst und kein Versicherungsvermittler. Der Vergleichsrechner auf dieser Seite stammt von TARIFCHECK24 GmbH, die auch den Abschluss abwickelt."
+    }
   ]
 }

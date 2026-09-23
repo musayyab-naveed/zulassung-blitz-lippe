@@ -74,6 +74,7 @@ const Footer = () => {
                 { to: "/auto-ummelden", text: "Auto ummelden" },
                 { to: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT, LE" },
                 { to: "/gewerbekunden", text: "Für Autohändler & Firmen" },
+                { to: "/kfz-versicherung", text: "Kfz-Versicherung vergleichen" },
                 { to: "/fahrzeugankauf", text: "Fahrzeugankauf" },
               ].map((link) => (
                 <li key={link.to}>

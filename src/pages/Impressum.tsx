@@ -120,6 +120,26 @@ const Impressum = () => {
             </CardContent>
           </Card>
 
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-secondary">Vergleichsrechner</CardTitle>
+            </CardHeader>
+            <CardContent className="text-muted-foreground">
+              <p className="mb-2">Alle Vergleiche powered by TARIFCHECK24 GmbH</p>
+              <p>
+                Zollstr. 11b
+                <br />
+                21465 Wentorf bei Hamburg
+                <br />
+                Tel. 040 - 73098288
+                <br />
+                Fax 040 - 73098289
+                <br />
+                E-Mail: info@tarifcheck.de
+              </p>
+            </CardContent>
+          </Card>
+
           {/* Additional Information */}
           <div className="mt-12 text-center text-sm text-muted-foreground">
             <p>

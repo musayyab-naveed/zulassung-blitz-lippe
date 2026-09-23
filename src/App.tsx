@@ -21,6 +21,7 @@ import Zulassungsstelle from "./pages/Zulassungsstelle";
 import CookieBanner from "./components/CookieBanner";
 import Leistungsseite from "./pages/Leistungsseite";
 import Ratgeber from "./pages/Ratgeber";
+import KfzVersicherung from "./pages/KfzVersicherung";
 import RatgeberArtikel from "./pages/RatgeberArtikel";
 import { AUTO_ABMELDEN, AUTO_UMMELDEN, GEWERBEKUNDEN, WUNSCHKENNZEICHEN } from "./content/leistungsseiten";
 
@@ -57,6 +58,7 @@ export const AppInhalt = () => (
         <Route path="/auto-ummelden" element={<Leistungsseite seite={AUTO_UMMELDEN} />} />
         <Route path="/wunschkennzeichen" element={<Leistungsseite seite={WUNSCHKENNZEICHEN} />} />
         <Route path="/gewerbekunden" element={<Leistungsseite seite={GEWERBEKUNDEN} />} />
+        <Route path="/kfz-versicherung" element={<KfzVersicherung />} />
         <Route path="/ratgeber" element={<Ratgeber />} />
         <Route path="/ratgeber/:slug" element={<RatgeberArtikel />} />
         <Route path="/faq" element={<Faq />} />

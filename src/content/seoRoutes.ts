@@ -95,6 +95,12 @@ export const ROUTE_SEO: RouteSeo[] = [
       "Zulassungsdienst für Autohändler, Werkstätten und Firmen im Kreis Lippe: mehrere Fahrzeuge auf einmal, ohne Termin, Zahlung per Rechnung, Hol- und Bringservice.",
   },
   {
+    path: "/kfz-versicherung",
+    title: "Kfz-Versicherung vergleichen & direkt zulassen – Lippe",
+    description:
+      "Neues Auto im Kreis Lippe? Kfz-Versicherung vergleichen, eVB-Nummer per E-Mail erhalten und danach ohne Termin in Bad Salzuflen zulassen – in ca. 20 Minuten.",
+  },
+  {
     path: "/faq",
     title: "Welche Unterlagen brauche ich? Checklisten zur Zulassung",
     description:

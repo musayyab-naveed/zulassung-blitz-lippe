@@ -161,6 +161,14 @@ const EvbNummer = () => {
                   dabei automatisch. Welche Versicherung Sie wählen, ist allein Ihre Entscheidung.
                   Wir beraten nicht zu Versicherungen und vermitteln auch keine.
                 </p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Sie möchten das Auto zulassen und suchen noch eine Versicherung? Einen Vergleich
+                  finden Sie auf unserer Seite{" "}
+                  <Link to="/kfz-versicherung" className="font-semibold text-link hover:underline">
+                    Kfz-Versicherung vergleichen
+                  </Link>
+                  .
+                </p>
               </CardContent>
             </Card>
 

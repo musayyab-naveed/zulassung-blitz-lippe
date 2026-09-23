@@ -244,6 +244,31 @@ const Datenschutz = () => {
             </CardContent>
           </Card>
 
+          {/* Tarifcheck */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-secondary">
+                <Mail className="h-6 w-6 text-primary" />
+                Kfz-Versicherungsvergleich von TARIFCHECK24
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-muted-foreground">
+              <p>
+                Auf der Seite „Kfz-Versicherung vergleichen“ binden wir einen Vergleichsrechner der
+                TARIFCHECK24 GmbH, Zollstr. 11b, 21465 Wentorf bei Hamburg, ein. Der Rechner wird erst
+                geladen, wenn Sie auf „Kfz-Versicherungen vergleichen“ klicken. Erst dann wird eine
+                Verbindung zu den Servern von TARIFCHECK24 (partner-versicherung.de) aufgebaut; dabei
+                wird unter anderem Ihre IP-Adresse übertragen.
+              </p>
+              <p>
+                Alle Angaben, die Sie in den Rechner eingeben, gehen direkt an TARIFCHECK24 und werden
+                dort nach deren Datenschutzbestimmungen verarbeitet. Verantwortlich für den Vergleich
+                und einen möglichen Vertragsabschluss ist TARIFCHECK24 GmbH. Wir erhalten keine Ihrer
+                Eingaben, sondern nur bei einem Abschluss eine Provision.
+              </p>
+            </CardContent>
+          </Card>
+
           {/* Contact Form */}
           <Card className="mb-8">
             <CardHeader>
