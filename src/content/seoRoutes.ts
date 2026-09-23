@@ -81,7 +81,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/auto-ummelden",
     title: "Auto ummelden Bad Salzuflen – ohne Termin, ab 129 €",
     description:
-      "Auto ummelden in Bad Salzuflen: Halterwechsel, Umzug oder neues Kennzeichen – ohne Termin beim Amt, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren.",
+      "Auto ummelden in Bad Salzuflen: nach dem Autokauf oder Umzug – ohne Termin beim Amt, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren, Mo–Sa geöffnet.",
   },
   {
     path: "/wunschkennzeichen",

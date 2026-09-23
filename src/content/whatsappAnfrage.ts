@@ -19,7 +19,6 @@ export type Art =
   | "gebraucht"
   | "wieder"
   | "umzug"
-  | "umkennzeichnen"
   | "unklar"
   | "kurzzeit"
   | "ausfuhr";
@@ -33,7 +32,7 @@ export interface Auswahl<T extends string> {
 }
 
 export const VORGAENGE: Auswahl<Vorgang>[] = [
-  { wert: "zulassen", titel: "Fahrzeug zulassen oder ummelden", text: "Neu, gebraucht, Umzug oder neues Kennzeichen" },
+  { wert: "zulassen", titel: "Fahrzeug zulassen oder ummelden", text: "Neu, gebraucht, wieder anmelden oder Umzug" },
   { wert: "abmelden", titel: "Fahrzeug abmelden", text: "Blitzabmeldung direkt vor Ort" },
   { wert: "sonder", titel: "Kurzzeit- oder Ausfuhrkennzeichen", text: "Überführung, Probefahrt oder Export" },
   { wert: "verkaufen", titel: "Fahrzeug verkaufen", text: "Kostenlose Ankaufanfrage" },
@@ -45,7 +44,6 @@ export const ARTEN: Auswahl<Art>[] = [
   { wert: "gebraucht", titel: "Gebrauchtwagen gekauft", text: "Umschreibung auf Ihren Namen" },
   { wert: "wieder", titel: "Abgemeldetes Auto wieder anmelden", text: "Wiederzulassung" },
   { wert: "umzug", titel: "Umgezogen – Adresse ändern", text: "Innerhalb von Lippe oder neu zugezogen" },
-  { wert: "umkennzeichnen", titel: "Neues Kennzeichen, z. B. DT oder LE", text: "Kennzeichen wechseln" },
   { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
 ];
 
@@ -90,7 +88,6 @@ const ART_IN_NACHRICHT: Record<Art, string> = {
   gebraucht: "Gebrauchtwagen gekauft (Umschreibung)",
   wieder: "Abgemeldetes Fahrzeug wieder anmelden",
   umzug: "Umzug – Adresse im Fahrzeugschein ändern",
-  umkennzeichnen: "Neues Kennzeichen (Umkennzeichnung)",
   unklar: "weiß ich noch nicht genau",
   kurzzeit: "Kurzzeitkennzeichen",
   ausfuhr: "Ausfuhrkennzeichen",
@@ -196,7 +193,6 @@ export const checklisteFuer = ({ vorgang, art }: AnfrageAntworten): VorgangCheck
     neu: "neuzulassung",
     wieder: "wiederzulassung",
     umzug: "adressaenderung",
-    umkennzeichnen: "umkennzeichnung",
   };
   const key =
     vorgang === "abmelden"

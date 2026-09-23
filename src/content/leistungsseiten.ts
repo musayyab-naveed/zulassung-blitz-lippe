@@ -122,13 +122,13 @@ export const AUTO_ABMELDEN: LeistungsSeite = {
 export const AUTO_UMMELDEN: LeistungsSeite = {
   path: "/auto-ummelden",
   kicker: "Ummelden ohne Termin",
-  h1: "Auto ummelden in Bad Salzuflen – Halterwechsel, Umzug oder neues Kennzeichen",
+  h1: "Auto ummelden in Bad Salzuflen – nach dem Autokauf oder Umzug",
   intro:
-    "Gebrauchtwagen gekauft, umgezogen oder ein neues Kennzeichen gewünscht? Wir melden Ihr Auto um – ohne Termin beim Straßenverkehrsamt. Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag.",
+    "Gebrauchtwagen gekauft oder umgezogen? Wir melden Ihr Auto um – ohne Termin beim Straßenverkehrsamt. Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag.",
   chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ ab 129 € inkl. Gebühren", "✓ In ca. 20 Minuten möglich"],
   preis: {
     betrag: "ab 129 €",
-    text: "Umschreibung auf Ihren Namen inklusive Verwaltungsgebühren. Adressänderung und neues Kennzeichen: Preis kurz per WhatsApp.",
+    text: "Umschreibung auf Ihren Namen inklusive Verwaltungsgebühren. Adressänderung: Preis kurz per WhatsApp. Ein neues Kennzeichen wie DT oder LE läuft über unser Wunschkennzeichen.",
   },
   faelle: [
     {
@@ -146,14 +146,6 @@ export const AUTO_UMMELDEN: LeistungsSeite = {
       link: "/angebot?vorgang=zulassen&art=umzug",
       linkText: "Adressänderung anfragen",
       checkliste: "adressaenderung",
-    },
-    {
-      titel: "Neues Kennzeichen",
-      text: "Zum Beispiel von LIP auf DT oder LE – ohne Termin beim Amt.",
-      preis: "auf Anfrage",
-      link: "/angebot?vorgang=zulassen&art=umkennzeichnen",
-      linkText: "Neues Kennzeichen anfragen",
-      checkliste: "umkennzeichnung",
     },
   ],
   schritteTitel: "So läuft das Ummelden bei uns",
@@ -257,7 +249,7 @@ export const WUNSCHKENNZEICHEN: LeistungsSeite = {
   cta: {
     titel: "Wunschkennzeichen sichern",
     text: "Schreiben Sie uns Ihre Wunschkombination per WhatsApp – wir prüfen, ob sie frei ist.",
-    href: "/angebot?vorgang=zulassen&art=umkennzeichnen",
+    href: "/angebot?vorgang=zulassen",
     button: "WUNSCHKENNZEICHEN ANFRAGEN",
   },
   verwandt: [

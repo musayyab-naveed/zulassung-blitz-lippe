@@ -42,6 +42,70 @@ export const ratgeberPfad = (slug: string) => `${RATGEBER_PFAD}/${slug}`;
 
 export const RATGEBER: RatgeberArtikel[] = [
   {
+    slug: "dt-le-kennzeichen-lippe",
+    seoTitel: "DT und LE sind zurück: Kennzeichen im Kreis Lippe wechseln",
+    beschreibung:
+      "Seit April 2026 gibt es im Kreis Lippe wieder DT und LE. Wer sie bekommen kann, was beim Wechsel von LIP nötig ist und wie es ohne Termin beim Amt geht.",
+    h1: "DT und LE sind zurück: So wechseln Sie Ihr Kennzeichen im Kreis Lippe",
+    kurzantwort:
+      "Seit dem 25. April 2026 gibt es im Kreis Lippe wieder die Kennzeichen DT (Detmold) und LE (Lemgo) – zusätzlich zu LIP. Alle drei kann jeder im Kreis wählen. Wer von LIP auf DT oder LE wechseln will, braucht beim Straßenverkehrsamt einen Termin; bei uns läuft es als Wunschkennzeichen ohne Termin.",
+    veroeffentlicht: "2026-09-23",
+    aktualisiert: "2026-09-23",
+    lesezeitMinuten: 3,
+    abschnitte: [
+      {
+        titel: "Was sich geändert hat",
+        absaetze: [
+          "Lange gab es im Kreis Lippe nur das Kürzel LIP. Seit Samstag, dem 25. April 2026, sind auch DT und LE wieder erhältlich. Zum Start hat der Kreis einen Sonderöffnungstag gemacht – an diesem Tag wurden 425 Fahrzeuge umgekennzeichnet, davon 250 auf DT und 175 auf LE.",
+          "Seit dem 28. April 2026 lassen sich DT- und LE-Kennzeichen auch online beim Kreis reservieren.",
+        ],
+      },
+      {
+        titel: "Wer DT oder LE bekommen kann",
+        absaetze: [
+          "Alle drei Kürzel gelten für den ganzen Kreis Lippe. Sie müssen also nicht in Detmold oder Lemgo wohnen: Auch wer in Bad Salzuflen, Lage oder Blomberg lebt, darf DT oder LE wählen.",
+        ],
+      },
+      {
+        titel: "Die Regeln für Ihre Kombination",
+        punkte: [
+          "Höchstens 8 Zeichen insgesamt.",
+          "Nach DT und LE passen 2 Buchstaben und 4 Ziffern, nach LIP 2 Buchstaben und 3 Ziffern.",
+          "Kurze Kennzeichen wie DT-A 1 vergibt der Kreis nur persönlich am Schalter, nicht online.",
+          "Online-Reservierungen beim Kreis verfallen nach 90 Tagen.",
+        ],
+      },
+      {
+        titel: "Von LIP auf DT oder LE wechseln",
+        absaetze: [
+          "Sie haben schon ein LIP-Kennzeichen und möchten wechseln? Das nennt sich Umkennzeichnung. Sie bekommen neue Schilder und neue Eintragungen in den Fahrzeugpapieren. Beim Straßenverkehrsamt geht das nur mit gebuchtem Termin.",
+        ],
+        punkte: [
+          "Personalausweis oder Reisepass",
+          "Fahrzeugschein und Fahrzeugbrief (Zulassungsbescheinigung Teil I und II)",
+          "Beide bisherigen Kennzeichen",
+          "Ihre Wunschkombination",
+        ],
+      },
+      {
+        titel: "Bei uns: als Wunschkennzeichen, ohne Termin",
+        absaetze: [
+          "Bei uns läuft der Wechsel auf DT oder LE einfach als Wunschkennzeichen: Sie nennen uns Ihre Kombination, wir prüfen und reservieren sie und erledigen den Rest – ohne Termin, Montag bis Samstag.",
+        ],
+        link: { href: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT oder LE" },
+      },
+    ],
+    cta: {
+      text: "DT oder LE gewünscht? Schreiben Sie uns Ihre Wunschkombination per WhatsApp.",
+      href: "/angebot?vorgang=zulassen",
+      button: "WUNSCHKENNZEICHEN ANFRAGEN",
+    },
+    verwandt: [
+      { href: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT oder LE" },
+      { href: "/ratgeber/kein-termin-zulassungsstelle-lippe", text: "Kein Termin bei der Zulassungsstelle?" },
+    ],
+  },
+  {
     slug: "kein-termin-zulassungsstelle-lippe",
     seoTitel: "Kein Termin bei der Zulassungsstelle Lippe? 3 Auswege",
     beschreibung:

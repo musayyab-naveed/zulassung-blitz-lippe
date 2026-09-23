@@ -77,7 +77,7 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
           {seite.faelle ? (
             <>
               <h2 className="section-title mb-8 text-center">Welcher Fall passt zu Ihnen?</h2>
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+              <div className={`grid grid-cols-1 gap-5 ${seite.faelle.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"}`}>
                 {seite.faelle.map((fall) => (
                   <Card key={fall.titel} className="surface-card flex flex-col">
                     <CardContent className="flex flex-1 flex-col p-5">

@@ -123,19 +123,20 @@ export const PACKAGES: PackageDef[] = [
   },
   {
     key: "ankauf_only",
-    title: "NUR FAHRZEUGVERKAUF",
-    price: "0 €",
+    title: "FAHRZEUGANKAUF",
+    price: "kostenlos",
     priceValue: "0",
+    subtitle: "Wir kaufen Ihr Auto an – auch ohne Zulassung bei uns",
     features: [
-      "Unverbindliche Ankaufanfrage ohne Zulassungspaket",
-      "Fotos per WhatsApp oder Formular schicken",
-      "Fachgerechte Verwertung nicht fahrbereiter Fahrzeuge möglich",
+      "Kostenlose und unverbindliche Anfrage",
+      "Auch ältere oder nicht fahrbereite Fahrzeuge",
+      "Abmeldung beim Ankauf gratis",
+      "Fachgerechte Verwertung auf Wunsch",
     ],
-    buttonText: "NUR FAHRZEUGVERKAUF WÄHLEN",
+    buttonText: "AUTO VERKAUFEN",
     buttonVariant: "cta" as const,
     schemaDescription:
       "Kostenlose und unverbindliche Ankaufanfrage – beim Ankauf ist die Abmeldung gratis.",
-    hideOnPricingPage: true,
   },
 ];
 
@@ -162,7 +163,7 @@ const zeilenInfo: Record<PackageKey, { dauer: string; kennzeichen: string }> = {
 };
 
 export const PREIS_TABELLE: TabellenZeile[] = [
-  ...PACKAGES.filter((pkg) => !pkg.hideOnPricingPage).map((pkg) => ({
+  ...PACKAGES.filter((pkg) => !pkg.hideOnPricingPage && pkg.key !== "ankauf_only").map((pkg) => ({
     leistung: pkg.title,
     dauer: zeilenInfo[pkg.key].dauer,
     kennzeichen: zeilenInfo[pkg.key].kennzeichen,
