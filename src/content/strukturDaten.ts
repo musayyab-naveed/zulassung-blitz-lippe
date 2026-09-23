@@ -14,7 +14,7 @@ import { BUSINESS, OG_IMAGE, SITE_URL } from "./seoRoutes";
 const ORGANISATION_ID = `${SITE_URL}/#organization`;
 
 /** Google-Maps-Eintrag des Unternehmensprofils */
-export const GOOGLE_MAPS_URL = "https://maps.google.com/?cid=12566547110717458795";
+export const GOOGLE_MAPS_URL = BUSINESS.mapsUrl;
 
 export const localBusinessSchema = () => ({
   "@type": ["AutomotiveBusiness", "LocalBusiness"],
