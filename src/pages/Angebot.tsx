@@ -215,6 +215,13 @@ const Angebot = () => {
               <p className="mt-2 text-muted-foreground">
                 Ein, zwei Antworten antippen – dann steht Ihre WhatsApp-Nachricht fertig bereit.
               </p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Kein WhatsApp? Rufen Sie an:{" "}
+                <a href={TELEFON_LINK} className="font-semibold text-link hover:underline">
+                  {TELEFON_ANZEIGE}
+                </a>{" "}
+                – oder kommen Sie einfach vorbei, Werler Straße 68.
+              </p>
             </div>
           )}
 

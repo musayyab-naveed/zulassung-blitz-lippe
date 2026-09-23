@@ -74,7 +74,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     items: [
       "Personalausweis oder Reisepass",
       "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
       "EU-Übereinstimmungsbescheinigung (COC-Papiere)",
       "IBAN für das SEPA-Lastschriftmandat der KFZ-Steuer",
     ],
@@ -85,8 +85,8 @@ export const vorgangChecklists: VorgangChecklist[] = [
     items: [
       "Personalausweis oder Reisepass",
       "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
       "HU-Nachweis (TÜV-Bericht) – nicht nötig, wenn die gültige HU mit Stempel im Fahrzeugschein eingetragen ist",
       "Bisherige Kennzeichen (falls das Fahrzeug noch angemeldet ist)",
       "IBAN für das SEPA-Lastschriftmandat der KFZ-Steuer",
@@ -98,8 +98,8 @@ export const vorgangChecklists: VorgangChecklist[] = [
     items: [
       "Personalausweis oder Reisepass",
       "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
       "HU-Nachweis (TÜV-Bericht) – nicht nötig, wenn die gültige HU mit Stempel im Fahrzeugschein eingetragen ist",
       "IBAN für das SEPA-Lastschriftmandat der KFZ-Steuer",
     ],
@@ -109,7 +109,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Blitzabmeldung (Außerbetriebsetzung)",
     items: [
       "Beide Kennzeichenschilder",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
       "Personalausweis oder Reisepass",
       "Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen-Plaketten (bei Zulassung ab 2015 vorhanden)",
       "Bei Verschrottung: Verwertungsnachweis",
@@ -121,7 +121,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Adress- oder Namensänderung",
     items: [
       "Personalausweis mit neuer Adresse bzw. Nachweis der Namensänderung",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
     ],
   },
   {
@@ -138,8 +138,8 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Neues Kennzeichen (z. B. von LIP auf DT oder LE)",
     items: [
       "Personalausweis oder Reisepass",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
       "Beide bisherigen Kennzeichenschilder",
       "Ihre Wunschkombination, falls Sie eine haben",
     ],
@@ -175,8 +175,8 @@ export const vorgangChecklists: VorgangChecklist[] = [
     items: [
       "Personalausweis oder Reisepass",
       "eVB-Nummer speziell für Ausfuhrkennzeichen",
-      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
       "Nachweis über die gültige Hauptuntersuchung (TÜV)",
       "Bisherige Kennzeichen, falls das Fahrzeug noch angemeldet ist",
     ],

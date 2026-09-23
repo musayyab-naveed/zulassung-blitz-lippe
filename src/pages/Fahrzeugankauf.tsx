@@ -173,7 +173,7 @@ const Fahrzeugankauf = () => {
               <CardContent>
                 <p className="text-muted-foreground mb-6">
                   Sie möchten verkaufen, abmelden oder direkt mit einer neuen Zulassung
-                  kombinieren? Starten Sie einfach im Formular.
+                  kombinieren? Zwei Fragen antippen – dann geht Ihre Anfrage per WhatsApp an uns.
                 </p>
                 <Button variant="cta" className="w-full" asChild>
                   <Link to="/angebot?start=verkauf">Jetzt Fahrzeug verkaufen</Link>

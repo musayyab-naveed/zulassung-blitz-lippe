@@ -151,8 +151,8 @@ const UeberUns = () => {
                 <p>
                   Seit über 5 Jahren helfen wir privaten und gewerblichen Kunden dabei, 
                   ihre Fahrzeuge schnell und unkompliziert zuzulassen. Unser erfahrenes Team 
-                  kennt alle Abläufe und sorgt dafür, dass Ihre Zulassung garantiert am nächsten 
-                  Werktag fertig ist.
+                  kennt alle Abläufe: Mit der Sofort-Zulassung sind Sie in ca. 20 Minuten fertig,
+                  klassisch in der Regel am nächsten Werktag.
                 </p>
               </div>
             </div>

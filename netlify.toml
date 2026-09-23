@@ -18,10 +18,20 @@
   to = "/.netlify/functions/smtp-test"
   status = 200
 
+# Alte Blog-Adressen dauerhaft auf die FAQ leiten
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/blog"
+  to = "/faq"
+  status = 301
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/faq"
+  status = 301
+
+# Kein Sammel-Redirect auf index.html mehr: Jede Seite liegt als eigene HTML-Datei vor.
+# Unbekannte Adressen bekommen so die echte Fehlerseite (404.html) mit Status 404 –
+# vorher lieferte der Server die Startseite aus ("Soft 404", schlecht für Google).
 
 # Dateien mit Prüfsumme im Namen ändern sich nie – Browser dürfen sie ein Jahr behalten
 [[headers]]

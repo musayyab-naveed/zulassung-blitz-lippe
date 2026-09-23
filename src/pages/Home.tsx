@@ -14,6 +14,7 @@ import { Car, FileText, Shield, ShieldCheck, CheckCircle, ArrowRight, Phone, Map
 import { Link } from "react-router-dom";
 import { RATGEBER, ratgeberPfad } from "@/content/ratgeber";
 import { ALLE_ORTE_LIPPE, ORTSSEITEN } from "@/content/ortsseiten";
+import { BUSINESS } from "@/content/seoRoutes";
 
 const ROUTE_URL =
   "https://www.google.com/maps/dir/?api=1&destination=" +
@@ -45,15 +46,16 @@ const Home = () => {
   const checklistZulassung = [
     "Personalausweis oder Reisepass",
     "eVB-Nummer Ihrer KFZ-Versicherung",
-    "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
-    "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+    "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
+    "Gebrauchtwagen: Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+    "Neuwagen: COC-Papiere (Übereinstimmungsbescheinigung) statt Fahrzeugschein",
     "HU-Nachweis bei Gebrauchtwagen – nicht nötig, wenn die HU im Fahrzeugschein eingetragen ist",
     "IBAN für die KFZ-Steuer",
   ];
 
   const checklistAbmeldung = [
     "Beide Kennzeichenschilder",
-    "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+    "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
     "Personalausweis oder Reisepass",
     "Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen-Plaketten (bei Zulassung ab 2015 vorhanden)",
   ];
@@ -89,6 +91,9 @@ const Home = () => {
                 aller Gebühren. Für den ganzen Kreis Lippe.
               </p>
 
+              <p className="mb-4 text-sm font-semibold text-white sm:text-base">
+                <span className="text-[hsl(var(--cta-orange))]">★★★★★</span> 5,0 · {BUSINESS.reviewCount} Google-Bewertungen
+              </p>
               <ul className="mb-8 flex flex-wrap justify-center gap-2 sm:gap-3 lg:justify-start">
                 {["Ohne Termin", "Mo–Fr 9–18 · Sa 15–18 Uhr", "Online rund um die Uhr"].map((punkt) => (
                   <li
@@ -246,7 +251,7 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="surface-card">
               <CardHeader className="pb-3">
-                <CardTitle className="text-xl text-secondary">Zulassung & Umschreibung</CardTitle>
+                <CardTitle className="text-xl text-secondary">Auto anmelden (neu oder gebraucht)</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="space-y-2.5">

@@ -171,6 +171,19 @@ for (const route of routes) {
   written += 1;
 }
 
+// Fehlerseite für unbekannte Adressen (Netlify liefert sie mit Status 404 aus)
+{
+  const inhalt = render("/diese-seite-gibt-es-nicht");
+  let html = template
+    .replace(/<title>[\s\S]*?<\/title>/, "<title>Seite nicht gefunden | KFZ-Sofortzulassung</title>")
+    .replace(/<meta name="robots" content="[^"]*" \/>/, '<meta name="robots" content="noindex,follow" />')
+    .replace(/\s*<link rel="canonical" href="[^"]*" \/>/, "")
+    .replace('<div id="root"></div>', `<div id="root">${inhalt}</div>`);
+  html = html.replace("</head>", `  ${schriftPreloads}\n  </head>`);
+  html = await beasties.process(html);
+  writeFileSync(join(distDir, "404.html"), html, "utf8");
+}
+
 // Sitemap aus denselben Routen erzeugen – neue Seiten und Artikel landen automatisch darin
 const ohneIndex = new Set(["/impressum", "/datenschutz"]);
 const artikelDatum = new Map(RATGEBER.map((a) => [`${RATGEBER_PFAD}/${a.slug}`, a.aktualisiert]));

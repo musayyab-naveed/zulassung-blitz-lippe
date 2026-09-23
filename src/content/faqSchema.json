@@ -154,7 +154,7 @@
     },
     {
       "question": "Welche Unterlagen brauche ich beim Gebrauchtwagen?",
-      "answer": "Personalausweis, eVB-Nummer Ihrer Versicherung, Fahrzeugschein und Fahrzeugbrief (Teil I und II), den Nachweis über die gültige Hauptuntersuchung, die alten Kennzeichen (falls das Auto noch angemeldet ist) und Ihre IBAN für die KFZ-Steuer."
+      "answer": "Personalausweis, eVB-Nummer Ihrer Versicherung, Fahrzeugschein und Fahrzeugbrief (Teil I und II), den Nachweis über die gültige Hauptuntersuchung (nicht nötig, wenn sie im Fahrzeugschein eingetragen ist), die alten Kennzeichen (falls das Auto noch angemeldet ist) und Ihre IBAN für die KFZ-Steuer."
     },
     {
       "question": "Muss ich mein Auto nach einem Umzug ummelden?",
@@ -239,7 +239,7 @@
       "answer": "Ja. Fahrzeugankauf ist bei uns unabhängig von Zulassung, Ummeldung oder Abmeldung möglich."
     },
     {
-      "question": "Welche Daten braucht ihr für eine Ersteinschätzung?",
+      "question": "Welche Angaben brauchen Sie für eine Ersteinschätzung?",
       "answer": "Marke, Modell, Baujahr und Ihre Telefonnummer reichen für den Start. Fotos und Kilometerstand helfen für eine genauere Einschätzung – gern auch direkt per WhatsApp."
     },
     {

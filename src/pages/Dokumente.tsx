@@ -22,9 +22,9 @@ const documents = [
     hinweis: "IBAN eintragen und unterschreiben.",
   },
   {
-    title: "Vollmacht für die Abmeldung",
+    title: "Antrag für die Abmeldung",
     description:
-      "Für die Außerbetriebsetzung, wenn Sie nicht selbst vorbeikommen können.",
+      "Nur nötig, wenn Sie uns die Unterlagen zuschicken, statt vorbeizukommen.",
     href: "/documents/Antrag_AB_2026-03.pdf",
     hinweis: "Bitte unterschreiben – zusammen mit einer Ausweiskopie beilegen.",
   },

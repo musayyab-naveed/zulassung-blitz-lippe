@@ -1,4 +1,5 @@
-import { Star, Shield, Clock, Users } from "lucide-react";
+import { Star, Shield, Clock, MapPin } from "lucide-react";
+import { BUSINESS } from "@/content/seoRoutes";
 
 const TrustBadges = () => {
   return (
@@ -12,29 +13,29 @@ const TrustBadges = () => {
                 <Star key={i} className="h-5 w-5 fill-warning-orange text-warning-orange" />
               ))}
             </div>
-            <div className="text-lg font-bold text-secondary">4.9/5</div>
-            <div className="text-sm text-muted-foreground">100+ Google Bewertungen</div>
+            <div className="text-lg font-bold text-secondary">5,0 von 5</div>
+            <div className="text-sm text-muted-foreground">{BUSINESS.reviewCount} Google-Bewertungen</div>
           </div>
 
           {/* Security */}
           <div className="flex flex-col items-center">
             <Shield className="h-8 w-8 text-primary mb-2" />
-            <div className="text-lg font-bold text-secondary">100% Sicher</div>
-            <div className="text-sm text-muted-foreground">SSL-verschlüsselt</div>
+            <div className="text-lg font-bold text-secondary">Ohne Termin</div>
+            <div className="text-sm text-muted-foreground">Montag bis Samstag geöffnet</div>
           </div>
 
           {/* Speed */}
           <div className="flex flex-col items-center">
             <Clock className="h-8 w-8 text-primary mb-2" />
-            <div className="text-lg font-bold text-secondary">24h Garantie</div>
-            <div className="text-sm text-muted-foreground">Zulassung am nächsten Tag</div>
+            <div className="text-lg font-bold text-secondary">ca. 20 Minuten</div>
+            <div className="text-sm text-muted-foreground">Sofort-Zulassung vor Ort</div>
           </div>
 
           {/* Customers */}
           <div className="flex flex-col items-center">
-            <Users className="h-8 w-8 text-primary mb-2" />
-            <div className="text-lg font-bold text-secondary">1000+</div>
-            <div className="text-sm text-muted-foreground">Zufriedene Kunden</div>
+            <MapPin className="h-8 w-8 text-primary mb-2" />
+            <div className="text-lg font-bold text-secondary">Ganz Lippe</div>
+            <div className="text-sm text-muted-foreground">alle 16 Städte und Gemeinden</div>
           </div>
         </div>
       </div>
