@@ -24,7 +24,7 @@ import Ratgeber from "./pages/Ratgeber";
 import KfzVersicherung from "./pages/KfzVersicherung";
 import { ORTSSEITEN } from "./content/ortsseiten";
 import RatgeberArtikel from "./pages/RatgeberArtikel";
-import { AUTO_ABMELDEN, AUTO_UMMELDEN, GEWERBEKUNDEN, WUNSCHKENNZEICHEN } from "./content/leistungsseiten";
+import { AUTO_ABMELDEN, AUTO_ANMELDEN, AUTO_UMMELDEN, GEWERBEKUNDEN, WUNSCHKENNZEICHEN } from "./content/leistungsseiten";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +55,7 @@ export const AppInhalt = () => (
         <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
         <Route path="/evb-nummer" element={<EvbNummer />} />
         <Route path="/zulassungsstelle-bad-salzuflen" element={<Zulassungsstelle />} />
+        <Route path="/auto-anmelden" element={<Leistungsseite seite={AUTO_ANMELDEN} />} />
         <Route path="/auto-abmelden" element={<Leistungsseite seite={AUTO_ABMELDEN} />} />
         <Route path="/auto-ummelden" element={<Leistungsseite seite={AUTO_UMMELDEN} />} />
         <Route path="/wunschkennzeichen" element={<Leistungsseite seite={WUNSCHKENNZEICHEN} />} />

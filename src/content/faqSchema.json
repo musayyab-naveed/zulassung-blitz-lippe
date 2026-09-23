@@ -264,5 +264,31 @@
       "question": "Beraten Sie auch zu Versicherungen?",
       "answer": "Nein. Wir sind Zulassungsdienst und kein Versicherungsvermittler. Der Vergleichsrechner auf dieser Seite stammt von TARIFCHECK24 GmbH, die auch den Abschluss abwickelt."
     }
+  ],
+  "/auto-anmelden": [
+    {
+      "question": "Was kostet es, ein Auto in Bad Salzuflen anzumelden?",
+      "answer": "Bei uns ab 129 € – die Verwaltungsgebühren des Straßenverkehrsamts sind schon enthalten. Bei BASIS und PREMIUM sind auch die Kennzeichen dabei. Ein Wunschkennzeichen kostet 13 € extra."
+    },
+    {
+      "question": "Wie schnell ist mein Auto angemeldet?",
+      "answer": "Mit der Sofort-Zulassung digital in ca. 20 Minuten, Sie warten kurz bei uns. Klassisch mit Abgabe der Unterlagen ist alles am nächsten Werktag fertig."
+    },
+    {
+      "question": "Brauche ich einen Termin?",
+      "answer": "Nein. Kommen Sie einfach vorbei – Montag bis Freitag von 9 bis 18 Uhr, Samstag von 15 bis 18 Uhr, Werler Straße 68 in Bad Salzuflen. Online-Zulassungen erledigen wir rund um die Uhr."
+    },
+    {
+      "question": "Welche Unterlagen brauche ich für die Anmeldung?",
+      "answer": "Personalausweis, eVB-Nummer Ihrer Versicherung, Fahrzeugbrief und – bei gebrauchten Autos – Fahrzeugschein, dazu Ihre IBAN für die KFZ-Steuer. Bei Neuwagen kommen die COC-Papiere dazu. Vollmacht und SEPA-Mandat füllen Sie bei uns vor Ort aus."
+    },
+    {
+      "question": "Kann jemand anderes mein Auto für mich anmelden?",
+      "answer": "Ja, mit einer Vollmacht und Ihrem Personalausweis (oder einer Kopie davon). Die Vollmacht gibt es auf unserer Seite Formulare zum Ausdrucken."
+    },
+    {
+      "question": "Ich wohne nicht in Bad Salzuflen – geht das trotzdem?",
+      "answer": "Ja. Wir lassen für den ganzen Kreis Lippe zu, also auch für Detmold, Lemgo, Lage und alle anderen Orte. Sie können auch die Unterlagen schicken; beim PREMIUM-Paket ist der Express-Rückversand inklusive."
+    }
   ]
 }

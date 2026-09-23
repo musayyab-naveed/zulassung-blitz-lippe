@@ -70,6 +70,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               {[
                 { to: "/preise", text: "KFZ-Zulassung & Preise" },
+                { to: "/auto-anmelden", text: "Auto anmelden" },
                 { to: "/auto-abmelden", text: "Auto abmelden" },
                 { to: "/auto-ummelden", text: "Auto ummelden" },
                 { to: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT, LE" },

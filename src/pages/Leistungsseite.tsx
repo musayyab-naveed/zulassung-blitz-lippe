@@ -176,6 +176,15 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
                   ))}
                 </ul>
               )}
+              {abschnitt.link && (
+                <Link
+                  to={abschnitt.link.href}
+                  className="mt-3 inline-flex items-center gap-1 font-semibold text-link hover:underline"
+                >
+                  {abschnitt.link.text}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              )}
             </div>
           ))}
         </div>

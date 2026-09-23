@@ -181,6 +181,11 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
         dienstleistung(pfad, "Fahrzeugankauf Bad Salzuflen", "Fahrzeugankauf", "Ankauf von Fahrzeugen im Kreis Lippe – mit oder ohne Zulassung, auch nicht fahrbereit. Beim Ankauf ist die Abmeldung gratis."),
         faqPage(pfad, alsFaqs(pfad)),
       ];
+    case "/auto-anmelden":
+      return [
+        dienstleistung(pfad, "Auto anmelden in Bad Salzuflen", "KFZ-Zulassung", "Neuzulassung, Umschreibung und Wiederzulassung ohne Termin – digital in ca. 20 Minuten oder bis zum nächsten Werktag, inklusive Verwaltungsgebühren.", { wert: "129", ab: true }),
+        faqPage(pfad, alsFaqs(pfad)),
+      ];
     case "/auto-abmelden":
       return [
         dienstleistung(pfad, "Auto abmelden in Bad Salzuflen", "KFZ-Abmeldung", "Blitzabmeldung ohne Termin, digital direkt vor Ort – inklusive Verwaltungsgebühren.", { wert: "40" }),

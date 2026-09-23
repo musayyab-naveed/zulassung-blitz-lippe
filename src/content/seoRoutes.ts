@@ -72,6 +72,12 @@ export const ROUTE_SEO: RouteSeo[] = [
       "Was ist die eVB-Nummer, wann brauchen Sie eine, wie lange gilt sie? Antworten für Neuzulassung, Umschreibung und Wiederzulassung – plus die häufigsten Fehler.",
   },
   {
+    path: "/auto-anmelden",
+    title: "Auto anmelden Bad Salzuflen – ohne Termin, ab 129 €",
+    description:
+      "Auto anmelden in Bad Salzuflen ohne Termin: Neuwagen, Gebrauchtwagen oder Wiederzulassung, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren, Mo–Sa geöffnet.",
+  },
+  {
     path: "/auto-abmelden",
     title: "Auto abmelden Bad Salzuflen – ohne Termin, 40 €",
     description:

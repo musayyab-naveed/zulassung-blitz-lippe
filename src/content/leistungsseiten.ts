@@ -21,6 +21,7 @@ export interface Abschnitt {
   titel: string;
   text?: string;
   punkte?: string[];
+  link?: { href: string; text: string };
 }
 
 export interface Fall {
@@ -57,6 +58,94 @@ export interface LeistungsSeite {
 const faqs = faqSchema as Record<string, FaqItem[]>;
 
 const OEFFNUNG = "Mo–Fr 9–18 Uhr · Sa 15–18 Uhr";
+
+export const AUTO_ANMELDEN: LeistungsSeite = {
+  path: "/auto-anmelden",
+  kicker: "Zulassung ohne Termin",
+  h1: "Auto anmelden in Bad Salzuflen – ohne Termin, in ca. 20 Minuten",
+  intro:
+    "Neuwagen, Gebrauchtwagen oder ein abgemeldetes Auto wieder anmelden: Wir erledigen die Zulassung für den ganzen Kreis Lippe – ohne Termin beim Straßenverkehrsamt. Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag.",
+  chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ ab 129 € inkl. Gebühren", "✓ In ca. 20 Minuten fertig"],
+  preis: {
+    betrag: "ab 129 €",
+    text: "Zulassung inklusive Verwaltungsgebühren. Bei BASIS und PREMIUM sind die Kennzeichen dabei, Wunschkennzeichen +13 €.",
+  },
+  faelle: [
+    {
+      titel: "Neuwagen",
+      text: "Fabrikneues Auto, das noch nie zugelassen war.",
+      preis: "ab 129 €",
+      link: "/angebot?vorgang=zulassen&art=neu",
+      linkText: "Neuzulassung anfragen",
+      checkliste: "neuzulassung",
+    },
+    {
+      titel: "Gebrauchtwagen",
+      text: "Auto gekauft – wir schreiben es auf Sie um.",
+      preis: "ab 129 €",
+      link: "/angebot?vorgang=zulassen&art=gebraucht",
+      linkText: "Umschreibung anfragen",
+      checkliste: "umschreibung",
+    },
+    {
+      titel: "Wieder anmelden",
+      text: "Ihr Auto war abgemeldet und soll wieder fahren.",
+      preis: "ab 129 €",
+      link: "/angebot?vorgang=zulassen&art=wieder",
+      linkText: "Wiederzulassung anfragen",
+      checkliste: "wiederzulassung",
+    },
+  ],
+  schritteTitel: "So melden Sie Ihr Auto bei uns an",
+  schritte: [
+    {
+      titel: "Kurz Bescheid geben",
+      text: "Per WhatsApp in wenigen Fingertipps – oder einfach vorbeikommen. Einen Termin brauchen Sie nicht.",
+    },
+    {
+      titel: "Unterlagen mitbringen",
+      text: "Welche Sie brauchen, steht oben bei Ihrem Fall. Die eVB-Nummer bekommen Sie von Ihrer Versicherung.",
+    },
+    {
+      titel: "Zugelassen",
+      text: "Mit der Sofort-Zulassung in ca. 20 Minuten, klassisch am nächsten Werktag – inklusive Kennzeichen bei BASIS und PREMIUM.",
+    },
+  ],
+  abschnitte: [
+    {
+      titel: "Sofort, BASIS oder PREMIUM – was passt zu Ihnen?",
+      punkte: [
+        "SOFORT: Sie warten kurz bei uns, die Zulassung läuft digital in ca. 20 Minuten. Die Kennzeichen besorgen Sie selbst.",
+        "BASIS: Unterlagen abgeben, am nächsten Werktag alles fertig abholen – mit Kennzeichen.",
+        "PREMIUM: Wir holen die Unterlagen ab und bringen alles fertig zurück, oder Sie schicken uns alles per Post.",
+      ],
+      link: { href: "/preise", text: "Alle Pakete und Preise" },
+    },
+    {
+      titel: "Noch keine eVB-Nummer?",
+      text: "Ohne Kfz-Versicherung keine Zulassung. Die eVB-Nummer bekommen Sie, sobald Sie eine Versicherung abschließen – meist sofort per E-Mail. Auf unserer Seite können Sie Tarife vergleichen.",
+      link: { href: "/kfz-versicherung", text: "eVB-Nummer beantragen" },
+    },
+    {
+      titel: "Warum nicht selbst zum Amt?",
+      text: "Beim Straßenverkehrsamt Kreis Lippe geht nichts ohne Termin, und Termine gibt es nur 14 Tage im Voraus. Wenn Sie flexibel sind und einen Termin bekommen, ist das günstiger. Wenn es schnell gehen soll oder Sie tagsüber arbeiten, sind Sie bei uns richtig – auch samstags.",
+      link: { href: "/zulassungsstelle-bad-salzuflen", text: "Zulassungsstelle Bad Salzuflen: Zeiten & Regeln" },
+    },
+  ],
+  faqTitel: "Häufige Fragen zum Auto anmelden",
+  faqs: faqs["/auto-anmelden"],
+  cta: {
+    titel: "Auto anmelden – ohne Termin",
+    text: "Kurz per WhatsApp Bescheid geben oder einfach vorbeikommen: Werler Straße 68, 32105 Bad Salzuflen.",
+    href: "/angebot?vorgang=zulassen",
+    button: "ZULASSUNG ANFRAGEN",
+  },
+  verwandt: [
+    { href: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT oder LE" },
+    { href: "/kfz-versicherung", text: "eVB-Nummer beantragen" },
+    { href: "/auto-abmelden", text: "Auto abmelden" },
+  ],
+};
 
 export const AUTO_ABMELDEN: LeistungsSeite = {
   path: "/auto-abmelden",
@@ -318,4 +407,4 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
   ],
 };
 
-export const LEISTUNGSSEITEN = [AUTO_ABMELDEN, AUTO_UMMELDEN, WUNSCHKENNZEICHEN, GEWERBEKUNDEN];
+export const LEISTUNGSSEITEN = [AUTO_ANMELDEN, AUTO_ABMELDEN, AUTO_UMMELDEN, WUNSCHKENNZEICHEN, GEWERBEKUNDEN];
