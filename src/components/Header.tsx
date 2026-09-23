@@ -10,7 +10,6 @@ const Header = () => {
   const location = useLocation();
 
   const navigation = [
-    { name: "Startseite", href: "/" },
     { name: "Preise", href: "/preise" },
     { name: "Versicherung", href: "/kfz-versicherung" },
     { name: "FAQ", href: "/faq" },
@@ -26,7 +25,7 @@ const Header = () => {
       <div className="hidden lg:block border-b border-border/60 bg-secondary text-secondary-foreground">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs flex items-center justify-between">
           <span>Bad Salzuflen &amp; Kreis Lippe · Ohne Termin · Mo–Fr 9–18, Sa 15–18 Uhr · Online-Zulassung rund um die Uhr</span>
-          <span>⚡ NEU: Sofort-Zulassung in ca. 20 Minuten</span>
+          <a href="tel:+4915142462280" className="whitespace-nowrap font-semibold hover:underline">📞 01514 2462280</a>
         </div>
       </div>
 
@@ -72,7 +71,7 @@ const Header = () => {
               </a>
             </div>
             <Button variant="cta" size="sm" asChild className="whitespace-nowrap">
-              <Link to="/angebot">Jetzt starten</Link>
+              <Link to="/angebot">Zulassung starten</Link>
             </Button>
           </div>
 

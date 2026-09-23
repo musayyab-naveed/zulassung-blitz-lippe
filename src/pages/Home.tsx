@@ -6,28 +6,33 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleReviews from "@/components/GoogleReviews";
 import Seo from "@/components/Seo";
-import { generalFaqs } from "@/content/faqs";
+import { startseitenFaqs } from "@/content/faqs";
 import hero480 from "@/assets/hero-480.webp";
 import hero800 from "@/assets/hero-800.webp";
 import hero1200 from "@/assets/hero-1200.webp";
-import { Clock, FileText, Shield, ShieldCheck, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
+import { Car, FileText, Shield, ShieldCheck, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { RATGEBER, ratgeberPfad } from "@/content/ratgeber";
+import { ALLE_ORTE_LIPPE, ORTSSEITEN } from "@/content/ortsseiten";
+
+const ROUTE_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=" +
+  encodeURIComponent("KFZ-Sofortzulassung, Werler Straße 68, 32105 Bad Salzuflen");
 
 const Home = () => {
 
   const steps = [
     {
       icon: <FileText className="h-8 w-8 text-primary" />,
-      title: "Auftrag erstellen",
+      title: "Kurz Bescheid geben",
       description:
-        "Im Assistenten in wenigen Klicks das passende Paket finden. Wir übernehmen den Rest.",
+        "Per WhatsApp in wenigen Fingertipps – oder einfach vorbeikommen. Einen Termin brauchen Sie nicht.",
     },
     {
       icon: <Shield className="h-8 w-8 text-primary" />,
-      title: "Dokumente übermitteln",
+      title: "Unterlagen mitbringen",
       description:
-        "Vorbeibringen, zusenden oder von uns abholen lassen. Sicher und unkompliziert.",
+        "Vorbeibringen, zuschicken oder im Raum Bad Salzuflen von uns abholen lassen.",
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-primary" />,
@@ -55,7 +60,7 @@ const Home = () => {
 
   const services = [
     { name: "KFZ-Zulassung (neu & gebraucht)", href: "/preise" },
-    { name: "eVB-Nummer beantragen & Versicherung vergleichen", href: "/kfz-versicherung" },
+    { name: "eVB-Nummer beantragen", href: "/kfz-versicherung" },
     { name: "Auto abmelden", href: "/auto-abmelden" },
     { name: "Auto ummelden & Umschreibung", href: "/auto-ummelden" },
     { name: "Wunschkennzeichen LIP, DT, LE", href: "/wunschkennzeichen" },
@@ -63,7 +68,6 @@ const Home = () => {
     { name: "Hol- und Bringservice", href: "/preise" },
     { name: "Für Autohändler & Firmen", href: "/gewerbekunden" },
     { name: "Fahrzeugankauf", href: "/fahrzeugankauf" },
-    { name: "eVB-Nummer erklärt", href: "/evb-nummer" },
   ];
 
   return (
@@ -91,105 +95,62 @@ const Home = () => {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white">
                 KFZ-Zulassung in Bad Salzuflen –<br className="hidden sm:block" /> ohne Termin, Montag bis Samstag
               </h1>
-              <p className="text-lg sm:text-xl mb-4 font-semibold text-primary-foreground/95">
-                Zugelassen, bevor andere überhaupt einen Termin bekommen: digital in ca. 20 Minuten,
-                ab 129 € inklusive aller Gebühren.
-              </p>
-              <p className="text-base sm:text-lg mb-8 text-primary-foreground/80">
-                Oder klassisch: Unterlagen abgeben, am nächsten Werktag fertig – inklusive Kennzeichen
+              <p className="text-lg sm:text-xl mb-6 font-semibold text-primary-foreground/95">
+                Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag – ab 129 € inklusive
+                aller Gebühren. Für den ganzen Kreis Lippe.
               </p>
 
-              <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 justify-center lg:justify-start">
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ✓ Ohne Termin, ohne Wartenummer
-                </div>
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ✓ Mo–Fr 9–18 · Sa 15–18 Uhr
-                </div>
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ⚡ Fertig in ca. 20 Minuten
-                </div>
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  🕐 Online-Zulassung rund um die Uhr
-                </div>
-                <Link
-                  to="/preise"
-                  className="rounded-full bg-primary-foreground/20 px-3 py-2 text-xs font-semibold text-primary-foreground underline-offset-4 backdrop-blur-sm transition-colors hover:bg-primary-foreground/30 hover:underline sm:px-4 sm:text-sm"
-                >
-                  ab 129 € – alle Preise ansehen
-                </Link>
-              </div>
+              <ul className="mb-8 flex flex-wrap justify-center gap-2 sm:gap-3 lg:justify-start">
+                {["Ohne Termin", "Mo–Fr 9–18 · Sa 15–18 Uhr", "Online rund um die Uhr"].map((punkt) => (
+                  <li
+                    key={punkt}
+                    className="rounded-full bg-primary-foreground/20 px-3 py-2 text-xs font-medium text-primary-foreground backdrop-blur-sm sm:px-4 sm:text-sm"
+                  >
+                    ✓ {punkt}
+                  </li>
+                ))}
+              </ul>
 
-              <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 justify-center lg:justify-start relative z-30">
-                <Button size="lg" variant="cta-large" asChild>
+              {/* Eine Hauptaktion, zwei Nebenaktionen */}
+              <div className="relative z-30 flex flex-col gap-3 sm:max-w-xl lg:max-w-none">
+                <Button size="lg" variant="cta-large" asChild className="w-full sm:w-auto">
                   <Link to="/angebot">
                     JETZT ZULASSUNG STARTEN
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button
-                  size="lg"
-                  variant="cta-large"
-                  asChild
-                >
-                  <Link to="/fahrzeugankauf">
-                    JETZT AUTO VERKAUFEN
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="cta-large" asChild>
-                  <Link to="/kfz-versicherung">
-                    <ShieldCheck className="mr-2 h-5 w-5" />
-                    EVB-NUMMER BEANTRAGEN
-                  </Link>
-                </Button>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <Button size="lg" variant="cta" asChild className="h-auto py-4 text-base font-bold">
+                    <Link to="/kfz-versicherung">
+                      <ShieldCheck className="mr-2 h-5 w-5" />
+                      eVB-Nummer beantragen
+                    </Link>
+                  </Button>
+                  <Button
+                    size="lg"
+                    asChild
+                    className="h-auto rounded-xl bg-white py-4 text-base font-bold text-secondary hover:bg-white/90"
+                  >
+                    <Link to="/fahrzeugankauf">
+                      <Car className="mr-2 h-5 w-5" />
+                      Auto verkaufen
+                    </Link>
+                  </Button>
+                </div>
               </div>
-              <p className="mt-4 text-sm sm:text-base text-primary-foreground/85">
-                Starten Sie Ihre Zulassung oder bieten Sie Ihr Fahrzeug direkt zum Verkauf an – auch
-                nicht fahrbereite Fahrzeuge lassen wir fachgerecht verwerten. Noch keine eVB-Nummer?
-                Kfz-Versicherung vergleichen, die eVB kommt per E-Mail.
+              <p className="mt-4 text-sm text-primary-foreground/85">
+                Auto verkaufen: auch nicht fahrbereite Fahrzeuge – beim Ankauf ist die Abmeldung gratis.
               </p>
 
-              <div className="mt-6 grid grid-cols-1 gap-3 text-left sm:grid-cols-[1fr_1fr_1.18fr]">
-                <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
-                  <div className="flex items-center gap-2 text-primary-foreground">
-                    <Clock className="h-4 w-4 text-primary" />
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/70">
-                      Oeffnungszeiten
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm font-medium leading-snug text-white">
-                    <span className="block">Mo-Fr: 9:00-18:00 Uhr</span>
-                    <span className="block">Sa: 15:00-18:00 Uhr</span>
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
-                  <div className="flex items-center gap-2 text-primary-foreground">
-                    <MapPin className="h-4 w-4 text-primary" />
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/70">
-                      Adresse
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm font-medium leading-snug text-white">
-                    <span className="block">Werler Straße 68</span>
-                    <span className="block">32105 Bad Salzuflen</span>
-                  </p>
-                </div>
-                <div className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
-                  <div className="flex items-center gap-2 text-primary-foreground">
-                    <Mail className="h-4 w-4 text-primary" />
-                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/70">
-                      E-Mail
-                    </span>
-                  </div>
-                  <a
-                    href="mailto:info@sofortzulassung.com"
-                    className="mt-2 block text-[13px] font-medium leading-snug text-white transition-opacity hover:opacity-80 sm:text-sm"
-                  >
-                    info@sofortzulassung.com
-                  </a>
-                </div>
-              </div>
+              <a
+                href={ROUTE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white hover:underline"
+              >
+                <MapPin className="h-4 w-4 flex-none text-primary" />
+                Werler Straße 68, 32105 Bad Salzuflen · Route planen
+              </a>
             </div>
 
             <div className="relative mt-8 lg:mt-0 z-10 stagger-in stagger-delay-2">
@@ -254,14 +215,39 @@ const Home = () => {
         </div>
       </section>
 
-      <GoogleReviews />
-
-
       <section className="py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 stagger-in">
+            <h2 className="section-title mb-4">Was möchten Sie erledigen?</h2>
+            <p className="section-subtitle">Tippen Sie einfach auf Ihr Anliegen</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {services.map((service) => (
+              <Link
+                key={service.name}
+                to={service.href}
+                className="surface-soft group flex items-center justify-between gap-3 p-4 transition-colors hover:border-primary"
+              >
+                <span className="flex items-center gap-3">
+                  <CheckCircle className="h-6 w-6 flex-none text-trust-green" />
+                  <span className="font-medium text-secondary group-hover:text-primary">{service.name}</span>
+                </span>
+                <ArrowRight className="h-4 w-4 flex-none text-muted-foreground group-hover:text-primary" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <GoogleReviews />
+
+
+      <section className="py-14 bg-muted">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 stagger-in">
             <h2 className="section-title mb-4">Ablauf in 3 einfachen Schritten</h2>
-            <p className="section-subtitle">So einfach ist Ihre KFZ-Zulassung mit uns</p>
+            <p className="section-subtitle">So läuft Ihre Zulassung bei uns ab</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -285,11 +271,11 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 bg-muted/50">
+      <section className="py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="section-title mb-4">Checkliste: Das bringen Sie mit</h2>
-            <p className="section-subtitle">Mit diesen Unterlagen klappt Ihr Termin ohne Verzögerung</p>
+            <p className="section-subtitle">Mit diesen Unterlagen geht alles ohne Verzögerung</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -373,7 +359,7 @@ const Home = () => {
       </section>
 
 
-      <section className="py-14 bg-muted/50">
+      <section className="py-14 bg-muted">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="section-title mb-4">Häufige Fragen</h2>
@@ -383,7 +369,7 @@ const Home = () => {
           </div>
 
           <Accordion type="single" collapsible className="space-y-3">
-            {generalFaqs.map((faq, index) => (
+            {startseitenFaqs.map((faq, index) => (
               <AccordionItem
                 key={faq.question}
                 value={`faq-${index}`}
@@ -426,33 +412,38 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 stagger-in">
-            <h2 className="section-title mb-4">Unsere Leistungen</h2>
-            <p className="section-subtitle">Alles rund um Ihre Fahrzeugzulassung</p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {services.map((service) => (
-              <Link
-                key={service.name}
-                to={service.href}
-                className="surface-soft group flex items-center justify-between gap-3 p-4 transition-colors hover:border-primary"
-              >
-                <span className="flex items-center gap-3">
-                  <CheckCircle className="h-6 w-6 flex-none text-trust-green" />
-                  <span className="font-medium text-secondary group-hover:text-primary">{service.name}</span>
+
+      {/* Für ganz Lippe: Ortsseiten verlinken */}
+      <section className="py-14">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="section-title mb-4">Für den ganzen Kreis Lippe</h2>
+          <p className="section-subtitle mx-auto mb-8 max-w-2xl">
+            Egal ob Detmold, Lemgo oder Lage: Wir lassen Ihr Auto für jede Stadt und Gemeinde im
+            Kreis Lippe zu – vor Ort in Bad Salzuflen, per Versand oder online.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {ALLE_ORTE_LIPPE.map((ort) => {
+              const seite = ORTSSEITEN.find((s) => s.ort === ort);
+              return seite ? (
+                <Link
+                  key={ort}
+                  to={seite.path}
+                  className="rounded-full border-2 border-primary/40 bg-primary/5 px-4 py-2 text-sm font-semibold text-secondary hover:border-primary hover:text-link"
+                >
+                  {ort}
+                </Link>
+              ) : (
+                <span key={ort} className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground">
+                  {ort}
                 </span>
-                <ArrowRight className="h-4 w-4 flex-none text-muted-foreground group-hover:text-primary" />
-              </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-
-      <section className="py-14 bg-muted/50">
+      <section className="py-14 bg-muted">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h2 className="section-title mb-4">Aus dem Ratgeber</h2>
@@ -499,8 +490,9 @@ const Home = () => {
               <div>
                 <h3 className="text-2xl font-bold text-secondary mb-4">Wir sind direkt vor Ort für Sie da</h3>
                 <p className="text-muted-foreground mb-6">
-                  Kommen Sie gerne vorbei oder kontaktieren Sie uns für eine persönliche Beratung.
-                  Unser Zulassungsdienst in Bad Salzuflen ist zentral im Kreis Lippe gelegen und leicht zu erreichen.
+                  Kommen Sie einfach vorbei – ohne Termin. Aus Detmold, Lemgo, Lage und dem übrigen
+                  Kreis Lippe sind Sie schnell bei uns; alternativ schicken Sie uns die Unterlagen oder
+                  wir erledigen die Zulassung online.
                 </p>
               </div>
 
@@ -524,7 +516,7 @@ const Home = () => {
                   <div>
                     <h4 className="font-semibold text-secondary">Telefon</h4>
                     <a href="tel:+4915142462280" className="text-link hover:underline">
-                      +4915142462280
+                      01514 2462280
                     </a>
                   </div>
                 </div>
@@ -543,7 +535,7 @@ const Home = () => {
               <div className="pt-6">
                 <Button size="lg" variant="cta" className="w-full sm:w-auto" asChild>
                   <Link to="/angebot">
-                    JETZT BEAUFTRAGEN
+                    JETZT ZULASSUNG STARTEN
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

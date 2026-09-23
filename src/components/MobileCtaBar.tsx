@@ -37,7 +37,7 @@ const MobileCtaBar = () => {
         </Button>
         {!imVorgang && (
           <Button variant="cta" size="sm" asChild>
-            <Link to="/angebot">Beauftragen</Link>
+            <Link to="/angebot">Zulassung</Link>
           </Button>
         )}
       </div>

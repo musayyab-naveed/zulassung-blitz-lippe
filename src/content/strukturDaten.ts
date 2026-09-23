@@ -1,7 +1,8 @@
 import faqSchema from "./faqSchema.json";
-import { generalFaqs, vorgangChecklists, type FaqItem } from "./faqs";
+import { generalFaqs, startseitenFaqs, vorgangChecklists, type FaqItem } from "./faqs";
 import { EXTRAS, PACKAGES, PREIS_FAQS } from "./preise";
 import { RATGEBER, RATGEBER_PFAD, ratgeberPfad } from "./ratgeber";
+import { findeOrtsseite } from "./ortsseiten";
 import { BUSINESS, OG_IMAGE, SITE_URL } from "./seoRoutes";
 
 /**
@@ -162,7 +163,7 @@ const alsFaqs = (pfad: string): FaqItem[] => (faqSchema as Record<string, FaqIte
 export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
   switch (pfad) {
     case "/":
-      return [faqPage(pfad, generalFaqs)];
+      return [faqPage(pfad, startseitenFaqs)];
     case "/faq":
       return [
         faqPage(pfad, [
@@ -214,6 +215,16 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
         },
       ];
     default: {
+      const ortsseite = findeOrtsseite(pfad);
+      if (ortsseite) {
+        return [
+          {
+            ...dienstleistung(pfad, `KFZ-Zulassung für ${ortsseite.ort}`, "KFZ-Zulassungsdienst", ortsseite.seoBeschreibung, { wert: "129", ab: true }),
+            areaServed: { "@type": "City", name: ortsseite.ort },
+          },
+          faqPage(pfad, ortsseite.faqs),
+        ];
+      }
       const artikel = RATGEBER.find((a) => ratgeberPfad(a.slug) === pfad);
       if (artikel) {
         return [

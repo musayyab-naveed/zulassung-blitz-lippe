@@ -22,6 +22,7 @@ import CookieBanner from "./components/CookieBanner";
 import Leistungsseite from "./pages/Leistungsseite";
 import Ratgeber from "./pages/Ratgeber";
 import KfzVersicherung from "./pages/KfzVersicherung";
+import { ORTSSEITEN } from "./content/ortsseiten";
 import RatgeberArtikel from "./pages/RatgeberArtikel";
 import { AUTO_ABMELDEN, AUTO_UMMELDEN, GEWERBEKUNDEN, WUNSCHKENNZEICHEN } from "./content/leistungsseiten";
 
@@ -59,6 +60,9 @@ export const AppInhalt = () => (
         <Route path="/wunschkennzeichen" element={<Leistungsseite seite={WUNSCHKENNZEICHEN} />} />
         <Route path="/gewerbekunden" element={<Leistungsseite seite={GEWERBEKUNDEN} />} />
         <Route path="/kfz-versicherung" element={<KfzVersicherung />} />
+        {ORTSSEITEN.map((seite) => (
+          <Route key={seite.path} path={seite.path} element={<Leistungsseite seite={seite} />} />
+        ))}
         <Route path="/ratgeber" element={<Ratgeber />} />
         <Route path="/ratgeber/:slug" element={<RatgeberArtikel />} />
         <Route path="/faq" element={<Faq />} />

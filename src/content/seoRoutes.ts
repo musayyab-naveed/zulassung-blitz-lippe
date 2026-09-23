@@ -4,6 +4,7 @@
 // Titel, die richtige Beschreibung und das passende Canonical vorfinden.
 
 import { RATGEBER, RATGEBER_PFAD, ratgeberPfad } from "./ratgeber";
+import { ORTSSEITEN } from "./ortsseiten";
 
 export const SITE_URL = "https://sofortzulassung.com";
 export const SITE_NAME = "KFZ-Sofortzulassung";
@@ -137,6 +138,11 @@ export const ROUTE_SEO: RouteSeo[] = [
       "Datenschutzerklärung von KFZ-Sofortzulassung in Bad Salzuflen: welche Daten wir verarbeiten, wozu, und welche Rechte Sie dabei haben.",
   },
 ];
+
+// Ortsseiten für den Kreis Lippe (Detmold, Lemgo, Lage …)
+ROUTE_SEO.push(
+  ...ORTSSEITEN.map((seite) => ({ path: seite.path, title: seite.seoTitel, description: seite.seoBeschreibung }))
+);
 
 // Ratgeber: Übersicht und je Artikel eine eigene Seite
 ROUTE_SEO.push(

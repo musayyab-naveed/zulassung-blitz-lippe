@@ -183,3 +183,16 @@ export const vorgangChecklists: VorgangChecklist[] = [
     hint: "Was in Ihrem Fall genau nötig ist, klären wir kurz im Chat.",
   },
 ];
+
+/** Die sechs Fragen, die Kunden zuerst stellen – für die Startseite (Rest auf /faq) */
+const STARTSEITEN_FRAGEN = [
+  "Brauche ich einen Termin?",
+  "Was kostet die Zulassung?",
+  "Wie schnell ist eine KFZ-Zulassung möglich?",
+  "Was brauche ich für die Sofort-Zulassung?",
+  "Was ist der Unterschied zwischen SOFORT, BASIS und PREMIUM?",
+  "Kann ich mein altes Fahrzeug gleichzeitig verkaufen?",
+];
+export const startseitenFaqs: FaqItem[] = STARTSEITEN_FRAGEN.map(
+  (frage) => generalFaqs.find((faq) => faq.question === frage)!
+);
