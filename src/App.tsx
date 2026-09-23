@@ -32,36 +32,43 @@ const ScrollToTop = () => {
   return null;
 };
 
-const App = () => (
+// Seiteninhalt ohne Router – wird im Browser mit BrowserRouter und beim
+// Build (scripts/prerender.mjs) mit StaticRouter verwendet, damit jede Seite
+// ihren Text schon im HTML mitbringt.
+export const AppInhalt = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/angebot" element={<Angebot />} />
-          <Route path="/preise" element={<Preise />} />
-          <Route path="/ueber-uns" element={<UeberUns />} />
-          <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
-          <Route path="/evb-nummer" element={<EvbNummer />} />
-          <Route path="/zulassungsstelle-bad-salzuflen" element={<Zulassungsstelle />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/dokumente" element={<Dokumente />} />
-          <Route path="/blog" element={<Navigate to="/faq" replace />} />
-          <Route path="/blog/:slug" element={<Navigate to="/faq" replace />} />
-          <Route path="/impressum" element={<Impressum />} />
-          <Route path="/datenschutz" element={<Datenschutz />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <WhatsAppFloatingButton />
-        <MobileCtaBar />
-        <CookieBanner />
-      </BrowserRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/angebot" element={<Angebot />} />
+        <Route path="/preise" element={<Preise />} />
+        <Route path="/ueber-uns" element={<UeberUns />} />
+        <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
+        <Route path="/evb-nummer" element={<EvbNummer />} />
+        <Route path="/zulassungsstelle-bad-salzuflen" element={<Zulassungsstelle />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/dokumente" element={<Dokumente />} />
+        <Route path="/blog" element={<Navigate to="/faq" replace />} />
+        <Route path="/blog/:slug" element={<Navigate to="/faq" replace />} />
+        <Route path="/impressum" element={<Impressum />} />
+        <Route path="/datenschutz" element={<Datenschutz />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <WhatsAppFloatingButton />
+      <MobileCtaBar />
+      <CookieBanner />
     </TooltipProvider>
   </QueryClientProvider>
+);
+
+const App = () => (
+  <BrowserRouter>
+    <AppInhalt />
+  </BrowserRouter>
 );
 
 export default App;

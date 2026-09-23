@@ -9,7 +9,7 @@
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, "..", "dist");
@@ -42,6 +42,13 @@ const escapeHtml = (value) =>
   value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const template = readFileSync(join(distDir, "index.html"), "utf8");
+
+// Seiteninhalt als fertiges HTML (aus dem SSR-Build von src/entry-server.tsx).
+// Ohne diesen Schritt steht im HTML nur ein leeres <div id="root"> – Crawler
+// und KI-Systeme ohne JavaScript sehen dann keinen einzigen Satz Text.
+const { render } = await import(
+  pathToFileURL(join(__dirname, "..", "dist-ssr", "entry-server.js")).href
+);
 
 // Fragen und Antworten je Route. Dieselbe Datei nutzen auch die React-Seiten,
 // damit Text und Auszeichnung nie auseinanderlaufen. Der Grund fuer das
@@ -203,6 +210,13 @@ for (const route of routes) {
     );
   }
 
+  const inhalt = render(route.path);
+  if (!inhalt || inhalt.length < 500) {
+    console.error(`[prerender] Kaum Inhalt für ${route.path} – Abbruch.`);
+    process.exit(1);
+  }
+  html = html.replace('<div id="root"></div>', `<div id="root">${inhalt}</div>`);
+
   // JSON-LD direkt vor </head> einfügen
   html = html.replace(
     "</head>",
@@ -222,4 +236,4 @@ for (const route of routes) {
   written += 1;
 }
 
-console.log(`[prerender] ${written} Seiten mit eigenen Meta-Daten und JSON-LD erzeugt.`);
+console.log(`[prerender] ${written} Seiten mit Text, eigenen Meta-Daten und JSON-LD erzeugt.`);
