@@ -12,6 +12,7 @@ const Header = () => {
   const navigation = [
     { name: "Startseite", href: "/" },
     { name: "Preise", href: "/preise" },
+    { name: "Versicherung", href: "/kfz-versicherung" },
     { name: "FAQ", href: "/faq" },
     { name: "Fahrzeugankauf", href: "/fahrzeugankauf" },
     { name: "Ratgeber", href: "/ratgeber" },
@@ -64,7 +65,7 @@ const Header = () => {
           {/* Phone Number + CTA */}
           <div className="hidden lg:flex items-center gap-3">
             {/* Telefonnummer erst ab breiten Bildschirmen – sonst passt das Menü nicht in eine Zeile */}
-            <div className="hidden xl:inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-secondary shadow-sm">
+            <div className="hidden 2xl:inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-secondary shadow-sm">
               <Phone className="h-4 w-4 text-primary" />
               <a href="tel:+4915142462280" className="whitespace-nowrap text-sm font-semibold hover:text-primary transition-colors">
                 01514 2462280

@@ -10,7 +10,7 @@ import { generalFaqs } from "@/content/faqs";
 import hero480 from "@/assets/hero-480.webp";
 import hero800 from "@/assets/hero-800.webp";
 import hero1200 from "@/assets/hero-1200.webp";
-import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
+import { Clock, FileText, Shield, ShieldCheck, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { RATGEBER, ratgeberPfad } from "@/content/ratgeber";
 
@@ -55,6 +55,7 @@ const Home = () => {
 
   const services = [
     { name: "KFZ-Zulassung (neu & gebraucht)", href: "/preise" },
+    { name: "Kfz-Versicherung vergleichen", href: "/kfz-versicherung" },
     { name: "Auto abmelden", href: "/auto-abmelden" },
     { name: "Auto ummelden & Umschreibung", href: "/auto-ummelden" },
     { name: "Wunschkennzeichen LIP, DT, LE", href: "/wunschkennzeichen" },
@@ -136,10 +137,20 @@ const Home = () => {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
+                <Button
+                  size="lg"
+                  asChild
+                  className="h-auto rounded-xl bg-white px-8 py-6 text-lg font-bold text-secondary shadow-lg hover:bg-white/90"
+                >
+                  <Link to="/kfz-versicherung">
+                    <ShieldCheck className="mr-2 h-5 w-5 text-trust-green" />
+                    KFZ-VERSICHERUNG VERGLEICHEN
+                  </Link>
+                </Button>
               </div>
               <p className="mt-4 text-sm sm:text-base text-primary-foreground/85">
-                Starten Sie Ihre Zulassung oder bieten Sie Ihr Fahrzeug direkt zum Verkauf an.
-                Auch nicht fahrbereite Fahrzeuge lassen wir fachgerecht verwerten.
+                Noch keine Versicherung? Hier vergleichen – die eVB-Nummer kommt per E-Mail, danach
+                lassen wir Ihr Auto ohne Termin zu.
               </p>
 
               <div className="mt-6 grid grid-cols-1 gap-3 text-left sm:grid-cols-[1fr_1fr_1.18fr]">
@@ -224,7 +235,30 @@ const Home = () => {
       </section>
 
 
+      {/* Kfz-Versicherung: gut sichtbar direkt unter dem Startbereich */}
+      <section className="border-b border-border bg-trust-green/10 py-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 text-center sm:px-6 md:flex-row md:justify-between md:text-left lg:px-8">
+          <div className="flex items-center gap-3">
+            <ShieldCheck className="hidden h-10 w-10 flex-none text-trust-green sm:block" />
+            <div>
+              <p className="text-lg font-bold text-secondary">Noch keine Kfz-Versicherung?</p>
+              <p className="text-sm text-muted-foreground">
+                Tarife vergleichen, eVB-Nummer per E-Mail erhalten – und danach ohne Termin bei uns
+                zulassen.
+              </p>
+            </div>
+          </div>
+          <Button size="lg" variant="cta" asChild className="w-full flex-none md:w-auto">
+            <Link to="/kfz-versicherung">
+              Versicherung vergleichen
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
       <GoogleReviews />
+
 
       <section className="py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

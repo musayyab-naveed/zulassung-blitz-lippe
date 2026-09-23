@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   ARTEN,
+  EVB_OPTIONEN,
   SONDER_ARTEN,
   TELEFON_ANZEIGE,
   TELEFON_LINK,
@@ -20,7 +21,9 @@ import {
   checklisteFuer,
   vorgangAusPaket,
   whatsappLink,
+  brauchtEvbFrage,
   type Art,
+  type Evb,
   type Auswahl,
   type Vorgang,
   type Wann,
@@ -45,6 +48,7 @@ import {
   Phone,
   RectangleHorizontal,
   RotateCcw,
+  ShieldCheck,
   Sparkles,
   Timer,
   Truck,
@@ -72,6 +76,9 @@ const ICONS: Record<string, ReactNode> = {
   gebraucht: <Car className="h-6 w-6" />,
   wieder: <RotateCcw className="h-6 w-6" />,
   unklar: <HelpCircle className="h-6 w-6" />,
+  ja: <CheckCircle className="h-6 w-6" />,
+  vergleich: <ShieldCheck className="h-6 w-6" />,
+  nein: <HelpCircle className="h-6 w-6" />,
   heute: <Clock className="h-6 w-6" />,
   morgen: <Clock className="h-6 w-6" />,
   woche: <Clock className="h-6 w-6" />,
@@ -83,6 +90,7 @@ const istVorgang = (v: string | null): v is Vorgang =>
   v === "zulassen" || v === "abmelden" || v === "sonder" || v === "verkaufen" || v === "frage";
 const ALLE_ARTEN: string[] = [...ARTEN, ...SONDER_ARTEN].map((a) => a.wert);
 const istArt = (v: string | null): v is Art => v !== null && ALLE_ARTEN.includes(v);
+const istEvb = (v: string | null): v is Evb => v === "ja" || v === "vergleich" || v === "nein";
 const istWann = (v: string | null): v is Wann =>
   v === "heute" || v === "morgen" || v === "woche" || v === "offen" || v === "extern";
 
@@ -121,22 +129,37 @@ const Angebot = () => {
   const vorgangVorgegeben = !istVorgang(vorgangAusUrl) && vorgang !== undefined;
   const art = istArt(params.get("art")) ? (params.get("art") as Art) : undefined;
   const wann = istWann(params.get("wann")) ? (params.get("wann") as Wann) : undefined;
+  const evb = istEvb(params.get("evb")) ? (params.get("evb") as Evb) : undefined;
+  // Wer zulässt, wird gefragt, ob die Versicherung (eVB) schon da ist – auch um einen Preisvergleich anzubieten
+  const mitEvbSchritt = brauchtEvbFrage({ vorgang, art });
 
-  const schritt: "was" | "art" | "wann" | "fertig" = !vorgang
+  const schritt: "was" | "art" | "evb" | "wann" | "fertig" = !vorgang
     ? "was"
     : (vorgang === "zulassen" || vorgang === "sonder") && !art
       ? "art"
-      : (vorgang === "zulassen" || vorgang === "abmelden" || vorgang === "sonder") && !wann
-        ? "wann"
-        : "fertig";
+      : mitEvbSchritt && !evb
+        ? "evb"
+        : (vorgang === "zulassen" || vorgang === "abmelden" || vorgang === "sonder") && !wann
+          ? "wann"
+          : "fertig";
 
   const mitArtSchritt = vorgang === "zulassen" || vorgang === "sonder";
-  const gesamtSchritte = mitArtSchritt ? 3 : vorgang === "abmelden" ? 2 : 1;
+  // Solange die Art noch offen ist, rechnen wir bei Zulassungen mit der eVB-Frage
+  const evbZaehlt = mitEvbSchritt || (vorgang === "zulassen" && !art);
+  const gesamtSchritte = (mitArtSchritt ? 3 : vorgang === "abmelden" ? 2 : 1) + (evbZaehlt ? 1 : 0);
   const aktuellerSchritt =
-    schritt === "was" ? 1 : schritt === "art" ? 2 : schritt === "wann" ? (mitArtSchritt ? 3 : 2) : gesamtSchritte;
+    schritt === "was"
+      ? 1
+      : schritt === "art"
+        ? 2
+        : schritt === "evb"
+          ? 3
+          : schritt === "wann"
+            ? gesamtSchritte
+            : gesamtSchritte;
 
   /** Jede Antwort ist ein eigener Verlaufseintrag – Browser-Zurück geht genau einen Schritt zurück */
-  const setze = (schluessel: "vorgang" | "art" | "wann", wert: string) => {
+  const setze = (schluessel: "vorgang" | "art" | "evb" | "wann", wert: string) => {
     const neu = new URLSearchParams(params);
     if (schluessel === "vorgang") neu.delete("start");
     neu.set(schluessel, wert);
@@ -152,7 +175,8 @@ const Angebot = () => {
     // Direkt aufgerufen: eine Ebene nach oben
     const neu = new URLSearchParams(params);
     if (schritt === "fertig" && wann) neu.delete("wann");
-    else if (schritt === "wann" && art) neu.delete("art");
+    else if (schritt === "wann" && evb) neu.delete("evb");
+    else if ((schritt === "wann" || schritt === "evb") && art) neu.delete("art");
     else if (!vorgangVorgegeben) neu.delete("vorgang");
     else {
       navigate(vonPreise ? "/preise" : "/");
@@ -162,7 +186,7 @@ const Angebot = () => {
     navigate(rest ? `/angebot?${rest}` : "/angebot");
   };
 
-  const antworten = { vorgang, art, wann, paket: paket ?? undefined };
+  const antworten = { vorgang, art, evb, wann, paket: paket ?? undefined };
   const nachricht = baueNachricht(antworten);
   const checkliste = checklisteFuer(antworten);
 
@@ -176,6 +200,8 @@ const Angebot = () => {
       ? "Was möchten Sie erledigen?"
       : schritt === "art"
         ? "Worum geht es genau?"
+        : schritt === "evb"
+          ? "Haben Sie schon eine eVB-Nummer?"
         : schritt === "wann"
           ? "Wann kommen Sie ungefähr vorbei?"
           : vorgang === "verkaufen"
@@ -251,6 +277,19 @@ const Angebot = () => {
               </div>
             )}
 
+            {schritt === "evb" && (
+              <>
+                <p className="-mt-3 mb-4 text-sm text-muted-foreground">
+                  Die eVB-Nummer bekommen Sie von Ihrer Kfz-Versicherung. Ohne sie geht keine Zulassung.
+                </p>
+                <div className="space-y-3">
+                  {EVB_OPTIONEN.map((o) => (
+                    <Karte key={o.wert} option={o} onWahl={(w) => setze("evb", w)} />
+                  ))}
+                </div>
+              </>
+            )}
+
             {schritt === "wann" && (
               <>
                 <p className="-mt-3 mb-4 text-sm text-muted-foreground">
@@ -266,6 +305,29 @@ const Angebot = () => {
 
             {schritt === "fertig" && (
               <div className="space-y-6">
+                {/* Versicherung vergleichen: ganz oben, wenn die eVB fehlt oder der Kunde vergleichen will */}
+                {(evb === "nein" || evb === "vergleich") && (
+                  <Link
+                    to="/kfz-versicherung"
+                    className="flex items-center gap-3 rounded-xl border-2 border-trust-green/50 bg-trust-green/10 p-4 transition-colors hover:border-trust-green"
+                  >
+                    <ShieldCheck className="h-9 w-9 flex-none text-trust-green" />
+                    <span className="flex-1">
+                      <span className="block font-bold text-secondary">
+                        {evb === "nein"
+                          ? "Zuerst: Kfz-Versicherung abschließen"
+                          : "Kfz-Versicherung vergleichen"}
+                      </span>
+                      <span className="block text-sm text-muted-foreground">
+                        {evb === "nein"
+                          ? "Tarife vergleichen und online abschließen – die eVB-Nummer kommt per E-Mail. Danach schicken Sie uns einfach die Nachricht unten."
+                          : "Schauen Sie, ob es günstiger geht – Ihre Anfrage bei uns können Sie trotzdem gleich abschicken."}
+                      </span>
+                    </span>
+                    <ArrowRight className="h-5 w-5 flex-none text-trust-green" />
+                  </Link>
+                )}
+
                 {/* Die fertige Nachricht */}
                 <div>
                   <p className="mb-2 text-sm text-muted-foreground">
@@ -352,6 +414,7 @@ const Angebot = () => {
                     </p>
                   </div>
                 )}
+
 
                 {/* Kann nicht selbst kommen */}
                 {wann === "extern" && (

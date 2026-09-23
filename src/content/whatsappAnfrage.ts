@@ -24,6 +24,7 @@ export type Art =
   | "kurzzeit"
   | "ausfuhr";
 export type Wann = "heute" | "morgen" | "woche" | "offen" | "extern";
+export type Evb = "ja" | "vergleich" | "nein";
 
 export interface Auswahl<T extends string> {
   wert: T;
@@ -63,6 +64,27 @@ export const ZEITPUNKTE: Auswahl<Wann>[] = [
   { wert: "extern", titel: "Ich kann nicht selbst kommen", text: "Hol- und Bringservice oder Versand" },
 ];
 
+/** Hat der Kunde schon eine Versicherung? Nur bei Zulassungen, die eine neue eVB brauchen */
+export const EVB_OPTIONEN: Auswahl<Evb>[] = [
+  { wert: "ja", titel: "Ja, habe ich schon" },
+  {
+    wert: "vergleich",
+    titel: "Ja – aber ich möchte Preise vergleichen",
+    text: "Vielleicht gibt es eine günstigere Versicherung",
+  },
+  { wert: "nein", titel: "Nein, noch keine Versicherung", text: "Kein Problem – das geht online in wenigen Minuten" },
+];
+
+/** Neuzulassung, Umschreibung und Wiederzulassung brauchen eine eVB – Umzug und Kennzeichenwechsel nicht */
+export const brauchtEvbFrage = ({ vorgang, art }: { vorgang?: Vorgang; art?: Art }) =>
+  vorgang === "zulassen" && (art === "neu" || art === "gebraucht" || art === "wieder" || art === "unklar");
+
+const EVB_IN_NACHRICHT: Record<Evb, string> = {
+  ja: "vorhanden",
+  vergleich: "vorhanden",
+  nein: "noch nicht vorhanden",
+};
+
 const ART_IN_NACHRICHT: Record<Art, string> = {
   neu: "Neuwagen (Neuzulassung)",
   gebraucht: "Gebrauchtwagen gekauft (Umschreibung)",
@@ -93,11 +115,12 @@ const PAKET_IN_NACHRICHT: Record<string, string> = {
 export interface AnfrageAntworten {
   vorgang?: Vorgang;
   art?: Art;
+  evb?: Evb;
   wann?: Wann;
   paket?: string;
 }
 
-export const baueNachricht = ({ vorgang, art, wann, paket }: AnfrageAntworten): string => {
+export const baueNachricht = ({ vorgang, art, evb, wann, paket }: AnfrageAntworten): string => {
   const paketZeile =
     paket && PAKET_IN_NACHRICHT[paket] && vorgang !== "sonder"
       ? `Gewünschtes Paket: ${PAKET_IN_NACHRICHT[paket]}`
@@ -131,12 +154,14 @@ export const baueNachricht = ({ vorgang, art, wann, paket }: AnfrageAntworten): 
         : "Hallo, ich möchte ein Fahrzeug zulassen.";
   // Bei Sonderkennzeichen steht alles schon in der ersten Zeile
   const mitArt = vorgang === "zulassen" && art;
+  const evbZeile = evb && brauchtEvbFrage({ vorgang, art }) ? `eVB-Nummer: ${EVB_IN_NACHRICHT[evb]}` : null;
 
   if (wann === "extern") {
     return [
       wasZeile.replace(/\.$/, ", kann aber nicht selbst vorbeikommen."),
       "",
       mitArt ? `Vorgang: ${ART_IN_NACHRICHT[mitArt]}` : null,
+      evbZeile,
       paketZeile,
       "",
       "Geht Abholung oder Versand der Unterlagen?",
@@ -151,6 +176,7 @@ export const baueNachricht = ({ vorgang, art, wann, paket }: AnfrageAntworten): 
     wasZeile,
     "",
     mitArt ? `Vorgang: ${ART_IN_NACHRICHT[mitArt]}` : null,
+    evbZeile,
     wann ? `Ich komme: ${WANN_IN_NACHRICHT[wann]}` : null,
     paketZeile,
   ]
