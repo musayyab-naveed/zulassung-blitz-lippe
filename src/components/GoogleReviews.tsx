@@ -93,14 +93,14 @@ const GoogleReviews = () => {
         <div className="mb-10 text-center">
           <p className="text-[15px] sm:text-[17px] font-normal text-secondary">Sicher bezahlen mit</p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
-            <img src={paypalLogo} alt="PayPal" className="h-7 w-auto" loading="lazy" />
+            <img src={paypalLogo} alt="PayPal" width={105} height={28} className="h-7 w-auto" loading="lazy" />
             <div className="flex items-center gap-2 text-[#0a4d7a]" aria-label="Kauf auf Rechnung">
               <Receipt className="h-6 w-6" strokeWidth={2.4} />
               <span className="text-lg font-extrabold uppercase tracking-tight">Rechnung</span>
             </div>
             <img src={mastercardLogo} alt="Mastercard" className="h-9 w-auto" loading="lazy" />
             <img src={visaLogo} alt="Visa" className="h-5 w-auto" loading="lazy" />
-            <img src={sepaLogo} alt="SEPA-Lastschrift" className="h-6 w-auto" loading="lazy" />
+            <img src={sepaLogo} alt="SEPA-Lastschrift" width={56} height={24} className="h-6 w-auto" loading="lazy" />
             <img src={applePayLogo} alt="Apple Pay" className="h-7 w-auto" loading="lazy" />
             <div className="flex items-center gap-1.5 text-[#0a4d7a]" aria-label="Barzahlung">
               <Banknote className="h-7 w-7" strokeWidth={2.2} />
