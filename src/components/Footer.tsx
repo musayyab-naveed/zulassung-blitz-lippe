@@ -65,6 +65,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  to="/evb-nummer"
+                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                >
+                  eVB-Nummer
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/dokumente"
                   className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
                 >

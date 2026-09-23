@@ -16,6 +16,7 @@ import WhatsAppFloatingButton from "./components/WhatsAppFloatingButton";
 import Faq from "./pages/Faq";
 import Dokumente from "./pages/Dokumente";
 import Preise from "./pages/Preise";
+import EvbNummer from "./pages/EvbNummer";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/preise" element={<Preise />} />
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
+          <Route path="/evb-nummer" element={<EvbNummer />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/dokumente" element={<Dokumente />} />
           <Route path="/blog" element={<Navigate to="/faq" replace />} />

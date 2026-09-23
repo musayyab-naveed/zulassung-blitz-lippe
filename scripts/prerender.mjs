@@ -43,6 +43,14 @@ const escapeHtml = (value) =>
 
 const template = readFileSync(join(distDir, "index.html"), "utf8");
 
+// Fragen und Antworten je Route. Dieselbe Datei nutzen auch die React-Seiten,
+// damit Text und Auszeichnung nie auseinanderlaufen. Der Grund fuer das
+// Einbetten hier: Suchmaschinen-Crawler und KI-Systeme, die kein JavaScript
+// ausfuehren, sehen die Antworten sonst ueberhaupt nicht.
+const faqByPath = JSON.parse(
+  readFileSync(join(__dirname, "..", "src", "content", "faqSchema.json"), "utf8")
+);
+
 // Gemeinsames Organisations-/LocalBusiness-Schema für alle Seiten
 const openingHours = [
   {
@@ -136,6 +144,19 @@ for (const route of routes) {
 
   const breadcrumb = breadcrumbFor(route);
   if (breadcrumb) graph.push(breadcrumb);
+
+  const faqs = faqByPath[route.path];
+  if (Array.isArray(faqs) && faqs.length > 0) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${canonical}#faq`,
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    });
+  }
 
   const jsonLd = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
 

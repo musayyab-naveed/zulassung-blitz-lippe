@@ -1,0 +1,44 @@
+{
+  "/evb-nummer": [
+    {
+      "question": "Was ist eine eVB-Nummer?",
+      "answer": "Die eVB-Nummer ist die elektronische Versicherungsbestätigung Ihrer KFZ-Versicherung. Sie besteht aus sieben Zeichen und beweist der Zulassungsstelle, dass für Ihr Fahrzeug eine Haftpflichtversicherung besteht. Ohne eVB-Nummer kann in Deutschland kein Fahrzeug zugelassen werden."
+    },
+    {
+      "question": "Wo bekomme ich eine eVB-Nummer?",
+      "answer": "Ausschließlich von einer KFZ-Versicherung. Wenn Sie bereits versichert sind, genügt ein Anruf bei Ihrer Versicherung oder ein Klick im Kundenkonto. Wenn Sie noch keine Versicherung für das Fahrzeug haben, erhalten Sie die eVB-Nummer automatisch, sobald Sie eine Versicherung abschließen. Ein Zulassungsdienst kann keine eVB-Nummer ausstellen."
+    },
+    {
+      "question": "Was kostet eine eVB-Nummer?",
+      "answer": "Nichts. Die eVB-Nummer ist für Sie kostenlos. Sie ist kein eigenes Produkt, sondern eine Bestätigung Ihrer Versicherung. Kosten entstehen erst durch den Versicherungsbeitrag, sobald das Fahrzeug zugelassen ist."
+    },
+    {
+      "question": "Wie lange ist eine eVB-Nummer gültig?",
+      "answer": "Eine gesetzliche Frist gibt es nicht. In der Praxis begrenzen die meisten Versicherer die Gültigkeit auf einige Wochen bis wenige Monate und können die eVB jederzeit zurückziehen. Fragen Sie im Zweifel bei Ihrer Versicherung nach, wie lange Ihre Nummer gilt – besonders wenn sie schon länger in der Schublade liegt."
+    },
+    {
+      "question": "Brauche ich eine eVB-Nummer zum Abmelden?",
+      "answer": "Nein. Für die Außerbetriebsetzung – also das Abmelden eines Fahrzeugs – brauchen Sie keine eVB-Nummer. Die wird nur benötigt, wenn ein Fahrzeug auf die Straße kommt: bei Neuzulassung, Umschreibung und Wiederzulassung."
+    },
+    {
+      "question": "Wie sieht eine eVB-Nummer aus?",
+      "answer": "Sie besteht aus sieben Zeichen, meist Buchstaben und Ziffern gemischt, zum Beispiel AB12C34. Sie kommt in der Regel per SMS, E-Mail oder im Kundenkonto Ihrer Versicherung. Ein Papierdokument gibt es dafür nicht."
+    },
+    {
+      "question": "Bin ich mit der eVB-Nummer schon versichert?",
+      "answer": "Nein. Die eVB ist nur die Zusage der Versicherung, dass sie das Fahrzeug versichern wird. Der Versicherungsschutz beginnt erst mit der Zulassung des Fahrzeugs. Mit der eVB allein dürfen Sie noch nicht fahren."
+    },
+    {
+      "question": "Kann ich die eVB-Nummer einer anderen Person nutzen?",
+      "answer": "Nein. Die eVB muss auf die Person ausgestellt sein, die als Halter eingetragen wird. Eine eVB auf den Namen des Verkäufers, des Ehepartners oder der Firma passt nicht, wenn jemand anderes als Halter eingetragen werden soll – die Zulassungsstelle lehnt sie dann ab."
+    },
+    {
+      "question": "Wie schnell bekomme ich eine eVB-Nummer?",
+      "answer": "Meist innerhalb weniger Minuten. Bei bestehenden Verträgen genügt oft ein Anruf, bei einem Neuabschluss kommt die Nummer in der Regel direkt nach dem Abschluss per SMS oder E-Mail. Planen Sie trotzdem etwas Puffer ein, bevor Sie zu uns kommen."
+    },
+    {
+      "question": "Was mache ich, wenn meine eVB-Nummer nicht akzeptiert wird?",
+      "answer": "Die häufigsten Gründe sind: die eVB lautet auf den falschen Halter, sie gilt für eine andere Fahrzeugart, sie ist abgelaufen oder es hat sich ein Zahlendreher eingeschlichen. In allen Fällen hilft ein kurzer Anruf bei Ihrer Versicherung – eine neue Nummer ist meist in Minuten da. Schicken Sie uns Ihre Unterlagen vorher per WhatsApp, dann prüfen wir das kostenlos, bevor Sie losfahren."
+    }
+  ]
+}

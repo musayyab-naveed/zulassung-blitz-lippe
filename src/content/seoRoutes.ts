@@ -59,6 +59,12 @@ export const ROUTE_SEO: RouteSeo[] = [
       "Alle Preise auf einen Blick: Sofort-Zulassung ab 129 €, Zulassung mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Blitzabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten – Zulassungsdienst im Kreis Lippe.",
   },
   {
+    path: "/evb-nummer",
+    title: "eVB-Nummer für die KFZ-Zulassung – einfach erklärt | Bad Salzuflen",
+    description:
+      "Was ist die eVB-Nummer, wann brauchen Sie eine und wie lange gilt sie? Alle Antworten für Neuzulassung, Umschreibung und Wiederzulassung – plus die fünf häufigsten Fehler aus der Praxis. Zulassungsdienst Bad Salzuflen, Kreis Lippe.",
+  },
+  {
     path: "/faq",
     title: "Welche Unterlagen brauche ich? FAQ zur KFZ-Zulassung | Kreis Lippe",
     description:

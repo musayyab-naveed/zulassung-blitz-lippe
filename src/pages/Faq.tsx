@@ -133,6 +133,10 @@ const Faq = () => {
               <Link to="/preise" className="font-semibold text-primary hover:underline">
                 Preisübersicht
               </Link>
+              . Was die eVB-Nummer ist und woher Sie sie bekommen, steht auf der Seite{" "}
+              <Link to="/evb-nummer" className="font-semibold text-primary hover:underline">
+                eVB-Nummer
+              </Link>
               . Alle Unterlagen beisammen? Dann direkt starten:
             </p>
             <Button size="lg" variant="cta" asChild>
