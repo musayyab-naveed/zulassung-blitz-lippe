@@ -145,8 +145,9 @@ const Home = () => {
                 </Button>
               </div>
               <p className="mt-4 text-sm sm:text-base text-primary-foreground/85">
-                Noch keine eVB-Nummer? Kfz-Versicherung vergleichen und abschließen – die eVB-Nummer
-                kommt per E-Mail, danach lassen wir Ihr Auto ohne Termin zu.
+                Starten Sie Ihre Zulassung oder bieten Sie Ihr Fahrzeug direkt zum Verkauf an – auch
+                nicht fahrbereite Fahrzeuge lassen wir fachgerecht verwerten. Noch keine eVB-Nummer?
+                Kfz-Versicherung vergleichen, die eVB kommt per E-Mail.
               </p>
 
               <div className="mt-6 grid grid-cols-1 gap-3 text-left sm:grid-cols-[1fr_1fr_1.18fr]">
