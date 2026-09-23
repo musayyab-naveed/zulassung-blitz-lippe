@@ -16,7 +16,6 @@ import {
   EVB_KURZANTWORT,
   EVB_VORGAENGE,
 } from "@/content/evb";
-import { SITE_URL } from "@/content/seoRoutes";
 import { AlertCircle, ArrowRight, Check, MessageCircle, ShieldCheck, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -31,20 +30,6 @@ const EvbNummer = () => {
     <div className="min-h-screen bg-background">
       <Seo
         path="/evb-nummer"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "FAQPage",
-              "@id": `${SITE_URL}/evb-nummer#faq`,
-              mainEntity: EVB_FAQS.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: { "@type": "Answer", text: faq.answer },
-              })),
-            },
-          ],
-        }}
       />
       <Header />
 

@@ -7,7 +7,6 @@ import Footer from "@/components/Footer";
 import GoogleReviews from "@/components/GoogleReviews";
 import Seo from "@/components/Seo";
 import { generalFaqs } from "@/content/faqs";
-import { buildLocalBusinessSchema } from "@/content/seoRoutes";
 import heroImage from "@/assets/hero-image-optimized.jpg";
 import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -67,7 +66,6 @@ const Home = () => {
         structuredData={{
           "@context": "https://schema.org",
           "@graph": [
-            buildLocalBusinessSchema(),
             {
               "@type": "FAQPage",
               mainEntity: generalFaqs.map((faq) => ({

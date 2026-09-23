@@ -15,7 +15,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Wer ist KFZ-Sofortzulassung?",
     answer:
-      "Ihr lokaler Zulassungsdienst in Bad Salzuflen für den gesamten Kreis Lippe. Wir übernehmen An-, Um- und Abmeldungen komplett für Sie – ohne Behördengang, bewertet mit 5,0 Sternen bei 47 Google-Bewertungen.",
+      "Ihr lokaler Zulassungsdienst in Bad Salzuflen für den gesamten Kreis Lippe. Wir übernehmen An-, Um- und Abmeldungen komplett für Sie – ohne Behördengang, bewertet mit 5,0 Sternen bei 52 Google-Bewertungen.",
   },
   {
     question: "Wie schnell ist eine KFZ-Zulassung möglich?",

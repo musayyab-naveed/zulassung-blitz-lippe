@@ -25,7 +25,6 @@ import {
   type Wann,
 } from "@/content/whatsappAnfrage";
 import faqSchema from "@/content/faqSchema.json";
-import { SITE_URL } from "@/content/seoRoutes";
 import zb1CodeImg from "@/assets/dokumente/zb1-code-verdeckt.jpg";
 import plaketteImg from "@/assets/dokumente/plakette-verdeckt.jpg";
 import {
@@ -178,20 +177,6 @@ const Angebot = () => {
     <div className="min-h-screen bg-background">
       <Seo
         path="/angebot"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "FAQPage",
-              "@id": `${SITE_URL}/angebot#faq`,
-              mainEntity: ANGEBOT_FAQS.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: { "@type": "Answer", text: faq.answer },
-              })),
-            },
-          ],
-        }}
       />
       <Header />
 

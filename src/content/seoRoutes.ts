@@ -1,5 +1,3 @@
-import { buildOfferCatalog } from "./preise";
-
 // Zentrale SEO-Daten je Seite.
 // Wird von den React-Seiten UND vom Prerender-Schritt (scripts/prerender.mjs)
 // genutzt, damit Suchmaschinen schon im ausgelieferten HTML den richtigen
@@ -23,7 +21,7 @@ export const BUSINESS = {
   longitude: 8.7297261,
   priceRange: "€€",
   ratingValue: "5.0",
-  reviewCount: 47,
+  reviewCount: 52,
   mapsUrl: "https://maps.app.goo.gl/",
   openingHours: [
     { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
@@ -44,7 +42,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/",
     title: "Zulassungsdienst Bad Salzuflen – ohne Termin, Mo–Sa geöffnet",
     description:
-      "KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Sa geöffnet, online rund um die Uhr. 5,0 ★ (47).",
+      "KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Sa geöffnet, online rund um die Uhr. 5,0 ★ (52).",
   },
   {
     path: "/angebot",
@@ -111,53 +109,3 @@ export const ROUTE_SEO: RouteSeo[] = [
 export const getRouteSeo = (path: string): RouteSeo | undefined =>
   ROUTE_SEO.find((route) => route.path === path);
 
-/** LocalBusiness-Daten als schema.org-Objekt (absolute URLs, wie von Google verlangt) */
-export const buildLocalBusinessSchema = () => ({
-  "@type": ["AutomotiveBusiness", "LocalBusiness"],
-  "@id": `${SITE_URL}/#organization`,
-  name: BUSINESS.name,
-  url: `${SITE_URL}/`,
-  image: `${SITE_URL}${OG_IMAGE}`,
-  logo: `${SITE_URL}${OG_IMAGE}`,
-  telephone: BUSINESS.phone,
-  email: BUSINESS.email,
-  priceRange: BUSINESS.priceRange,
-  currenciesAccepted: "EUR",
-  paymentAccepted: "Bar, EC-Karte, PayPal, Rechnung, SEPA",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: BUSINESS.street,
-    postalCode: BUSINESS.postalCode,
-    addressLocality: BUSINESS.city,
-    addressRegion: BUSINESS.region,
-    addressCountry: BUSINESS.country,
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: BUSINESS.latitude,
-    longitude: BUSINESS.longitude,
-  },
-  openingHoursSpecification: BUSINESS.openingHours.map((slot) => ({
-    "@type": "OpeningHoursSpecification",
-    dayOfWeek: slot.days,
-    opens: slot.opens,
-    closes: slot.closes,
-  })),
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: BUSINESS.ratingValue,
-    reviewCount: BUSINESS.reviewCount,
-    bestRating: "5",
-    worstRating: "1",
-  },
-  areaServed: [
-    { "@type": "City", name: "Bad Salzuflen" },
-    { "@type": "City", name: "Detmold" },
-    { "@type": "City", name: "Lemgo" },
-    { "@type": "City", name: "Lage" },
-    { "@type": "City", name: "Herford" },
-    { "@type": "AdministrativeArea", name: "Kreis Lippe" },
-  ],
-  // Preise kommen aus src/content/preise.ts – dort werden sie gepflegt.
-  hasOfferCatalog: buildOfferCatalog(),
-});

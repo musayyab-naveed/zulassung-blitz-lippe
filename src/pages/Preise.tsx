@@ -73,7 +73,7 @@ const Preise = () => {
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white">
               <Star className="h-4 w-4" />
-              5,0 ★ bei 47 Google-Bewertungen
+              5,0 ★ bei 52 Google-Bewertungen
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white">
               <CheckCircle className="h-4 w-4" />

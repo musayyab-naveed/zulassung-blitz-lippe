@@ -65,7 +65,7 @@ const GoogleReviews = () => {
   ];
 
   // Gesamtzahl der Bewertungen laut Google-Profil (bei neuen Bewertungen hier aktualisieren)
-  const totalReviews = 47;
+  const totalReviews = 52;
 
   const avgRating = useMemo(
     () => (reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length).toFixed(1),

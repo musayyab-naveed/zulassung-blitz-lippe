@@ -17,7 +17,6 @@ import {
   VERGLEICH,
   ZST_FAQS,
 } from "@/content/zulassungsstelle";
-import { SITE_URL } from "@/content/seoRoutes";
 import { ArrowRight, Check, Clock, Info, MapPin, Minus, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -26,20 +25,6 @@ const Zulassungsstelle = () => {
     <div className="min-h-screen bg-background">
       <Seo
         path="/zulassungsstelle-bad-salzuflen"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "FAQPage",
-              "@id": `${SITE_URL}/zulassungsstelle-bad-salzuflen#faq`,
-              mainEntity: ZST_FAQS.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: { "@type": "Answer", text: faq.answer },
-              })),
-            },
-          ],
-        }}
       />
       <Header />
 

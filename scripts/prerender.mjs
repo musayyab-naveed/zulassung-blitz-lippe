@@ -68,6 +68,7 @@ const localBusiness = {
   name: "KFZ-Sofortzulassung",
   url: `${SITE_URL}/`,
   image: `${SITE_URL}${OG_IMAGE}`,
+  logo: `${SITE_URL}${OG_IMAGE}`,
   telephone: "+4915142462280",
   email: "info@sofortzulassung.com",
   priceRange: "€€",
@@ -86,7 +87,7 @@ const localBusiness = {
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "5.0",
-    reviewCount: 47,
+    reviewCount: 52,
     bestRating: "5",
     worstRating: "1",
   },
