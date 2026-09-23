@@ -12,6 +12,7 @@ import hero800 from "@/assets/hero-800.webp";
 import hero1200 from "@/assets/hero-1200.webp";
 import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { RATGEBER, ratgeberPfad } from "@/content/ratgeber";
 
 const Home = () => {
 
@@ -419,6 +420,35 @@ const Home = () => {
         </div>
       </section>
 
+
+      <section className="py-14 bg-muted/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="section-title mb-4">Aus dem Ratgeber</h2>
+            <p className="section-subtitle">Die häufigsten Fragen unserer Kunden – einfach erklärt</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {RATGEBER.slice(0, 3).map((artikel) => (
+              <Link
+                key={artikel.slug}
+                to={ratgeberPfad(artikel.slug)}
+                className="surface-card group p-5 transition-colors hover:border-primary"
+              >
+                <h3 className="font-bold text-secondary group-hover:text-link">{artikel.h1}</h3>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-link">
+                  Weiterlesen
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Link to="/ratgeber" className="font-semibold text-link hover:underline">
+              Alle Ratgeber-Artikel ansehen
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

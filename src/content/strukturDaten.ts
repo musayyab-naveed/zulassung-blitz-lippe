@@ -1,6 +1,7 @@
 import faqSchema from "./faqSchema.json";
 import { generalFaqs, vorgangChecklists, type FaqItem } from "./faqs";
 import { EXTRAS, PACKAGES, PREIS_FAQS } from "./preise";
+import { RATGEBER, RATGEBER_PFAD, ratgeberPfad } from "./ratgeber";
 import { BUSINESS, OG_IMAGE, SITE_URL } from "./seoRoutes";
 
 /**
@@ -199,7 +200,39 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
         dienstleistung(pfad, "Zulassungsservice für Autohändler und Firmen", "KFZ-Zulassung für Gewerbekunden", "Zulassungen, Umschreibungen und Abmeldungen für Autohändler, Werkstätten und Firmen im Kreis Lippe – ohne Termin, per Rechnung."),
         faqPage(pfad, alsFaqs(pfad)),
       ];
+    case RATGEBER_PFAD:
+      return [
+        {
+          "@type": "ItemList",
+          "@id": `${SITE_URL}${RATGEBER_PFAD}#artikel`,
+          itemListElement: RATGEBER.map((artikel, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${SITE_URL}${ratgeberPfad(artikel.slug)}`,
+            name: artikel.h1,
+          })),
+        },
+      ];
     default: {
+      const artikel = RATGEBER.find((a) => ratgeberPfad(a.slug) === pfad);
+      if (artikel) {
+        return [
+          {
+            "@type": "Article",
+            "@id": `${SITE_URL}${pfad}#artikel`,
+            headline: artikel.h1,
+            description: artikel.beschreibung,
+            abstract: artikel.kurzantwort,
+            datePublished: artikel.veroeffentlicht,
+            dateModified: artikel.aktualisiert,
+            inLanguage: "de-DE",
+            image: `${SITE_URL}${OG_IMAGE}`,
+            mainEntityOfPage: `${SITE_URL}${pfad}`,
+            author: { "@id": ORGANISATION_ID },
+            publisher: { "@id": ORGANISATION_ID },
+          },
+        ];
+      }
       const eintraege = alsFaqs(pfad);
       return eintraege.length > 0 ? [faqPage(pfad, eintraege)] : [];
     }

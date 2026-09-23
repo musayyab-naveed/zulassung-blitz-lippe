@@ -18,7 +18,7 @@ const distDir = join(__dirname, "..", "dist");
 // Alles Seitenbezogene kommt aus dem SSR-Build von src/entry-server.tsx – also
 // direkt aus den TypeScript-Quellen (seoRoutes.ts, strukturDaten.ts). Dadurch
 // gibt es für Titel, Beschreibung, Bewertungszahl und FAQ nur EINE Quelle.
-const { render, ROUTE_SEO, SITE_URL, OG_IMAGE, localBusinessSchema, websiteSchema, seitenSchema } =
+const { render, ROUTE_SEO, SITE_URL, OG_IMAGE, RATGEBER, RATGEBER_PFAD, localBusinessSchema, websiteSchema, seitenSchema } =
   await import(pathToFileURL(join(__dirname, "..", "dist-ssr", "entry-server.js")).href);
 
 const routes = ROUTE_SEO;
@@ -57,13 +57,16 @@ const beasties = new Beasties({
 
 const breadcrumbFor = (route) => {
   if (route.path === "/") return null;
-  const label = route.title.split(/[–|]/)[0].trim();
+  const label = route.title.split(/[–|?:]/)[0].trim();
+  const stufen = [{ name: "Startseite", item: `${SITE_URL}/` }];
+  // Ratgeber-Artikel hängen unter der Ratgeber-Übersicht
+  if (route.path.startsWith(`${RATGEBER_PFAD}/`)) {
+    stufen.push({ name: "Ratgeber", item: `${SITE_URL}${RATGEBER_PFAD}` });
+  }
+  stufen.push({ name: label, item: `${SITE_URL}${route.path}` });
   return {
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Startseite", item: `${SITE_URL}/` },
-      { "@type": "ListItem", position: 2, name: label, item: `${SITE_URL}${route.path}` },
-    ],
+    itemListElement: stufen.map((stufe, index) => ({ "@type": "ListItem", position: index + 1, ...stufe })),
   };
 };
 
@@ -167,5 +170,22 @@ for (const route of routes) {
   }
   written += 1;
 }
+
+// Sitemap aus denselben Routen erzeugen – neue Seiten und Artikel landen automatisch darin
+const ohneIndex = new Set(["/impressum", "/datenschutz"]);
+const artikelDatum = new Map(RATGEBER.map((a) => [`${RATGEBER_PFAD}/${a.slug}`, a.aktualisiert]));
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...routes
+    .filter((route) => !ohneIndex.has(route.path))
+    .map((route) => {
+      const lastmod = artikelDatum.get(route.path);
+      return `  <url>\n    <loc>${SITE_URL}${route.path}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ""}\n  </url>`;
+    }),
+  "</urlset>",
+  "",
+].join("\n");
+writeFileSync(join(distDir, "sitemap.xml"), sitemap, "utf8");
 
 console.log(`[prerender] ${written} Seiten mit Text, eigenen Meta-Daten und JSON-LD erzeugt.`);

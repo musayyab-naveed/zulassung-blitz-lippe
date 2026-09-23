@@ -14,6 +14,7 @@ const Header = () => {
     { name: "Preise", href: "/preise" },
     { name: "FAQ", href: "/faq" },
     { name: "Fahrzeugankauf", href: "/fahrzeugankauf" },
+    { name: "Ratgeber", href: "/ratgeber" },
     { name: "Über uns", href: "/ueber-uns" },
   ];
 
@@ -44,12 +45,12 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-2 rounded-full border border-border/70 bg-background px-2 py-1 shadow-sm">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 rounded-full border border-border/70 bg-background px-2 py-1 shadow-sm">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`rounded-full px-3 py-2 text-sm font-semibold transition-colors ${
+                className={`whitespace-nowrap rounded-full px-2.5 py-2 text-sm font-semibold transition-colors xl:px-3 ${
                   isActive(item.href)
                     ? "bg-primary text-primary-foreground"
                     : "text-foreground hover:bg-muted hover:text-secondary"
@@ -62,13 +63,14 @@ const Header = () => {
 
           {/* Phone Number + CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-secondary shadow-sm">
+            {/* Telefonnummer erst ab breiten Bildschirmen – sonst passt das Menü nicht in eine Zeile */}
+            <div className="hidden xl:inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-secondary shadow-sm">
               <Phone className="h-4 w-4 text-primary" />
               <a href="tel:+4915142462280" className="whitespace-nowrap text-sm font-semibold hover:text-primary transition-colors">
                 01514 2462280
               </a>
             </div>
-            <Button variant="cta" size="sm" asChild>
+            <Button variant="cta" size="sm" asChild className="whitespace-nowrap">
               <Link to="/angebot">Jetzt starten</Link>
             </Button>
           </div>

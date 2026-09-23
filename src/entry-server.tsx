@@ -12,4 +12,5 @@ export const render = (url: string) =>
 
 // Für scripts/prerender.mjs: Seitendaten direkt aus den TypeScript-Quellen
 export { ROUTE_SEO, SITE_URL, OG_IMAGE } from "./content/seoRoutes";
+export { RATGEBER, RATGEBER_PFAD } from "./content/ratgeber";
 export { localBusinessSchema, websiteSchema, seitenSchema } from "./content/strukturDaten";

@@ -3,6 +3,8 @@
 // genutzt, damit Suchmaschinen schon im ausgelieferten HTML den richtigen
 // Titel, die richtige Beschreibung und das passende Canonical vorfinden.
 
+import { RATGEBER, RATGEBER_PFAD, ratgeberPfad } from "./ratgeber";
+
 export const SITE_URL = "https://sofortzulassung.com";
 export const SITE_NAME = "KFZ-Sofortzulassung";
 export const OG_IMAGE = "/og-image.jpg";
@@ -129,6 +131,21 @@ export const ROUTE_SEO: RouteSeo[] = [
       "Datenschutzerklärung von KFZ-Sofortzulassung in Bad Salzuflen: welche Daten wir verarbeiten, wozu, und welche Rechte Sie dabei haben.",
   },
 ];
+
+// Ratgeber: Übersicht und je Artikel eine eigene Seite
+ROUTE_SEO.push(
+  {
+    path: RATGEBER_PFAD,
+    title: "Ratgeber KFZ-Zulassung Kreis Lippe – einfach erklärt",
+    description:
+      "Antworten rund um Zulassung, Abmeldung und Kennzeichen im Kreis Lippe: kein Termin beim Amt, Online-Zulassung, Papiere verloren, Saisonkennzeichen und mehr.",
+  },
+  ...RATGEBER.map((artikel) => ({
+    path: ratgeberPfad(artikel.slug),
+    title: artikel.seoTitel,
+    description: artikel.beschreibung,
+  }))
+);
 
 export const getRouteSeo = (path: string): RouteSeo | undefined =>
   ROUTE_SEO.find((route) => route.path === path);
