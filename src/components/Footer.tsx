@@ -1,6 +1,7 @@
 import { Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
+import { CONSENT_OEFFNEN_EVENT } from "@/lib/consent";
 
 const Footer = () => {
   return (
@@ -61,6 +62,14 @@ const Footer = () => {
                   className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
                 >
                   FAQ
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/zulassungsstelle-bad-salzuflen"
+                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                >
+                  Zulassungsstelle Bad Salzuflen
                 </Link>
               </li>
               <li>
@@ -129,6 +138,13 @@ const Footer = () => {
               >
                 Datenschutz
               </Link>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new Event(CONSENT_OEFFNEN_EVENT))}
+                className="hover:text-secondary-foreground transition-colors"
+              >
+                Cookie-Einstellungen
+              </button>
             </div>
           </div>
         </div>

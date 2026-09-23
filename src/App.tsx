@@ -17,6 +17,8 @@ import Faq from "./pages/Faq";
 import Dokumente from "./pages/Dokumente";
 import Preise from "./pages/Preise";
 import EvbNummer from "./pages/EvbNummer";
+import Zulassungsstelle from "./pages/Zulassungsstelle";
+import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,7 @@ const App = () => (
           <Route path="/ueber-uns" element={<UeberUns />} />
           <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
           <Route path="/evb-nummer" element={<EvbNummer />} />
+          <Route path="/zulassungsstelle-bad-salzuflen" element={<Zulassungsstelle />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/dokumente" element={<Dokumente />} />
           <Route path="/blog" element={<Navigate to="/faq" replace />} />
@@ -55,6 +58,7 @@ const App = () => (
         </Routes>
         <WhatsAppFloatingButton />
         <MobileCtaBar />
+        <CookieBanner />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

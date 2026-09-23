@@ -265,3 +265,45 @@ export const buildOfferCatalog = () => ({
     })),
   ],
 });
+
+/**
+ * Hilfe beim Preisvergleich.
+ *
+ * Hintergrund: Viele Anbieter weisen nur ihr eigenes Honorar aus, die
+ * Verwaltungsgebuehren und die Schilder kommen dann obendrauf. Unsere Preise
+ * sind Endpreise. Ohne diesen Abschnitt wirken wir teurer, als wir sind.
+ * Bewusst ohne Namen und ohne fremde Zahlen - wir erklaeren nur, worauf man
+ * beim Vergleichen achten muss.
+ */
+export interface VergleichsPunkt {
+  frage: string;
+  beiUns: string;
+  hinweis: string;
+}
+
+export const PREIS_VERGLEICH: VergleichsPunkt[] = [
+  {
+    frage: "Sind die Verwaltungsgebühren des Kreises enthalten?",
+    beiUns: "Ja, in jedem Paket",
+    hinweis:
+      "Viele Anbieter nennen nur ihr Honorar. Die Gebühren des Straßenverkehrsamts werden dann zusätzlich nach Beleg abgerechnet.",
+  },
+  {
+    frage: "Sind die Kennzeichenschilder enthalten?",
+    beiUns: "Bei BASIS und PREMIUM ja",
+    hinweis:
+      "Schilder kosten sonst extra. Bei SOFORT besorgen Sie sie selbst – deshalb steht dort „ab“ und nicht ein fester Preis.",
+  },
+  {
+    frage: "Steht ein „ab“ oder ein Sternchen am Preis?",
+    beiUns: "Nur bei SOFORT, und dort steht auch warum",
+    hinweis:
+      "Ein Sternchen am Preis heißt fast immer: Da kommt noch etwas dazu. Lesen Sie, was im Kleingedruckten steht.",
+  },
+  {
+    frage: "Wissen Sie vorher, was Sie am Ende zahlen?",
+    beiUns: "Ja, wir nennen den Endpreis vor dem Termin",
+    hinweis:
+      "Keine Nachzahlung bei der Behörde, keine Überraschung an der Kasse.",
+  },
+];

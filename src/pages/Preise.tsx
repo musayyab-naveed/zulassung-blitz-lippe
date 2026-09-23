@@ -18,6 +18,7 @@ import {
   PREIS_TABELLE,
   ZAHLUNGSARTEN,
   PREIS_FAQS,
+  PREIS_VERGLEICH,
   buildOfferCatalog,
 } from "@/content/preise";
 import { SITE_URL } from "@/content/seoRoutes";
@@ -72,7 +73,7 @@ const Preise = () => {
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white">
               <Star className="h-4 w-4" />
-              5,0 ★ bei 46 Google-Bewertungen
+              5,0 ★ bei 47 Google-Bewertungen
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white">
               <CheckCircle className="h-4 w-4" />
@@ -199,6 +200,50 @@ const Preise = () => {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Preisvergleich: warum andere billiger aussehen */}
+      <section className="bg-secondary py-14 text-primary-foreground">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="mb-4 text-2xl font-bold text-white sm:text-3xl">
+              Preise vergleichen – worauf Sie achten sollten
+            </h2>
+            <p className="mx-auto max-w-2xl text-primary-foreground/85">
+              Unsere Preise sind Endpreise. Anderswo steht oft nur das Honorar des Dienstleisters,
+              und die Gebühren kommen später dazu. Vier Fragen, mit denen Sie jedes Angebot
+              vergleichen können.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            {PREIS_VERGLEICH.map((punkt, index) => (
+              <div
+                key={punkt.frage}
+                className="rounded-xl border border-white/15 bg-white/10 p-5 backdrop-blur-sm"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white/20 text-xs font-bold text-white">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h3 className="font-bold text-white">{punkt.frage}</h3>
+                    <p className="mt-1 flex items-start gap-2 text-sm font-semibold text-white">
+                      <Check className="mt-0.5 h-4 w-4 flex-none" />
+                      Bei uns: {punkt.beiUns}
+                    </p>
+                    <p className="mt-1.5 text-sm text-primary-foreground/75">{punkt.hinweis}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 text-center text-sm text-primary-foreground/75">
+            Rechnen Sie ruhig nach. Wir haben nichts zu verstecken – genau deshalb steht bei uns
+            die volle Zahl und nicht die kleinste.
+          </p>
         </div>
       </section>
 

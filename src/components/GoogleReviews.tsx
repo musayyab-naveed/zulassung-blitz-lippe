@@ -5,6 +5,7 @@ import mastercardLogo from "@/assets/payments/mastercard.svg";
 import visaLogo from "@/assets/payments/visa.svg";
 import applePayLogo from "@/assets/payments/applepay.svg";
 import sepaLogo from "@/assets/payments/sepa.svg";
+import googleLogo from "@/assets/google-g.svg";
 import {
   Carousel,
   CarouselApi,
@@ -64,7 +65,7 @@ const GoogleReviews = () => {
   ];
 
   // Gesamtzahl der Bewertungen laut Google-Profil (bei neuen Bewertungen hier aktualisieren)
-  const totalReviews = 46;
+  const totalReviews = 47;
 
   const avgRating = useMemo(
     () => (reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length).toFixed(1),
@@ -110,7 +111,7 @@ const GoogleReviews = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <img
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+              src={googleLogo}
               alt="Google"
               className="w-6 h-6"
             />

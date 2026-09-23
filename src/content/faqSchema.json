@@ -48,5 +48,51 @@
       "question": "Was mache ich, wenn meine eVB-Nummer nicht akzeptiert wird?",
       "answer": "Die häufigsten Gründe sind: die eVB lautet auf den falschen Halter, sie gilt für eine andere Fahrzeugart, sie ist abgelaufen oder es hat sich ein Zahlendreher eingeschlichen. In allen Fällen hilft ein kurzer Anruf bei Ihrer Versicherung – eine neue Nummer ist meist in Minuten da. Schicken Sie uns Ihre Unterlagen vorher per WhatsApp, dann prüfen wir das kostenlos, bevor Sie losfahren."
     }
+  ],
+  "/zulassungsstelle-bad-salzuflen": [
+    {
+      "question": "Wo ist die Zulassungsstelle in Bad Salzuflen?",
+      "answer": "Die Zulassungsstelle Bad Salzuflen des Kreises Lippe liegt am Louis-Uekermann-Weg 2, 32107 Bad Salzuflen. Sie ist eine von drei Zulassungsstellen im Kreis Lippe – die anderen beiden sind in Barntrup und Detmold."
+    },
+    {
+      "question": "Brauche ich einen Termin bei der Zulassungsstelle Bad Salzuflen?",
+      "answer": "Ja. Der Kreis Lippe schreibt dazu: Eine persönliche Vorsprache jeglicher Art in der Zulassungsstelle ist grundsätzlich nur mit einem Termin möglich. Der Termin wird online gebucht, Sie erhalten eine Wartenummer per E-Mail und bringen diese zum Termin mit. Ohne Termin werden Sie in der Regel nicht bedient."
+    },
+    {
+      "question": "Welche Öffnungszeiten hat die Zulassungsstelle Bad Salzuflen?",
+      "answer": "Termine sind möglich: Montag 7:30–12:30 Uhr, Dienstag 7:30–12:30 und 13:30–16:00 Uhr, Mittwoch 7:30–12:30 und 13:30–15:00 Uhr, Donnerstag 7:30–12:30 und 13:30–17:00 Uhr, Freitag 7:30–12:30 Uhr. Am Wochenende ist geschlossen."
+    },
+    {
+      "question": "Hat die Zulassungsstelle Bad Salzuflen samstags geöffnet?",
+      "answer": "Nein. Die Zulassungsstellen des Kreises Lippe sind von Montag bis Freitag geöffnet, freitags nur vormittags bis 12:30 Uhr. Samstags und sonntags ist geschlossen. Unser Zulassungsdienst in Bad Salzuflen hat samstags von 15 bis 18 Uhr geöffnet – ohne Termin."
+    },
+    {
+      "question": "Kann ich mein Auto auch am Wochenende oder abends zulassen lassen?",
+      "answer": "Die Zulassungsstellen des Kreises Lippe haben am Wochenende geschlossen und freitags nur bis 12:30 Uhr geöffnet. Bei uns geht es weiter: Unser Büro in Bad Salzuflen hat montags bis freitags von 9 bis 18 Uhr und samstags von 15 bis 18 Uhr geöffnet. Online-Zulassungen erledigen wir rund um die Uhr – auch abends, am Wochenende und an Feiertagen. Schicken Sie uns Ihre Unterlagen, wir starten den Vorgang, sobald sie vollständig sind."
+    },
+    {
+      "question": "Wie bekomme ich kurzfristig einen Termin bei der Zulassungsstelle?",
+      "answer": "Der Kreis Lippe schaltet jeden Morgen die verfügbaren Termine für die nächsten 14 Tage frei. Der Tipp der Behörde selbst: mehrmals am Tag in die Online-Übersicht schauen, weil abgesagte Termine oft noch am selben Tag neu vergeben werden."
+    },
+    {
+      "question": "Kann ich bei der Zulassungsstelle bar bezahlen?",
+      "answer": "Nein. In den Zulassungsstellen Detmold, Bad Salzuflen und Barntrup wird in der Regel kein Bargeld mehr angenommen – bezahlt wird per Debit- oder Kreditkarte. Bei uns können Sie bar, mit EC-Karte, per PayPal, SEPA-Lastschrift oder auf Rechnung zahlen."
+    },
+    {
+      "question": "Welche Zulassungsstellen gibt es im Kreis Lippe?",
+      "answer": "Drei: Bad Salzuflen (Louis-Uekermann-Weg 2), Barntrup (Alverdisser Straße 28) und Detmold (Felix-Fechenbach-Straße 5). Die Führerscheinstelle befindet sich in Detmold."
+    },
+    {
+      "question": "Muss ich selbst zur Zulassungsstelle gehen?",
+      "answer": "Nein. Sie können einen Zulassungsdienst beauftragen, der den Behördengang für Sie übernimmt. Sie geben die Unterlagen ab oder schicken sie uns, wir erledigen den Rest. Einen eigenen Termin beim Straßenverkehrsamt brauchen Sie dann nicht."
+    },
+    {
+      "question": "Ist es günstiger, selbst zur Zulassungsstelle zu gehen?",
+      "answer": "Ja, in Euro gerechnet schon – dann zahlen Sie nur die Verwaltungsgebühren des Kreises. Sie brauchen dafür aber einen Termin, müssen zu den Öffnungszeiten dort sein, sich selbst um die Kennzeichen kümmern und einplanen, dass es trotz Termin zu Wartezeiten kommen kann. Ein Zulassungsdienst kostet mehr Geld und spart Zeit und Wege. Was sich lohnt, hängt davon ab, was Ihnen ein halber Vormittag wert ist."
+    },
+    {
+      "question": "Kann ich mein Auto im Kreis Lippe auch online zulassen?",
+      "answer": "Ja. Der Kreis Lippe bietet die internetbasierte Fahrzeugzulassung (i-Kfz) rund um die Uhr an. Dafür brauchen Sie die Sicherheitscodes zum Freirubbeln auf Fahrzeugschein, Fahrzeugbrief und Stempelplakette sowie einen Ausweis mit Online-Funktion. Wir nutzen dasselbe Verfahren – nur erledigen wir es für Sie und Sie brauchen weder Kartenlesegerät noch Online-Ausweis."
+    }
   ]
 }

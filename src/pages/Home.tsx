@@ -1,3 +1,4 @@
+import StandortKarte from "@/components/StandortKarte";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -118,6 +119,9 @@ const Home = () => {
                 </div>
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
                   ⚡ Fertig in ca. 20 Minuten
+                </div>
+                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
+                  🕐 Online-Zulassung rund um die Uhr
                 </div>
                 <Link
                   to="/preise"
@@ -432,17 +436,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="surface-card overflow-hidden p-1">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2451.8275759481676!2d8.729726099999997!3d52.0828686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ba15cba7259a3b%3A0xcbf86083359865e5!2sKFZ-Sofortzulassung%20-%20Zulassungsdienst%2C%20Zulassungsservice%20und%20Kennzeichen!5e0!3m2!1sen!2sde!4v1761654634034!5m2!1sen!2sde"
-                width="100%"
-                height="400"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full h-full min-h-[400px]"
-                title="KFZ-Sofortzulassung Standort auf Google Maps"
-              />
+              <StandortKarte />
             </div>
 
             <div className="surface-card p-6 space-y-6">

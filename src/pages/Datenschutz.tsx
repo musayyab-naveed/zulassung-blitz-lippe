@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
-import { Shield, Eye, Database, UserCheck, FileText, Mail } from "lucide-react";
+import { Shield, Eye, Database, UserCheck, FileText, Mail, BarChart3 } from "lucide-react";
 
 const Datenschutz = () => {
   return (
@@ -147,6 +147,73 @@ const Datenschutz = () => {
               </div>
               <p className="text-muted-foreground mt-4">
                 Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse besteht in der technisch fehlerfreien Darstellung und der Optimierung unserer Website.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Google Analytics */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-secondary">
+                <BarChart3 className="h-6 w-6 text-primary" />
+                Webanalyse mit Google Analytics
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-muted-foreground">
+              <p>
+                Diese Website nutzt Google Analytics 4, einen Webanalysedienst der Google Ireland
+                Limited, Gordon House, Barrow Street, Dublin 4, Irland („Google"). Google Analytics
+                wird <strong>nur eingesetzt, wenn Sie über unseren Cookie-Hinweis ausdrücklich
+                zugestimmt haben</strong>. Ohne Ihre Zustimmung wird das Analyse-Skript nicht
+                geladen und es werden keine Daten an Google übertragen.
+              </p>
+              <div>
+                <p className="mb-2"><strong>Was erfasst wird:</strong></p>
+                <ul className="list-disc space-y-1 pl-6">
+                  <li>Aufgerufene Seiten, Verweildauer und Scrolltiefe</li>
+                  <li>Klicks auf Links zu anderen Websites (z. B. WhatsApp)</li>
+                  <li>Herkunft des Besuchs (z. B. Google-Suche, direkter Aufruf)</li>
+                  <li>Gerätetyp, Browser, Betriebssystem und ungefährer Standort (Stadt/Region)</li>
+                </ul>
+              </div>
+              <p>
+                Google Analytics 4 speichert keine vollständigen IP-Adressen. Zur Wiedererkennung
+                setzt Google Cookies mit dem Namen „_ga" und „_ga_…" mit einer Laufzeit von bis
+                zu zwei Jahren. Wir haben Google so eingestellt, dass die Daten nicht für eigene
+                Zwecke von Google freigegeben werden. Mit Google besteht ein Vertrag zur
+                Auftragsverarbeitung. Eine Übermittlung in die USA ist möglich; Google ist unter
+                dem EU-US Data Privacy Framework zertifiziert.
+              </p>
+              <p>
+                <strong>Rechtsgrundlage</strong> ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a
+                DSGVO und § 25 Abs. 1 TDDDG. <strong>Widerruf:</strong> Sie können Ihre Einwilligung
+                jederzeit mit Wirkung für die Zukunft widerrufen – über den Link
+                „Cookie-Einstellungen" ganz unten auf jeder Seite. Ihre Wahl speichern wir in
+                Ihrem Browser (Local Storage) und fragen nach zwölf Monaten erneut.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Karte und Schriften */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-secondary">
+                <Eye className="h-6 w-6 text-primary" />
+                Google Maps und Schriftarten
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-muted-foreground">
+              <p>
+                <strong>Google Maps:</strong> Auf der Startseite können Sie eine Karte von Google Maps
+                (Google Ireland Limited) einblenden. Die Karte wird erst geladen, wenn Sie auf
+                „Karte hier anzeigen" klicken. Erst dann werden Daten wie Ihre IP-Adresse an Google
+                übertragen. Rechtsgrundlage ist Ihre Einwilligung durch den Klick (Art. 6 Abs. 1
+                lit. a DSGVO, § 25 Abs. 1 TDDDG).
+              </p>
+              <p>
+                <strong>Schriftarten:</strong> Die auf dieser Website verwendeten Schriftarten sind
+                lokal auf unserem Server gespeichert. Beim Aufruf der Seite wird keine Verbindung
+                zu Servern von Google oder anderen Anbietern hergestellt.
               </p>
             </CardContent>
           </Card>

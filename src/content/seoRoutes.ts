@@ -23,7 +23,7 @@ export const BUSINESS = {
   longitude: 8.7297261,
   priceRange: "€€",
   ratingValue: "5.0",
-  reviewCount: 46,
+  reviewCount: 47,
   mapsUrl: "https://maps.app.goo.gl/",
   openingHours: [
     { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
@@ -44,7 +44,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/",
     title: "Zulassungsdienst Bad Salzuflen – ohne Termin, auch samstags",
     description:
-      "KFZ-Zulassung im Kreis Lippe ohne Behördentermin und ohne Wartenummer: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Samstags geöffnet. 5,0 ★ (46).",
+      "KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Samstags geöffnet, online rund um die Uhr. 5,0 ★ (47).",
   },
   {
     path: "/angebot",
@@ -57,6 +57,12 @@ export const ROUTE_SEO: RouteSeo[] = [
     title: "Preise KFZ-Zulassung Bad Salzuflen – ab 129 €",
     description:
       "Sofort-Zulassung ab 129 €, mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Blitzabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten.",
+  },
+  {
+    path: "/zulassungsstelle-bad-salzuflen",
+    title: "Zulassungsstelle Bad Salzuflen – Termine & Öffnungszeiten",
+    description:
+      "Zulassungsstelle Bad Salzuflen: Adresse, Öffnungszeiten, Terminpflicht und die Regeln des Kreises Lippe – plus der Weg ohne Termin, auch samstags.",
   },
   {
     path: "/evb-nummer",

@@ -69,3 +69,11 @@ schlecht. Besser: im eigenen Google nachsehen und Screenshots nutzen.
 - 9.295 Profilaufrufe, 3.024 Suchanfragen, 816 Interaktionen, 80 % mobil
 - Top-Suchbegriffe: zulassungsstelle (761), kennzeichen bad salzuflen (360),
   auto abmelden (242), wunschkennzeichen (230), kfz zulassungsstelle (202)
+
+## Google Analytics (angelegt am 24.09.2026)
+- Konto „KFZ-Sofortzulassung" im Google-Konto kfz.sofortzulassung@gmail.com
+- Property „sofortzulassung.com", Zeitzone Deutschland, Euro
+- Web-Stream „Website sofortzulassung.com", **Mess-ID `G-ZVSXZ08HZ9`**, Stream-ID 15831551173
+- Datenfreigabe an Google: nur „Technischer Support"; DSGVO-Datenverarbeitungsbedingungen akzeptiert
+- **Noch NICHT auf der Website eingebaut** – erst zusammen mit einem Cookie-Banner
+  (Analytics darf erst nach Zustimmung laden). Danach Datenschutzerklärung ergänzen.
