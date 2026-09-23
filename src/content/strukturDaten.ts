@@ -13,6 +13,26 @@ import { BUSINESS, OG_IMAGE, SITE_URL } from "./seoRoutes";
 
 const ORGANISATION_ID = `${SITE_URL}/#organization`;
 
+/** Alle 16 Städte und Gemeinden im Kreis Lippe */
+const ORTE_KREIS_LIPPE = [
+  "Bad Salzuflen",
+  "Detmold",
+  "Lemgo",
+  "Lage",
+  "Leopoldshöhe",
+  "Oerlinghausen",
+  "Horn-Bad Meinberg",
+  "Blomberg",
+  "Barntrup",
+  "Kalletal",
+  "Extertal",
+  "Dörentrup",
+  "Augustdorf",
+  "Schlangen",
+  "Lügde",
+  "Schieder-Schwalenberg",
+];
+
 /** Google-Maps-Eintrag des Unternehmensprofils */
 export const GOOGLE_MAPS_URL = BUSINESS.mapsUrl;
 
@@ -51,13 +71,10 @@ export const localBusinessSchema = () => ({
     bestRating: "5",
     worstRating: "1",
   },
+  // Nur Kreis Lippe – Herford und Bielefeld bedienen wir nicht
   areaServed: [
-    { "@type": "City", name: "Bad Salzuflen" },
-    { "@type": "City", name: "Detmold" },
-    { "@type": "City", name: "Lemgo" },
-    { "@type": "City", name: "Lage" },
-    { "@type": "City", name: "Herford" },
     { "@type": "AdministrativeArea", name: "Kreis Lippe" },
+    ...ORTE_KREIS_LIPPE.map((ort) => ({ "@type": "City", name: ort })),
   ],
   knowsAbout: [
     "KFZ-Zulassung",
