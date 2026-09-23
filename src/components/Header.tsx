@@ -22,7 +22,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/90 backdrop-blur-xl">
       <div className="hidden lg:block border-b border-border/60 bg-secondary text-secondary-foreground">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs flex items-center justify-between">
-          <span>Zulassungsdienst in Bad Salzuflen und Kreis Lippe</span>
+          <span>Zulassungsdienst Bad Salzuflen &amp; Kreis Lippe · Ohne Termin · Mo–Fr 9–18, Sa 15–18 Uhr</span>
           <span>⚡ NEU: Sofort-Zulassung in ca. 20 Minuten</span>
         </div>
       </div>

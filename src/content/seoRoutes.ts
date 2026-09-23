@@ -42,63 +42,63 @@ export interface RouteSeo {
 export const ROUTE_SEO: RouteSeo[] = [
   {
     path: "/",
-    title: "Zulassungsdienst Bad Salzuflen – KFZ-Zulassung in 20 Min | Kreis Lippe",
+    title: "Zulassungsdienst Bad Salzuflen – ohne Termin, auch samstags",
     description:
-      "KFZ-Zulassung in Bad Salzuflen ohne Behördentermin: Sofort-Zulassung digital in ca. 20 Minuten ab 129 €, klassisch zum nächsten Werktag, Blitzabmeldung 40 €. 5,0 ★ bei 46 Bewertungen. Auch samstags geöffnet.",
+      "KFZ-Zulassung im Kreis Lippe ohne Behördentermin und ohne Wartenummer: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Samstags geöffnet. 5,0 ★ (46).",
   },
   {
     path: "/angebot",
-    title: "Zulassung online beauftragen – Termin buchen | KFZ-Sofortzulassung",
+    title: "Zulassung beauftragen – ohne Termin | Bad Salzuflen",
     description:
-      "Auto zulassen, ummelden oder abmelden im Kreis Lippe: In wenigen Klicks zum passenden Paket und direkt online einen Termin in Bad Salzuflen buchen – ohne Wartezeit bei der Zulassungsstelle.",
+      "Auto zulassen, ummelden oder abmelden im Kreis Lippe: In wenigen Klicks zum passenden Paket – ohne Wartezeit bei der Zulassungsstelle, auch samstags.",
   },
   {
     path: "/preise",
-    title: "Preise KFZ-Zulassung Bad Salzuflen – ab 129 € inkl. Gebühren",
+    title: "Preise KFZ-Zulassung Bad Salzuflen – ab 129 €",
     description:
-      "Alle Preise auf einen Blick: Sofort-Zulassung ab 129 €, Zulassung mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Blitzabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten – Zulassungsdienst im Kreis Lippe.",
+      "Sofort-Zulassung ab 129 €, mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Blitzabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten.",
   },
   {
     path: "/evb-nummer",
-    title: "eVB-Nummer für die KFZ-Zulassung – einfach erklärt | Bad Salzuflen",
+    title: "eVB-Nummer für die KFZ-Zulassung – einfach erklärt",
     description:
-      "Was ist die eVB-Nummer, wann brauchen Sie eine und wie lange gilt sie? Alle Antworten für Neuzulassung, Umschreibung und Wiederzulassung – plus die fünf häufigsten Fehler aus der Praxis. Zulassungsdienst Bad Salzuflen, Kreis Lippe.",
+      "Was ist die eVB-Nummer, wann brauchen Sie eine, wie lange gilt sie? Antworten für Neuzulassung, Umschreibung und Wiederzulassung – plus die häufigsten Fehler.",
   },
   {
     path: "/faq",
-    title: "Welche Unterlagen brauche ich? FAQ zur KFZ-Zulassung | Kreis Lippe",
+    title: "Welche Unterlagen brauche ich? Checklisten zur Zulassung",
     description:
-      "Checklisten für Neuzulassung, Umschreibung, Wiederzulassung und Abmeldung im Kreis Lippe: eVB-Nummer, Fahrzeugschein, Fahrzeugbrief, SEPA-Mandat – plus Antworten auf die häufigsten Fragen.",
+      "Checklisten für Neuzulassung, Umschreibung, Wiederzulassung und Abmeldung im Kreis Lippe: eVB, Fahrzeugschein, Fahrzeugbrief, SEPA-Mandat – klar aufgelistet.",
   },
   {
     path: "/fahrzeugankauf",
-    title: "Auto verkaufen in Bad Salzuflen – Fahrzeugankauf Kreis Lippe",
+    title: "Auto verkaufen Bad Salzuflen – Ankauf im Kreis Lippe",
     description:
-      "Fahrzeug verkaufen in Bad Salzuflen: kostenlose Ersteinschätzung, faire Ankaufprüfung vor Ort, Abholung möglich. Beim Ankauf ist die Abmeldung gratis – auch nicht fahrbereite Fahrzeuge.",
+      "Fahrzeug verkaufen in Bad Salzuflen: kostenlose Ersteinschätzung, faire Prüfung vor Ort, Abholung möglich. Beim Ankauf ist die Abmeldung gratis.",
   },
   {
     path: "/dokumente",
-    title: "Vollmacht & SEPA-Mandat als PDF – Formulare zum Ausdrucken",
+    title: "Vollmacht & SEPA-Mandat als PDF zum Ausdrucken",
     description:
-      "Vollmacht für Zulassung und Abmeldung sowie SEPA-Lastschriftmandat als PDF herunterladen. Für Kunden im Kreis Lippe, die uns ihre Unterlagen zusenden möchten.",
+      "Vollmacht für Zulassung und Abmeldung sowie SEPA-Lastschriftmandat als PDF herunterladen – für Kunden im Kreis Lippe, die uns ihre Unterlagen zusenden.",
   },
   {
     path: "/ueber-uns",
-    title: "Über uns – Ihr Zulassungsdienst in Bad Salzuflen seit 5+ Jahren",
+    title: "Über uns – Zulassungsdienst in Bad Salzuflen",
     description:
-      "KFZ-Sofortzulassung in Bad Salzuflen: persönlicher Service für den Kreis Lippe, über 1000 zufriedene Kunden, 5,0 Sterne bei Google und Sofort-Zulassung in ca. 20 Minuten.",
+      "KFZ-Sofortzulassung in Bad Salzuflen: persönlicher Service für den Kreis Lippe, über 1000 zufriedene Kunden, 5,0 Sterne bei Google, samstags geöffnet.",
   },
   {
     path: "/impressum",
     title: "Impressum | KFZ-Sofortzulassung",
     description:
-      "Impressum von KFZ-Sofortzulassung in Bad Salzuflen mit allen gesetzlichen Pflichtangaben und Kontaktinformationen.",
+      "Impressum von KFZ-Sofortzulassung in Bad Salzuflen mit allen gesetzlichen Pflichtangaben und Kontaktinformationen für den Kreis Lippe.",
   },
   {
     path: "/datenschutz",
     title: "Datenschutz | KFZ-Sofortzulassung",
     description:
-      "Datenschutzerklärung von KFZ-Sofortzulassung: Informationen zur Verarbeitung personenbezogener Daten nach DSGVO.",
+      "Datenschutzerklärung von KFZ-Sofortzulassung in Bad Salzuflen: welche Daten wir verarbeiten, wozu, und welche Rechte Sie dabei haben.",
   },
 ];
 

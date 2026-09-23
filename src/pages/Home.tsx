@@ -98,11 +98,12 @@ const Home = () => {
                 <Zap className="h-4 w-4 text-[hsl(var(--cta-orange))]" />
                 NEU: Sofort-Zulassung in ca. 20 Minuten
               </p>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight text-white">
-                Zugelassen, bevor andere einen Termin haben.
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white">
+                KFZ-Zulassung in Bad Salzuflen –<br className="hidden sm:block" /> ohne Termin, auch samstags
               </h1>
-              <p className="text-lg sm:text-xl mb-4 text-primary-foreground/90">
-                Sofort-Zulassung: digital in ca. 20 Minuten – Kennzeichen montieren und direkt losfahren
+              <p className="text-lg sm:text-xl mb-4 font-semibold text-primary-foreground/95">
+                Zugelassen, bevor andere überhaupt einen Termin bekommen: digital in ca. 20 Minuten,
+                ab 129 € inklusive aller Gebühren.
               </p>
               <p className="text-base sm:text-lg mb-8 text-primary-foreground/80">
                 Oder klassisch: Unterlagen abgeben, am nächsten Werktag fertig – inklusive Kennzeichen
@@ -110,13 +111,13 @@ const Home = () => {
 
               <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 justify-center lg:justify-start">
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ⚡ Sofort in ca. 20 Min
+                  ✓ Ohne Termin, ohne Wartenummer
                 </div>
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ✓ Kein Behördengang
+                  ✓ Samstags 15–18 Uhr geöffnet
                 </div>
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ✓ Direkt losfahren
+                  ⚡ Fertig in ca. 20 Minuten
                 </div>
                 <Link
                   to="/preise"
@@ -275,7 +276,20 @@ const Home = () => {
                   {checklistZulassung.map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
                       <CheckCircle className="h-5 w-5 text-trust-green mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-foreground">{item}</span>
+                      <span className="text-sm text-foreground">
+                        {item}
+                        {item.startsWith("eVB-Nummer") && (
+                          <>
+                            {" – "}
+                            <Link
+                              to="/evb-nummer"
+                              className="font-semibold text-primary hover:underline"
+                            >
+                              was ist das?
+                            </Link>
+                          </>
+                        )}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -368,7 +382,11 @@ const Home = () => {
             <Link to="/preise" className="font-semibold text-primary hover:underline">
               Preisübersicht
             </Link>
-            .
+            . Keine oder keine passende{" "}
+            <Link to="/evb-nummer" className="font-semibold text-primary hover:underline">
+              eVB-Nummer
+            </Link>
+            ? Dort steht, woher Sie eine bekommen.
           </p>
 
           <div className="mt-6 text-center">

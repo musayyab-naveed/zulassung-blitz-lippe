@@ -33,8 +33,16 @@
       "answer": "Nein. Die eVB muss auf die Person ausgestellt sein, die als Halter eingetragen wird. Eine eVB auf den Namen des Verkäufers, des Ehepartners oder der Firma passt nicht, wenn jemand anderes als Halter eingetragen werden soll – die Zulassungsstelle lehnt sie dann ab."
     },
     {
-      "question": "Wie schnell bekomme ich eine eVB-Nummer?",
+      "question": "Wie lange dauert es, bis ich die eVB-Nummer bekomme?",
       "answer": "Meist innerhalb weniger Minuten. Bei bestehenden Verträgen genügt oft ein Anruf, bei einem Neuabschluss kommt die Nummer in der Regel direkt nach dem Abschluss per SMS oder E-Mail. Planen Sie trotzdem etwas Puffer ein, bevor Sie zu uns kommen."
+    },
+    {
+      "question": "Kann ich mit der eVB-Nummer zur Zulassungsstelle fahren?",
+      "answer": "Zur Zulassungsstelle gehen können Sie mit der eVB-Nummer – genau dafür ist sie da. Das Fahrzeug selbst müssen Sie gar nicht mitbringen, es reichen die Unterlagen. Wichtig ist aber: Mit einem nicht zugelassenen Fahrzeug dürfen Sie nicht fahren, auch nicht mit gültiger eVB. Der Versicherungsschutz beginnt erst mit der Zulassung. Wenn Sie zu uns nach Bad Salzuflen kommen, sparen Sie sich den Weg zur Zulassungsstelle ganz."
+    },
+    {
+      "question": "Kann ich eine eVB-Nummer ohne Fahrzeugdaten erhalten?",
+      "answer": "Teilweise ja – manche Versicherer stellen eine eVB aus, bevor alle Fahrzeugdaten feststehen. Verlassen Sie sich aber nicht darauf: Für die Zulassung muss die eVB zum konkreten Fahrzeug passen. Halten Sie deshalb die Herstellerschlüsselnummer (HSN) und die Typschlüsselnummer (TSN) bereit – die stehen im Fahrzeugschein in den Feldern 2.1 und 2.2."
     },
     {
       "question": "Was mache ich, wenn meine eVB-Nummer nicht akzeptiert wird?",
