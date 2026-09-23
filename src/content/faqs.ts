@@ -1,3 +1,5 @@
+import { BUSINESS } from "./seoRoutes";
+
 export interface FaqItem {
   question: string;
   answer: string;
@@ -15,7 +17,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Wer ist KFZ-Sofortzulassung?",
     answer:
-      "Ihr lokaler Zulassungsdienst in Bad Salzuflen für den gesamten Kreis Lippe. Wir übernehmen An-, Um- und Abmeldungen komplett für Sie – ohne Behördengang, bewertet mit 5,0 Sternen bei 52 Google-Bewertungen.",
+      `Ihr lokaler Zulassungsdienst in Bad Salzuflen für den gesamten Kreis Lippe. Wir übernehmen An-, Um- und Abmeldungen komplett für Sie – ohne Behördengang, bewertet mit 5,0 Sternen bei ${BUSINESS.reviewCount} Google-Bewertungen.`,
   },
   {
     question: "Wie schnell ist eine KFZ-Zulassung möglich?",
@@ -129,5 +131,55 @@ export const vorgangChecklists: VorgangChecklist[] = [
       "Ihre Wunschkombination – mehr braucht es nicht",
       "Entweder direkt bei uns vor Ort beauftragen (+13 €) oder vorher selbst online reservieren",
     ],
+    hint: "Im Kreis Lippe stehen LIP, DT und LE zur Wahl.",
+  },
+  {
+    key: "umkennzeichnung",
+    title: "Neues Kennzeichen (z. B. von LIP auf DT oder LE)",
+    items: [
+      "Personalausweis oder Reisepass",
+      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "Beide bisherigen Kennzeichenschilder",
+      "Ihre Wunschkombination, falls Sie eine haben",
+    ],
+  },
+  {
+    key: "gewerbe",
+    title: "Zulassung im Auftrag (Händler, Firmen, Vollmacht)",
+    items: [
+      "Vollmacht des Halters",
+      "Personalausweis des Halters oder eine Kopie davon",
+      "eVB-Nummer der Versicherung des Halters",
+      "SEPA-Lastschriftmandat für die KFZ-Steuer, vom Halter unterschrieben",
+      "Zulassungsbescheinigung Teil I und Teil II",
+      "Bei Neuwagen: COC-Papiere",
+    ],
+    hint: "Vollmacht und SEPA-Mandat gibt es unter Formulare zum Ausdrucken.",
+  },
+  {
+    key: "kurzzeitkennzeichen",
+    title: "Kurzzeitkennzeichen (5 Tage)",
+    items: [
+      "Personalausweis oder Reisepass",
+      "eVB-Nummer speziell für Kurzzeitkennzeichen",
+      "Zulassungsbescheinigung Teil I oder Teil II des Fahrzeugs",
+      "Nachweis über die gültige Hauptuntersuchung (TÜV)",
+      "IBAN für das SEPA-Lastschriftmandat der KFZ-Steuer",
+    ],
+    hint: "Was in Ihrem Fall genau nötig ist, klären wir kurz im Chat.",
+  },
+  {
+    key: "ausfuhrkennzeichen",
+    title: "Ausfuhrkennzeichen (Export)",
+    items: [
+      "Personalausweis oder Reisepass",
+      "eVB-Nummer speziell für Ausfuhrkennzeichen",
+      "Zulassungsbescheinigung Teil I (Fahrzeugschein)",
+      "Zulassungsbescheinigung Teil II (Fahrzeugbrief)",
+      "Nachweis über die gültige Hauptuntersuchung (TÜV)",
+      "Bisherige Kennzeichen, falls das Fahrzeug noch angemeldet ist",
+    ],
+    hint: "Was in Ihrem Fall genau nötig ist, klären wir kurz im Chat.",
   },
 ];

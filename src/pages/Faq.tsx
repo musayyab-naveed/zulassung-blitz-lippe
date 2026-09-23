@@ -13,22 +13,6 @@ const Faq = () => {
     <div className="min-h-screen bg-background">
       <Seo
         path="/faq"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: [
-            ...generalFaqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: { "@type": "Answer", text: faq.answer },
-            })),
-            ...vorgangChecklists.map((vorgang) => ({
-              "@type": "Question",
-              name: `Welche Unterlagen brauche ich für: ${vorgang.title}?`,
-              acceptedAnswer: { "@type": "Answer", text: vorgang.items.join(", ") },
-            })),
-          ],
-        }}
       />
       <Header />
 
@@ -86,7 +70,7 @@ const Faq = () => {
               <span className="font-semibold text-secondary">Vollmacht und SEPA-Lastschriftmandat</span>{" "}
               müssen Sie nicht vorbereiten – beide Formulare bekommen Sie bei uns und füllen sie einfach
               vor Ort aus. Wenn Sie uns die Unterlagen zusenden möchten, finden Sie die Formulare{" "}
-              <Link to="/dokumente" className="font-semibold text-primary hover:underline">
+              <Link to="/dokumente" className="font-semibold text-link hover:underline">
                 hier zum Ausdrucken
               </Link>
               .
@@ -96,8 +80,12 @@ const Faq = () => {
           <div className="mt-3 flex items-start gap-3 rounded-xl border border-[hsl(var(--cta-orange))]/40 bg-[hsl(var(--cta-orange))]/10 px-4 py-3.5">
             <AlertCircle className="h-5 w-5 text-[hsl(var(--cta-orange))] mt-0.5 flex-shrink-0" />
             <p className="text-sm text-foreground">
-              <span className="font-semibold text-secondary">Bitte beachten:</span> Kurzzeitkennzeichen
-              und Ausfuhrkennzeichen bieten wir nicht an.
+              <span className="font-semibold text-secondary">Kurzzeit- oder Ausfuhrkennzeichen?</span>{" "}
+              Machen wir auf Anfrage –{" "}
+              <Link to="/angebot?vorgang=sonder" className="font-semibold text-link hover:underline">
+                kurz per WhatsApp anfragen
+              </Link>
+              .
             </p>
           </div>
         </div>
@@ -130,11 +118,11 @@ const Faq = () => {
           <div className="mt-10 text-center">
             <p className="mb-4 text-muted-foreground">
               Alle Preise mit Erklärung finden Sie auf der{" "}
-              <Link to="/preise" className="font-semibold text-primary hover:underline">
+              <Link to="/preise" className="font-semibold text-link hover:underline">
                 Preisübersicht
               </Link>
               . Was die eVB-Nummer ist und woher Sie sie bekommen, steht auf der Seite{" "}
-              <Link to="/evb-nummer" className="font-semibold text-primary hover:underline">
+              <Link to="/evb-nummer" className="font-semibold text-link hover:underline">
                 eVB-Nummer
               </Link>
               . Alle Unterlagen beisammen? Dann direkt starten:

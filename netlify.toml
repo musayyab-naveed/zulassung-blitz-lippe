@@ -22,3 +22,9 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Dateien mit Prüfsumme im Namen ändern sich nie – Browser dürfen sie ein Jahr behalten
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

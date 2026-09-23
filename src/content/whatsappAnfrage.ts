@@ -13,8 +13,16 @@ export const WHATSAPP_NUMMER = "4915142462280";
 export const TELEFON_ANZEIGE = "01514 2462280";
 export const TELEFON_LINK = "tel:+4915142462280";
 
-export type Vorgang = "zulassen" | "abmelden" | "verkaufen" | "frage";
-export type Art = "neu" | "gebraucht" | "wieder" | "unklar";
+export type Vorgang = "zulassen" | "abmelden" | "sonder" | "verkaufen" | "frage";
+export type Art =
+  | "neu"
+  | "gebraucht"
+  | "wieder"
+  | "umzug"
+  | "umkennzeichnen"
+  | "unklar"
+  | "kurzzeit"
+  | "ausfuhr";
 export type Wann = "heute" | "morgen" | "woche" | "offen" | "extern";
 
 export interface Auswahl<T extends string> {
@@ -24,8 +32,9 @@ export interface Auswahl<T extends string> {
 }
 
 export const VORGAENGE: Auswahl<Vorgang>[] = [
-  { wert: "zulassen", titel: "Fahrzeug zulassen", text: "Neu, gebraucht oder wieder anmelden" },
+  { wert: "zulassen", titel: "Fahrzeug zulassen oder ummelden", text: "Neu, gebraucht, Umzug oder neues Kennzeichen" },
   { wert: "abmelden", titel: "Fahrzeug abmelden", text: "Blitzabmeldung direkt vor Ort" },
+  { wert: "sonder", titel: "Kurzzeit- oder Ausfuhrkennzeichen", text: "Überführung, Probefahrt oder Export" },
   { wert: "verkaufen", titel: "Fahrzeug verkaufen", text: "Kostenlose Ankaufanfrage" },
   { wert: "frage", titel: "Ich habe nur eine Frage", text: "Direkt zu WhatsApp" },
 ];
@@ -34,6 +43,15 @@ export const ARTEN: Auswahl<Art>[] = [
   { wert: "neu", titel: "Neuwagen", text: "Fabrikneu, noch nie zugelassen" },
   { wert: "gebraucht", titel: "Gebrauchtwagen gekauft", text: "Umschreibung auf Ihren Namen" },
   { wert: "wieder", titel: "Abgemeldetes Auto wieder anmelden", text: "Wiederzulassung" },
+  { wert: "umzug", titel: "Umgezogen – Adresse ändern", text: "Innerhalb von Lippe oder neu zugezogen" },
+  { wert: "umkennzeichnen", titel: "Neues Kennzeichen, z. B. DT oder LE", text: "Kennzeichen wechseln" },
+  { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
+];
+
+/** Auswahl bei Kurzzeit- oder Ausfuhrkennzeichen */
+export const SONDER_ARTEN: Auswahl<Art>[] = [
+  { wert: "kurzzeit", titel: "Kurzzeitkennzeichen", text: "5 Tage – für Überführung oder Probefahrt" },
+  { wert: "ausfuhr", titel: "Ausfuhrkennzeichen", text: "Für den Export ins Ausland" },
   { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
 ];
 
@@ -49,7 +67,11 @@ const ART_IN_NACHRICHT: Record<Art, string> = {
   neu: "Neuwagen (Neuzulassung)",
   gebraucht: "Gebrauchtwagen gekauft (Umschreibung)",
   wieder: "Abgemeldetes Fahrzeug wieder anmelden",
+  umzug: "Umzug – Adresse im Fahrzeugschein ändern",
+  umkennzeichnen: "Neues Kennzeichen (Umkennzeichnung)",
   unklar: "weiß ich noch nicht genau",
+  kurzzeit: "Kurzzeitkennzeichen",
+  ausfuhr: "Ausfuhrkennzeichen",
 };
 
 const WANN_IN_NACHRICHT: Record<Exclude<Wann, "extern">, string> = {
@@ -65,6 +87,7 @@ const PAKET_IN_NACHRICHT: Record<string, string> = {
   basis: "BASIS (nächster Werktag, mit Kennzeichen)",
   premium: "PREMIUM (Hol- und Bringservice)",
   abmeldung: "BLITZABMELDUNG",
+  sonderkennzeichen: "KURZZEIT- / AUSFUHRKENNZEICHEN",
 };
 
 export interface AnfrageAntworten {
@@ -75,7 +98,10 @@ export interface AnfrageAntworten {
 }
 
 export const baueNachricht = ({ vorgang, art, wann, paket }: AnfrageAntworten): string => {
-  const paketZeile = paket && PAKET_IN_NACHRICHT[paket] ? `Gewünschtes Paket: ${PAKET_IN_NACHRICHT[paket]}` : null;
+  const paketZeile =
+    paket && PAKET_IN_NACHRICHT[paket] && vorgang !== "sonder"
+      ? `Gewünschtes Paket: ${PAKET_IN_NACHRICHT[paket]}`
+      : null;
 
   if (vorgang === "verkaufen") {
     return [
@@ -94,13 +120,23 @@ export const baueNachricht = ({ vorgang, art, wann, paket }: AnfrageAntworten): 
   }
 
   const wasZeile =
-    vorgang === "abmelden" ? "Hallo, ich möchte ein Fahrzeug abmelden." : "Hallo, ich möchte ein Fahrzeug zulassen.";
+    vorgang === "abmelden"
+      ? "Hallo, ich möchte ein Fahrzeug abmelden."
+      : vorgang === "sonder"
+        ? art === "kurzzeit"
+          ? "Hallo, ich brauche ein Kurzzeitkennzeichen."
+          : art === "ausfuhr"
+            ? "Hallo, ich brauche ein Ausfuhrkennzeichen."
+            : "Hallo, ich brauche ein Kurzzeit- oder Ausfuhrkennzeichen."
+        : "Hallo, ich möchte ein Fahrzeug zulassen.";
+  // Bei Sonderkennzeichen steht alles schon in der ersten Zeile
+  const mitArt = vorgang === "zulassen" && art;
 
   if (wann === "extern") {
     return [
       wasZeile.replace(/\.$/, ", kann aber nicht selbst vorbeikommen."),
       "",
-      vorgang === "zulassen" && art ? `Vorgang: ${ART_IN_NACHRICHT[art]}` : null,
+      mitArt ? `Vorgang: ${ART_IN_NACHRICHT[mitArt]}` : null,
       paketZeile,
       "",
       "Geht Abholung oder Versand der Unterlagen?",
@@ -114,7 +150,7 @@ export const baueNachricht = ({ vorgang, art, wann, paket }: AnfrageAntworten): 
   return [
     wasZeile,
     "",
-    vorgang === "zulassen" && art ? `Vorgang: ${ART_IN_NACHRICHT[art]}` : null,
+    mitArt ? `Vorgang: ${ART_IN_NACHRICHT[mitArt]}` : null,
     wann ? `Ich komme: ${WANN_IN_NACHRICHT[wann]}` : null,
     paketZeile,
   ]
@@ -128,16 +164,22 @@ export const whatsappLink = (nachricht: string) =>
 
 /** Welche Unterlagen-Liste passt zur Antwort? Bei "weiß ich nicht" die häufigste. */
 export const checklisteFuer = ({ vorgang, art }: AnfrageAntworten): VorgangChecklist | null => {
+  const zulassenListe: Partial<Record<Art, string>> = {
+    neu: "neuzulassung",
+    wieder: "wiederzulassung",
+    umzug: "adressaenderung",
+    umkennzeichnen: "umkennzeichnung",
+  };
   const key =
     vorgang === "abmelden"
       ? "abmeldung"
       : vorgang === "zulassen"
-        ? art === "neu"
-          ? "neuzulassung"
-          : art === "wieder"
-            ? "wiederzulassung"
-            : "umschreibung"
-        : null;
+        ? (art && zulassenListe[art]) || "umschreibung"
+        : vorgang === "sonder"
+          ? art === "ausfuhr"
+            ? "ausfuhrkennzeichen"
+            : "kurzzeitkennzeichen"
+          : null;
   return key ? vorgangChecklists.find((liste) => liste.key === key) ?? null : null;
 };
 
@@ -145,6 +187,7 @@ export const checklisteFuer = ({ vorgang, art }: AnfrageAntworten): VorgangCheck
 export const vorgangAusPaket = (paket: string | null): Vorgang | undefined => {
   if (!paket) return undefined;
   if (paket === "abmeldung") return "abmelden";
+  if (paket === "sonderkennzeichen") return "sonder";
   if (paket === "ankauf_only") return "verkaufen";
   if (["sofort", "basis", "premium"].includes(paket)) return "zulassen";
   return undefined;

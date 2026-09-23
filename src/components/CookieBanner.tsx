@@ -66,7 +66,7 @@ const CookieBanner = () => {
           Mit Ihrer Zustimmung setzen wir Google Analytics ein, um zu verstehen, welche Seiten
           hilfreich sind. Ohne Zustimmung wird nichts geladen. Sie können Ihre Wahl jederzeit
           unten auf der Seite unter „Cookie-Einstellungen" ändern.{" "}
-          <Link to="/datenschutz" className="font-semibold text-primary hover:underline">
+          <Link to="/datenschutz" className="font-semibold text-link hover:underline">
             Mehr dazu
           </Link>
         </p>

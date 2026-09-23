@@ -112,5 +112,139 @@
       "question": "Was kostet die Zulassung?",
       "answer": "Die Sofort-Zulassung kostet ab 129 Euro, die klassische Zulassung mit Kennzeichen 129 Euro, mit Hol- und Bringservice 159 Euro und die Blitzabmeldung 40 Euro – jeweils inklusive der Verwaltungsgebühren des Kreises Lippe. Alle Details stehen auf der Preisseite."
     }
+  ],
+  "/auto-abmelden": [
+    {
+      "question": "Was kostet es, ein Auto in Bad Salzuflen abzumelden?",
+      "answer": "Bei uns kostet die Blitzabmeldung 40 € – die Verwaltungsgebühren des Straßenverkehrsamts sind schon enthalten. Verkaufen Sie uns Ihr Fahrzeug, ist die Abmeldung kostenlos."
+    },
+    {
+      "question": "Was brauche ich, um mein Auto abzumelden?",
+      "answer": "Den Fahrzeugschein (Zulassungsbescheinigung Teil I), beide Kennzeichenschilder und Ihren Personalausweis. Wurde das Auto ab 2015 zugelassen, sind auf Fahrzeugschein und Plaketten Sicherheitscodes zum Freirubbeln – damit geht es digital in wenigen Minuten. Bitte nicht selbst freirubbeln, das machen wir."
+    },
+    {
+      "question": "Wie lange dauert die Abmeldung?",
+      "answer": "Mit Sicherheitscodes erledigen wir die Abmeldung digital direkt vor Ort, Sie warten nur kurz. Ohne Codes melden wir das Fahrzeug klassisch bis zum nächsten Werktag ab."
+    },
+    {
+      "question": "Brauche ich einen Termin zum Abmelden?",
+      "answer": "Nein. Kommen Sie einfach vorbei – Montag bis Freitag von 9 bis 18 Uhr und Samstag von 15 bis 18 Uhr, Werler Straße 68 in Bad Salzuflen. Bei der Zulassungsstelle des Kreises Lippe geht dagegen nichts ohne vorher gebuchten Termin."
+    },
+    {
+      "question": "Muss ich selbst der Halter sein?",
+      "answer": "Nein. Für die Abmeldung braucht es keine Vollmacht – wer Fahrzeugschein und Kennzeichen mitbringt, kann das Auto abmelden."
+    },
+    {
+      "question": "Muss ich Versicherung und KFZ-Steuer selbst kündigen?",
+      "answer": "Nein. Nach der Abmeldung werden Versicherung und Zoll automatisch informiert. Die KFZ-Steuer endet mit dem Tag der Abmeldung, zu viel gezahlte Steuer erstattet der Zoll."
+    },
+    {
+      "question": "Kann ich mein Auto auch samstags abmelden?",
+      "answer": "Ja. Wir haben Montag bis Freitag von 9 bis 18 Uhr geöffnet und zusätzlich samstags von 15 bis 18 Uhr."
+    },
+    {
+      "question": "Kennzeichen verloren oder gestohlen – was nun?",
+      "answer": "Dann brauchen Sie in der Regel eine Verlust- oder Diebstahlsanzeige der Polizei. Schreiben Sie uns kurz per WhatsApp, dann sagen wir Ihnen, was in Ihrem Fall nötig ist."
+    }
+  ],
+  "/auto-ummelden": [
+    {
+      "question": "Was kostet es, ein Auto umzumelden?",
+      "answer": "Die Umschreibung eines Gebrauchtwagens auf Ihren Namen kostet bei uns ab 129 € – Verwaltungsgebühren inklusive, bei BASIS und PREMIUM sogar mit Kennzeichen. Für eine reine Adressänderung oder ein neues Kennzeichen nennen wir Ihnen den Preis kurz per WhatsApp."
+    },
+    {
+      "question": "Welche Unterlagen brauche ich beim Gebrauchtwagen?",
+      "answer": "Personalausweis, eVB-Nummer Ihrer Versicherung, Fahrzeugschein und Fahrzeugbrief (Teil I und II), den Nachweis über die gültige Hauptuntersuchung, die alten Kennzeichen (falls das Auto noch angemeldet ist) und Ihre IBAN für die KFZ-Steuer."
+    },
+    {
+      "question": "Muss ich mein Auto nach einem Umzug ummelden?",
+      "answer": "Ja. Wer umzieht, muss die neue Adresse im Fahrzeugschein eintragen lassen – und zwar ohne schuldhaftes Zögern. Dafür reichen Personalausweis mit neuer Adresse und der Fahrzeugschein."
+    },
+    {
+      "question": "Darf ich mein altes Kennzeichen behalten, wenn ich nach Lippe ziehe?",
+      "answer": "Ja. Seit 2015 dürfen Sie Ihr bisheriges Kennzeichen bei einem Umzug in einen anderen Kreis behalten. Nur wenn Sie möchten, bekommen Sie ein neues mit LIP, DT oder LE."
+    },
+    {
+      "question": "Brauche ich beim Ummelden eine neue eVB-Nummer?",
+      "answer": "Beim Halterwechsel ja – der neue Halter braucht eine eigene Versicherung und damit eine eigene eVB-Nummer. Bei einer reinen Adressänderung nicht."
+    },
+    {
+      "question": "Wie schnell geht das Ummelden?",
+      "answer": "Mit der Sofort-Zulassung digital in ca. 20 Minuten, klassisch bis zum nächsten Werktag. Einen Termin brauchen Sie bei uns nicht."
+    },
+    {
+      "question": "Kann jemand anderes das Auto für mich ummelden?",
+      "answer": "Ja, mit einer Vollmacht und Ihrem Personalausweis (oder einer Kopie davon). Die Vollmacht gibt es auf unserer Seite Formulare zum Ausdrucken."
+    }
+  ],
+  "/wunschkennzeichen": [
+    {
+      "question": "Was kostet ein Wunschkennzeichen?",
+      "answer": "Bei uns kommen zur Zulassung 13 € für Ihr Wunschkennzeichen dazu – Reservierung und Gebühr sind damit erledigt."
+    },
+    {
+      "question": "Welche Kennzeichen gibt es im Kreis Lippe?",
+      "answer": "LIP für Lippe sowie seit April 2026 wieder DT für Detmold und LE für Lemgo. Alle drei stehen Fahrzeughaltern im ganzen Kreis Lippe offen – auch in Bad Salzuflen."
+    },
+    {
+      "question": "Darf ich DT oder LE wählen, obwohl ich nicht in Detmold oder Lemgo wohne?",
+      "answer": "Ja. Die Kürzel DT und LE gelten für den ganzen Kreis Lippe. Sie können frei zwischen LIP, DT und LE wählen."
+    },
+    {
+      "question": "Kann ich mein LIP-Kennzeichen auf DT oder LE umstellen?",
+      "answer": "Ja, das nennt sich Umkennzeichnung. Beim Straßenverkehrsamt geht das nur mit gebuchtem Termin – bei uns kommen Sie einfach vorbei. Mitbringen: Personalausweis, Fahrzeugschein, Fahrzeugbrief und die bisherigen Kennzeichen."
+    },
+    {
+      "question": "Wie viele Zeichen darf mein Kennzeichen haben?",
+      "answer": "Höchstens 8 Zeichen insgesamt. Nach LIP passen zum Beispiel 2 Buchstaben und 3 Ziffern, nach DT und LE 2 Buchstaben und 4 Ziffern."
+    },
+    {
+      "question": "Wie lange gilt eine Reservierung?",
+      "answer": "Online-Reservierungen beim Kreis Lippe verfallen nach 90 Tagen. Wird das Kennzeichen bis dahin nicht zugeteilt, ist es wieder frei."
+    },
+    {
+      "question": "Kann ich kurze Kennzeichen wie DT-A 1 reservieren?",
+      "answer": "Nicht online. Kennzeichen mit nur ein oder zwei Stellen nach dem Kürzel vergibt der Kreis Lippe nur persönlich am Schalter."
+    }
+  ],
+  "/gewerbekunden": [
+    {
+      "question": "Arbeiten Sie auch für Autohäuser und Händler?",
+      "answer": "Ja. Wir übernehmen Zulassungen, Umschreibungen und Abmeldungen für Autohändler, Werkstätten und Firmen im Kreis Lippe – auch mehrere Fahrzeuge auf einmal."
+    },
+    {
+      "question": "Was brauche ich, wenn ich ein Fahrzeug für meinen Kunden zulassen lasse?",
+      "answer": "Eine Vollmacht des Halters, seinen Personalausweis (oder eine Kopie), die eVB-Nummer, das SEPA-Lastschriftmandat für die KFZ-Steuer sowie Fahrzeugschein und Fahrzeugbrief – bei Neuwagen die COC-Papiere. Vollmacht und SEPA-Mandat gibt es bei uns als PDF."
+    },
+    {
+      "question": "Brauche ich einen Termin?",
+      "answer": "Nein. Sie bringen die Unterlagen vorbei – Montag bis Freitag 9 bis 18 Uhr, Samstag 15 bis 18 Uhr – oder wir holen sie im Raum Bad Salzuflen ab."
+    },
+    {
+      "question": "Können Sie per Rechnung abrechnen?",
+      "answer": "Ja, für Gewerbekunden ist die Zahlung per Rechnung möglich."
+    },
+    {
+      "question": "Gibt es Konditionen für regelmäßige Aufträge?",
+      "answer": "Wenn Sie regelmäßig Fahrzeuge über uns zulassen, sprechen wir gern über feste Konditionen. Schreiben Sie uns einfach per WhatsApp."
+    },
+    {
+      "question": "Machen Sie auch Kurzzeit- und Ausfuhrkennzeichen?",
+      "answer": "Ja, auf Anfrage – zum Beispiel für Überführungen oder den Export. Den Preis nennen wir Ihnen direkt im Chat."
+    }
+  ],
+  "/fahrzeugankauf": [
+    {
+      "question": "Kann ich mein Fahrzeug auch ohne Zulassung verkaufen?",
+      "answer": "Ja. Fahrzeugankauf ist bei uns unabhängig von Zulassung, Ummeldung oder Abmeldung möglich."
+    },
+    {
+      "question": "Welche Daten braucht ihr für eine Ersteinschätzung?",
+      "answer": "Marke, Modell, Baujahr und Ihre Telefonnummer reichen für den Start. Fotos und Kilometerstand helfen für eine genauere Einschätzung – gern auch direkt per WhatsApp."
+    },
+    {
+      "question": "Was passiert mit nicht fahrbereiten Fahrzeugen?",
+      "answer": "Auch nicht fahrbereite Fahrzeuge können wir übernehmen und die fachgerechte Verwertung koordinieren."
+    }
   ]
 }

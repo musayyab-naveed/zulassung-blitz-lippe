@@ -5,27 +5,13 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { CheckCircle, ArrowRight, Car, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
-import autoankaufHeroImage from "@/assets/autoankauf-hero.jpeg";
+import ankauf640 from "@/assets/autoankauf-640.webp";
+import ankauf1248 from "@/assets/autoankauf-1248.webp";
+import faqSchema from "@/content/faqSchema.json";
+
+const geoFaqs: { question: string; answer: string }[] = faqSchema["/fahrzeugankauf"];
 
 const Fahrzeugankauf = () => {
-  const geoFaqs = [
-    {
-      question: "Kann ich mein Fahrzeug auch ohne Zulassung verkaufen?",
-      answer:
-        "Ja. Fahrzeugankauf ist bei uns unabhängig von Zulassung, Ummeldung oder Abmeldung möglich.",
-    },
-    {
-      question: "Welche Daten braucht ihr für eine Ersteinschätzung?",
-      answer:
-        "Marke, Modell, Baujahr und Ihre Telefonnummer reichen für den Start. Fotos und Kilometerstand helfen für eine genauere Einschätzung – gern auch direkt per WhatsApp.",
-    },
-    {
-      question: "Was passiert mit nicht fahrbereiten Fahrzeugen?",
-      answer:
-        "Auch nicht fahrbereite Fahrzeuge können wir übernehmen und die fachgerechte Verwertung koordinieren.",
-    },
-  ];
-
   const steps = [
     {
       title: "Fahrzeugdaten angeben",
@@ -40,7 +26,7 @@ const Fahrzeugankauf = () => {
     {
       title: "Angebot erhalten",
       description:
-        "Termin aussuchen oder Rückruf erhalten – ganz wie Sie möchten.",
+        "Per WhatsApp oder Rückruf – ganz wie Sie möchten.",
     },
   ];
 
@@ -56,42 +42,6 @@ const Fahrzeugankauf = () => {
     <div className="min-h-screen bg-background">
       <Seo
         path="/fahrzeugankauf"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "Service",
-              name: "Fahrzeugankauf Bad Salzuflen",
-              provider: {
-                "@type": "LocalBusiness",
-                name: "KFZ-Sofortzulassung",
-                telephone: "+49 1514 2462280",
-                email: "info@sofortzulassung.com",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "Werler Straße 68",
-                  postalCode: "32105",
-                  addressLocality: "Bad Salzuflen",
-                  addressCountry: "DE",
-                },
-              },
-              serviceType: "Fahrzeugankauf",
-              areaServed: "Kreis Lippe",
-              url: "https://sofortzulassung.com/fahrzeugankauf",
-            },
-            {
-              "@type": "FAQPage",
-              mainEntity: geoFaqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.answer,
-                },
-              })),
-            },
-          ],
-        }}
       />
       <Header />
 
@@ -152,7 +102,11 @@ const Fahrzeugankauf = () => {
               <div className="relative z-10 h-full flex flex-col justify-between p-6 sm:p-8">
                 <div className="rounded-2xl border border-cyan-100/30 bg-white/95 p-2 shadow-lg">
                   <img
-                    src={autoankaufHeroImage}
+                    src={ankauf640}
+                    srcSet={`${ankauf640} 640w, ${ankauf1248} 1248w`}
+                    sizes="(min-width: 1024px) 560px, calc(100vw - 48px)"
+                    width={1248}
+                    height={832}
                     alt="Fahrzeugankauf: Auto-Verkauf mit Beratung und schneller Abwicklung"
                     className="w-full h-auto rounded-xl object-cover"
                     loading="lazy"

@@ -1,6 +1,7 @@
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Clock, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import logo320 from "@/assets/logo-320.webp";
+import logo640 from "@/assets/logo-640.webp";
 import { CONSENT_OEFFNEN_EVENT } from "@/lib/consent";
 
 const Footer = () => {
@@ -16,16 +17,75 @@ const Footer = () => {
           <div className="md:col-span-2">
             <div className="mb-4 inline-flex items-center rounded-xl bg-white px-4 py-2">
               <img
-                src={logo}
+                src={logo320}
+                srcSet={`${logo320} 320w, ${logo640} 640w`}
+                sizes="292px"
+                width={292}
+                height={64}
+                loading="lazy"
                 alt="KFZ-Sofortzulassung Logo"
                 className="h-16 w-auto object-contain"
               />
             </div>
-            <p className="text-sm text-secondary-foreground/85 mb-4 max-w-xl">
-              Ihr lokaler Partner für schnelle KFZ-Zulassungen in Bad Salzuflen und im
-              Kreis Lippe. Optional bieten wir den Fahrzeugankauf als Zusatzservice im
-              gleichen Ablauf an.
+            <p className="text-sm text-secondary-foreground/85 mb-5 max-w-xl">
+              Ihr Zulassungsdienst in Bad Salzuflen für den ganzen Kreis Lippe – ohne Termin,
+              Montag bis Samstag. Zulassen, ummelden, abmelden und Wunschkennzeichen.
             </p>
+            {/* Name, Adresse, Telefon: überall exakt gleich wie im Google-Profil */}
+            <address className="not-italic space-y-2.5 text-sm">
+              <p className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 flex-none text-primary" />
+                <span>
+                  <span className="font-semibold">KFZ-Sofortzulassung</span>
+                  <br />
+                  Werler Straße 68, 32105 Bad Salzuflen
+                </span>
+              </p>
+              <p className="flex items-center gap-2">
+                <Phone className="h-4 w-4 flex-none text-primary" />
+                <a href="tel:+4915142462280" className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors">
+                  01514 2462280
+                </a>
+              </p>
+              <p className="flex items-center gap-2">
+                <Mail className="h-4 w-4 flex-none text-primary" />
+                <a href="mailto:info@sofortzulassung.com" className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors">
+                  info@sofortzulassung.com
+                </a>
+              </p>
+              <p className="flex items-start gap-2">
+                <Clock className="mt-0.5 h-4 w-4 flex-none text-primary" />
+                <span className="text-secondary-foreground/80">
+                  Mo–Fr 9–18 Uhr · Sa 15–18 Uhr
+                  <br />
+                  Online-Zulassung rund um die Uhr
+                </span>
+              </p>
+            </address>
+          </div>
+
+          {/* Leistungen */}
+          <div>
+            <h3 className="font-semibold mb-4 tracking-wide">Leistungen</h3>
+            <ul className="space-y-2 text-sm">
+              {[
+                { to: "/preise", text: "KFZ-Zulassung & Preise" },
+                { to: "/auto-abmelden", text: "Auto abmelden" },
+                { to: "/auto-ummelden", text: "Auto ummelden" },
+                { to: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT, LE" },
+                { to: "/gewerbekunden", text: "Für Autohändler & Firmen" },
+                { to: "/fahrzeugankauf", text: "Fahrzeugankauf" },
+              ].map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                  >
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Navigation */}
@@ -38,22 +98,6 @@ const Footer = () => {
                   className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
                 >
                   Startseite
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/preise"
-                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
-                >
-                  Preise
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/fahrzeugankauf"
-                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
-                >
-                  Fahrzeugankauf
                 </Link>
               </li>
               <li>
@@ -99,26 +143,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="font-semibold mb-4 tracking-wide">Kontakt</h3>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:+4915142462280" className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors">
-                  +4915142462280
-                </a>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-primary" />
-                <span>info@sofortzulassung.com</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span>Kreis Lippe, NRW</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
         {/* Bottom Bar */}

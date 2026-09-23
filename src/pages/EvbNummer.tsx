@@ -119,7 +119,7 @@ const EvbNummer = () => {
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
             Welche Unterlagen Sie sonst noch brauchen, steht in den{" "}
-            <Link to="/faq" className="font-semibold text-primary hover:underline">
+            <Link to="/faq" className="font-semibold text-link hover:underline">
               Checklisten im FAQ-Bereich
             </Link>
             .
@@ -283,7 +283,7 @@ const EvbNummer = () => {
           <p className="section-subtitle mx-auto mb-6 max-w-2xl">
             Mit gültiger eVB-Nummer erledigen wir Ihre Zulassung digital in ca. 20 Minuten – ohne
             Behördentermin und ohne Wartenummer. Was das kostet, steht auf der{" "}
-            <Link to="/preise" className="font-semibold text-primary hover:underline">
+            <Link to="/preise" className="font-semibold text-link hover:underline">
               Preisübersicht
             </Link>
             .

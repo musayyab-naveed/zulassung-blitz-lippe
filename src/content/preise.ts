@@ -7,7 +7,7 @@
 //
 // Wer einen Preis ändern will, ändert ihn hier – und nur hier.
 
-export type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "ankauf_only";
+export type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "sonderkennzeichen" | "ankauf_only";
 
 export interface PackageDef {
   key: PackageKey;
@@ -103,6 +103,25 @@ export const PACKAGES: PackageDef[] = [
     schemaDescription: "Fahrzeug direkt vor Ort digital abmelden – Sie warten nur kurz.",
   },
   {
+    key: "sonderkennzeichen",
+    title: "KURZZEIT- & AUSFUHRKENNZEICHEN",
+    price: "auf Anfrage",
+    priceValue: "",
+    subtitle: "Für Überführung, Probefahrt oder Export – kurz per WhatsApp anfragen",
+    features: [
+      "Kurzzeitkennzeichen (5 Tage gültig)",
+      "Ausfuhrkennzeichen für den Export",
+      "Ohne Termin beim Amt",
+      "Preis nennen wir Ihnen direkt im Chat",
+    ],
+    highlight:
+      "Wichtig: Für beide Kennzeichen brauchen Sie eine eigene eVB-Nummer – eine normale eVB passt hier nicht.",
+    buttonText: "PER WHATSAPP ANFRAGEN",
+    buttonVariant: "cta" as const,
+    schemaDescription:
+      "Kurzzeitkennzeichen und Ausfuhrkennzeichen ohne Behördentermin – Preis auf Anfrage per WhatsApp.",
+  },
+  {
     key: "ankauf_only",
     title: "NUR FAHRZEUGVERKAUF",
     price: "0 €",
@@ -138,6 +157,7 @@ const zeilenInfo: Record<PackageKey, { dauer: string; kennzeichen: string }> = {
   basis: { dauer: "nächster Werktag", kennzeichen: "inklusive" },
   premium: { dauer: "nächster Werktag", kennzeichen: "inklusive, plus Hol- & Bringservice" },
   abmeldung: { dauer: "sofort vor Ort", kennzeichen: "Schilder bringen Sie mit" },
+  sonderkennzeichen: { dauer: "nach Absprache", kennzeichen: "Kurzzeit- oder Ausfuhrkennzeichen" },
   ankauf_only: { dauer: "nach Absprache", kennzeichen: "–" },
 };
 
@@ -192,7 +212,6 @@ export const IM_PREIS_ENTHALTEN: string[] = [
 
 /** Ehrliche Abgrenzung – schafft Vertrauen und spart Fehlanfragen */
 export const NICHT_IM_ANGEBOT: string[] = [
-  "Kurzzeitkennzeichen und Ausfuhrkennzeichen",
   "Reine Schilderprägung ohne Zulassung – Kennzeichen gibt es bei uns nur zusammen mit einer Zulassung",
   "Die KFZ-Steuer selbst – die zieht das Hauptzollamt direkt bei Ihnen ein",
   "Ihre KFZ-Versicherung – die eVB-Nummer bringen Sie mit",

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import {
   ARTEN,
+  SONDER_ARTEN,
   TELEFON_ANZEIGE,
   TELEFON_LINK,
   VORGAENGE,
@@ -35,13 +36,17 @@ import {
   CheckCircle,
   Clock,
   FileMinus,
+  Globe,
   HelpCircle,
+  Home as HomeIcon,
   MapPin,
   MessageCircle,
   Navigation,
   Phone,
+  RectangleHorizontal,
   RotateCcw,
   Sparkles,
+  Timer,
   Truck,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -56,6 +61,11 @@ const ROUTE_URL =
 const ICONS: Record<string, ReactNode> = {
   zulassen: <Car className="h-6 w-6" />,
   abmelden: <FileMinus className="h-6 w-6" />,
+  sonder: <Timer className="h-6 w-6" />,
+  umzug: <HomeIcon className="h-6 w-6" />,
+  umkennzeichnen: <RectangleHorizontal className="h-6 w-6" />,
+  kurzzeit: <Timer className="h-6 w-6" />,
+  ausfuhr: <Globe className="h-6 w-6" />,
   verkaufen: <Banknote className="h-6 w-6" />,
   frage: <MessageCircle className="h-6 w-6" />,
   neu: <Sparkles className="h-6 w-6" />,
@@ -70,9 +80,9 @@ const ICONS: Record<string, ReactNode> = {
 };
 
 const istVorgang = (v: string | null): v is Vorgang =>
-  v === "zulassen" || v === "abmelden" || v === "verkaufen" || v === "frage";
-const istArt = (v: string | null): v is Art =>
-  v === "neu" || v === "gebraucht" || v === "wieder" || v === "unklar";
+  v === "zulassen" || v === "abmelden" || v === "sonder" || v === "verkaufen" || v === "frage";
+const ALLE_ARTEN: string[] = [...ARTEN, ...SONDER_ARTEN].map((a) => a.wert);
+const istArt = (v: string | null): v is Art => v !== null && ALLE_ARTEN.includes(v);
 const istWann = (v: string | null): v is Wann =>
   v === "heute" || v === "morgen" || v === "woche" || v === "offen" || v === "extern";
 
@@ -114,15 +124,16 @@ const Angebot = () => {
 
   const schritt: "was" | "art" | "wann" | "fertig" = !vorgang
     ? "was"
-    : vorgang === "zulassen" && !art
+    : (vorgang === "zulassen" || vorgang === "sonder") && !art
       ? "art"
-      : (vorgang === "zulassen" || vorgang === "abmelden") && !wann
+      : (vorgang === "zulassen" || vorgang === "abmelden" || vorgang === "sonder") && !wann
         ? "wann"
         : "fertig";
 
-  const gesamtSchritte = vorgang === "zulassen" ? 3 : vorgang === "abmelden" ? 2 : 1;
+  const mitArtSchritt = vorgang === "zulassen" || vorgang === "sonder";
+  const gesamtSchritte = mitArtSchritt ? 3 : vorgang === "abmelden" ? 2 : 1;
   const aktuellerSchritt =
-    schritt === "was" ? 1 : schritt === "art" ? 2 : schritt === "wann" ? (vorgang === "zulassen" ? 3 : 2) : gesamtSchritte;
+    schritt === "was" ? 1 : schritt === "art" ? 2 : schritt === "wann" ? (mitArtSchritt ? 3 : 2) : gesamtSchritte;
 
   /** Jede Antwort ist ein eigener Verlaufseintrag – Browser-Zurück geht genau einen Schritt zurück */
   const setze = (schluessel: "vorgang" | "art" | "wann", wert: string) => {
@@ -234,7 +245,7 @@ const Angebot = () => {
 
             {schritt === "art" && (
               <div className="space-y-3">
-                {ARTEN.map((o) => (
+                {(vorgang === "sonder" ? SONDER_ARTEN : ARTEN).map((o) => (
                   <Karte key={o.wert} option={o} onWahl={(w) => setze("art", w)} />
                 ))}
               </div>
@@ -327,7 +338,7 @@ const Angebot = () => {
                             {punkt.startsWith("eVB-Nummer") && (
                               <>
                                 {" – "}
-                                <Link to="/evb-nummer" className="font-semibold text-primary hover:underline">
+                                <Link to="/evb-nummer" className="font-semibold text-link hover:underline">
                                   was ist das?
                                 </Link>
                               </>
@@ -359,7 +370,7 @@ const Angebot = () => {
                         <span>
                           <span className="font-semibold text-secondary">Weiter weg:</span> Sie schicken
                           uns die Unterlagen, wir senden alles per Express zurück. Die{" "}
-                          <Link to="/dokumente" className="font-semibold text-primary hover:underline">
+                          <Link to="/dokumente" className="font-semibold text-link hover:underline">
                             Vollmacht zum Ausdrucken
                           </Link>{" "}
                           liegt bereit.
@@ -418,7 +429,7 @@ const Angebot = () => {
           {schritt !== "fertig" && (
             <p className="mt-4 text-center text-sm text-muted-foreground">
               Lieber direkt sprechen?{" "}
-              <a href={TELEFON_LINK} className="font-semibold text-primary hover:underline">
+              <a href={TELEFON_LINK} className="font-semibold text-link hover:underline">
                 {TELEFON_ANZEIGE}
               </a>
             </p>
@@ -441,7 +452,7 @@ const Angebot = () => {
                   {faq.question.startsWith("Was kostet") && (
                     <>
                       {" "}
-                      <Link to="/preise" className="font-semibold text-primary hover:underline">
+                      <Link to="/preise" className="font-semibold text-link hover:underline">
                         Zur Preisübersicht
                       </Link>
                     </>

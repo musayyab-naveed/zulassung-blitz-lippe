@@ -9,3 +9,7 @@ export const render = (url: string) =>
       <AppInhalt />
     </StaticRouter>
   );
+
+// Für scripts/prerender.mjs: Seitendaten direkt aus den TypeScript-Quellen
+export { ROUTE_SEO, SITE_URL, OG_IMAGE } from "./content/seoRoutes";
+export { localBusinessSchema, websiteSchema, seitenSchema } from "./content/strukturDaten";

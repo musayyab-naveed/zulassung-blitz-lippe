@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { SITE_URL, getRouteSeo } from "@/content/seoRoutes";
+import { OG_IMAGE, SITE_URL, getRouteSeo } from "@/content/seoRoutes";
 
 interface SeoProps {
   /** Optional – ohne Angabe wird der Titel aus src/content/seoRoutes.ts genutzt */
@@ -28,7 +28,7 @@ const Seo = ({
   title: titleProp,
   description: descriptionProp,
   path,
-  image = "/favicon.ico",
+  image = OG_IMAGE,
   robots = "index, follow",
   structuredData,
 }: SeoProps) => {

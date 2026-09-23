@@ -101,6 +101,6 @@ export const EVB_FEHLER: EvbFehler[] = [
     titel: "Es ist eine eVB für ein Kurzzeitkennzeichen",
     text:
       "Für Kurzzeitkennzeichen gibt es eine eigene eVB-Art. Für eine normale Zulassung ist sie " +
-      "nicht zu gebrauchen. Kurzzeitkennzeichen bieten wir im Übrigen nicht an.",
+      "nicht zu gebrauchen. Brauchen Sie wirklich ein Kurzzeitkennzeichen, fragen Sie uns kurz per WhatsApp.",
   },
 ];

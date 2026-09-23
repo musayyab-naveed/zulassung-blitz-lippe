@@ -6,6 +6,7 @@ import visaLogo from "@/assets/payments/visa.svg";
 import applePayLogo from "@/assets/payments/applepay.svg";
 import sepaLogo from "@/assets/payments/sepa.svg";
 import googleLogo from "@/assets/google-g.svg";
+import { BUSINESS } from "@/content/seoRoutes";
 import {
   Carousel,
   CarouselApi,
@@ -64,8 +65,8 @@ const GoogleReviews = () => {
     { name: "Mary Birdrock", rating: 5, time: "vor einem Jahr", text: "Sehr gute Erfahrung und schneller Ablauf." },
   ];
 
-  // Gesamtzahl der Bewertungen laut Google-Profil (bei neuen Bewertungen hier aktualisieren)
-  const totalReviews = 52;
+  // Gesamtzahl der Bewertungen laut Google-Profil – gepflegt in seoRoutes.ts (BUSINESS)
+  const totalReviews = BUSINESS.reviewCount;
 
   const avgRating = useMemo(
     () => (reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length).toFixed(1),

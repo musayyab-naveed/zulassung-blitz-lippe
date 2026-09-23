@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { BUSINESS } from "@/content/seoRoutes";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import PriceCard from "@/components/PriceCard";
@@ -32,26 +33,6 @@ const Preise = () => {
     <div className="min-h-screen bg-background">
       <Seo
         path="/preise"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "OfferCatalog",
-              "@id": `${SITE_URL}/preise#angebote`,
-              ...buildOfferCatalog(),
-              name: "Preise KFZ-Zulassung Bad Salzuflen",
-            },
-            {
-              "@type": "FAQPage",
-              "@id": `${SITE_URL}/preise#faq`,
-              mainEntity: PREIS_FAQS.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: { "@type": "Answer", text: faq.answer },
-              })),
-            },
-          ],
-        }}
       />
       <Header />
 
@@ -73,7 +54,7 @@ const Preise = () => {
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white">
               <Star className="h-4 w-4" />
-              5,0 ★ bei 52 Google-Bewertungen
+              5,0 ★ bei {BUSINESS.reviewCount} Google-Bewertungen
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white">
               <CheckCircle className="h-4 w-4" />
@@ -184,7 +165,7 @@ const Preise = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {pricingPackages.map((pkg) => (
               <PriceCard
                 key={pkg.key}
@@ -323,7 +304,7 @@ const Preise = () => {
               <span className="font-semibold text-secondary">Bezahlung:</span>{" "}
               {ZAHLUNGSARTEN.join(", ")} – bezahlt wird beim Termin, nicht vorab bei der
               Buchung. Welche Unterlagen Sie mitbringen müssen, steht{" "}
-              <Link to="/faq" className="font-semibold text-primary hover:underline">
+              <Link to="/faq" className="font-semibold text-link hover:underline">
                 im FAQ-Bereich
               </Link>
               .

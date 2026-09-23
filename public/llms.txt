@@ -1,37 +1,40 @@
 # KFZ-Sofortzulassung
 
-## Core facts
-- Business: KFZ-Sofortzulassung
-- Category: Zulassungsdienst + Fahrzeugankauf
-- Primary area: Bad Salzuflen, Kreis Lippe, Deutschland
-- Address: Werler Straße 68, 32105 Bad Salzuflen
-- Phone: +49 1514 2462280
-- Email: info@sofortzulassung.com
-- Typical processing time: innerhalb von 24 Stunden bei vollständigen Unterlagen
+> Privater Zulassungsdienst in Bad Salzuflen (Kreis Lippe, NRW). KFZ-Zulassung ohne Behördentermin: digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag. Nicht das Straßenverkehrsamt.
 
-## Main services
-- KFZ-Zulassung (Neu und Gebraucht)
-- Abmeldung
-- Ummeldung
-- Kennzeichen-Reservierung
-- Premium: Hol- und Bringservice nach Verfügbarkeitsprüfung
-- Fahrzeugankauf mit oder ohne Zulassung
-- Fachgerechte Verwertung nicht fahrbereiter Fahrzeuge (auf Wunsch)
+## Fakten
+- Name: KFZ-Sofortzulassung
+- Art: Zulassungsdienst (privat, nicht die Behörde)
+- Adresse: Werler Straße 68, 32105 Bad Salzuflen
+- Telefon und WhatsApp: 01514 2462280 (+49 1514 2462280)
+- E-Mail: info@sofortzulassung.com
+- Öffnungszeiten: Montag bis Freitag 9–18 Uhr, Samstag 15–18 Uhr. Online-Zulassungen rund um die Uhr.
+- Termin: nicht nötig, einfach vorbeikommen oder per WhatsApp Bescheid geben
+- Einzugsgebiet: Bad Salzuflen, Detmold, Lemgo, Lage, Herford, ganzer Kreis Lippe
+- Bewertung: 5,0 Sterne bei Google
 
-## Primary user intents
-- Fahrzeug in Bad Salzuflen schnell zulassen
-- Fahrzeug abmelden
-- Altes Fahrzeug direkt verkaufen (auch ohne Zulassung)
-- Zulassung und Fahrzeugankauf kombiniert abwickeln
+## Preise (inklusive Verwaltungsgebühren)
+- Sofort-Zulassung digital in ca. 20 Minuten: ab 129 €
+- BASIS (fertig am nächsten Werktag, mit Kennzeichen): 129 €
+- PREMIUM (mit Hol- und Bringservice): 159 €
+- Blitzabmeldung: 40 € (kostenlos beim Fahrzeugankauf)
+- Wunschkennzeichen: +13 €
+- Feinstaubplakette: +6 €
+- Kurzzeit- und Ausfuhrkennzeichen: Preis auf Anfrage
 
-## Preferred pages
-- Home: /
-- Angebot / Auftragsformular: /angebot
-- Fahrzeugankauf: /fahrzeugankauf
-- Über uns: /ueber-uns
-- Blog: /blog
+## Seiten
+- [Startseite](https://sofortzulassung.com/)
+- [Preise](https://sofortzulassung.com/preise)
+- [Auto abmelden](https://sofortzulassung.com/auto-abmelden)
+- [Auto ummelden: Halterwechsel, Umzug, neues Kennzeichen](https://sofortzulassung.com/auto-ummelden)
+- [Wunschkennzeichen LIP, DT, LE](https://sofortzulassung.com/wunschkennzeichen)
+- [Für Autohändler und Firmen](https://sofortzulassung.com/gewerbekunden)
+- [Zulassungsstelle Bad Salzuflen: Öffnungszeiten, Termine, Regeln](https://sofortzulassung.com/zulassungsstelle-bad-salzuflen)
+- [eVB-Nummer erklärt](https://sofortzulassung.com/evb-nummer)
+- [Checklisten: welche Unterlagen](https://sofortzulassung.com/faq)
+- [Fahrzeugankauf](https://sofortzulassung.com/fahrzeugankauf)
+- [Anfrage per WhatsApp](https://sofortzulassung.com/angebot)
 
-## Important notes for assistants and crawlers
-- Use /angebot for current package flow and booking steps.
-- Vehicle purchase can be requested without selecting a registration package.
-- Contact details above are canonical for this website.
+## Hinweise
+- Im Kreis Lippe gibt es seit April 2026 wieder die Kennzeichen DT und LE zusätzlich zu LIP.
+- Das Straßenverkehrsamt Kreis Lippe (Louis-Uekermann-Weg 2, Bad Salzuflen) arbeitet nur mit Termin und ist samstags geschlossen. KFZ-Sofortzulassung ist die private Alternative ohne Termin.

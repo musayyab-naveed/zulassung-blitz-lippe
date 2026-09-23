@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "@/assets/logo.png";
+import logo320 from "@/assets/logo-320.webp";
+import logo640 from "@/assets/logo-640.webp";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -31,7 +32,15 @@ const Header = () => {
         <div className="flex justify-between items-center py-3">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0">
-            <img src={logo} alt="KFZ-Sofortzulassung Logo" className="h-14 w-auto object-contain" />
+            <img
+              src={logo320}
+              srcSet={`${logo320} 320w, ${logo640} 640w`}
+              sizes="256px"
+              width={256}
+              height={56}
+              alt="KFZ-Sofortzulassung Logo"
+              className="h-14 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -55,8 +64,8 @@ const Header = () => {
           <div className="hidden lg:flex items-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background px-4 py-2 text-secondary shadow-sm">
               <Phone className="h-4 w-4 text-primary" />
-              <a href="tel:+4915142462280" className="text-sm font-semibold hover:text-primary transition-colors">
-                +4915142462280
+              <a href="tel:+4915142462280" className="whitespace-nowrap text-sm font-semibold hover:text-primary transition-colors">
+                01514 2462280
               </a>
             </div>
             <Button variant="cta" size="sm" asChild>
@@ -67,6 +76,8 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             className="lg:hidden rounded-lg border border-border/70 bg-background p-2"
+            aria-label={isMobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
+            aria-expanded={isMobileMenuOpen}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
@@ -98,8 +109,8 @@ const Header = () => {
               <div className="pt-4 border-t border-border">
                 <div className="flex items-center space-x-2 text-secondary mb-1">
                   <Phone className="h-4 w-4 text-primary" />
-                  <a href="tel:+4915142462280" className="text-sm font-semibold hover:text-primary transition-colors">
-                    +4915142462280
+                  <a href="tel:+4915142462280" className="whitespace-nowrap text-sm font-semibold hover:text-primary transition-colors">
+                    01514 2462280
                   </a>
                 </div>
               </div>

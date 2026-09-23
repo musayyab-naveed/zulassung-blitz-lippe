@@ -19,6 +19,8 @@ import Preise from "./pages/Preise";
 import EvbNummer from "./pages/EvbNummer";
 import Zulassungsstelle from "./pages/Zulassungsstelle";
 import CookieBanner from "./components/CookieBanner";
+import Leistungsseite from "./pages/Leistungsseite";
+import { AUTO_ABMELDEN, AUTO_UMMELDEN, GEWERBEKUNDEN, WUNSCHKENNZEICHEN } from "./content/leistungsseiten";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +51,10 @@ export const AppInhalt = () => (
         <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
         <Route path="/evb-nummer" element={<EvbNummer />} />
         <Route path="/zulassungsstelle-bad-salzuflen" element={<Zulassungsstelle />} />
+        <Route path="/auto-abmelden" element={<Leistungsseite seite={AUTO_ABMELDEN} />} />
+        <Route path="/auto-ummelden" element={<Leistungsseite seite={AUTO_UMMELDEN} />} />
+        <Route path="/wunschkennzeichen" element={<Leistungsseite seite={WUNSCHKENNZEICHEN} />} />
+        <Route path="/gewerbekunden" element={<Leistungsseite seite={GEWERBEKUNDEN} />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/dokumente" element={<Dokumente />} />
         <Route path="/blog" element={<Navigate to="/faq" replace />} />

@@ -61,13 +61,13 @@ const Impressum = () => {
                 <div className="space-y-2 text-muted-foreground">
                   <p className="flex items-center gap-2">
                     <Phone className="h-4 w-4" />
-                    <a href="tel:+4915142462280" className="text-primary hover:underline">
+                    <a href="tel:+4915142462280" className="text-link hover:underline">
                       +49 151 42462280
                     </a>
                   </p>
                   <p className="flex items-center gap-2">
                     <Mail className="h-4 w-4" />
-                    <a href="mailto:info@sofortzulassung.com" className="text-primary hover:underline">
+                    <a href="mailto:info@sofortzulassung.com" className="text-link hover:underline">
                       info@sofortzulassung.com
                     </a>
                   </p>
@@ -98,7 +98,7 @@ const Impressum = () => {
                   href="https://ec.europa.eu/consumers/odr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline ml-1"
+                  className="text-link hover:underline ml-1"
                 >
                   https://ec.europa.eu/consumers/odr
                 </a>

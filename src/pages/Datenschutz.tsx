@@ -69,13 +69,13 @@ const Datenschutz = () => {
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="font-medium">E-Mail:</span>
-                  <a href="mailto:info@sofortzulassung.com" className="text-primary hover:underline">
+                  <a href="mailto:info@sofortzulassung.com" className="text-link hover:underline">
                     info@sofortzulassung.com
                   </a>
                 </p>
                 <p className="flex items-center gap-2">
                   <span className="font-medium">Telefon:</span>
-                  <a href="tel:+4915142462280" className="text-primary hover:underline">
+                  <a href="tel:+4915142462280" className="text-link hover:underline">
                     +49 151 42462280
                   </a>
                 </p>
@@ -355,13 +355,13 @@ const Datenschutz = () => {
               <div className="mt-4 space-y-2 text-muted-foreground">
                 <p>
                   <strong>E-Mail:</strong>{" "}
-                  <a href="mailto:info@sofortzulassung.com" className="text-primary hover:underline">
+                  <a href="mailto:info@sofortzulassung.com" className="text-link hover:underline">
                     info@sofortzulassung.com
                   </a>
                 </p>
                 <p>
                   <strong>Telefon:</strong>{" "}
-                  <a href="tel:+4915142462280" className="text-primary hover:underline">
+                  <a href="tel:+4915142462280" className="text-link hover:underline">
                     +49 151 42462280
                   </a>
                 </p>

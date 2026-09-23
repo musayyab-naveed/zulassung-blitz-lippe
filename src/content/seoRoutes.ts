@@ -21,7 +21,7 @@ export const BUSINESS = {
   longitude: 8.7297261,
   priceRange: "€€",
   ratingValue: "5.0",
-  reviewCount: 52,
+  reviewCount: 54,
   mapsUrl: "https://maps.app.goo.gl/",
   openingHours: [
     { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
@@ -42,7 +42,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/",
     title: "Zulassungsdienst Bad Salzuflen – ohne Termin, Mo–Sa geöffnet",
     description:
-      "KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Sa geöffnet, online rund um die Uhr. 5,0 ★ (52).",
+      `KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Sa geöffnet, online rund um die Uhr. 5,0 ★ (${BUSINESS.reviewCount}).`,
   },
   {
     path: "/angebot",
@@ -67,6 +67,30 @@ export const ROUTE_SEO: RouteSeo[] = [
     title: "eVB-Nummer für die KFZ-Zulassung – einfach erklärt",
     description:
       "Was ist die eVB-Nummer, wann brauchen Sie eine, wie lange gilt sie? Antworten für Neuzulassung, Umschreibung und Wiederzulassung – plus die häufigsten Fehler.",
+  },
+  {
+    path: "/auto-abmelden",
+    title: "Auto abmelden Bad Salzuflen – ohne Termin, 40 €",
+    description:
+      "Auto abmelden in Bad Salzuflen ohne Termin: digital in wenigen Minuten, 40 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr. Beim Fahrzeugverkauf gratis.",
+  },
+  {
+    path: "/auto-ummelden",
+    title: "Auto ummelden Bad Salzuflen – ohne Termin, ab 129 €",
+    description:
+      "Auto ummelden in Bad Salzuflen: Halterwechsel, Umzug oder neues Kennzeichen – ohne Termin beim Amt, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren.",
+  },
+  {
+    path: "/wunschkennzeichen",
+    title: "Wunschkennzeichen Kreis Lippe – LIP, DT oder LE",
+    description:
+      "Wunschkennzeichen im Kreis Lippe: LIP, DT oder LE reservieren und direkt zulassen – ohne Termin in Bad Salzuflen. Regeln und Umkennzeichnung erklärt.",
+  },
+  {
+    path: "/gewerbekunden",
+    title: "Zulassungsservice für Autohändler & Firmen – Lippe",
+    description:
+      "Zulassungsdienst für Autohändler, Werkstätten und Firmen im Kreis Lippe: mehrere Fahrzeuge auf einmal, ohne Termin, Zahlung per Rechnung, Hol- und Bringservice.",
   },
   {
     path: "/faq",

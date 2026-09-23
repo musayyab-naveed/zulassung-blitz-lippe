@@ -274,15 +274,15 @@ const Zulassungsstelle = () => {
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
             Welche Unterlagen Sie brauchen, steht in den{" "}
-            <Link to="/faq" className="font-semibold text-primary hover:underline">
+            <Link to="/faq" className="font-semibold text-link hover:underline">
               Checklisten
             </Link>
             . Ohne{" "}
-            <Link to="/evb-nummer" className="font-semibold text-primary hover:underline">
+            <Link to="/evb-nummer" className="font-semibold text-link hover:underline">
               eVB-Nummer
             </Link>{" "}
             geht es weder beim Amt noch bei uns. Was es kostet, steht auf der{" "}
-            <Link to="/preise" className="font-semibold text-primary hover:underline">
+            <Link to="/preise" className="font-semibold text-link hover:underline">
               Preisübersicht
             </Link>
             .

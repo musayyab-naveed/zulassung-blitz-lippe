@@ -7,7 +7,9 @@ import Footer from "@/components/Footer";
 import GoogleReviews from "@/components/GoogleReviews";
 import Seo from "@/components/Seo";
 import { generalFaqs } from "@/content/faqs";
-import heroImage from "@/assets/hero-image-optimized.jpg";
+import hero480 from "@/assets/hero-480.webp";
+import hero800 from "@/assets/hero-800.webp";
+import hero1200 from "@/assets/hero-1200.webp";
 import { Clock, FileText, Shield, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -51,34 +53,21 @@ const Home = () => {
   ];
 
   const services = [
-    "KFZ-Zulassung (Neu & Gebraucht)",
-    "Fahrzeugankauf",
-    "Abmeldung",
-    "Umschreibung",
-    "Kennzeichen-Reservierung",
-    "Hol- und Bringservice",
+    { name: "KFZ-Zulassung (neu & gebraucht)", href: "/preise" },
+    { name: "Auto abmelden", href: "/auto-abmelden" },
+    { name: "Auto ummelden & Umschreibung", href: "/auto-ummelden" },
+    { name: "Wunschkennzeichen LIP, DT, LE", href: "/wunschkennzeichen" },
+    { name: "Kurzzeit- & Ausfuhrkennzeichen", href: "/angebot?vorgang=sonder" },
+    { name: "Hol- und Bringservice", href: "/preise" },
+    { name: "Für Autohändler & Firmen", href: "/gewerbekunden" },
+    { name: "Fahrzeugankauf", href: "/fahrzeugankauf" },
+    { name: "eVB-Nummer erklärt", href: "/evb-nummer" },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Seo
         path="/"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "FAQPage",
-              mainEntity: generalFaqs.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.answer,
-                },
-              })),
-            },
-          ],
-        }}
       />
       <Header />
 
@@ -92,7 +81,7 @@ const Home = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="text-center lg:text-left relative z-20 stagger-in">
+            <div className="text-center lg:text-left relative z-20">
               <p className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide mb-5 text-primary-foreground">
                 <Zap className="h-4 w-4 text-[hsl(var(--cta-orange))]" />
                 NEU: Sofort-Zulassung in ca. 20 Minuten
@@ -198,10 +187,13 @@ const Home = () => {
               <div className="relative">
                 <div className="relative z-10">
                   <img
-                    src={heroImage}
+                    src={hero800}
+                    srcSet={`${hero480} 480w, ${hero800} 800w, ${hero1200} 1200w`}
+                    sizes="(min-width: 1024px) 512px, (min-width: 640px) 448px, calc(100vw - 32px)"
                     alt="KFZ-Sofortzulassung Service"
-                    width={1536}
-                    height={1152}
+                    width={1600}
+                    height={1200}
+                    decoding="async"
                     className="w-full max-w-md mx-auto lg:max-w-lg rounded-2xl border border-white/20 shadow-2xl"
                   />
                 </div>
@@ -285,7 +277,7 @@ const Home = () => {
                             {" – "}
                             <Link
                               to="/evb-nummer"
-                              className="font-semibold text-primary hover:underline"
+                              className="font-semibold text-link hover:underline"
                             >
                               was ist das?
                             </Link>
@@ -377,15 +369,15 @@ const Home = () => {
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
             Alle Vorgänge und Unterlagen im Detail finden Sie in unserem{" "}
-            <Link to="/faq" className="font-semibold text-primary hover:underline">
+            <Link to="/faq" className="font-semibold text-link hover:underline">
               FAQ-Bereich
             </Link>
             . Was das jeweils kostet, steht auf der{" "}
-            <Link to="/preise" className="font-semibold text-primary hover:underline">
+            <Link to="/preise" className="font-semibold text-link hover:underline">
               Preisübersicht
             </Link>
             . Keine oder keine passende{" "}
-            <Link to="/evb-nummer" className="font-semibold text-primary hover:underline">
+            <Link to="/evb-nummer" className="font-semibold text-link hover:underline">
               eVB-Nummer
             </Link>
             ? Dort steht, woher Sie eine bekommen.
@@ -410,13 +402,18 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {services.map((service, index) => (
-              <div key={index} className="surface-soft p-4">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="h-6 w-6 text-trust-green" />
-                  <span className="font-medium text-secondary">{service}</span>
-                </div>
-              </div>
+            {services.map((service) => (
+              <Link
+                key={service.name}
+                to={service.href}
+                className="surface-soft group flex items-center justify-between gap-3 p-4 transition-colors hover:border-primary"
+              >
+                <span className="flex items-center gap-3">
+                  <CheckCircle className="h-6 w-6 flex-none text-trust-green" />
+                  <span className="font-medium text-secondary group-hover:text-primary">{service.name}</span>
+                </span>
+                <ArrowRight className="h-4 w-4 flex-none text-muted-foreground group-hover:text-primary" />
+              </Link>
             ))}
           </div>
         </div>
@@ -465,7 +462,7 @@ const Home = () => {
                   <Phone className="h-6 w-6 text-primary mt-1" />
                   <div>
                     <h4 className="font-semibold text-secondary">Telefon</h4>
-                    <a href="tel:+4915142462280" className="text-primary hover:underline">
+                    <a href="tel:+4915142462280" className="text-link hover:underline">
                       +4915142462280
                     </a>
                   </div>
@@ -475,7 +472,7 @@ const Home = () => {
                   <Mail className="h-6 w-6 text-primary mt-1" />
                   <div>
                     <h4 className="font-semibold text-secondary">E-Mail</h4>
-                    <a href="mailto:info@sofortzulassung.com" className="text-primary hover:underline">
+                    <a href="mailto:info@sofortzulassung.com" className="text-link hover:underline">
                       info@sofortzulassung.com
                     </a>
                   </div>
