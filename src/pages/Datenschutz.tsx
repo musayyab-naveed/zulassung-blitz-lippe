@@ -218,6 +218,32 @@ const Datenschutz = () => {
             </CardContent>
           </Card>
 
+          {/* WhatsApp */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-secondary">
+                <Mail className="h-6 w-6 text-primary" />
+                Kontaktaufnahme per WhatsApp
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-muted-foreground">
+              <p>
+                Auf unserer Website können Sie über einen Link eine vorformulierte Nachricht an uns in
+                WhatsApp öffnen. Dabei verlassen Sie unsere Website; der Link wird erst durch Ihren
+                Klick aufgerufen. Ab diesem Moment gelten die Datenschutzbestimmungen von WhatsApp
+                (WhatsApp Ireland Limited, Merrion Road, Dublin 4, Irland). WhatsApp verarbeitet dabei
+                unter anderem Ihre Telefonnummer und die Inhalte der Nachricht; eine Übermittlung in
+                die USA ist möglich.
+              </p>
+              <p>
+                Die Nachrichten und Fotos, die Sie uns schicken, nutzen wir ausschließlich, um Ihre
+                Anfrage zu bearbeiten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Anbahnung und
+                Durchführung eines Auftrags). Wenn Sie WhatsApp nicht nutzen möchten, erreichen Sie uns
+                jederzeit telefonisch, per E-Mail oder persönlich.
+              </p>
+            </CardContent>
+          </Card>
+
           {/* Contact Form */}
           <Card className="mb-8">
             <CardHeader>

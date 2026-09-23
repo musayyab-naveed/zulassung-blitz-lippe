@@ -264,7 +264,7 @@ const Zulassungsstelle = () => {
               {
                 nr: "1",
                 titel: "Vorbeikommen oder schreiben",
-                text: "Mo–Fr 9–18 Uhr, Sa 15–18 Uhr. Unsicher, ob die Unterlagen reichen? Foto per WhatsApp, wir prüfen das vorab kostenlos.",
+                text: "Montag bis Freitag 9–18 Uhr, Samstag 15–18 Uhr. Oder vorher kurz per WhatsApp Bescheid geben.",
               },
               {
                 nr: "2",

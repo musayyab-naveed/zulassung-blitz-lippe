@@ -77,7 +77,7 @@ const Preise = () => {
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white">
               <CheckCircle className="h-4 w-4" />
-              Auch samstags geöffnet
+              Montag bis Samstag geöffnet
             </span>
           </div>
         </div>
@@ -359,7 +359,7 @@ const Preise = () => {
 
           <div className="mt-10 text-center">
             <p className="mb-4 text-muted-foreground">
-              Preis passt? Dann in unter 2 Minuten zum Termin:
+              Preis passt? Kein Termin nötig – in wenigen Fingertipps anfragen:
             </p>
             <Button size="lg" variant="cta-large" asChild>
               <Link to="/angebot">

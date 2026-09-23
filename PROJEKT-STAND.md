@@ -5,7 +5,9 @@ Kurzübergabe für die nächste Arbeitssitzung. Alles hier Beschriebene ist live
 ## Basics
 - Website: sofortzulassung.com (Netlify, baut automatisch bei jedem Push)
 - Lokal starten: `npm run dev:web` → **Port 8090** (8080 ist vom Auto-Sniper-Bot belegt)
-- Termine: Cal.com, Event **30min** (`sofortzulassung/30min`), Apple-Kalender "Sofortzulassung" verbunden
+- Anfragen: **WhatsApp statt Kalender** (seit 23.09.2026). `/angebot` fragt max. 3 Dinge ab und
+  baut daraus eine fertige WhatsApp-Nachricht an 01514 2462280. Cal.com ist komplett entfernt.
+  Ankauf zusätzlich per Formular mit Fotos (geht per E-Mail über `/api/lead`).
 
 ## Was zuletzt gemacht wurde
 - Geführter Assistent auf `/angebot` (ersetzt die alte Paketauswahl), Buchung in 3 Schritten

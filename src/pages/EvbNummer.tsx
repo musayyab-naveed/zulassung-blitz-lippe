@@ -23,7 +23,7 @@ import { Link } from "react-router-dom";
 const WHATSAPP_EVB_URL =
   "https://wa.me/4915142462280?text=" +
   encodeURIComponent(
-    "Hallo, ich habe eine Frage zu meiner eVB-Nummer für die Zulassung.\n\nIch hänge gleich ein Foto meiner Unterlagen an."
+    "Hallo, ich habe eine Frage zu meiner eVB-Nummer für die Zulassung: "
   );
 
 const EvbNummer = () => {
@@ -236,19 +236,17 @@ const EvbNummer = () => {
                 </div>
                 <div>
                   <h2 className="mb-2 text-xl font-bold text-secondary">
-                    Unsicher, ob Ihre eVB passt? Wir prüfen das kostenlos
+                    Fragen zur eVB-Nummer? Schreiben Sie uns einfach
                   </h2>
                   <p className="mb-5 text-muted-foreground">
-                    Schicken Sie uns ein Foto Ihrer Unterlagen per WhatsApp. Wir sagen Ihnen
-                    innerhalb weniger Minuten, ob alles vollständig ist – bevor Sie sich auf den
-                    Weg machen. Das kostet Sie nichts und Sie sparen sich im Zweifel eine zweite
-                    Fahrt.
+                    Eine kurze Nachricht per WhatsApp oder ein Anruf genügt – wir sagen Ihnen,
+                    worauf es ankommt. Das kostet Sie nichts.
                   </p>
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <Button size="lg" asChild className="bg-[#25D366] text-white hover:bg-[#1fb257]">
                       <a href={WHATSAPP_EVB_URL} target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="mr-2 h-5 w-5" />
-                        Unterlagen per WhatsApp prüfen lassen
+                        Per WhatsApp fragen
                       </a>
                     </Button>
                     <Button size="lg" variant="outline" asChild>

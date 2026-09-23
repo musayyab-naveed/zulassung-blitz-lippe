@@ -42,15 +42,15 @@ export interface RouteSeo {
 export const ROUTE_SEO: RouteSeo[] = [
   {
     path: "/",
-    title: "Zulassungsdienst Bad Salzuflen – ohne Termin, auch samstags",
+    title: "Zulassungsdienst Bad Salzuflen – ohne Termin, Mo–Sa geöffnet",
     description:
-      "KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Samstags geöffnet, online rund um die Uhr. 5,0 ★ (47).",
+      "KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Sa geöffnet, online rund um die Uhr. 5,0 ★ (47).",
   },
   {
     path: "/angebot",
-    title: "Zulassung beauftragen – ohne Termin | Bad Salzuflen",
+    title: "Zulassung per WhatsApp anfragen – ohne Termin",
     description:
-      "Auto zulassen, ummelden oder abmelden im Kreis Lippe: In wenigen Klicks zum passenden Paket – ohne Wartezeit bei der Zulassungsstelle, auch samstags.",
+      "Auto zulassen, abmelden oder verkaufen im Kreis Lippe: zwei, drei Fragen antippen, fertige WhatsApp-Nachricht senden – ohne Termin, ohne Formular.",
   },
   {
     path: "/preise",
@@ -62,7 +62,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/zulassungsstelle-bad-salzuflen",
     title: "Zulassungsstelle Bad Salzuflen – Termine & Öffnungszeiten",
     description:
-      "Zulassungsstelle Bad Salzuflen: Adresse, Öffnungszeiten, Terminpflicht und die Regeln des Kreises Lippe – plus der Weg ohne Termin, auch samstags.",
+      "Zulassungsstelle Bad Salzuflen: Adresse, Öffnungszeiten, Terminpflicht und die Regeln des Kreises Lippe – plus der Weg ohne Termin, Montag bis Samstag.",
   },
   {
     path: "/evb-nummer",
@@ -92,7 +92,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/ueber-uns",
     title: "Über uns – Zulassungsdienst in Bad Salzuflen",
     description:
-      "KFZ-Sofortzulassung in Bad Salzuflen: persönlicher Service für den Kreis Lippe, über 1000 zufriedene Kunden, 5,0 Sterne bei Google, samstags geöffnet.",
+      "KFZ-Sofortzulassung in Bad Salzuflen: persönlicher Service für den Kreis Lippe, über 1000 zufriedene Kunden, 5,0 Sterne bei Google, Montag bis Samstag geöffnet.",
   },
   {
     path: "/impressum",

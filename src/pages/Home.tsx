@@ -100,7 +100,7 @@ const Home = () => {
                 NEU: Sofort-Zulassung in ca. 20 Minuten
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white">
-                KFZ-Zulassung in Bad Salzuflen –<br className="hidden sm:block" /> ohne Termin, auch samstags
+                KFZ-Zulassung in Bad Salzuflen –<br className="hidden sm:block" /> ohne Termin, Montag bis Samstag
               </h1>
               <p className="text-lg sm:text-xl mb-4 font-semibold text-primary-foreground/95">
                 Zugelassen, bevor andere überhaupt einen Termin bekommen: digital in ca. 20 Minuten,
@@ -115,7 +115,7 @@ const Home = () => {
                   ✓ Ohne Termin, ohne Wartenummer
                 </div>
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
-                  ✓ Samstags 15–18 Uhr geöffnet
+                  ✓ Mo–Fr 9–18 · Sa 15–18 Uhr
                 </div>
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-primary-foreground">
                   ⚡ Fertig in ca. 20 Minuten
@@ -175,7 +175,7 @@ const Home = () => {
                     </span>
                   </div>
                   <p className="mt-2 text-sm font-medium leading-snug text-white">
-                    <span className="block">Werler Strasse 68</span>
+                    <span className="block">Werler Straße 68</span>
                     <span className="block">32105 Bad Salzuflen</span>
                   </p>
                 </div>

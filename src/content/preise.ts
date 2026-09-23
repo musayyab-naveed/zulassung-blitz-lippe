@@ -109,7 +109,7 @@ export const PACKAGES: PackageDef[] = [
     priceValue: "0",
     features: [
       "Unverbindliche Ankaufanfrage ohne Zulassungspaket",
-      "Fahrzeugdaten erfassen und Termin vereinbaren",
+      "Fotos per WhatsApp oder Formular schicken",
       "Fachgerechte Verwertung nicht fahrbereiter Fahrzeuge möglich",
     ],
     buttonText: "NUR FAHRZEUGVERKAUF WÄHLEN",

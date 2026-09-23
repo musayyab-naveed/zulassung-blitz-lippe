@@ -46,7 +46,7 @@
     },
     {
       "question": "Was mache ich, wenn meine eVB-Nummer nicht akzeptiert wird?",
-      "answer": "Die häufigsten Gründe sind: die eVB lautet auf den falschen Halter, sie gilt für eine andere Fahrzeugart, sie ist abgelaufen oder es hat sich ein Zahlendreher eingeschlichen. In allen Fällen hilft ein kurzer Anruf bei Ihrer Versicherung – eine neue Nummer ist meist in Minuten da. Schicken Sie uns Ihre Unterlagen vorher per WhatsApp, dann prüfen wir das kostenlos, bevor Sie losfahren."
+      "answer": "Die häufigsten Gründe sind: die eVB lautet auf den falschen Halter, sie gilt für eine andere Fahrzeugart, sie ist abgelaufen oder es hat sich ein Zahlendreher eingeschlichen. In allen Fällen hilft ein kurzer Anruf bei Ihrer Versicherung – eine neue Nummer ist meist in Minuten da. Bei Fragen schreiben Sie uns gern per WhatsApp."
     }
   ],
   "/zulassungsstelle-bad-salzuflen": [
@@ -68,7 +68,7 @@
     },
     {
       "question": "Kann ich mein Auto auch am Wochenende oder abends zulassen lassen?",
-      "answer": "Die Zulassungsstellen des Kreises Lippe haben am Wochenende geschlossen und freitags nur bis 12:30 Uhr geöffnet. Bei uns geht es weiter: Unser Büro in Bad Salzuflen hat montags bis freitags von 9 bis 18 Uhr und samstags von 15 bis 18 Uhr geöffnet. Online-Zulassungen erledigen wir rund um die Uhr – auch abends, am Wochenende und an Feiertagen. Schicken Sie uns Ihre Unterlagen, wir starten den Vorgang, sobald sie vollständig sind."
+      "answer": "Die Zulassungsstellen des Kreises Lippe haben am Wochenende geschlossen und freitags nur bis 12:30 Uhr geöffnet. Bei uns geht es weiter: Unser Büro in Bad Salzuflen hat Montag bis Freitag von 9 bis 18 Uhr und Samstag von 15 bis 18 Uhr geöffnet. Online-Zulassungen erledigen wir rund um die Uhr – auch abends, sonntags und an Feiertagen. Schreiben Sie uns einfach per WhatsApp."
     },
     {
       "question": "Wie bekomme ich kurzfristig einen Termin bei der Zulassungsstelle?",
@@ -93,6 +93,24 @@
     {
       "question": "Kann ich mein Auto im Kreis Lippe auch online zulassen?",
       "answer": "Ja. Der Kreis Lippe bietet die internetbasierte Fahrzeugzulassung (i-Kfz) rund um die Uhr an. Dafür brauchen Sie die Sicherheitscodes zum Freirubbeln auf Fahrzeugschein, Fahrzeugbrief und Stempelplakette sowie einen Ausweis mit Online-Funktion. Wir nutzen dasselbe Verfahren – nur erledigen wir es für Sie und Sie brauchen weder Kartenlesegerät noch Online-Ausweis."
+    }
+  ],
+  "/angebot": [
+    {
+      "question": "Brauche ich einen Termin?",
+      "answer": "Nein. Sie können einfach vorbeikommen: Montag bis Freitag von 9 bis 18 Uhr und Samstag von 15 bis 18 Uhr in der Werler Straße 68 in Bad Salzuflen. Online-Zulassungen erledigen wir rund um die Uhr. Mit der WhatsApp-Nachricht sagen Sie uns nur kurz vorher Bescheid, worum es geht."
+    },
+    {
+      "question": "Warum läuft die Anfrage über WhatsApp?",
+      "answer": "Weil es für Sie am schnellsten geht: Die Nachricht ist schon fertig geschrieben, Sie müssen sie nur noch absenden. Kein Formular, kein Kalender, keine Wartezeit auf eine E-Mail."
+    },
+    {
+      "question": "Ich habe kein WhatsApp – was nun?",
+      "answer": "Rufen Sie uns einfach an unter 01514 2462280 oder kommen Sie direkt vorbei. Wenn Sie ein Fahrzeug verkaufen möchten, können Sie die Anfrage auch über das Formular mit Fotos senden."
+    },
+    {
+      "question": "Was kostet die Zulassung?",
+      "answer": "Die Sofort-Zulassung kostet ab 129 Euro, die klassische Zulassung mit Kennzeichen 129 Euro, mit Hol- und Bringservice 159 Euro und die Blitzabmeldung 40 Euro – jeweils inklusive der Verwaltungsgebühren des Kreises Lippe. Alle Details stehen auf der Preisseite."
     }
   ]
 }

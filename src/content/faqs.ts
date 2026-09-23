@@ -15,7 +15,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Wer ist KFZ-Sofortzulassung?",
     answer:
-      "Ihr lokaler Zulassungsdienst in Bad Salzuflen für den gesamten Kreis Lippe. Wir übernehmen An-, Um- und Abmeldungen komplett für Sie – ohne Behördengang, bewertet mit 5,0 Sternen bei 46 Google-Bewertungen.",
+      "Ihr lokaler Zulassungsdienst in Bad Salzuflen für den gesamten Kreis Lippe. Wir übernehmen An-, Um- und Abmeldungen komplett für Sie – ohne Behördengang, bewertet mit 5,0 Sternen bei 47 Google-Bewertungen.",
   },
   {
     question: "Wie schnell ist eine KFZ-Zulassung möglich?",
@@ -58,9 +58,9 @@ export const generalFaqs: FaqItem[] = [
       "Der Schwerpunkt liegt auf Bad Salzuflen und dem Kreis Lippe, inklusive persönlicher Betreuung vor Ort.",
   },
   {
-    question: "Wie buche ich einen Termin?",
+    question: "Brauche ich einen Termin?",
     answer:
-      "Im Assistenten ein paar kurze Fragen beantworten und direkt online den Termin buchen – alles in unter 2 Minuten.",
+      "Nein. Kommen Sie einfach vorbei – Montag bis Freitag 9–18 Uhr, Samstag 15–18 Uhr. Online-Zulassungen erledigen wir rund um die Uhr.",
   },
 ];
 
