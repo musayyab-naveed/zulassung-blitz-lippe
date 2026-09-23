@@ -14,6 +14,7 @@ import { Car, FileText, Shield, ShieldCheck, CheckCircle, ArrowRight, Phone, Map
 import { Link } from "react-router-dom";
 import { RATGEBER, ratgeberPfad } from "@/content/ratgeber";
 import { ALLE_ORTE_LIPPE, ORTSSEITEN } from "@/content/ortsseiten";
+import { EXTRAS, PACKAGES } from "@/content/preise";
 
 const ROUTE_URL =
   "https://www.google.com/maps/dir/?api=1&destination=" +
@@ -58,16 +59,19 @@ const Home = () => {
     "Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen-Plaketten (bei Zulassung ab 2015 vorhanden)",
   ];
 
+  // Preise kommen aus der zentralen Preisliste – so stimmen sie immer mit /preise überein
+  const preis = (key: string) => PACKAGES.find((pkg) => pkg.key === key)?.price ?? "";
+  const wunschkennzeichen = EXTRAS.find((extra) => extra.name === "Wunschkennzeichen")?.price ?? "";
   const services = [
-    { name: "KFZ-Zulassung (neu & gebraucht)", href: "/preise" },
-    { name: "eVB-Nummer beantragen", href: "/kfz-versicherung" },
-    { name: "Auto abmelden", href: "/auto-abmelden" },
-    { name: "Auto ummelden & Umschreibung", href: "/auto-ummelden" },
-    { name: "Wunschkennzeichen LIP, DT, LE", href: "/wunschkennzeichen" },
-    { name: "Kurzzeit- & Ausfuhrkennzeichen", href: "/angebot?vorgang=sonder" },
-    { name: "Hol- und Bringservice", href: "/preise" },
-    { name: "Für Autohändler & Firmen", href: "/gewerbekunden" },
-    { name: "Fahrzeugankauf", href: "/fahrzeugankauf" },
+    { name: "KFZ-Zulassung (neu & gebraucht)", preis: preis("sofort"), href: "/preise" },
+    { name: "eVB-Nummer beantragen", preis: "Vergleich kostenlos", href: "/kfz-versicherung" },
+    { name: "Auto abmelden", preis: preis("abmeldung"), href: "/auto-abmelden" },
+    { name: "Auto ummelden & Umschreibung", preis: preis("sofort"), href: "/auto-ummelden" },
+    { name: "Wunschkennzeichen LIP, DT, LE", preis: wunschkennzeichen, href: "/wunschkennzeichen" },
+    { name: "Kurzzeit- & Ausfuhrkennzeichen", preis: "auf Anfrage", href: "/angebot?vorgang=sonder" },
+    { name: "Hol- und Bringservice", preis: preis("premium"), href: "/preise" },
+    { name: "Für Firmen & Partner", preis: "Anfrage senden", href: "/gewerbekunden" },
+    { name: "Fahrzeugankauf", preis: "kostenlose Anfrage", href: "/fahrzeugankauf" },
   ];
 
   return (
@@ -219,7 +223,7 @@ const Home = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 stagger-in">
             <h2 className="section-title mb-4">Was möchten Sie erledigen?</h2>
-            <p className="section-subtitle">Tippen Sie einfach auf Ihr Anliegen</p>
+            <p className="section-subtitle">Tippen Sie auf Ihr Anliegen – alle Preise inklusive Verwaltungsgebühren</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -231,7 +235,10 @@ const Home = () => {
               >
                 <span className="flex items-center gap-3">
                   <CheckCircle className="h-6 w-6 flex-none text-trust-green" />
-                  <span className="font-medium text-secondary group-hover:text-primary">{service.name}</span>
+                  <span>
+                    <span className="block font-medium text-secondary group-hover:text-link">{service.name}</span>
+                    <span className="block text-sm font-bold text-[hsl(var(--cta-orange))]">{service.preis}</span>
+                  </span>
                 </span>
                 <ArrowRight className="h-4 w-4 flex-none text-muted-foreground group-hover:text-primary" />
               </Link>

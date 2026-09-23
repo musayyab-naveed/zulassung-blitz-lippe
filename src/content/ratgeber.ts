@@ -298,7 +298,7 @@ export const RATGEBER: RatgeberArtikel[] = [
     },
     verwandt: [
       { href: "/evb-nummer", text: "eVB-Nummer einfach erklärt" },
-      { href: "/gewerbekunden", text: "Für Autohändler & Firmen" },
+      { href: "/gewerbekunden", text: "Für Firmen & Partner" },
     ],
   },
   {

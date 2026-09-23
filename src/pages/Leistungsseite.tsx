@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import GewerbeAnfrage from "@/components/GewerbeAnfrage";
 import { vorgangChecklists } from "@/content/faqs";
 import type { LeistungsSeite } from "@/content/leistungsseiten";
 import { ArrowRight, CheckCircle, MapPin, MessageCircle } from "lucide-react";
@@ -102,6 +103,17 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
             </>
           ) : (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-5">
+              {seite.anfrage ? (
+                <Card className="surface-card md:col-span-3">
+                  <CardContent className="p-6">
+                    <h2 className="mb-1 text-xl font-bold text-secondary">Partner werden – Anfrage senden</h2>
+                    <p className="mb-5 text-sm text-muted-foreground">
+                      Kurz ausfüllen, wir melden uns persönlich und besprechen die Konditionen.
+                    </p>
+                    <GewerbeAnfrage />
+                  </CardContent>
+                </Card>
+              ) : (
               <Card className="surface-card md:col-span-2">
                 <CardContent className="p-6">
                   <div className="text-xs font-bold uppercase tracking-wider text-link">Preis</div>
@@ -115,7 +127,8 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
                   </Link>
                 </CardContent>
               </Card>
-              <Card className="surface-card md:col-span-3">
+              )}
+              <Card className={`surface-card ${seite.anfrage ? "md:col-span-2" : "md:col-span-3"}`}>
                 <CardContent className="space-y-6 p-6">
                   <h2 className="text-xl font-bold text-secondary">Das bringen Sie mit</h2>
                   {seite.checklisten?.map((schluessel) => (

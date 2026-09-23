@@ -91,9 +91,9 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/gewerbekunden",
-    title: "Zulassungsservice für Autohändler & Firmen – Lippe",
+    title: "Zulassungsservice für Firmen & Partner – Kreis Lippe",
     description:
-      "Zulassungsdienst für Autohändler, Werkstätten und Firmen im Kreis Lippe: mehrere Fahrzeuge auf einmal, ohne Termin, Zahlung per Rechnung, Hol- und Bringservice.",
+      "Partner werden: Zulassungen für Autohändler, Werkstätten und Firmen im Kreis Lippe – mehrere Fahrzeuge auf einmal, ohne Termin, feste Konditionen, per Rechnung.",
   },
   {
     path: "/kfz-versicherung",

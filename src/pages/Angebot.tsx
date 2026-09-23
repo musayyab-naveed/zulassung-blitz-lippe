@@ -16,7 +16,6 @@ import {
   TELEFON_ANZEIGE,
   TELEFON_LINK,
   VORGAENGE,
-  ZEITPUNKTE,
   baueNachricht,
   checklisteFuer,
   vorgangAusPaket,
@@ -133,33 +132,23 @@ const Angebot = () => {
   // Wer zulässt, wird gefragt, ob die Versicherung (eVB) schon da ist – auch um einen Preisvergleich anzubieten
   const mitEvbSchritt = brauchtEvbFrage({ vorgang, art });
 
-  const schritt: "was" | "art" | "evb" | "wann" | "fertig" = !vorgang
+  // Keine Frage nach dem Zeitpunkt – das klären wir im Chat, sonst schreckt es ab
+  const schritt: "was" | "art" | "evb" | "fertig" = !vorgang
     ? "was"
     : (vorgang === "zulassen" || vorgang === "sonder") && !art
       ? "art"
       : mitEvbSchritt && !evb
         ? "evb"
-        : (vorgang === "zulassen" || vorgang === "abmelden" || vorgang === "sonder") && !wann
-          ? "wann"
-          : "fertig";
+        : "fertig";
 
   const mitArtSchritt = vorgang === "zulassen" || vorgang === "sonder";
   // Solange die Art noch offen ist, rechnen wir bei Zulassungen mit der eVB-Frage
   const evbZaehlt = mitEvbSchritt || (vorgang === "zulassen" && !art);
-  const gesamtSchritte = (mitArtSchritt ? 3 : vorgang === "abmelden" ? 2 : 1) + (evbZaehlt ? 1 : 0);
-  const aktuellerSchritt =
-    schritt === "was"
-      ? 1
-      : schritt === "art"
-        ? 2
-        : schritt === "evb"
-          ? 3
-          : schritt === "wann"
-            ? gesamtSchritte
-            : gesamtSchritte;
+  const gesamtSchritte = (mitArtSchritt ? 2 : 1) + (evbZaehlt ? 1 : 0);
+  const aktuellerSchritt = schritt === "was" ? 1 : schritt === "art" ? 2 : schritt === "evb" ? 3 : gesamtSchritte;
 
   /** Jede Antwort ist ein eigener Verlaufseintrag – Browser-Zurück geht genau einen Schritt zurück */
-  const setze = (schluessel: "vorgang" | "art" | "evb" | "wann", wert: string) => {
+  const setze = (schluessel: "vorgang" | "art" | "evb", wert: string) => {
     const neu = new URLSearchParams(params);
     if (schluessel === "vorgang") neu.delete("start");
     neu.set(schluessel, wert);
@@ -174,9 +163,9 @@ const Angebot = () => {
     }
     // Direkt aufgerufen: eine Ebene nach oben
     const neu = new URLSearchParams(params);
-    if (schritt === "fertig" && wann) neu.delete("wann");
-    else if (schritt === "wann" && evb) neu.delete("evb");
-    else if ((schritt === "wann" || schritt === "evb") && art) neu.delete("art");
+    neu.delete("wann"); // aus alten Links
+    if (schritt === "fertig" && evb) neu.delete("evb");
+    else if ((schritt === "fertig" || schritt === "evb") && art) neu.delete("art");
     else if (!vorgangVorgegeben) neu.delete("vorgang");
     else {
       navigate(vonPreise ? "/preise" : "/");
@@ -202,8 +191,6 @@ const Angebot = () => {
         ? "Worum geht es genau?"
         : schritt === "evb"
           ? "Haben Sie schon eine eVB-Nummer?"
-        : schritt === "wann"
-          ? "Wann kommen Sie ungefähr vorbei?"
           : vorgang === "verkaufen"
             ? "Fahrzeug verkaufen – so geht's weiter"
             : vorgang === "frage"
@@ -290,18 +277,6 @@ const Angebot = () => {
               </>
             )}
 
-            {schritt === "wann" && (
-              <>
-                <p className="-mt-3 mb-4 text-sm text-muted-foreground">
-                  Nur damit wir Bescheid wissen – das ist kein fester Termin.
-                </p>
-                <div className="space-y-3">
-                  {ZEITPUNKTE.map((o) => (
-                    <Karte key={o.wert} option={o} onWahl={(w) => setze("wann", w)} />
-                  ))}
-                </div>
-              </>
-            )}
 
             {schritt === "fertig" && (
               <div className="space-y-6">
@@ -384,7 +359,7 @@ const Angebot = () => {
                 )}
 
                 {/* Checkliste */}
-                {checkliste && wann !== "extern" && (
+                {checkliste && (
                   <div className="rounded-xl border border-border p-4">
                     <h2 className="mb-1 font-bold text-secondary">Das bringen Sie mit</h2>
                     <p className="mb-3 text-xs text-muted-foreground">
@@ -416,10 +391,15 @@ const Angebot = () => {
                 )}
 
 
-                {/* Kann nicht selbst kommen */}
-                {wann === "extern" && (
-                  <div className="rounded-xl border border-border p-4">
-                    <h2 className="mb-2 font-bold text-secondary">Sie müssen nicht selbst kommen</h2>
+                {/* Kann nicht selbst kommen – nur als aufklappbarer Hinweis, keine Pflichtfrage */}
+                {(vorgang === "zulassen" || vorgang === "abmelden") && (
+                  <details className="group rounded-xl border border-border p-4">
+                    <summary className="cursor-pointer list-none font-semibold text-secondary">
+                      <span className="text-primary group-open:hidden">▸ </span>
+                      <span className="hidden text-primary group-open:inline">▾ </span>
+                      Sie können nicht selbst vorbeikommen?
+                    </summary>
+                    <div className="mt-3">
                     <ul className="space-y-2 text-sm text-muted-foreground">
                       <li className="flex items-start gap-2">
                         <CheckCircle className="mt-0.5 h-4 w-4 flex-none text-trust-green" />
@@ -443,7 +423,8 @@ const Angebot = () => {
                     <p className="mt-3 text-xs text-muted-foreground">
                       Schreiben Sie uns Ihren Wohnort – wir sagen Ihnen, was davon für Sie passt.
                     </p>
-                  </div>
+                    </div>
+                  </details>
                 )}
 
                 {/* Ankauf: Formular als Alternative */}
@@ -461,7 +442,7 @@ const Angebot = () => {
                 )}
 
                 {/* So finden Sie uns */}
-                {vorgang !== "frage" && wann !== "extern" && (
+                {vorgang !== "frage" && (
                   <div className="rounded-xl bg-muted/50 p-4">
                     <div className="flex items-start gap-3">
                       <MapPin className="mt-0.5 h-5 w-5 flex-none text-primary" />

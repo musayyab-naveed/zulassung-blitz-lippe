@@ -73,7 +73,7 @@ const Footer = () => {
                 { to: "/auto-abmelden", text: "Auto abmelden" },
                 { to: "/auto-ummelden", text: "Auto ummelden" },
                 { to: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT, LE" },
-                { to: "/gewerbekunden", text: "Für Autohändler & Firmen" },
+                { to: "/gewerbekunden", text: "Für Firmen & Partner" },
                 { to: "/kfz-versicherung", text: "Kfz-Versicherung vergleichen" },
                 { to: "/fahrzeugankauf", text: "Fahrzeugankauf" },
               ].map((link) => (

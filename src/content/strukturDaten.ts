@@ -198,7 +198,7 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
       ];
     case "/gewerbekunden":
       return [
-        dienstleistung(pfad, "Zulassungsservice für Autohändler und Firmen", "KFZ-Zulassung für Gewerbekunden", "Zulassungen, Umschreibungen und Abmeldungen für Autohändler, Werkstätten und Firmen im Kreis Lippe – ohne Termin, per Rechnung."),
+        dienstleistung(pfad, "Zulassungsservice für Firmen und Partner", "KFZ-Zulassung für Gewerbekunden", "Zulassungen, Umschreibungen und Abmeldungen für Autohändler, Werkstätten und Firmen im Kreis Lippe – ohne Termin, per Rechnung."),
         faqPage(pfad, alsFaqs(pfad)),
       ];
     case RATGEBER_PFAD:

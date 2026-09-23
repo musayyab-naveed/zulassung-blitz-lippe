@@ -169,7 +169,8 @@ export const baueNachricht = ({ vorgang, art, evb, wann, paket }: AnfrageAntwort
     ]
       .filter((zeile) => zeile !== null)
       .join("\n")
-      .replace(/\n{3,}/g, "\n\n");
+      .replace(/\n{3,}/g, "\n\n")
+    .trim();
   }
 
   return [
@@ -182,7 +183,8 @@ export const baueNachricht = ({ vorgang, art, evb, wann, paket }: AnfrageAntwort
   ]
     .filter((zeile) => zeile !== null)
     .join("\n")
-    .replace(/\n{3,}/g, "\n\n");
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 };
 
 export const whatsappLink = (nachricht: string) =>

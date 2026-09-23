@@ -39,6 +39,8 @@ export interface LeistungsSeite {
   intro: string;
   chips: string[];
   preis: { betrag: string; text: string };
+  /** Statt Preis ein Anfrageformular zeigen (Firmenkunden und Partner) */
+  anfrage?: boolean;
   /** Mehrere Varianten (z. B. Halterwechsel, Umzug, Umkennzeichnung) */
   faelle?: Fall[];
   /** Checklisten aus faqs.ts – nur wenn es keine Fälle gibt */
@@ -267,15 +269,16 @@ export const WUNSCHKENNZEICHEN: LeistungsSeite = {
 
 export const GEWERBEKUNDEN: LeistungsSeite = {
   path: "/gewerbekunden",
-  kicker: "Für Autohändler, Werkstätten & Firmen",
-  h1: "Zulassungsservice für Autohändler und Firmen im Kreis Lippe",
+  kicker: "Für Autohändler, Werkstätten, Firmen & Partner",
+  h1: "Zulassungsservice für Firmen und Partner im Kreis Lippe",
   intro:
-    "Sie verkaufen Fahrzeuge, betreuen eine Flotte oder brauchen regelmäßig Zulassungen für Kunden? Wir übernehmen Zulassung, Umschreibung und Abmeldung – ohne Termin, auch mehrere Fahrzeuge auf einmal.",
-  chips: ["✓ Mehrere Fahrzeuge auf einmal", "✓ Zahlung per Rechnung", "✓ Hol- und Bringservice", `✓ ${OEFFNUNG}`],
+    "Sie verkaufen Fahrzeuge, betreuen eine Flotte oder haben regelmäßig Zulassungen für Ihre Kunden? Werden Sie Partner: Wir übernehmen Zulassung, Umschreibung und Abmeldung – ohne Termin, auch mehrere Fahrzeuge auf einmal. Die Konditionen besprechen wir persönlich mit Ihnen.",
+  chips: ["✓ Mehrere Fahrzeuge auf einmal", "✓ Feste Konditionen für Partner", "✓ Zahlung per Rechnung", `✓ ${OEFFNUNG}`],
   preis: {
-    betrag: "ab 129 €",
-    text: "Pro Zulassung, Verwaltungsgebühren inklusive. Für regelmäßige Aufträge sprechen wir gern über feste Konditionen.",
+    betrag: "",
+    text: "",
   },
+  anfrage: true,
   checklisten: ["gewerbe"],
   schritteTitel: "So arbeiten wir mit Ihnen zusammen",
   schritte: [
@@ -311,7 +314,7 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
   faqTitel: "Häufige Fragen von Gewerbekunden",
   faqs: faqs["/gewerbekunden"],
   cta: {
-    titel: "Zusammenarbeit anfragen",
+    titel: "Lieber direkt per WhatsApp?",
     text: "Schreiben Sie uns kurz, wie viele Fahrzeuge im Monat Sie ungefähr zulassen – wir melden uns direkt.",
     href: "/angebot?vorgang=frage",
     button: "PER WHATSAPP ANFRAGEN",
