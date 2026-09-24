@@ -5,8 +5,17 @@ import { Link } from "react-router-dom";
 
 const leadApiUrl = import.meta.env.VITE_LEAD_API_URL || "/api/lead";
 
-const BETRIEBSARTEN = ["Autohaus / Autohändler", "Werkstatt", "Firma mit Fahrzeugflotte", "Sonstiges"];
-const MENGEN = ["1–5 pro Monat", "6–20 pro Monat", "mehr als 20 pro Monat", "weiß ich noch nicht"];
+const BITTE_WAEHLEN = "Bitte wählen";
+const BETRIEBSARTEN = [
+  "Autohaus / Gebrauchtwagenhandel",
+  "Werkstatt",
+  "Autovermietung / Leasing",
+  "Firmenflotte (Pflege, Handwerk, Lieferdienst)",
+  "Motorrad / Wohnmobil",
+  "Export / Online-Handel",
+  "Sonstiges",
+];
+const MENGEN = ["nur gelegentlich", "1–5 pro Monat", "6–20 pro Monat", "mehr als 20 pro Monat", "weiß ich noch nicht"];
 
 /**
  * Anfrage von Firmen und Partnern (Autohäuser, Werkstätten, Flotten).
@@ -19,8 +28,8 @@ const GewerbeAnfrage = () => {
     ansprechpartner: "",
     telefon: "",
     email: "",
-    betrieb: BETRIEBSARTEN[0],
-    menge: MENGEN[0],
+    betrieb: BITTE_WAEHLEN,
+    menge: BITTE_WAEHLEN,
     nachricht: "",
   });
   const [sendet, setSendet] = useState(false);
@@ -51,8 +60,8 @@ const GewerbeAnfrage = () => {
           email: daten.email || undefined,
           phone: daten.telefon,
           firma: daten.firma,
-          betrieb: daten.betrieb,
-          zulassungenProMonat: daten.menge,
+          betrieb: daten.betrieb === BITTE_WAEHLEN ? undefined : daten.betrieb,
+          zulassungenProMonat: daten.menge === BITTE_WAEHLEN ? undefined : daten.menge,
           nachricht: daten.nachricht,
           submittedAt: new Date().toISOString(),
         }),
@@ -73,8 +82,11 @@ const GewerbeAnfrage = () => {
       <div className="flex items-start gap-3 rounded-xl border border-trust-green/40 bg-trust-green/10 p-4">
         <CheckCircle className="mt-0.5 h-5 w-5 flex-none text-trust-green" />
         <p className="text-sm text-secondary">
-          <span className="font-semibold">Danke, Ihre Anfrage ist angekommen.</span> Wir melden uns
-          persönlich bei Ihnen und besprechen die Konditionen.
+          <span className="font-semibold">Danke, Ihre Anfrage ist angekommen.</span> Wir rufen Sie unter der
+          angegebenen Nummer zurück und besprechen die Konditionen. Eilt es? Rufen Sie direkt an:{" "}
+          <a href="tel:+4915142462280" className="font-semibold text-link hover:underline">
+            01514 2462280
+          </a>
         </p>
       </div>
     );
@@ -105,6 +117,7 @@ const GewerbeAnfrage = () => {
         <label className="text-sm font-medium text-secondary">
           Art des Betriebs
           <select className={`mt-1 ${eingabe}`} {...feld("betrieb")}>
+            <option disabled>{BITTE_WAEHLEN}</option>
             {BETRIEBSARTEN.map((art) => (
               <option key={art}>{art}</option>
             ))}
@@ -113,6 +126,7 @@ const GewerbeAnfrage = () => {
         <label className="text-sm font-medium text-secondary">
           Zulassungen ungefähr
           <select className={`mt-1 ${eingabe}`} {...feld("menge")}>
+            <option disabled>{BITTE_WAEHLEN}</option>
             {MENGEN.map((menge) => (
               <option key={menge}>{menge}</option>
             ))}
@@ -127,7 +141,7 @@ const GewerbeAnfrage = () => {
       {fehler && <p className="text-sm font-medium text-red-600">{fehler}</p>}
 
       <Button type="submit" size="lg" variant="cta" disabled={sendet} className="w-full">
-        {sendet ? "Wird gesendet …" : "Anfrage senden"}
+        {sendet ? "Wird gesendet …" : "Rückruf anfordern"}
       </Button>
       <p className="text-xs text-muted-foreground">
         Ihre Angaben nutzen wir nur, um Ihre Anfrage zu beantworten. Mehr in der{" "}

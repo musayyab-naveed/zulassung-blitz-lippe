@@ -12,7 +12,7 @@ import {
 import GewerbeAnfrage from "@/components/GewerbeAnfrage";
 import { vorgangChecklists } from "@/content/faqs";
 import type { LeistungsSeite } from "@/content/leistungsseiten";
-import { ArrowRight, CheckCircle, MapPin, MessageCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Checkliste = ({ schluessel }: { schluessel: string }) => {
@@ -60,13 +60,31 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
               </span>
             ))}
           </div>
-          <div className="mt-8">
-            <Button size="lg" variant="cta-large" asChild>
-              <Link to={seite.cta.href}>
-                {seite.cta.button}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            {seite.anfrage ? (
+              <>
+                {/* Firmen rufen lieber an oder bitten um Rückruf – WhatsApp nur unten als Alternative */}
+                <Button size="lg" variant="cta-large" asChild>
+                  <a href="#anfrage">
+                    RÜCKRUF ANFORDERN
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </a>
+                </Button>
+                <Button size="lg" variant="outline" asChild className="border-white bg-white text-secondary hover:bg-white/90">
+                  <a href="tel:+4915142462280">
+                    <Phone className="mr-2 h-5 w-5" />
+                    01514 2462280 anrufen
+                  </a>
+                </Button>
+              </>
+            ) : (
+              <Button size="lg" variant="cta-large" asChild>
+                <Link to={seite.cta.href}>
+                  {seite.cta.button}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            )}
           </div>
         </div>
       </section>
@@ -104,11 +122,12 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
           ) : (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-5">
               {seite.anfrage ? (
-                <Card className="surface-card md:col-span-3">
+                <Card id="anfrage" className="surface-card scroll-mt-40 md:col-span-3">
                   <CardContent className="p-6">
-                    <h2 className="mb-1 text-xl font-bold text-secondary">Partner werden – Anfrage senden</h2>
+                    <h2 className="mb-1 text-xl font-bold text-secondary">Unverbindliches Erstgespräch anfragen</h2>
                     <p className="mb-5 text-sm text-muted-foreground">
-                      Kurz ausfüllen, wir melden uns persönlich und besprechen die Konditionen.
+                      Sagen Sie uns kurz, was bei Ihnen im Monat ansteht. Wir rufen Sie zurück und nennen Ihnen die
+                      Konditionen für Ihre Menge.
                     </p>
                     <GewerbeAnfrage />
                   </CardContent>
@@ -218,12 +237,22 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="section-title mb-4">{seite.cta.titel}</h2>
           <p className="section-subtitle mx-auto mb-6 max-w-2xl">{seite.cta.text}</p>
-          <Button size="lg" variant="cta-large" asChild>
-            <Link to={seite.cta.href}>
-              <MessageCircle className="mr-2 h-5 w-5" />
-              {seite.cta.button}
-            </Link>
-          </Button>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            {seite.anfrage && (
+              <Button size="lg" variant="cta-large" asChild>
+                <a href="tel:+4915142462280">
+                  <Phone className="mr-2 h-5 w-5" />
+                  01514 2462280 ANRUFEN
+                </a>
+              </Button>
+            )}
+            <Button size="lg" variant={seite.anfrage ? "outline" : "cta-large"} asChild>
+              <Link to={seite.cta.href}>
+                <MessageCircle className="mr-2 h-5 w-5" />
+                {seite.cta.button}
+              </Link>
+            </Button>
+          </div>
           <p className="mt-4 flex items-center justify-center gap-1.5 text-sm text-muted-foreground">
             <MapPin className="h-4 w-4" />
             Werler Straße 68, 32105 Bad Salzuflen · Mo–Fr 9–18 Uhr · Sa 15–18 Uhr

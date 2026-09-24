@@ -21,7 +21,7 @@ const TrustBadges = () => {
           <div className="flex flex-col items-center">
             <Shield className="h-8 w-8 text-primary mb-2" />
             <div className="text-lg font-bold text-secondary">Ohne Termin</div>
-            <div className="text-sm text-muted-foreground">Montag bis Samstag geöffnet</div>
+            <div className="text-sm text-muted-foreground">Mo–Fr 9–18 · Sa 15–18 Uhr</div>
           </div>
 
           {/* Speed */}

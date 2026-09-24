@@ -90,14 +90,14 @@ export const RATGEBER: RatgeberArtikel[] = [
       {
         titel: "Bei uns: als Wunschkennzeichen, ohne Termin",
         absaetze: [
-          "Bei uns läuft der Wechsel auf DT oder LE einfach als Wunschkennzeichen: Sie nennen uns Ihre Kombination, wir prüfen und reservieren sie und erledigen den Rest – ohne Termin, Montag bis Samstag.",
+          "Bei uns läuft der Wechsel auf DT oder LE einfach als Wunschkennzeichen: Sie nennen uns Ihre Kombination, wir prüfen und reservieren sie und erledigen den Rest – ohne Termin, Mo–Fr 9–18 Uhr und Sa 15–18 Uhr.",
         ],
         link: { href: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT oder LE" },
       },
     ],
     cta: {
       text: "DT oder LE gewünscht? Schreiben Sie uns Ihre Wunschkombination per WhatsApp.",
-      href: "/angebot?vorgang=zulassen",
+      href: "/angebot?vorgang=zulassen&wunsch=1",
       button: "WUNSCHKENNZEICHEN ANFRAGEN",
     },
     verwandt: [

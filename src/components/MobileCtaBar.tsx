@@ -14,20 +14,22 @@ const MobileCtaBar = () => {
 
   return (
     <div className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-background/95 backdrop-blur lg:hidden">
-      <div className={`max-w-6xl mx-auto px-4 py-3 grid gap-2 ${imVorgang ? "grid-cols-2" : "grid-cols-3"}`}>
+      <div className={`max-w-6xl mx-auto px-4 py-3 grid gap-2 ${imVorgang ? "grid-cols-1" : "grid-cols-3"}`}>
         <Button variant="outline" size="sm" asChild>
           <a href="tel:+4915142462280">
             <Phone className="h-4 w-4" />
-            Anrufen
+            {imVorgang ? "Lieber anrufen: 01514 2462280" : "Anrufen"}
           </a>
         </Button>
+        {/* Auf /angebot kein zweiter WhatsApp-Knopf – dort gibt es die fertige Nachricht */}
+        {!imVorgang && (
         <Button
           size="sm"
           className="border border-[#20be5d] bg-[#25D366] text-white hover:bg-[#1fb658]"
           asChild
         >
           <a
-            href="https://wa.me/4915142462280?text=Hallo%2C%20ich%20habe%20eine%20Frage%20zu%20Zulassung%20und%2Foder%20Fahrzeugankauf."
+            href="https://wa.me/4915142462280?text=Hallo!%20Ich%20habe%20eine%20Frage.%20Es%20geht%20um%3A%20"
             target="_blank"
             rel="noreferrer"
           >
@@ -35,6 +37,7 @@ const MobileCtaBar = () => {
             Fragen?
           </a>
         </Button>
+        )}
         {!imVorgang && (
           <Button variant="cta" size="sm" asChild>
             <Link to="/angebot">Zulassung</Link>

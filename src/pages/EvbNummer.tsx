@@ -298,7 +298,7 @@ const EvbNummer = () => {
           </p>
           <Button size="lg" variant="cta-large" asChild>
             <Link to="/angebot">
-              JETZT ZULASSUNG STARTEN
+              JETZT KOSTENLOS ANFRAGEN
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>

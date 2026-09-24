@@ -98,7 +98,7 @@
   "/angebot": [
     {
       "question": "Brauche ich einen Termin?",
-      "answer": "Nein. Sie können einfach vorbeikommen: Montag bis Freitag von 9 bis 18 Uhr und Samstag von 15 bis 18 Uhr in der Werler Straße 68 in Bad Salzuflen. Online-Zulassungen erledigen wir rund um die Uhr. Mit der WhatsApp-Nachricht sagen Sie uns nur kurz vorher Bescheid, worum es geht."
+      "answer": "Nein. Sie können einfach vorbeikommen: Montag bis Freitag von 9 bis 18 Uhr und Samstag von 15 bis 18 Uhr in der Werler Straße 68 in Bad Salzuflen. Online-Zulassungen erledigen wir rund um die Uhr. Mit der WhatsApp-Nachricht wissen wir gleich, worum es geht – alles Weitere klären wir im Chat."
     },
     {
       "question": "Warum läuft die Anfrage über WhatsApp?",
@@ -210,7 +210,11 @@
   "/gewerbekunden": [
     {
       "question": "Arbeiten Sie auch für Autohäuser und Händler?",
-      "answer": "Ja. Wir übernehmen Zulassungen, Umschreibungen und Abmeldungen für Autohändler, Werkstätten und Firmen im Kreis Lippe – auch mehrere Fahrzeuge auf einmal."
+      "answer": "Ja. Wir übernehmen Zulassungen, Umschreibungen und Abmeldungen für Autohändler, Werkstätten, Vermieter und Firmen im Kreis Lippe – auch mehrere Fahrzeuge auf einmal."
+    },
+    {
+      "question": "Was kostet die Zusammenarbeit?",
+      "answer": "Das hängt von Ihrer Menge und den Leistungen ab – zum Beispiel mit oder ohne Abholung der Unterlagen. Nach einem kurzen Gespräch nennen wir Ihnen Ihre Konditionen. Rufen Sie an (01514 2462280) oder nutzen Sie das Anfrageformular auf dieser Seite."
     },
     {
       "question": "Was brauche ich, wenn ich ein Fahrzeug für meinen Kunden zulassen lasse?",
@@ -225,12 +229,24 @@
       "answer": "Ja, für Gewerbekunden ist die Zahlung per Rechnung möglich."
     },
     {
-      "question": "Gibt es Konditionen für regelmäßige Aufträge?",
-      "answer": "Wenn Sie regelmäßig Fahrzeuge über uns zulassen, sprechen wir gern über feste Konditionen. Schreiben Sie uns einfach per WhatsApp."
+      "question": "Geht das auch per E-Mail statt WhatsApp?",
+      "answer": "Ja. Schreiben Sie an info@sofortzulassung.com, rufen Sie an (01514 2462280) oder nutzen Sie das Anfrageformular auf dieser Seite."
+    },
+    {
+      "question": "Warum nicht selbst über i-Kfz zulassen?",
+      "answer": "Das geht, wenn Sie das Online-Verfahren eingerichtet haben und sich selbst um Kennzeichen und Rückfragen kümmern. Bei uns geben Sie einfach ab – und Ihre Leute bleiben im Verkauf oder in der Werkstatt."
+    },
+    {
+      "question": "Ich habe nur einen Firmenwagen – bin ich hier richtig?",
+      "answer": "Ja. Dafür brauchen Sie keine feste Zusammenarbeit – kommen Sie einfach ohne Termin vorbei oder fragen Sie per WhatsApp an."
+    },
+    {
+      "question": "Kaufen Sie auch Inzahlungnahmen an?",
+      "answer": "Ja, auch nicht fahrbereite Fahrzeuge. Beim Ankauf ist die Abmeldung für Sie kostenlos."
     },
     {
       "question": "Machen Sie auch Kurzzeit- und Ausfuhrkennzeichen?",
-      "answer": "Ja, auf Anfrage – zum Beispiel für Überführungen oder den Export. Den Preis nennen wir Ihnen direkt im Chat."
+      "answer": "Ja, auf Anfrage – zum Beispiel für Überführungen oder den Export. Rufen Sie kurz an, dann nennen wir Ihnen den Preis."
     }
   ],
   "/fahrzeugankauf": [

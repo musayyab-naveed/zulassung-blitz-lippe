@@ -43,9 +43,9 @@ export interface RouteSeo {
 export const ROUTE_SEO: RouteSeo[] = [
   {
     path: "/",
-    title: "Zulassungsdienst Bad Salzuflen – ohne Termin, Mo–Sa geöffnet",
+    title: "Zulassungsdienst Bad Salzuflen – ohne Termin, Mo–Fr 9–18, Sa 15–18",
     description:
-      `KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Sa geöffnet, online rund um die Uhr. 5,0 ★ (${BUSINESS.reviewCount}).`,
+      `KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr. 5,0 ★ (${BUSINESS.reviewCount}).`,
   },
   {
     path: "/angebot",
@@ -63,7 +63,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/zulassungsstelle-bad-salzuflen",
     title: "Zulassungsstelle Bad Salzuflen – Termine & Öffnungszeiten",
     description:
-      "Zulassungsstelle Bad Salzuflen: Adresse, Öffnungszeiten, Terminpflicht und die Regeln des Kreises Lippe – plus der Weg ohne Termin, Montag bis Samstag.",
+      "Zulassungsstelle Bad Salzuflen: Adresse, Öffnungszeiten, Terminpflicht und die Regeln des Kreises Lippe – plus der Weg ohne Termin, Mo–Fr 9–18 und Sa 15–18 Uhr.",
   },
   {
     path: "/evb-nummer",
@@ -75,7 +75,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/auto-anmelden",
     title: "Auto anmelden Bad Salzuflen – ohne Termin, ab 129 €",
     description:
-      "Auto anmelden in Bad Salzuflen ohne Termin: Neuwagen, Gebrauchtwagen oder Wiederzulassung, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren, Mo–Sa geöffnet.",
+      "Auto anmelden in Bad Salzuflen ohne Termin: Neuwagen, Gebrauchtwagen oder Wiederzulassung, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren, Mo–Fr 9–18, Sa 15–18 Uhr.",
   },
   {
     path: "/auto-abmelden",
@@ -87,7 +87,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/auto-ummelden",
     title: "Auto ummelden Bad Salzuflen – ohne Termin, ab 129 €",
     description:
-      "Auto ummelden in Bad Salzuflen: nach dem Autokauf oder Umzug – ohne Termin beim Amt, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren, Mo–Sa geöffnet.",
+      "Auto ummelden in Bad Salzuflen: nach dem Autokauf oder Umzug – ohne Termin beim Amt, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren, Mo–Fr 9–18, Sa 15–18 Uhr.",
   },
   {
     path: "/wunschkennzeichen",
@@ -129,7 +129,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/ueber-uns",
     title: "Über uns – Zulassungsdienst in Bad Salzuflen",
     description:
-      "KFZ-Sofortzulassung in Bad Salzuflen: persönlicher Service für den Kreis Lippe, über 1000 zufriedene Kunden, 5,0 Sterne bei Google, Montag bis Samstag geöffnet.",
+      "KFZ-Sofortzulassung in Bad Salzuflen: persönlicher Service für den Kreis Lippe, über 1000 zufriedene Kunden, 5,0 Sterne bei Google, Mo–Fr 9–18, Sa 15–18 Uhr.",
   },
   {
     path: "/impressum",

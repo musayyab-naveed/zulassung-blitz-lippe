@@ -39,14 +39,14 @@ export const PACKAGES: PackageDef[] = [
     popular: true,
     features: [
       "Zulassung digital in ca. 20 Minuten",
-      "Direkt losfahren",
+      "Losfahren, sobald die Schilder dran sind",
       "Wunschkennzeichen möglich (+13 €)",
       "Verwaltungsgebühren inkl.",
     ],
     buttonText: "SOFORT WÄHLEN",
     buttonVariant: "cta" as const,
     schemaDescription:
-      "Digitale Zulassung vor Ort in ca. 20 Minuten. Kennzeichen besorgen Sie selbst, vor oder nach dem Termin.",
+      "Digitale Zulassung vor Ort in ca. 20 Minuten. Kennzeichen besorgen Sie selbst, vorher oder nachher.",
   },
   {
     key: "basis",
@@ -235,7 +235,7 @@ export const PREIS_FAQS: PreisFaq[] = [
   {
     question: "Warum steht bei SOFORT „ab 129 €“?",
     answer:
-      "Weil bei der Sofort-Zulassung die Kennzeichenschilder nicht enthalten sind – die besorgen Sie selbst, vor oder nach dem Termin. Zugelassen sind Sie in jedem Fall nach ca. 20 Minuten. Möchten Sie die Schilder von uns, wählen Sie BASIS oder PREMIUM für 129 € beziehungsweise 159 € – dort sind sie im Preis enthalten.",
+      "Weil bei der Sofort-Zulassung die Kennzeichenschilder nicht enthalten sind – die besorgen Sie selbst, vorher oder nachher. Zugelassen sind Sie in jedem Fall nach ca. 20 Minuten. Möchten Sie die Schilder von uns, wählen Sie BASIS oder PREMIUM für 129 € beziehungsweise 159 € – dort sind sie im Preis enthalten.",
   },
   {
     question: "Gibt es versteckte Kosten?",
@@ -255,7 +255,7 @@ export const PREIS_FAQS: PreisFaq[] = [
   {
     question: "Wie kann ich bezahlen?",
     answer:
-      "Bar, mit EC-Karte, per PayPal, per SEPA-Lastschrift oder auf Rechnung. Bezahlt wird beim Termin, nicht vorab bei der Buchung.",
+      "Bar, mit EC-Karte, per PayPal, per SEPA-Lastschrift oder auf Rechnung. Bezahlt wird erst bei uns vor Ort – nichts im Voraus.",
   },
   {
     question: "Ist die KFZ-Steuer im Preis enthalten?",
@@ -322,7 +322,7 @@ export const PREIS_VERGLEICH: VergleichsPunkt[] = [
   },
   {
     frage: "Wissen Sie vorher, was Sie am Ende zahlen?",
-    beiUns: "Ja, wir nennen den Endpreis vor dem Termin",
+    beiUns: "Ja, wir nennen den Endpreis, bevor wir anfangen",
     hinweis:
       "Keine Nachzahlung bei der Behörde, keine Überraschung an der Kasse.",
   },

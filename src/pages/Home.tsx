@@ -39,7 +39,7 @@ const Home = () => {
       icon: <CheckCircle className="h-8 w-8 text-primary" />,
       title: "Zugelassen in 20 Min – oder am nächsten Werktag",
       description:
-        "Sofort-Zulassung: in ca. 20 Minuten direkt losfahren. Klassisch: am nächsten Werktag fertig, inkl. Rückversand oder Abholung.",
+        "Sofort-Zulassung: in ca. 20 Minuten zugelassen – losfahren, sobald Ihre Schilder dran sind. Klassisch: am nächsten Werktag fertig, mit Schildern, inkl. Rückversand oder Abholung.",
     },
   ];
 
@@ -84,7 +84,7 @@ const Home = () => {
                 NEU: Sofort-Zulassung in ca. 20 Minuten
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white">
-                KFZ-Zulassung in Bad Salzuflen –<br className="hidden sm:block" /> ohne Termin, Montag bis Samstag
+                KFZ-Zulassung in Bad Salzuflen –<br className="hidden sm:block" /> ohne Termin, für den ganzen Kreis Lippe
               </h1>
               <p className="text-lg sm:text-xl mb-6 font-semibold text-primary-foreground/95">
                 Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag – ab 129 € inklusive
@@ -109,10 +109,13 @@ const Home = () => {
               <div className="relative z-30 flex flex-col gap-3 sm:max-w-xl lg:max-w-none">
                 <Button size="lg" variant="cta-large" asChild className="w-full sm:w-auto">
                   <Link to="/angebot">
-                    JETZT ZULASSUNG STARTEN
+                    JETZT KOSTENLOS ANFRAGEN
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
+                <p className="-mt-1 text-sm text-primary-foreground/90">
+                  Anmelden, ummelden oder abmelden · wenige Fingertipps · unverbindlich per WhatsApp
+                </p>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <Button size="lg" variant="cta" asChild className="h-auto py-4 text-base font-bold">
                     <Link to="/kfz-versicherung">
@@ -127,7 +130,7 @@ const Home = () => {
                   >
                     <Link to="/fahrzeugankauf">
                       <Car className="mr-2 h-5 w-5" />
-                      Auto verkaufen
+                      Auto an uns verkaufen
                     </Link>
                   </Button>
                 </div>
@@ -320,7 +323,7 @@ const Home = () => {
           <div className="mt-8 text-center">
             <Button size="lg" variant="cta-large" asChild>
               <Link to="/angebot">
-                JETZT ZULASSUNG STARTEN
+                JETZT KOSTENLOS ANFRAGEN
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -374,7 +377,7 @@ const Home = () => {
           <div className="mt-6 text-center">
             <Button size="lg" variant="cta-large" asChild>
               <Link to="/angebot">
-                JETZT ZULASSUNG STARTEN
+                JETZT KOSTENLOS ANFRAGEN
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -505,7 +508,7 @@ const Home = () => {
               <div className="pt-6">
                 <Button size="lg" variant="cta" className="w-full sm:w-auto" asChild>
                   <Link to="/angebot">
-                    JETZT ZULASSUNG STARTEN
+                    JETZT KOSTENLOS ANFRAGEN
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>

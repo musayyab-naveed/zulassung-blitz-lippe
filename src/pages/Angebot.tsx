@@ -27,6 +27,7 @@ import {
   type Vorgang,
 } from "@/content/whatsappAnfrage";
 import faqSchema from "@/content/faqSchema.json";
+import { BUSINESS } from "@/content/seoRoutes";
 import zb1CodeImg from "@/assets/dokumente/zb1-code-verdeckt.jpg";
 import plaketteImg from "@/assets/dokumente/plakette-verdeckt.jpg";
 import {
@@ -162,7 +163,8 @@ const Angebot = () => {
     navigate(rest ? `/angebot?${rest}` : "/angebot");
   };
 
-  const antworten = { vorgang, art, evb, paket: paket ?? undefined };
+  const wunsch = params.get("wunsch") === "1";
+  const antworten = { vorgang, art, evb, paket: paket ?? undefined, wunsch };
   const nachricht = baueNachricht(antworten);
   const checkliste = checklisteFuer(antworten);
 
@@ -177,12 +179,12 @@ const Angebot = () => {
       : schritt === "art"
         ? "Worum geht es genau?"
         : schritt === "evb"
-          ? "Haben Sie schon eine eVB-Nummer?"
+          ? "Haben Sie schon die eVB-Nummer für dieses Auto?"
           : vorgang === "verkaufen"
             ? "Fahrzeug verkaufen – so geht's weiter"
             : vorgang === "frage"
               ? "Stellen Sie uns Ihre Frage"
-              : "Ihre Nachricht ist fertig";
+              : "Fast geschafft – nur noch absenden";
 
   return (
     <div className="min-h-screen bg-background">
@@ -199,17 +201,21 @@ const Angebot = () => {
                 Kein Termin nötig
               </p>
               <h1 className="text-2xl font-bold text-secondary sm:text-3xl">
-                Zulassung anfragen – in wenigen Fingertipps
+                Anfrage in wenigen Fingertipps
               </h1>
-              <p className="mt-2 text-muted-foreground">
-                Ein, zwei Antworten antippen – dann steht Ihre WhatsApp-Nachricht fertig bereit.
+              <p className="mt-2 text-base text-secondary">
+                Zwei, drei Antworten antippen – dann steht Ihre WhatsApp-Nachricht fertig bereit.
+                Kostenlos und unverbindlich.
               </p>
-              <p className="mt-2 text-sm text-muted-foreground">
+              <p className="mt-2 text-sm font-semibold text-secondary">
+                <span className="text-[hsl(var(--cta-orange))]">★★★★★</span> 5,0 · {BUSINESS.reviewCount} Google-Bewertungen
+              </p>
+              <p className="mt-2 text-sm text-secondary">
                 Kein WhatsApp? Rufen Sie an:{" "}
                 <a href={TELEFON_LINK} className="font-semibold text-link hover:underline">
                   {TELEFON_ANZEIGE}
                 </a>{" "}
-                – oder kommen Sie einfach vorbei, Werler Straße 68.
+                (Mo–Fr 9–18 Uhr, Sa 15–18 Uhr)
               </p>
             </div>
           )}
@@ -221,7 +227,7 @@ const Angebot = () => {
                 <button
                   type="button"
                   onClick={zurueck}
-                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-primary"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-base font-semibold text-secondary hover:border-primary hover:text-primary"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Zurück
@@ -230,7 +236,7 @@ const Angebot = () => {
                 <span />
               )}
               {schritt !== "fertig" && gesamtSchritte > 1 && (
-                <span className="text-xs font-semibold text-muted-foreground">
+                <span className="text-sm font-semibold text-secondary">
                   Schritt {aktuellerSchritt} von {gesamtSchritte}
                 </span>
               )}
@@ -251,17 +257,27 @@ const Angebot = () => {
             )}
 
             {schritt === "art" && (
-              <div className="space-y-3">
-                {(vorgang === "sonder" ? SONDER_ARTEN : ARTEN).map((o) => (
-                  <Karte key={o.wert} option={o} onWahl={(w) => setze("art", w)} />
-                ))}
-              </div>
+              <>
+                <div className="space-y-3">
+                  {(vorgang === "sonder" ? SONDER_ARTEN : ARTEN).map((o) => (
+                    <Karte key={o.wert} option={o} onWahl={(w) => setze("art", w)} />
+                  ))}
+                </div>
+                {vorgang === "zulassen" && (
+                  <p className="mt-4 text-sm text-secondary">
+                    Motorrad, Anhänger, Wohnmobil, Saison- oder Wunschkennzeichen? Wählen Sie einfach den
+                    passenden Fall – die Besonderheit schreiben Sie mit in die Nachricht.
+                  </p>
+                )}
+              </>
             )}
 
             {schritt === "evb" && (
               <>
-                <p className="-mt-3 mb-4 text-sm text-muted-foreground">
-                  Die eVB-Nummer bekommen Sie von Ihrer Kfz-Versicherung. Ohne sie geht keine Zulassung.
+                <p className="-mt-3 mb-4 text-base text-secondary">
+                  Die eVB-Nummer ist ein Code aus 7 Zeichen, zum Beispiel AB12C34. Sie bekommen ihn von Ihrer
+                  Kfz-Versicherung per SMS oder E-Mail. Auch wenn Sie schon versichert sind, braucht dieses
+                  Auto eine eigene Nummer – meist reicht ein Anruf bei Ihrer Versicherung.
                 </p>
                 <div className="space-y-3">
                   {EVB_OPTIONEN.map((o) => (
@@ -274,39 +290,29 @@ const Angebot = () => {
 
             {schritt === "fertig" && (
               <div className="space-y-6">
-                {/* Versicherung vergleichen: ganz oben, wenn die eVB fehlt oder der Kunde vergleichen will */}
-                {(evb === "nein" || evb === "vergleich") && (
-                  <Link
-                    to="/kfz-versicherung"
-                    className="flex items-center gap-3 rounded-xl border-2 border-trust-green/50 bg-trust-green/10 p-4 transition-colors hover:border-trust-green"
-                  >
-                    <ShieldCheck className="h-9 w-9 flex-none text-trust-green" />
-                    <span className="flex-1">
-                      <span className="block font-bold text-secondary">
-                        {evb === "nein"
-                          ? "Zuerst: eVB-Nummer beantragen"
-                          : "Kfz-Versicherung vergleichen"}
-                      </span>
-                      <span className="block text-sm text-muted-foreground">
-                        {evb === "nein"
-                          ? "Kfz-Versicherung vergleichen und online abschließen – die eVB-Nummer kommt per E-Mail. Danach schicken Sie uns einfach die Nachricht unten."
-                          : "Schauen Sie, ob es günstiger geht – Ihre Anfrage bei uns können Sie trotzdem gleich abschicken."}
-                      </span>
-                    </span>
-                    <ArrowRight className="h-5 w-5 flex-none text-trust-green" />
-                  </Link>
+                {/* Die fertige Nachricht */}
+                {/* Preis gleich hier – sonst bleibt die wichtigste Frage offen */}
+                {(vorgang === "zulassen" || vorgang === "abmelden" || vorgang === "sonder") && (
+                  <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 text-base text-secondary">
+                    <span className="font-bold">Was es kostet: </span>
+                    {vorgang === "abmelden"
+                      ? "40 € inklusive Gebühren – kostenlos, wenn wir Ihr Auto ankaufen."
+                      : vorgang === "sonder"
+                        ? "Den Preis nennen wir Ihnen im Chat, bevor wir anfangen."
+                        : "ab 129 € – die Gebühren des Kreises sind schon drin. Wunschkennzeichen +13 €. Den genauen Preis für Ihren Fall sagen wir Ihnen im Chat, bevor wir anfangen."}{" "}
+                    <span className="font-semibold">Bezahlt wird erst bei uns vor Ort – nichts im Voraus.</span>
+                  </div>
                 )}
 
-                {/* Die fertige Nachricht */}
                 <div>
-                  <p className="mb-2 text-sm text-muted-foreground">
+                  <p className="mb-2 text-base text-secondary">
                     {vorgang === "frage"
-                      ? "WhatsApp öffnet sich – schreiben Sie Ihre Frage einfach dazu."
+                      ? "Tippen Sie auf den grünen Knopf – WhatsApp öffnet sich, dann schreiben Sie Ihre Frage dazu."
                       : vorgang === "verkaufen"
-                        ? "Die Nachricht ist vorbereitet – ergänzen Sie Marke, Baujahr und Kilometerstand."
-                        : "Diese Nachricht geht an uns – Sie müssen sie nur noch absenden:"}
+                        ? "Tippen Sie auf den grünen Knopf. In WhatsApp schreiben Sie hinter jeden Doppelpunkt kurz die Antwort und tippen auf Senden ➤."
+                        : "Tippen Sie auf den grünen Knopf – WhatsApp öffnet sich mit dieser Nachricht. Dann nur noch auf Senden ➤ tippen."}
                   </p>
-                  <div className="whitespace-pre-wrap rounded-xl border border-[#25D366]/40 bg-[#25D366]/10 p-4 font-mono text-sm text-secondary">
+                  <div className="ml-auto max-w-md whitespace-pre-wrap rounded-2xl rounded-br-sm bg-[#dcf8c6] p-4 text-base text-secondary shadow-sm">
                     {nachricht}
                   </div>
                 </div>
@@ -319,16 +325,52 @@ const Angebot = () => {
                   >
                     <a href={whatsappLink(nachricht)} target="_blank" rel="noopener noreferrer" onClick={whatsappGeklickt}>
                       <MessageCircle className="mr-2 h-5 w-5" />
-                      In WhatsApp öffnen und senden
+                      WhatsApp öffnen – Nachricht ist fertig
                     </a>
                   </Button>
+                  <p className="text-center text-sm text-secondary">
+                    <span className="text-[hsl(var(--cta-orange))]">★</span> 5,0 bei {BUSINESS.reviewCount} Google-Bewertungen ·
+                    Kostenlos und unverbindlich – mit der Nachricht beauftragen Sie noch nichts.
+                  </p>
                   <Button size="lg" variant="outline" asChild>
                     <a href={TELEFON_LINK}>
                       <Phone className="mr-2 h-4 w-4" />
-                      Kein WhatsApp? Anrufen: {TELEFON_ANZEIGE}
+                      Kein WhatsApp oder am Computer? Anrufen: {TELEFON_ANZEIGE}
                     </a>
                   </Button>
+                  {vorgang !== "frage" && vorgang !== "verkaufen" && (
+                    <p className="text-sm text-secondary">
+                      Besonderer Fall – etwa ist der bisherige Halter verstorben, oder Sie erledigen das für
+                      einen Angehörigen? Schreiben Sie es einfach mit in die Nachricht. Wir sagen Ihnen dann
+                      genau, welche Papiere Sie brauchen.
+                    </p>
+                  )}
                 </div>
+
+                {/* Versicherung erst nach dem Absenden – vorher würde der Kunde die Seite verlassen */}
+                {(evb === "nein" || evb === "vergleich") && (
+                  <a
+                    href="/kfz-versicherung"
+                    target="_blank"
+                    rel="noopener"
+                    className="flex items-center gap-3 rounded-xl border-2 border-trust-green/50 bg-trust-green/10 p-4 transition-colors hover:border-trust-green"
+                  >
+                    <ShieldCheck className="h-9 w-9 flex-none text-trust-green" />
+                    <span className="flex-1">
+                      <span className="block font-bold text-secondary">
+                        {evb === "nein"
+                          ? "Nach dem Absenden: Kfz-Versicherung vergleichen"
+                          : "Erst absenden, dann in Ruhe vergleichen"}
+                      </span>
+                      <span className="block text-sm text-secondary">
+                        {evb === "nein"
+                          ? "Schicken Sie uns die Nachricht ruhig jetzt schon. Die eVB-Nummer bekommen Sie mit einer Kfz-Versicherung – hier können Sie Tarife vergleichen und online abschließen. Die Nummer schreiben Sie uns dann einfach in den Chat."
+                          : "Ihre Anfrage bleibt bestehen. Schauen Sie in Ruhe, ob es günstiger geht – der Vergleich öffnet sich in einem neuen Fenster."}
+                      </span>
+                    </span>
+                    <ArrowRight className="h-5 w-5 flex-none text-trust-green" />
+                  </a>
+                )}
 
                 {/* Abmeldung: Sicherheitscodes erklären */}
                 {vorgang === "abmelden" && (
@@ -345,9 +387,10 @@ const Angebot = () => {
                       <img src={zb1CodeImg} alt="Verdeckter Sicherheitscode auf dem Fahrzeugschein" className="rounded-lg border border-border" loading="lazy" />
                       <img src={plaketteImg} alt="Verdeckter Sicherheitscode auf der Kennzeichen-Plakette" className="rounded-lg border border-border" loading="lazy" />
                     </div>
-                    <p className="mt-3 text-sm text-muted-foreground">
-                      Keine Codes? Kein Problem – dann erledigen wir die Abmeldung klassisch bis zum
-                      nächsten Werktag.
+                    <p className="mt-3 text-sm text-secondary">
+                      Keine Codes oder schon freigerubbelt? Kein Problem – dann erledigen wir die Abmeldung
+                      klassisch bis zum nächsten Werktag. Kennzeichen oder Fahrzeugschein verloren? Schreiben
+                      Sie es einfach mit in die Nachricht – wir sagen Ihnen, was Sie brauchen.
                     </p>
                   </div>
                 )}
@@ -356,13 +399,13 @@ const Angebot = () => {
                 {checkliste && (
                   <div className="rounded-xl border border-border p-4">
                     <h2 className="mb-1 font-bold text-secondary">Das bringen Sie mit</h2>
-                    <p className="mb-3 text-xs text-muted-foreground">
+                    <p className="mb-3 text-sm text-secondary">
                       {checkliste.title}
                       {art === "unklar" && " – die häufigste Liste, im Chat klären wir den Rest"}
                     </p>
                     <ul className="space-y-2">
                       {checkliste.items.map((punkt) => (
-                        <li key={punkt} className="flex items-start gap-2 text-sm text-secondary">
+                        <li key={punkt} className="flex items-start gap-2 text-base text-secondary">
                           <CheckCircle className="mt-0.5 h-4 w-4 flex-none text-trust-green" />
                           <span>
                             {punkt}
@@ -378,9 +421,19 @@ const Angebot = () => {
                         </li>
                       ))}
                     </ul>
-                    <p className="mt-3 text-xs text-muted-foreground">
-                      Vollmacht und SEPA-Mandat füllen Sie einfach bei uns vor Ort aus.
-                    </p>
+                    {checkliste.hint && <p className="mt-3 text-sm text-secondary">{checkliste.hint}</p>}
+                    {vorgang === "zulassen" && (
+                      <p className="mt-3 text-sm text-secondary">
+                        Sie sind selbst der Halter? Dann füllen Sie Vollmacht und SEPA-Mandat einfach bei uns
+                        aus. Sie erledigen das für jemand anderen (z. B. Eltern oder Partner)? Dann bringen Sie
+                        die vom Halter unterschriebene Vollmacht, seinen Ausweis oder eine Kopie und das
+                        unterschriebene SEPA-Mandat mit –{" "}
+                        <Link to="/dokumente" className="font-semibold text-link hover:underline">
+                          Vordrucke unter Formulare
+                        </Link>
+                        .
+                      </p>
+                    )}
                   </div>
                 )}
 

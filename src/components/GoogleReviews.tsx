@@ -20,47 +20,46 @@ const GoogleReviews = () => {
   const [api, setApi] = useState<CarouselApi>();
 
   const reviews = [
-    { name: "Daniel", rating: 5, time: "vor 3 Monaten", text: "Schneller und unkomplizierter Service, ich musste sehr schnell meinen Neuwagen zulassen und mir wurde kompetent geholfen." },
-    { name: "Christoph Meyer", rating: 5, time: "Bearbeitet: vor 2 Monaten", text: "Ich habe diesen Zulassungsdienst schon zum zweiten Mal beauftragt und bin wieder absolut zufrieden." },
-    { name: "Olga Keller", rating: 5, time: "vor einem Jahr", text: "Wenn man schnell und unkompliziert sein Auto anmelden möchte, einfach perfekt. Sehr nett und kompetent." },
-    { name: "Vivian Stahn-Mayala", rating: 5, time: "vor 6 Monaten", text: "Schneller und zuverlässiger Top Service. Kann ich nur weiterempfehlen." },
-    { name: "Martin Cygon", rating: 5, time: "vor einem Jahr", text: "Top Service. Freitag Unterlagen abgegeben, Montag alles fertig. Sehr professionell und digital ausgerüstet." },
-    { name: "Yusuf", rating: 5, time: "vor 3 Jahren", text: "Super schneller Service. Freitagmorgen angefragt, Freitagnachmittag geliefert." },
-    { name: "Thorben Muller", rating: 5, time: "vor 2 Jahren", text: "Hat super geklappt. Innerhalb von einem Tag alles erledigt. Top und sehr zufrieden." },
-    { name: "Jan", rating: 5, time: "vor 3 Jahren", text: "Super nette und fähige Mitarbeiter. Kurz angerufen, Termin gemacht, Papiere abgegeben und erledigt." },
-    { name: "* anweiser", rating: 5, time: "vor 2 Jahren", text: "Professioneller Service, kompetent und freundlich. Unterlagen kurz vor Schluss gebracht, am nächsten Vormittag zugelassen." },
-    { name: "Ahmad Tahir", rating: 5, time: "vor 2 Jahren", text: "Super Service, Anmeldung innerhalb von 24 Stunden fertig. Sehr zuverlässig." },
-    { name: "Ralf Thomsen", rating: 5, time: "vor 2 Jahren", text: "Top Service und super freundlich. Freitagabend Unterlagen abgegeben, Montagmittag alles fertig." },
-    { name: "Hares", rating: 5, time: "vor 3 Jahren", text: "Guter Service und sehr professionell. Es lief reibungslos ab. Empfehlung 10/10." },
-    { name: "Nicole Waldhans", rating: 5, time: "vor einem Jahr", text: "Super Service. Zu 100 Prozent weiterzuempfehlen. Unkompliziert und freundlich." },
-    { name: "hale0511", rating: 5, time: "vor 2 Jahren", text: "Super Service und gute Beratung. Unterlagen abends eingereicht, am Folgetag schon wieder abgeholt." },
-    { name: "Niklas Haase", rating: 5, time: "vor 2 Jahren", text: "Sehr schnelle Hilfe auch kurz vor Ladenschluss. Top Kommunikation und Abwicklung." },
-    { name: "Isabel Liekenbrocker", rating: 5, time: "vor 2 Jahren", text: "Sehr freundlich, zuverlässig und schneller Service. Danke!" },
-    { name: "joey demajo", rating: 5, time: "vor einem Jahr", text: "Unfassbar schnell, freundlich und unkompliziert. Beim nächsten Auto wieder hier." },
-    { name: "Mike", rating: 5, time: "vor 2 Jahren", text: "Top Service, sogar bis vor die Tür gebracht. Sehr empfehlenswert." },
-    { name: "Rico Lanzrath (Dermetzger93)", rating: 5, time: "vor 3 Jahren", text: "Schnelle und saubere Abwicklung. Kontakt super nett und freundlich." },
-    { name: "Robert", rating: 5, time: "vor 3 Jahren", text: "Kundenservice hat mir sehr gefallen. Mitarbeiter sehr nett und hilfsbereit." },
-    { name: "Hilal Yilmaz", rating: 5, time: "vor 3 Jahren", text: "Top zufrieden. Sehr professionell und sehr schnell. Herzliche Weiterempfehlung." },
-    { name: "King Zzzz", rating: 5, time: "vor 3 Jahren", text: "Sehr schnell und unkompliziert. Freundlicher Umgang, kann ich weiterempfehlen." },
-    { name: "Rashed", rating: 5, time: "vor 2 Jahren", text: "Freundlicher Service und wirklich gute Arbeit. Nur zu empfehlen." },
-    { name: "Wayne Albel", rating: 5, time: "vor 2 Jahren", text: "Vielen Dank für die schnelle und unkomplizierte An- und Abmeldung." },
-    { name: "Andrei Liubovici", rating: 5, time: "vor 2 Jahren", text: "Sehr schnell, freundlich und zuverlässig. Immer gerne." },
-    { name: "Nadine Rehberg", rating: 5, time: "vor einem Jahr", text: "Richtig super, zuverlässig, zuvorkommend und freundlich." },
-    { name: "German", rating: 5, time: "vor 2 Jahren", text: "Donnerstag Papiere abgegeben, Freitag erledigte Papiere und Kennzeichen vor der Haustür." },
-    { name: "Kaan Yildirim", rating: 5, time: "vor 2 Jahren", text: "Top Arbeit, super professionell. Nur zu empfehlen." },
-    { name: "Mark Bschorr", rating: 5, time: "vor 2 Jahren", text: "Hat alles bestens geklappt." },
-    { name: "Mordem Sercan", rating: 5, time: "vor 2 Jahren", text: "Schnell und zuverlässig. Kann ich nur empfehlen." },
-    { name: "Okami", rating: 5, time: "vor 2 Jahren", text: "Top Service, alles super funktioniert." },
-    { name: "Andreas Dahlkotter", rating: 5, time: "vor 2 Jahren", text: "Sehr kompetenter, zuverlässiger und netter Ansprechpartner." },
-    { name: "C Y", rating: 5, time: "vor 2 Jahren", text: "Gestern Kennzeichen abgegeben, heute angemeldet abgeholt." },
-    { name: "Hausverwaltung Hausverwaltung", rating: 5, time: "vor 3 Jahren", text: "Super Service. Gut, dass es so etwas gibt." },
-    { name: "F 44", rating: 5, time: "vor einem Jahr", text: "Super Service, immer wieder gerne." },
-    { name: "Peter Althof", rating: 5, time: "vor 2 Jahren", text: "Die Zulassung ging schnell und unkompliziert. Guter Service." },
-    { name: "Metehan Ucar", rating: 5, time: "vor 2 Jahren", text: "Top Service, Fahrzeug innerhalb von 24 Stunden angemeldet." },
-    { name: "Mashariq Naveed", rating: 5, time: "vor 2 Jahren", text: "Sehr schnell und zuverlässig." },
-    { name: "Slaven D", rating: 5, time: "vor 3 Jahren", text: "10/10, empfehle ich weiter." },
-    { name: "Muneeb Ahmad Tahir", rating: 5, time: "vor 2 Jahren", text: "Ruckzuck zugelassen." },
-    { name: "Mary Birdrock", rating: 5, time: "vor einem Jahr", text: "Sehr gute Erfahrung und schneller Ablauf." },
+    { name: "Daniel", rating: 5, text: "Schneller und unkomplizierter Service, ich musste sehr schnell meinen Neuwagen zulassen und mir wurde kompetent geholfen." },
+    { name: "Christoph Meyer", rating: 5, text: "Ich habe diesen Zulassungsdienst schon zum zweiten Mal beauftragt und bin wieder absolut zufrieden." },
+    { name: "Olga Keller", rating: 5, text: "Wenn man schnell und unkompliziert sein Auto anmelden möchte, einfach perfekt. Sehr nett und kompetent." },
+    { name: "Vivian Stahn-Mayala", rating: 5, text: "Schneller und zuverlässiger Top Service. Kann ich nur weiterempfehlen." },
+    { name: "Martin Cygon", rating: 5, text: "Top Service. Freitag Unterlagen abgegeben, Montag alles fertig. Sehr professionell und digital ausgerüstet." },
+    { name: "Yusuf", rating: 5, text: "Super schneller Service. Freitagmorgen angefragt, Freitagnachmittag geliefert." },
+    { name: "Thorben Muller", rating: 5, text: "Hat super geklappt. Innerhalb von einem Tag alles erledigt. Top und sehr zufrieden." },
+    { name: "* anweiser", rating: 5, text: "Professioneller Service, kompetent und freundlich. Unterlagen kurz vor Schluss gebracht, am nächsten Vormittag zugelassen." },
+    { name: "Ahmad Tahir", rating: 5, text: "Super Service, Anmeldung innerhalb von 24 Stunden fertig. Sehr zuverlässig." },
+    { name: "Ralf Thomsen", rating: 5, text: "Top Service und super freundlich. Freitagabend Unterlagen abgegeben, Montagmittag alles fertig." },
+    { name: "Hares", rating: 5, text: "Guter Service und sehr professionell. Es lief reibungslos ab. Empfehlung 10/10." },
+    { name: "Nicole Waldhans", rating: 5, text: "Super Service. Zu 100 Prozent weiterzuempfehlen. Unkompliziert und freundlich." },
+    { name: "hale0511", rating: 5, text: "Super Service und gute Beratung. Unterlagen abends eingereicht, am Folgetag schon wieder abgeholt." },
+    { name: "Niklas Haase", rating: 5, text: "Sehr schnelle Hilfe auch kurz vor Ladenschluss. Top Kommunikation und Abwicklung." },
+    { name: "Isabel Liekenbrocker", rating: 5, text: "Sehr freundlich, zuverlässig und schneller Service. Danke!" },
+    { name: "joey demajo", rating: 5, text: "Unfassbar schnell, freundlich und unkompliziert. Beim nächsten Auto wieder hier." },
+    { name: "Mike", rating: 5, text: "Top Service, sogar bis vor die Tür gebracht. Sehr empfehlenswert." },
+    { name: "Rico Lanzrath (Dermetzger93)", rating: 5, text: "Schnelle und saubere Abwicklung. Kontakt super nett und freundlich." },
+    { name: "Robert", rating: 5, text: "Kundenservice hat mir sehr gefallen. Mitarbeiter sehr nett und hilfsbereit." },
+    { name: "Hilal Yilmaz", rating: 5, text: "Top zufrieden. Sehr professionell und sehr schnell. Herzliche Weiterempfehlung." },
+    { name: "King Zzzz", rating: 5, text: "Sehr schnell und unkompliziert. Freundlicher Umgang, kann ich weiterempfehlen." },
+    { name: "Rashed", rating: 5, text: "Freundlicher Service und wirklich gute Arbeit. Nur zu empfehlen." },
+    { name: "Wayne Albel", rating: 5, text: "Vielen Dank für die schnelle und unkomplizierte An- und Abmeldung." },
+    { name: "Andrei Liubovici", rating: 5, text: "Sehr schnell, freundlich und zuverlässig. Immer gerne." },
+    { name: "Nadine Rehberg", rating: 5, text: "Richtig super, zuverlässig, zuvorkommend und freundlich." },
+    { name: "German", rating: 5, text: "Donnerstag Papiere abgegeben, Freitag erledigte Papiere und Kennzeichen vor der Haustür." },
+    { name: "Kaan Yildirim", rating: 5, text: "Top Arbeit, super professionell. Nur zu empfehlen." },
+    { name: "Mark Bschorr", rating: 5, text: "Hat alles bestens geklappt." },
+    { name: "Mordem Sercan", rating: 5, text: "Schnell und zuverlässig. Kann ich nur empfehlen." },
+    { name: "Okami", rating: 5, text: "Top Service, alles super funktioniert." },
+    { name: "Andreas Dahlkotter", rating: 5, text: "Sehr kompetenter, zuverlässiger und netter Ansprechpartner." },
+    { name: "C Y", rating: 5, text: "Gestern Kennzeichen abgegeben, heute angemeldet abgeholt." },
+    { name: "Hausverwaltung Hausverwaltung", rating: 5, text: "Super Service. Gut, dass es so etwas gibt." },
+    { name: "F 44", rating: 5, text: "Super Service, immer wieder gerne." },
+    { name: "Peter Althof", rating: 5, text: "Die Zulassung ging schnell und unkompliziert. Guter Service." },
+    { name: "Metehan Ucar", rating: 5, text: "Top Service, Fahrzeug innerhalb von 24 Stunden angemeldet." },
+    { name: "Mashariq Naveed", rating: 5, text: "Sehr schnell und zuverlässig." },
+    { name: "Slaven D", rating: 5, text: "10/10, empfehle ich weiter." },
+    { name: "Muneeb Ahmad Tahir", rating: 5, text: "Ruckzuck zugelassen." },
+    { name: "Mary Birdrock", rating: 5, text: "Sehr gute Erfahrung und schneller Ablauf." },
   ];
 
   // Gesamtzahl der Bewertungen laut Google-Profil – gepflegt in seoRoutes.ts (BUSINESS)
@@ -123,6 +122,14 @@ const GoogleReviews = () => {
             <span className="text-2xl font-bold text-secondary ml-2">{avgRating}</span>
           </div>
           <p className="text-muted-foreground">Basierend auf {totalReviews} echten Bewertungen</p>
+          <a
+            href={BUSINESS.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-block text-sm font-semibold text-link hover:underline"
+          >
+            Alle {totalReviews} Bewertungen auf Google ansehen →
+          </a>
         </div>
 
         <Carousel
@@ -144,7 +151,7 @@ const GoogleReviews = () => {
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
                           <p className="text-sm font-semibold text-secondary leading-tight truncate">{review.name}</p>
-                          <p className="text-xs text-muted-foreground">Rezension aus Google - {review.time}</p>
+                          <p className="text-xs text-muted-foreground">Rezension aus Google</p>
                         </div>
                         <div className="flex gap-0.5 shrink-0 mt-0.5">
                           {[...Array(5)].map((_, i) => (

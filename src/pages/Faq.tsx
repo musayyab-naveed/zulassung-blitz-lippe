@@ -129,7 +129,7 @@ const Faq = () => {
             </p>
             <Button size="lg" variant="cta" asChild>
               <Link to="/angebot">
-                JETZT ZULASSUNG STARTEN
+                JETZT KOSTENLOS ANFRAGEN
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

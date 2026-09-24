@@ -133,7 +133,7 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   path: ortsPfad(ort.slug),
   kicker: `Zulassungsdienst für ${ort.name}`,
   h1: `KFZ-Zulassung für ${ort.name} – ohne Termin beim Straßenverkehrsamt`,
-  intro: `Sie wohnen in ${ort.name} und brauchen eine Zulassung, Umschreibung oder Abmeldung? Wir erledigen das für den ganzen Kreis Lippe – ohne Termin, Montag bis Samstag. Von ${ort.name} sind Sie in ${ort.fahrzeit} bei uns in Bad Salzuflen, oder Sie schicken uns die Unterlagen.`,
+  intro: `Sie wohnen in ${ort.name} und brauchen eine Zulassung, Umschreibung oder Abmeldung? Wir erledigen das für den ganzen Kreis Lippe – ohne Termin, Mo–Fr 9–18 und Sa 15–18 Uhr. Von ${ort.name} sind Sie in ${ort.fahrzeit} bei uns in Bad Salzuflen, oder Sie schicken uns die Unterlagen.`,
   chips: ["✓ Ohne Termin", `✓ ${ort.fahrzeit} von ${ort.name}`, "✓ ab 129 € inkl. Gebühren", "✓ Mo–Fr 9–18 · Sa 15–18 Uhr"],
   preis: {
     betrag: "ab 129 €",
@@ -174,8 +174,8 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   cta: {
     titel: `Zulassung für ${ort.name} anfragen`,
     text: "Kurz per WhatsApp Bescheid geben oder einfach vorbeikommen: Werler Straße 68, 32105 Bad Salzuflen.",
-    href: "/angebot?vorgang=zulassen",
-    button: "ZULASSUNG ANFRAGEN",
+    href: "/angebot",
+    button: "JETZT ANFRAGEN",
   },
   verwandt: [
     { href: "/preise", text: "Alle Preise im Überblick" },
@@ -189,7 +189,7 @@ export const ORTSSEITEN: (LeistungsSeite & { ort: string; seoTitel: string; seoB
     ...seiteFuer(ort),
     ort: ort.name,
     seoTitel: `Zulassungsdienst ${ort.name} – Zulassung ohne Termin`,
-    seoBeschreibung: `KFZ-Zulassung für ${ort.name}: ohne Termin beim Straßenverkehrsamt, ${ort.fahrzeit} entfernt in Bad Salzuflen, ab 129 € inkl. Gebühren. Montag bis Samstag geöffnet.`,
+    seoBeschreibung: `KFZ-Zulassung für ${ort.name}: ohne Termin beim Straßenverkehrsamt, ${ort.fahrzeit} entfernt in Bad Salzuflen, ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.`,
   }));
 
 export const findeOrtsseite = (pfad: string) => ORTSSEITEN.find((seite) => seite.path === pfad);

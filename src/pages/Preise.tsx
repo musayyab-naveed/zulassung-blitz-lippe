@@ -58,7 +58,7 @@ const Preise = () => {
             </span>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-white">
               <CheckCircle className="h-4 w-4" />
-              Montag bis Samstag geöffnet
+              Mo–Fr 9–18 · Sa 15–18 Uhr
             </span>
           </div>
         </div>
@@ -311,8 +311,8 @@ const Preise = () => {
             <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
             <p className="text-sm text-foreground">
               <span className="font-semibold text-secondary">Bezahlung:</span>{" "}
-              {ZAHLUNGSARTEN.join(", ")} – bezahlt wird beim Termin, nicht vorab bei der
-              Buchung. Welche Unterlagen Sie mitbringen müssen, steht{" "}
+              {ZAHLUNGSARTEN.join(", ")} – bezahlt wird erst bei uns vor Ort – nichts im
+              Voraus. Welche Unterlagen Sie mitbringen müssen, steht{" "}
               <Link to="/faq" className="font-semibold text-link hover:underline">
                 im FAQ-Bereich
               </Link>
@@ -353,7 +353,7 @@ const Preise = () => {
             </p>
             <Button size="lg" variant="cta-large" asChild>
               <Link to="/angebot">
-                JETZT ZULASSUNG STARTEN
+                JETZT KOSTENLOS ANFRAGEN
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

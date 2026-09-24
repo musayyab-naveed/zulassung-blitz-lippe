@@ -338,7 +338,7 @@ export const WUNSCHKENNZEICHEN: LeistungsSeite = {
   cta: {
     titel: "Wunschkennzeichen sichern",
     text: "Schreiben Sie uns Ihre Wunschkombination per WhatsApp – wir prüfen, ob sie frei ist.",
-    href: "/angebot?vorgang=zulassen",
+    href: "/angebot?vorgang=zulassen&wunsch=1",
     button: "WUNSCHKENNZEICHEN ANFRAGEN",
   },
   verwandt: [
@@ -350,60 +350,82 @@ export const WUNSCHKENNZEICHEN: LeistungsSeite = {
 
 export const GEWERBEKUNDEN: LeistungsSeite = {
   path: "/gewerbekunden",
-  kicker: "Für Autohändler, Werkstätten, Firmen & Partner",
-  h1: "Zulassungsservice für Firmen und Partner im Kreis Lippe",
+  kicker: "Für Autohändler, Werkstätten, Vermieter und Firmenflotten im Kreis Lippe",
+  h1: "Zulassungen abgeben statt zum Amt fahren – Zulassungsservice für Händler und Firmen im Kreis Lippe",
   intro:
-    "Sie verkaufen Fahrzeuge, betreuen eine Flotte oder haben regelmäßig Zulassungen für Ihre Kunden? Werden Sie Partner: Wir übernehmen Zulassung, Umschreibung und Abmeldung – ohne Termin, auch mehrere Fahrzeuge auf einmal. Die Konditionen besprechen wir persönlich mit Ihnen.",
-  chips: ["✓ Mehrere Fahrzeuge auf einmal", "✓ Feste Konditionen für Partner", "✓ Zahlung per Rechnung", `✓ ${OEFFNUNG}`],
+    "Sie geben die Unterlagen ab, wir erledigen Anmeldung, Ummeldung und Abmeldung – ohne Termin beim Straßenverkehrsamt. Ein Fahrzeug oder mehrere auf einmal, bezahlt wird per Rechnung. Die Konditionen für regelmäßige Aufträge besprechen wir persönlich – am schnellsten am Telefon.",
+  chips: [
+    "✓ Ohne Behördentermin",
+    "✓ Mehrere Fahrzeuge in einem Auftrag",
+    "✓ Zahlung per Rechnung",
+    "✓ Abholung der Unterlagen möglich",
+    `✓ ${OEFFNUNG}`,
+  ],
   preis: {
     betrag: "",
     text: "",
   },
   anfrage: true,
   checklisten: ["gewerbe"],
-  schritteTitel: "So arbeiten wir mit Ihnen zusammen",
+  schritteTitel: "So läuft die Zusammenarbeit",
   schritte: [
     {
-      titel: "Auftrag per WhatsApp",
-      text: "Kurz schreiben, welche Fahrzeuge anstehen und bis wann sie fertig sein sollen.",
+      titel: "Kurz sprechen",
+      text: "Am Telefon, per E-Mail oder WhatsApp: Welche Fahrzeuge stehen an, was soll passieren, bis wann? Fangen Sie ruhig mit einem einzigen Fahrzeug an.",
     },
     {
-      titel: "Unterlagen bringen oder abholen lassen",
-      text: "Sie geben die Unterlagen ab, oder wir holen sie im Raum Bad Salzuflen bei Ihnen ab.",
+      titel: "Unterlagen übergeben",
+      text: "Ohne Termin vorbeibringen – Mo–Fr 9–18, Sa 15–18 Uhr – oder wir holen sie im Raum Bad Salzuflen bei Ihnen ab.",
     },
     {
-      titel: "Fertig zurück",
-      text: "Zulassung digital in ca. 20 Minuten oder bis zum nächsten Werktag – mit Kennzeichen, per Rechnung.",
+      titel: "Fertig zurück, per Rechnung",
+      text: "Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag. Papiere und Rechnung bekommen Sie von uns zurück.",
     },
   ],
   abschnitte: [
     {
-      titel: "Was wir für Gewerbekunden übernehmen",
+      titel: "Was Sie davon haben",
+      punkte: [
+        "Keine Fahrten zum Straßenverkehrsamt, keine Jagd nach Terminen: Sie geben ab, wir erledigen.",
+        "Mehrere Fahrzeuge in einem Auftrag – eine Übergabe statt vieler Wege.",
+        "Ihr Kunde fährt schneller vom Hof, solange die Freude am neuen Auto noch frisch ist.",
+        "Abmeldungen von Inzahlungnahmen gleich mit – damit enden KFZ-Steuer und Versicherung für das Fahrzeug.",
+        "Fahrzeuge, die Sie nicht selbst verkaufen möchten, kaufen wir an – auch nicht fahrbereite.",
+        "Unterlagen auch samstags von 15 bis 18 Uhr abgeben.",
+      ],
+    },
+    {
+      titel: "Was wir für Händler und Firmen übernehmen",
       punkte: [
         "Neuzulassungen, Umschreibungen und Wiederzulassungen für Ihre Kunden",
         "Abmeldungen von Inzahlungnahmen – auch mehrere am Tag",
+        "Firmenwagen, Motorräder, Wohnmobile und Anhänger",
         "Wunschkennzeichen mit LIP, DT oder LE",
-        "Kurzzeit- und Ausfuhrkennzeichen auf Anfrage",
+        "Kurzzeit- und Ausfuhrkennzeichen für Überführung und Export",
         "Ankauf von Fahrzeugen, die Sie nicht selbst vermarkten möchten",
       ],
     },
     {
-      titel: "Warum Händler mit uns arbeiten",
-      text: "Beim Straßenverkehrsamt Kreis Lippe geht nichts ohne Termin, und Termine gibt es nur 14 Tage im Voraus. Bei uns geben Sie die Unterlagen ab, wann es Ihnen passt – Montag bis Samstag. Ihre Kunden fahren schneller vom Hof, und Sie sparen die Wege zum Amt.",
+      titel: "Rechnen Sie kurz nach",
+      text: "Ein Gang zum Amt heißt: hinfahren, warten, zurückfahren. Setzen Sie Ihre eigenen Werte ein – Stunden pro Gang mal Zulassungen im Monat. Beispiel: 1,5 Stunden × 8 Zulassungen sind 12 Stunden im Monat, also rund anderthalb Arbeitstage, in denen Ihr Verkäufer nicht verkauft.",
+    },
+    {
+      titel: "Erst testen, dann entscheiden",
+      text: "Geben Sie uns zuerst ein einziges Fahrzeug. So sehen Sie ohne großen Aufwand, wie die Zusammenarbeit läuft – und entscheiden danach, ob wir regelmäßig für Sie arbeiten.",
     },
   ],
   faqTitel: "Häufige Fragen von Gewerbekunden",
   faqs: faqs["/gewerbekunden"],
   cta: {
-    titel: "Lieber direkt per WhatsApp?",
-    text: "Schreiben Sie uns kurz, wie viele Fahrzeuge im Monat Sie ungefähr zulassen – wir melden uns direkt.",
+    titel: "Lieber gleich sprechen?",
+    text: "Ein kurzer Anruf klärt das meiste – oder schreiben Sie uns per WhatsApp, wie viele Fahrzeuge im Monat ungefähr anstehen.",
     href: "/angebot?vorgang=frage",
-    button: "PER WHATSAPP ANFRAGEN",
+    button: "PER WHATSAPP SCHREIBEN",
   },
   verwandt: [
-    { href: "/dokumente", text: "Vollmacht & SEPA-Mandat zum Ausdrucken" },
-    { href: "/preise", text: "Alle Preise im Überblick" },
     { href: "/fahrzeugankauf", text: "Fahrzeugankauf" },
+    { href: "/angebot?vorgang=sonder", text: "Kurzzeit- & Ausfuhrkennzeichen" },
+    { href: "/dokumente", text: "Vollmacht & SEPA-Mandat zum Ausdrucken" },
   ],
 };
 

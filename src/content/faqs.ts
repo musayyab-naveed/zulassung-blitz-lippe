@@ -27,7 +27,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Was brauche ich für die Sofort-Zulassung?",
     answer:
-      "Die eVB-Nummer Ihrer Versicherung, Ihren Personalausweis, die Zulassungsbescheinigung Teil I und II sowie Ihre IBAN für die KFZ-Steuer – nach ca. 20 Minuten sind Sie zugelassen. Die Kennzeichen besorgen Sie selbst, wann Sie möchten (Wunschkennzeichen möglich, +13 €): vor dem Termin oder danach. Zugelassen sind Sie in jedem Fall – losfahren dürfen Sie, sobald die Schilder montiert sind.",
+      "Die eVB-Nummer Ihrer Versicherung, Ihren Personalausweis, die Zulassungsbescheinigung Teil I und II sowie Ihre IBAN für die KFZ-Steuer – nach ca. 20 Minuten sind Sie zugelassen. Die Kennzeichen besorgen Sie selbst, wann Sie möchten (Wunschkennzeichen möglich, +13 €): vorher oder nachher. Zugelassen sind Sie in jedem Fall – losfahren dürfen Sie, sobald die Schilder montiert sind.",
   },
   {
     question: "Was ist der Unterschied zwischen SOFORT, BASIS und PREMIUM?",
@@ -37,7 +37,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Bekomme ich die Kennzeichen bei Ihnen?",
     answer:
-      "Ja – bei BASIS und PREMIUM sind die Kennzeichen im Preis enthalten, Sie bekommen alles fertig zurück. Bei der Sofort-Zulassung besorgen Sie die Schilder selbst, vor oder nach dem Termin (Wunschkennzeichen möglich, +13 €). Zugelassen sind Sie in jedem Fall. Hinweis: Kennzeichen geben wir nur zusammen mit einer Zulassung aus – reine Schilderprägung bieten wir nicht an.",
+      "Ja – bei BASIS und PREMIUM sind die Kennzeichen im Preis enthalten, Sie bekommen alles fertig zurück. Bei der Sofort-Zulassung besorgen Sie die Schilder selbst, vorher oder nachher (Wunschkennzeichen möglich, +13 €). Zugelassen sind Sie in jedem Fall. Hinweis: Kennzeichen geben wir nur zusammen mit einer Zulassung aus – reine Schilderprägung bieten wir nicht an.",
   },
   {
     question: "Was kostet die Zulassung?",
@@ -74,9 +74,9 @@ export const vorgangChecklists: VorgangChecklist[] = [
     items: [
       "Personalausweis oder Reisepass",
       "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
+      "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
       "EU-Übereinstimmungsbescheinigung (COC-Papiere)",
-      "IBAN für das SEPA-Lastschriftmandat der KFZ-Steuer",
+      "Ihre Bankkarte oder Kontonummer (IBAN) – davon bucht der Zoll die KFZ-Steuer ab, nicht wir",
     ],
   },
   {
@@ -85,11 +85,11 @@ export const vorgangChecklists: VorgangChecklist[] = [
     items: [
       "Personalausweis oder Reisepass",
       "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
-      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
-      "HU-Nachweis (TÜV-Bericht) – nicht nötig, wenn die gültige HU mit Stempel im Fahrzeugschein eingetragen ist",
+      "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
+      "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
+      "TÜV-Bericht – nur nötig, wenn der TÜV-Stempel nicht im Fahrzeugschein steht",
       "Bisherige Kennzeichen (falls das Fahrzeug noch angemeldet ist)",
-      "IBAN für das SEPA-Lastschriftmandat der KFZ-Steuer",
+      "Ihre Bankkarte oder Kontonummer (IBAN) – davon bucht der Zoll die KFZ-Steuer ab, nicht wir",
     ],
   },
   {
@@ -98,10 +98,10 @@ export const vorgangChecklists: VorgangChecklist[] = [
     items: [
       "Personalausweis oder Reisepass",
       "eVB-Nummer Ihrer KFZ-Versicherung",
-      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
-      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
-      "HU-Nachweis (TÜV-Bericht) – nicht nötig, wenn die gültige HU mit Stempel im Fahrzeugschein eingetragen ist",
-      "IBAN für das SEPA-Lastschriftmandat der KFZ-Steuer",
+      "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
+      "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
+      "TÜV-Bericht – nur nötig, wenn der TÜV-Stempel nicht im Fahrzeugschein steht",
+      "Ihre Bankkarte oder Kontonummer (IBAN) – davon bucht der Zoll die KFZ-Steuer ab, nicht wir",
     ],
   },
   {
@@ -109,7 +109,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Blitzabmeldung (Außerbetriebsetzung)",
     items: [
       "Beide Kennzeichenschilder",
-      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+      "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
       "Personalausweis oder Reisepass",
       "Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen-Plaketten (bei Zulassung ab 2015 vorhanden)",
       "Bei Verschrottung: Verwertungsnachweis",
@@ -121,7 +121,8 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Adress- oder Namensänderung",
     items: [
       "Personalausweis mit neuer Adresse bzw. Nachweis der Namensänderung",
-      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+      "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
+      "Nur wenn Sie ein neues Kennzeichen möchten: zusätzlich Fahrzeugbrief und die bisherigen Schilder",
     ],
   },
   {
@@ -138,8 +139,8 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Neues Kennzeichen (z. B. von LIP auf DT oder LE)",
     items: [
       "Personalausweis oder Reisepass",
-      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
-      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
+      "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
+      "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
       "Beide bisherigen Kennzeichenschilder",
       "Ihre Wunschkombination, falls Sie eine haben",
     ],
@@ -152,7 +153,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
       "Personalausweis des Halters oder eine Kopie davon",
       "eVB-Nummer der Versicherung des Halters",
       "SEPA-Lastschriftmandat für die KFZ-Steuer, vom Halter unterschrieben",
-      "Zulassungsbescheinigung Teil I und Teil II",
+      "Fahrzeugschein und Fahrzeugbrief (amtlich „Teil I“ und „Teil II“)",
       "Bei Neuwagen: COC-Papiere",
     ],
     hint: "Vollmacht und SEPA-Mandat gibt es unter Formulare zum Ausdrucken.",
@@ -162,10 +163,10 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Kurzzeitkennzeichen (5 Tage)",
     items: [
       "Personalausweis oder Reisepass",
-      "eVB-Nummer speziell für Kurzzeitkennzeichen",
-      "Zulassungsbescheinigung Teil I oder Teil II des Fahrzeugs",
+      "eVB-Nummer speziell für Kurzzeitkennzeichen – die normale passt hier nicht, Sie bekommen sie bei einer Kfz-Versicherung",
+      "Fahrzeugschein oder Fahrzeugbrief des Fahrzeugs",
       "Nachweis über die gültige Hauptuntersuchung (TÜV)",
-      "IBAN für das SEPA-Lastschriftmandat der KFZ-Steuer",
+      "Ihre Bankkarte oder Kontonummer (IBAN) – davon bucht der Zoll die KFZ-Steuer ab, nicht wir",
     ],
     hint: "Was in Ihrem Fall genau nötig ist, klären wir kurz im Chat.",
   },
@@ -174,9 +175,9 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Ausfuhrkennzeichen (Export)",
     items: [
       "Personalausweis oder Reisepass",
-      "eVB-Nummer speziell für Ausfuhrkennzeichen",
-      "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
-      "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
+      "eVB-Nummer speziell für Ausfuhrkennzeichen – die normale passt hier nicht, Sie bekommen sie bei einer Kfz-Versicherung",
+      "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
+      "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
       "Nachweis über die gültige Hauptuntersuchung (TÜV)",
       "Bisherige Kennzeichen, falls das Fahrzeug noch angemeldet ist",
     ],

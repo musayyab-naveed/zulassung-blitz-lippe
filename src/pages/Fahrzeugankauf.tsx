@@ -16,7 +16,7 @@ const Fahrzeugankauf = () => {
     {
       title: "Fahrzeugdaten angeben",
       description:
-        "Marke, Modell, Baujahr und Ihre Telefonnummer – mehr braucht es für den Start nicht.",
+        "Per WhatsApp schreiben: Marke, Modell, Baujahr – mehr braucht es für den Start nicht.",
     },
     {
       title: "Kurze Prüfung",
@@ -87,7 +87,7 @@ const Fahrzeugankauf = () => {
                 >
                   <a href="tel:+4915142462280">
                     <Phone className="mr-2 h-5 w-5" />
-                    +4915142462280
+                    Anrufen: 01514 2462280
                   </a>
                 </Button>
               </div>
@@ -173,7 +173,9 @@ const Fahrzeugankauf = () => {
               <CardContent>
                 <p className="text-muted-foreground mb-6">
                   Sie möchten verkaufen, abmelden oder direkt mit einer neuen Zulassung
-                  kombinieren? Zwei Fragen antippen – dann geht Ihre Anfrage per WhatsApp an uns.
+                  kombinieren? Ein Fingertipp – dann steht Ihre WhatsApp-Nachricht bereit. Soll danach ein
+                  anderes Auto angemeldet werden? Schreiben Sie es einfach dazu. Kostenlos und unverbindlich –
+                  Sie entscheiden erst, wenn Sie unser Angebot kennen.
                 </p>
                 <Button variant="cta" className="w-full" asChild>
                   <Link to="/angebot?start=verkauf">Jetzt Fahrzeug verkaufen</Link>

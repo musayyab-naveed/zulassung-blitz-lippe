@@ -76,7 +76,7 @@ const UeberUns = () => {
               </h1>
               <p className="text-xl mb-6 text-primary-foreground/90">
                 Ihr zuverlässiger Partner für schnelle und unkomplizierte 
-                KFZ-Zulassungen im Kreis Lippe und Umgebung.
+                KFZ-Zulassungen im ganzen Kreis Lippe.
               </p>
               <p className="text-lg text-primary-foreground/80 mb-8">
                 Wir übernehmen Ihre komplette Zulassung – egal ob An-, Um- oder Abmeldung. 
@@ -235,7 +235,7 @@ const UeberUns = () => {
                   <div>
                     <h3 className="font-semibold text-secondary">Servicegebiet</h3>
                     <p className="text-muted-foreground">
-                      Kreis Lippe und Umgebung<br />
+                      Alle 16 Städte und Gemeinden im Kreis Lippe<br />
                       Nordrhein-Westfalen
                     </p>
                   </div>

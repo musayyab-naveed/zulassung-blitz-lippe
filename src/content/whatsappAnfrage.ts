@@ -5,7 +5,7 @@ import { vorgangChecklists, type VorgangChecklist } from "./faqs";
  *
  * Der Kunde beantwortet höchstens drei Fragen durch Antippen, danach steht eine
  * fertige WhatsApp-Nachricht bereit. Kein Termin, kein Formular. Die Antworten
- * stehen in der Adresse (?vorgang=…&art=…&evb=…), damit Zurück und Vorwärts im
+ * stehen in der Adresse (?vorgang=…&art=…&evb=…&wunsch=1), damit Zurück und Vorwärts im
  * Browser und das Neuladen der Seite ohne Zusatzlogik funktionieren.
  */
 
@@ -31,16 +31,16 @@ export interface Auswahl<T extends string> {
 }
 
 export const VORGAENGE: Auswahl<Vorgang>[] = [
-  { wert: "zulassen", titel: "Fahrzeug zulassen oder ummelden", text: "Neu, gebraucht, wieder anmelden oder Umzug" },
+  { wert: "zulassen", titel: "Fahrzeug zulassen oder ummelden", text: "Neu, gebraucht, geerbt, wieder anmelden oder Umzug" },
   { wert: "abmelden", titel: "Fahrzeug abmelden", text: "Blitzabmeldung direkt vor Ort" },
   { wert: "sonder", titel: "Kurzzeit- oder Ausfuhrkennzeichen", text: "Überführung, Probefahrt oder Export" },
-  { wert: "verkaufen", titel: "Fahrzeug verkaufen", text: "Kostenlose Ankaufanfrage" },
+  { wert: "verkaufen", titel: "Auto an uns verkaufen", text: "Wir kaufen Ihr Auto an – kostenlose Anfrage" },
   { wert: "frage", titel: "Ich habe nur eine Frage", text: "Direkt zu WhatsApp" },
 ];
 
 export const ARTEN: Auswahl<Art>[] = [
   { wert: "neu", titel: "Neuwagen", text: "Fabrikneu, noch nie zugelassen" },
-  { wert: "gebraucht", titel: "Gebrauchtwagen gekauft", text: "Umschreibung auf Ihren Namen" },
+  { wert: "gebraucht", titel: "Auto übernommen – gekauft, geschenkt oder geerbt", text: "Das Auto kommt auf Ihren Namen" },
   { wert: "wieder", titel: "Abgemeldetes Auto wieder anmelden", text: "Wiederzulassung" },
   { wert: "umzug", titel: "Umgezogen – Adresse ändern", text: "Innerhalb von Lippe oder neu zugezogen" },
   { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
@@ -55,13 +55,13 @@ export const SONDER_ARTEN: Auswahl<Art>[] = [
 
 /** Hat der Kunde schon eine Versicherung? Nur bei Zulassungen, die eine neue eVB brauchen */
 export const EVB_OPTIONEN: Auswahl<Evb>[] = [
-  { wert: "ja", titel: "Ja, habe ich schon" },
+  { wert: "ja", titel: "Ja, ich habe die Nummer", text: "Code aus 7 Zeichen von meiner Versicherung" },
   {
     wert: "vergleich",
     titel: "Ja – aber ich möchte Preise vergleichen",
     text: "Vielleicht gibt es eine günstigere Versicherung",
   },
-  { wert: "nein", titel: "Nein, noch keine Versicherung", text: "Kein Problem – das geht online in wenigen Minuten" },
+  { wert: "nein", titel: "Nein – oder ich weiß es nicht", text: "Kein Problem – Sie können die Nachricht trotzdem gleich senden" },
 ];
 
 /** Neuzulassung, Umschreibung und Wiederzulassung brauchen eine eVB – Umzug und Kennzeichenwechsel nicht */
@@ -69,19 +69,20 @@ export const brauchtEvbFrage = ({ vorgang, art }: { vorgang?: Vorgang; art?: Art
   vorgang === "zulassen" && (art === "neu" || art === "gebraucht" || art === "wieder" || art === "unklar");
 
 const EVB_IN_NACHRICHT: Record<Evb, string> = {
-  ja: "vorhanden",
-  vergleich: "vorhanden",
-  nein: "noch nicht vorhanden",
+  ja: "Eine eVB-Nummer habe ich schon.",
+  vergleich: "Eine eVB-Nummer habe ich, ich schaue aber noch nach einer günstigeren Versicherung.",
+  nein: "Eine eVB-Nummer habe ich noch nicht.",
 };
 
-const ART_IN_NACHRICHT: Record<Art, string> = {
-  neu: "Neuwagen (Neuzulassung)",
-  gebraucht: "Gebrauchtwagen gekauft (Umschreibung)",
-  wieder: "Abgemeldetes Fahrzeug wieder anmelden",
-  umzug: "Umzug – Adresse im Fahrzeugschein ändern",
-  unklar: "weiß ich noch nicht genau",
-  kurzzeit: "Kurzzeitkennzeichen",
-  ausfuhr: "Ausfuhrkennzeichen",
+/** Erster Satz der Nachricht – so, wie ein Kunde es selbst schreiben würde */
+const ZULASSEN_IN_NACHRICHT: Record<Art, string> = {
+  neu: "Hallo! Ich möchte einen Neuwagen zulassen.",
+  gebraucht: "Hallo! Ich habe ein Auto übernommen (gekauft, geschenkt oder geerbt) und möchte es auf mich zulassen.",
+  wieder: "Hallo! Ich möchte mein abgemeldetes Auto wieder anmelden.",
+  umzug: "Hallo! Ich bin umgezogen und möchte die Adresse im Fahrzeugschein ändern lassen.",
+  unklar: "Hallo! Ich möchte ein Fahrzeug zulassen, weiß aber nicht genau, welcher Fall das ist.",
+  kurzzeit: "Hallo! Ich brauche ein Kurzzeitkennzeichen.",
+  ausfuhr: "Hallo! Ich brauche ein Ausfuhrkennzeichen.",
 };
 
 /** Paketnamen, wie sie von der Preisseite (?paket=…) mitkommen */
@@ -98,55 +99,47 @@ export interface AnfrageAntworten {
   art?: Art;
   evb?: Evb;
   paket?: string;
+  /** Kommt von der Wunschkennzeichen-Seite (?wunsch=1) */
+  wunsch?: boolean;
 }
 
-export const baueNachricht = ({ vorgang, art, evb, paket }: AnfrageAntworten): string => {
-  const paketZeile =
-    paket && PAKET_IN_NACHRICHT[paket] && vorgang !== "sonder"
-      ? `Gewünschtes Paket: ${PAKET_IN_NACHRICHT[paket]}`
-      : null;
-
+export const baueNachricht = ({ vorgang, art, evb, paket, wunsch }: AnfrageAntworten): string => {
   if (vorgang === "verkaufen") {
     return [
-      "Hallo, ich möchte ein Fahrzeug verkaufen.",
+      "Hallo! Ich möchte mein Auto an Sie verkaufen.",
       "",
       "Marke/Modell: ",
       "Baujahr: ",
       "Kilometerstand: ",
       "",
-      "Fotos hänge ich gleich an.",
+      "Fotos schicke ich gern hinterher.",
     ].join("\n");
   }
 
   if (vorgang === "frage") {
-    return "Hallo, ich habe eine Frage zur KFZ-Zulassung: ";
+    return "Hallo! Ich habe eine Frage zur KFZ-Zulassung: ";
   }
 
-  const wasZeile =
+  const ersteZeile =
     vorgang === "abmelden"
-      ? "Hallo, ich möchte ein Fahrzeug abmelden."
+      ? "Hallo! Ich möchte mein Auto abmelden."
       : vorgang === "sonder"
-        ? art === "kurzzeit"
-          ? "Hallo, ich brauche ein Kurzzeitkennzeichen."
-          : art === "ausfuhr"
-            ? "Hallo, ich brauche ein Ausfuhrkennzeichen."
-            : "Hallo, ich brauche ein Kurzzeit- oder Ausfuhrkennzeichen."
-        : "Hallo, ich möchte ein Fahrzeug zulassen.";
-  // Bei Sonderkennzeichen steht alles schon in der ersten Zeile
-  const mitArt = vorgang === "zulassen" && art;
-  const evbZeile = evb && brauchtEvbFrage({ vorgang, art }) ? `eVB-Nummer: ${EVB_IN_NACHRICHT[evb]}` : null;
+        ? art === "kurzzeit" || art === "ausfuhr"
+          ? ZULASSEN_IN_NACHRICHT[art]
+          : "Hallo! Ich brauche ein Kurzzeit- oder Ausfuhrkennzeichen."
+        : art
+          ? ZULASSEN_IN_NACHRICHT[art]
+          : "Hallo! Ich möchte ein Fahrzeug zulassen.";
+  const evbZeile = evb && brauchtEvbFrage({ vorgang, art }) ? EVB_IN_NACHRICHT[evb] : null;
+  const wunschZeile = wunsch && vorgang === "zulassen" ? "Ich hätte gern ein Wunschkennzeichen (LIP, DT oder LE)." : null;
+  const paketZeile =
+    paket && PAKET_IN_NACHRICHT[paket] && vorgang !== "sonder"
+      ? `Am liebsten mit dem Paket ${PAKET_IN_NACHRICHT[paket]}.`
+      : null;
 
-  return [
-    wasZeile,
-    "",
-    mitArt ? `Vorgang: ${ART_IN_NACHRICHT[mitArt]}` : null,
-    evbZeile,
-    paketZeile,
-  ]
+  return [ersteZeile, evbZeile, wunschZeile, paketZeile, "Wie geht es weiter?"]
     .filter((zeile) => zeile !== null)
-    .join("\n")
-    .replace(/\n{3,}/g, "\n\n")
-    .trim();
+    .join("\n");
 };
 
 export const whatsappLink = (nachricht: string) =>

@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom";
 const WhatsAppFloatingButton = () => {
   const location = useLocation();
 
-  if (location.pathname === "/impressum" || location.pathname === "/datenschutz") {
+  // Auf /angebot steht die fertige Nachricht schon bereit – ein zweiter Knopf würde ablenken
+  if (location.pathname === "/impressum" || location.pathname === "/datenschutz" || location.pathname === "/angebot") {
     return null;
   }
 
@@ -16,7 +17,7 @@ const WhatsAppFloatingButton = () => {
       </div>
 
       <a
-        href="https://wa.me/4915142462280?text=Hallo%2C%20ich%20habe%20eine%20Frage%20zu%20Zulassung%20und%2Foder%20Fahrzeugankauf."
+        href="https://wa.me/4915142462280?text=Hallo!%20Ich%20habe%20eine%20Frage.%20Es%20geht%20um%3A%20"
         target="_blank"
         rel="noreferrer"
         aria-label="Jetzt per WhatsApp schreiben"

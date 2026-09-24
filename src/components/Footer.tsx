@@ -29,7 +29,7 @@ const Footer = () => {
             </div>
             <p className="text-sm text-secondary-foreground/85 mb-5 max-w-xl">
               Ihr Zulassungsdienst in Bad Salzuflen für den ganzen Kreis Lippe – ohne Termin,
-              Montag bis Samstag. Zulassen, ummelden, abmelden und Wunschkennzeichen.
+              Mo–Fr 9–18 und Sa 15–18 Uhr. Zulassen, ummelden, abmelden und Wunschkennzeichen.
             </p>
             {/* Name, Adresse, Telefon: überall exakt gleich wie im Google-Profil */}
             <address className="not-italic space-y-2.5 text-sm">

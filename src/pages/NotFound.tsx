@@ -35,7 +35,7 @@ const NotFound = () => {
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button size="lg" variant="cta" asChild>
               <Link to="/angebot">
-                Zulassung starten
+                Jetzt anfragen
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

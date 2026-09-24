@@ -95,7 +95,7 @@ const Header = () => {
           </Link>
 
           <Button variant="cta" asChild className="hidden lg:inline-flex whitespace-nowrap rounded-full px-6">
-            <Link to="/angebot">Zulassung starten</Link>
+            <Link to="/angebot">Jetzt anfragen</Link>
           </Button>
 
           <button
