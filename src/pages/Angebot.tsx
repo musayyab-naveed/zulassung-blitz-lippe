@@ -88,9 +88,9 @@ const Karte = <T extends string>({ option, onWahl }: { option: Auswahl<T>; onWah
   <button
     type="button"
     onClick={() => onWahl(option.wert)}
-    className="group flex w-full items-center gap-4 rounded-2xl border border-border bg-background p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-md sm:p-5"
+    className="group flex w-full items-center gap-4 rounded-2xl border-2 border-primary/25 bg-[hsl(197_100%_98%)] p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-[hsl(var(--cta-orange))] hover:bg-white hover:shadow-md sm:p-5"
   >
-    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-primary/10 text-primary">
+    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-secondary text-primary transition-colors group-hover:bg-[hsl(var(--cta-orange))] group-hover:text-white">
       {ICONS[option.wert]}
     </span>
     <span className="flex-1">
@@ -134,33 +134,33 @@ const PreisKasten = ({ vorgang, paket }: { vorgang?: Vorgang; paket?: string | n
               ];
 
   return (
-    <div className="rounded-2xl border border-primary/30 bg-background p-5 shadow-sm">
-      <h2 className="mb-3 text-lg font-bold text-secondary">Was es kostet</h2>
+    <div className="rounded-2xl bg-secondary p-5 text-white shadow-lg">
+      <h2 className="mb-3 text-lg font-bold text-white">Was es kostet</h2>
       <ul className="space-y-2">
         {zeilen.map((zeile) => (
           <li
             key={zeile.name}
             className={`flex items-baseline justify-between gap-3 rounded-lg px-2 py-1.5 text-sm ${
-              zeile.key && zeile.key === paket ? "bg-primary/10 font-semibold" : ""
+              zeile.key && zeile.key === paket ? "bg-white/15 font-semibold" : ""
             }`}
           >
-            <span className="text-secondary">{zeile.name}</span>
-            <span className="whitespace-nowrap font-bold text-secondary">{zeile.preis}</span>
+            <span className="text-white/90">{zeile.name}</span>
+            <span className="whitespace-nowrap font-bold text-primary">{zeile.preis}</span>
           </li>
         ))}
       </ul>
       {vorgang !== "verkaufen" && (
-        <p className="mt-3 text-sm text-secondary">
+        <p className="mt-3 text-sm text-white/85">
           Alle Preise inklusive Gebühren des Kreises.{" "}
-          <span className="font-semibold">
+          <span className="font-semibold text-white">
             Bezahlt wird erst, wenn alles fertig ist – also wenn Ihr Auto zugelassen oder abgemeldet ist.
           </span>
         </p>
       )}
       {vorgang === "verkaufen" && (
-        <p className="mt-3 text-sm text-secondary">Sie entscheiden erst, wenn Sie unser Angebot kennen.</p>
+        <p className="mt-3 text-sm text-white/85">Sie entscheiden erst, wenn Sie unser Angebot kennen.</p>
       )}
-      <p className="mt-3 border-t border-border pt-3 text-sm font-semibold text-secondary">
+      <p className="mt-3 border-t border-white/20 pt-3 text-sm font-semibold text-white">
         <span className="text-[hsl(var(--cta-orange))]">★★★★★</span> 5,0 · {BUSINESS.reviewCount} Google-Bewertungen
       </p>
     </div>
@@ -260,8 +260,12 @@ const Angebot = () => {
       />
       <Header />
 
-      <section className="bg-muted/40 py-8 sm:py-12">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:grid lg:max-w-5xl lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start lg:gap-8">
+      <section className="bg-gradient-to-b from-[hsl(197_100%_90%)] via-[hsl(197_90%_95%)] to-background py-8 sm:py-12">
+        <div
+          className={`mx-auto max-w-2xl px-4 sm:px-6 ${
+            schritt === "fertig" ? "lg:grid lg:max-w-5xl lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start lg:gap-8" : ""
+          }`}
+        >
           <div>
           {schritt === "was" && (
             <div className="mb-6 text-center">
@@ -288,7 +292,15 @@ const Angebot = () => {
             </div>
           )}
 
-          <div className="rounded-3xl border border-border bg-background p-5 shadow-sm sm:p-8">
+          <div className="overflow-hidden rounded-3xl border border-primary/30 bg-background shadow-lg">
+            {/* Farbiger Fortschrittsbalken */}
+            <div className="h-2 bg-primary/20">
+              <div
+                className="h-full bg-[hsl(var(--cta-orange))] transition-all"
+                style={{ width: `${schritt === "fertig" ? 100 : Math.round((aktuellerSchritt / (gesamtSchritte + 1)) * 100)}%` }}
+              />
+            </div>
+            <div className="p-5 sm:p-8">
             {/* Kopf: Zurück + Fortschritt */}
             <div className="mb-5 flex items-center justify-between gap-3">
               {schritt !== "was" || vonPreise ? (
@@ -304,7 +316,7 @@ const Angebot = () => {
                 <span />
               )}
               {schritt !== "fertig" && gesamtSchritte > 1 && (
-                <span className="text-sm font-semibold text-secondary">
+                <span className="rounded-full bg-secondary px-3 py-1 text-sm font-semibold text-white">
                   Schritt {aktuellerSchritt} von {gesamtSchritte}
                 </span>
               )}
@@ -539,10 +551,11 @@ const Angebot = () => {
                 </div>
               </div>
             )}
+            </div>
           </div>
 
           {schritt !== "fertig" && (
-            <p className="mt-4 text-center text-sm text-muted-foreground">
+            <p className="mt-4 text-center text-sm text-secondary">
               Lieber direkt sprechen?{" "}
               <a href={TELEFON_LINK} className="font-semibold text-link hover:underline">
                 {TELEFON_ANZEIGE}
@@ -551,10 +564,12 @@ const Angebot = () => {
           )}
           </div>
 
-          {/* Preis immer sichtbar rechts (nur Computer) */}
-          <aside className="hidden lg:sticky lg:top-44 lg:block">
-            <PreisKasten vorgang={vorgang} paket={paket} />
-          </aside>
+          {/* Preis rechts neben der fertigen Nachricht (nur Computer) */}
+          {schritt === "fertig" && (
+            <aside className="hidden lg:sticky lg:top-44 lg:block">
+              <PreisKasten vorgang={vorgang} paket={paket} />
+            </aside>
+          )}
         </div>
       </section>
 
