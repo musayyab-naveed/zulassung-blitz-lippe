@@ -5,6 +5,7 @@ import logo400 from "@/assets/logo-400.webp";
 import logo640 from "@/assets/logo-640.webp";
 import { CONSENT_OEFFNEN_EVENT } from "@/lib/consent";
 import { ALLE_ORTE_LIPPE, ORTSSEITEN } from "@/content/ortsseiten";
+import { BUSINESS } from "@/content/seoRoutes";
 
 const Footer = () => {
   return (
@@ -62,6 +63,17 @@ const Footer = () => {
                   <br />
                   Online-Zulassung rund um die Uhr
                 </span>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="w-4 flex-none text-center text-[hsl(var(--cta-orange))]">★</span>
+                <a
+                  href={BUSINESS.bewertungsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary-foreground/80 hover:text-secondary-foreground transition-colors"
+                >
+                  Zufrieden? Bewertung bei Google schreiben
+                </a>
               </p>
             </address>
           </div>

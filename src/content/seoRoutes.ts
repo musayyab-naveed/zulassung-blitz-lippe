@@ -26,6 +26,9 @@ export const BUSINESS = {
   ratingValue: "5.0",
   reviewCount: 54,
   mapsUrl: "https://maps.google.com/?cid=14697603500579775973",
+  /** Direktlink zum Bewertungsformular des Google-Unternehmensprofils */
+  bewertungsUrl: "https://g.page/r/CeVlmDWDYPjLEBM/review",
+  inhaber: "Mohammad Massyh Haqparwar",
   openingHours: [
     { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },
     { days: ["Saturday"], opens: "15:00", closes: "18:00" },

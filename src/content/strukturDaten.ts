@@ -46,6 +46,7 @@ export const localBusinessSchema = () => ({
   image: `${SITE_URL}${OG_IMAGE}`,
   logo: `${SITE_URL}/logo.png`,
   sameAs: [GOOGLE_MAPS_URL],
+  founder: { "@type": "Person", name: BUSINESS.inhaber },
   telephone: BUSINESS.phone,
   email: BUSINESS.email,
   priceRange: BUSINESS.priceRange,

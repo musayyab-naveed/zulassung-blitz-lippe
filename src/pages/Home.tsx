@@ -431,7 +431,17 @@ const Home = () => {
             <p className="section-subtitle">Die häufigsten Fragen unserer Kunden – einfach erklärt</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {RATGEBER.slice(0, 3).map((artikel) => (
+            {[
+              "auto-ummelden-nach-autokauf",
+              "auto-abmelden-lippe",
+              "neuwagen-zulassen-lippe",
+              "umzug-auto-ummelden-lippe",
+              "dt-le-kennzeichen-lippe",
+              "kein-termin-zulassungsstelle-lippe",
+            ]
+              .map((slug) => RATGEBER.find((a) => a.slug === slug))
+              .filter((artikel): artikel is (typeof RATGEBER)[number] => Boolean(artikel))
+              .map((artikel) => (
               <Link
                 key={artikel.slug}
                 to={ratgeberPfad(artikel.slug)}
