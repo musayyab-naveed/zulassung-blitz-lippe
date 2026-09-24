@@ -11,7 +11,6 @@ export const ZULASSUNGSSERVICE: MenuePunkt[] = [
   { name: "Auto anmelden", href: "/auto-anmelden" },
   { name: "Auto abmelden", href: "/auto-abmelden" },
   { name: "Auto ummelden", href: "/auto-ummelden" },
-  { name: "Wunschkennzeichen LIP, DT, LE", href: "/wunschkennzeichen" },
   { name: "Kurzzeit- & Ausfuhrkennzeichen", href: "/angebot?vorgang=sonder" },
   { name: "Saisonkennzeichen", href: "/ratgeber/saisonkennzeichen" },
   { name: "Hol- und Bringservice", href: "/preise" },

@@ -99,7 +99,7 @@ const Home = () => {
                 {["Ohne Termin", "Mo–Fr 9–18 · Sa 15–18 Uhr", "Online rund um die Uhr"].map((punkt) => (
                   <li
                     key={punkt}
-                    className="rounded-full bg-primary-foreground/20 px-3 py-2 text-xs font-medium text-secondary backdrop-blur-sm sm:px-4 sm:text-sm"
+                    className="rounded-full bg-white/15 px-3 py-2 text-xs font-medium text-white backdrop-blur-sm sm:px-4 sm:text-sm"
                   >
                     ✓ {punkt}
                   </li>
