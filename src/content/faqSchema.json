@@ -306,5 +306,31 @@
       "question": "Ich wohne nicht in Bad Salzuflen – geht das trotzdem?",
       "answer": "Ja. Wir lassen für den ganzen Kreis Lippe zu, also auch für Detmold, Lemgo, Lage und alle anderen Orte. Sie können auch die Unterlagen schicken; beim PREMIUM-Paket ist der Express-Rückversand inklusive."
     }
+  ],
+  "/dokumente": [
+    {
+      "question": "Wann brauche ich eine Vollmacht für die Zulassung?",
+      "answer": "Immer dann, wenn nicht der Halter selbst die Zulassung erledigt – zum Beispiel, wenn Sie das Auto für Eltern oder Partner anmelden oder uns die Unterlagen zuschicken. Die Vollmacht muss der Halter unterschreiben; dazu kommt sein Ausweis oder eine Kopie davon."
+    },
+    {
+      "question": "Wofür ist das SEPA-Lastschriftmandat?",
+      "answer": "Damit bucht der Zoll die KFZ-Steuer von Ihrem Konto ab. Es wird bei jeder Zulassung gebraucht und muss vom Kontoinhaber unterschrieben sein."
+    },
+    {
+      "question": "Was ist der Antrag auf Außerbetriebsetzung?",
+      "answer": "Das ist der Antrag für die Abmeldung eines Fahrzeugs. Sie brauchen ihn nur, wenn Sie uns die Unterlagen zuschicken. Kommen Sie vorbei, füllen wir alles gemeinsam aus."
+    },
+    {
+      "question": "Mein Fahrzeugschein ist weg – welches Formular brauche ich?",
+      "answer": "Bei Verlust ist eine Erklärung zum Verbleib der Zulassungsbescheinigung nötig. Die füllen wir mit Ihnen vor Ort aus. Was sonst noch nötig ist, steht in unserem Ratgeber zu verlorenen Fahrzeugpapieren."
+    },
+    {
+      "question": "Brauche ich für ein Kurzzeitkennzeichen ein Formular?",
+      "answer": "Den Antrag füllen wir mit Ihnen gemeinsam aus. Wichtig ist eine eigene eVB-Nummer für Kurzzeitkennzeichen – die normale eVB passt hier nicht."
+    },
+    {
+      "question": "Muss ich die Formulare vorher ausdrucken?",
+      "answer": "Nein. Wenn Sie persönlich vorbeikommen, füllen wir alles gemeinsam vor Ort aus. Die Formulare brauchen Sie nur, wenn Sie uns die Unterlagen zuschicken oder jemand anderes für Sie kommt."
+    }
   ]
 }

@@ -492,6 +492,253 @@ export const RATGEBER: RatgeberArtikel[] = [
       { href: "/auto-abmelden", text: "Auto abmelden ohne Termin" },
     ],
   },
+  {
+    slug: "auto-ummelden-nach-autokauf",
+    seoTitel: "Gebrauchtwagen gekauft: Auto ummelden in Lippe",
+    beschreibung:
+      "Gebrauchtwagen gekauft – was jetzt? Welche Unterlagen Sie zum Ummelden brauchen, ob die Kennzeichen dranbleiben und wie es in Lippe ohne Termin geht.",
+    h1: "Gebrauchtwagen gekauft: So melden Sie das Auto in Lippe um",
+    kurzantwort:
+      "Nach dem Kauf muss das Auto auf Sie umgeschrieben werden – und zwar zügig. Sie brauchen Ausweis, eVB-Nummer, Fahrzeugschein, Fahrzeugbrief und Ihre IBAN für die KFZ-Steuer. Bei uns in Bad Salzuflen geht das ohne Termin: 99 €, wenn die Kennzeichen dranbleiben, 129 € mit neuen Kennzeichen.",
+    veroeffentlicht: "2026-09-24",
+    aktualisiert: "2026-09-24",
+    lesezeitMinuten: 3,
+    abschnitte: [
+      {
+        titel: "Diese Unterlagen brauchen Sie",
+        punkte: [
+          "Personalausweis oder Reisepass",
+          "eVB-Nummer Ihrer neuen Kfz-Versicherung",
+          "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+          "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
+          "Ihre IBAN – davon bucht der Zoll die KFZ-Steuer ab",
+          "Die bisherigen Kennzeichen, falls das Auto noch angemeldet ist",
+        ],
+        link: { href: "/faq", text: "Alle Checklisten zur Zulassung" },
+      },
+      {
+        titel: "Bleiben die Kennzeichen dran?",
+        absaetze: [
+          "Oft ja: Ist das Auto noch angemeldet und Sie möchten das Kennzeichen behalten, bleibt es einfach dran – das ist eine Ummeldung für 99 €. Möchten Sie neue Kennzeichen, zum Beispiel ein Wunschkennzeichen mit LIP, DT oder LE, kostet die Zulassung 129 €.",
+          "Ob in Ihrem Fall die alten Kennzeichen bleiben können, sagen wir Ihnen kurz per WhatsApp.",
+        ],
+      },
+      {
+        titel: "Warum Sie nicht zu lange warten sollten",
+        absaetze: [
+          "Das Gesetz verlangt, dass Sie den Halterwechsel unverzüglich melden. Solange das Auto noch auf den Verkäufer läuft, bekommt er Steuerbescheide und Post – das sorgt schnell für Ärger auf beiden Seiten.",
+        ],
+      },
+      {
+        titel: "So geht es bei uns",
+        punkte: [
+          "Kurz per WhatsApp Bescheid geben oder direkt vorbeikommen – ohne Termin.",
+          "Werler Straße 68, 32105 Bad Salzuflen, Mo–Fr 9–18 Uhr und Sa 15–18 Uhr.",
+          "Bezahlt wird erst, wenn alles fertig ist.",
+        ],
+        link: { href: "/auto-ummelden", text: "Auto ummelden ohne Termin" },
+      },
+    ],
+    cta: {
+      text: "Gebrauchtwagen gekauft? Wir melden ihn für Sie um – ohne Termin, für den ganzen Kreis Lippe.",
+      href: "/angebot?vorgang=zulassen&art=gebraucht",
+      button: "UMMELDUNG ANFRAGEN",
+    },
+    verwandt: [
+      { href: "/evb-nummer", text: "eVB-Nummer: was sie ist und wie Sie sie bekommen" },
+      { href: "/preise", text: "Alle Preise im Überblick" },
+    ],
+  },
+  {
+    slug: "auto-abmelden-lippe",
+    seoTitel: "Auto abmelden im Kreis Lippe – ohne Termin",
+    beschreibung:
+      "Auto abmelden im Kreis Lippe: welche Unterlagen Sie brauchen, was mit Steuer und Versicherung passiert und wie die Sofortabmeldung ohne Termin funktioniert.",
+    h1: "Auto abmelden im Kreis Lippe – was Sie brauchen und wie es ohne Termin geht",
+    kurzantwort:
+      "Zum Abmelden brauchen Sie den Fahrzeugschein und beide Kennzeichen. Den Fahrzeugbrief brauchen Sie dafür nicht. Mit den Sicherheitscodes auf Fahrzeugschein und Plaketten (Zulassung ab 2015) melden wir Ihr Auto bei uns in Bad Salzuflen sofort ab – für 40 €, ohne Termin.",
+    veroeffentlicht: "2026-09-24",
+    aktualisiert: "2026-09-24",
+    lesezeitMinuten: 3,
+    abschnitte: [
+      {
+        titel: "Diese Unterlagen brauchen Sie",
+        punkte: [
+          "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+          "Beide Kennzeichenschilder",
+          "Personalausweis oder Reisepass",
+          "Bei Verschrottung: den Verwertungsnachweis",
+        ],
+      },
+      {
+        titel: "Was mit Steuer und Versicherung passiert",
+        absaetze: [
+          "Mit der Abmeldung endet die KFZ-Steuer – der Zoll wird automatisch informiert. Auch Ihre Versicherung erfährt von der Abmeldung. Sie müssen dafür nichts extra unternehmen.",
+        ],
+      },
+      {
+        titel: "Sofortabmeldung mit Sicherheitscodes",
+        absaetze: [
+          "Fahrzeuge, die ab 2015 zugelassen wurden, haben verdeckte Sicherheitscodes auf dem Fahrzeugschein und auf den Plaketten der Kennzeichen. Nicht freirubbeln – das machen wir. Damit ist das Auto in wenigen Minuten abgemeldet.",
+          "Keine Codes oder schon freigerubbelt? Dann melden wir klassisch bis zum nächsten Werktag ab.",
+        ],
+      },
+      {
+        titel: "Auto verkaufen statt nur abmelden?",
+        absaetze: [
+          "Wir kaufen auch Autos an – auch nicht fahrbereite. Beim Ankauf ist die Abmeldung für Sie kostenlos. Holen Sie sich einfach ein unverbindliches Angebot.",
+        ],
+        link: { href: "/fahrzeugankauf", text: "Unverbindliches Angebot holen" },
+      },
+    ],
+    cta: {
+      text: "Auto abmelden ohne Termin – Sofortabmeldung für 40 €, beim Ankauf kostenlos.",
+      href: "/angebot?vorgang=abmelden",
+      button: "ABMELDUNG ANFRAGEN",
+    },
+    verwandt: [
+      { href: "/auto-abmelden", text: "Auto abmelden ohne Termin" },
+      { href: "/ratgeber/fahrzeugpapiere-verloren", text: "Fahrzeugschein oder -brief verloren?" },
+    ],
+  },
+  {
+    slug: "umzug-auto-ummelden-lippe",
+    seoTitel: "Umzug nach Lippe: Auto ummelden, Kennzeichen behalten?",
+    beschreibung:
+      "Umgezogen in den Kreis Lippe oder innerhalb von Lippe? Ob Sie Ihr Kennzeichen behalten dürfen, welche Unterlagen nötig sind und was die Adressänderung kostet.",
+    h1: "Umgezogen: Auto ummelden in Lippe – und darf das Kennzeichen bleiben?",
+    kurzantwort:
+      "Nach einem Umzug müssen Sie die neue Adresse in den Fahrzeugschein eintragen lassen. Ihr bisheriges Kennzeichen dürfen Sie seit 2015 behalten – auch wenn Sie aus einem anderen Kreis nach Lippe ziehen. Bei uns kostet die Adressänderung 99 € inklusive Gebühren, ohne Termin.",
+    veroeffentlicht: "2026-09-24",
+    aktualisiert: "2026-09-24",
+    lesezeitMinuten: 3,
+    abschnitte: [
+      {
+        titel: "Diese Unterlagen brauchen Sie",
+        punkte: [
+          "Personalausweis mit der neuen Adresse (vorher im Bürgerbüro ummelden)",
+          "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
+          "Nur wenn Sie neue Kennzeichen möchten: zusätzlich den Fahrzeugbrief und die bisherigen Schilder",
+        ],
+      },
+      {
+        titel: "Kennzeichen behalten oder wechseln?",
+        absaetze: [
+          "Sie können Ihr altes Kennzeichen behalten, auch wenn es aus einem anderen Kreis stammt. Wer lieber ein Lippe-Kennzeichen möchte, kann LIP, DT oder LE wählen – dann kommen neue Schilder dazu und es wird eine Zulassung mit Kennzeichen für 129 €.",
+        ],
+        link: { href: "/ratgeber/dt-le-kennzeichen-lippe", text: "DT und LE: Kennzeichen in Lippe" },
+      },
+      {
+        titel: "Erst Bürgerbüro, dann Auto",
+        absaetze: [
+          "Melden Sie zuerst Ihren Wohnsitz im Bürgerbüro Ihrer neuen Stadt um. Erst mit der neuen Adresse im Ausweis kann die Adresse im Fahrzeugschein geändert werden.",
+        ],
+      },
+    ],
+    cta: {
+      text: "Neue Adresse in den Fahrzeugschein – 99 €, ohne Termin, für den ganzen Kreis Lippe.",
+      href: "/angebot?vorgang=zulassen&art=umzug",
+      button: "ADRESSÄNDERUNG ANFRAGEN",
+    },
+    verwandt: [
+      { href: "/auto-ummelden", text: "Auto ummelden ohne Termin" },
+      { href: "/preise", text: "Alle Preise im Überblick" },
+    ],
+  },
+  {
+    slug: "neuwagen-zulassen-lippe",
+    seoTitel: "Neuwagen zulassen in Lippe – Unterlagen und Ablauf",
+    beschreibung:
+      "Neuwagen zulassen im Kreis Lippe: welche Unterlagen Sie vom Autohaus brauchen, wie Sie an die eVB-Nummer kommen und wie die Zulassung ohne Termin läuft.",
+    h1: "Neuwagen zulassen im Kreis Lippe – Unterlagen und Ablauf",
+    kurzantwort:
+      "Für einen Neuwagen brauchen Sie Ausweis, eVB-Nummer, den Fahrzeugbrief und die COC-Papiere vom Autohaus sowie Ihre IBAN für die KFZ-Steuer. Bei uns in Bad Salzuflen kostet die Zulassung 129 € inklusive Gebühren – ohne Termin, digital in ca. 20 Minuten oder mit Kennzeichen bis zum nächsten Werktag.",
+    veroeffentlicht: "2026-09-24",
+    aktualisiert: "2026-09-24",
+    lesezeitMinuten: 3,
+    abschnitte: [
+      {
+        titel: "Diese Unterlagen brauchen Sie",
+        punkte: [
+          "Personalausweis oder Reisepass",
+          "eVB-Nummer Ihrer Kfz-Versicherung",
+          "Fahrzeugbrief (Zulassungsbescheinigung Teil II) vom Autohaus",
+          "COC-Papiere (Übereinstimmungsbescheinigung) vom Autohaus",
+          "Ihre IBAN – davon bucht der Zoll die KFZ-Steuer ab",
+        ],
+      },
+      {
+        titel: "SOFORT oder mit Kennzeichen?",
+        absaetze: [
+          "Bei SOFORT sind Sie in ca. 20 Minuten zugelassen – die Schilder besorgen Sie selbst, ob vorher oder nachher, entscheiden Sie. Bei BASIS sind die Schilder dabei, dann ist alles am nächsten Werktag fertig. Beides kostet 129 €.",
+        ],
+        link: { href: "/preise", text: "Die Pakete im Vergleich" },
+      },
+      {
+        titel: "Noch keine Versicherung?",
+        absaetze: [
+          "Ohne eVB-Nummer geht keine Zulassung. Die bekommen Sie mit dem Abschluss einer Kfz-Versicherung – oft innerhalb weniger Minuten.",
+        ],
+        link: { href: "/kfz-versicherung", text: "Kfz-Versicherung vergleichen" },
+      },
+    ],
+    cta: {
+      text: "Neuwagen zulassen ohne Termin – für den ganzen Kreis Lippe.",
+      href: "/angebot?vorgang=zulassen&art=neu",
+      button: "ZULASSUNG ANFRAGEN",
+    },
+    verwandt: [
+      { href: "/auto-anmelden", text: "Auto anmelden ohne Termin" },
+      { href: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT oder LE" },
+    ],
+  },
+  {
+    slug: "auto-fuer-andere-anmelden-vollmacht",
+    seoTitel: "Auto für jemand anderen anmelden: Vollmacht & Unterlagen",
+    beschreibung:
+      "Sie melden ein Auto für Eltern, Partner oder Kinder an? Welche Vollmacht und welche Unterlagen Sie brauchen – mit Vordruck zum Ausdrucken.",
+    h1: "Auto für jemand anderen anmelden – Vollmacht und Unterlagen",
+    kurzantwort:
+      "Sie können ein Auto auch für jemand anderen anmelden, ummelden oder abmelden. Dafür brauchen Sie eine vom Halter unterschriebene Vollmacht, seinen Ausweis oder eine Kopie davon und Ihren eigenen Ausweis. Für die Anmeldung kommen eVB-Nummer, Fahrzeugpapiere und ein SEPA-Mandat des Kontoinhabers dazu.",
+    veroeffentlicht: "2026-09-24",
+    aktualisiert: "2026-09-24",
+    lesezeitMinuten: 3,
+    abschnitte: [
+      {
+        titel: "Das brauchen Sie immer",
+        punkte: [
+          "Vollmacht, vom Halter unterschrieben",
+          "Ausweis des Halters oder eine Kopie davon",
+          "Ihren eigenen Ausweis",
+        ],
+        link: { href: "/dokumente", text: "Vollmacht und SEPA-Mandat zum Ausdrucken" },
+      },
+      {
+        titel: "Zusätzlich für die Anmeldung",
+        punkte: [
+          "eVB-Nummer – die Versicherung muss auf den Halter laufen",
+          "Fahrzeugschein und Fahrzeugbrief, bei Neuwagen die COC-Papiere",
+          "SEPA-Lastschriftmandat für die KFZ-Steuer, vom Kontoinhaber unterschrieben",
+        ],
+      },
+      {
+        titel: "Für Firmenwagen",
+        absaetze: [
+          "Ist eine Firma der Halter, kommt meist die Gewerbeanmeldung oder ein Handelsregisterauszug dazu. Für Autohändler und Firmen mit mehreren Fahrzeugen haben wir eine eigene Seite.",
+        ],
+        link: { href: "/gewerbekunden", text: "Für Firmen und Partner" },
+      },
+    ],
+    cta: {
+      text: "Sie erledigen die Zulassung für einen Angehörigen? Wir helfen – ohne Termin, im ganzen Kreis Lippe.",
+      href: "/angebot",
+      button: "JETZT ANFRAGEN",
+    },
+    verwandt: [
+      { href: "/dokumente", text: "Formulare zum Ausdrucken" },
+      { href: "/faq", text: "Welche Unterlagen brauche ich?" },
+    ],
+  },
 ];
 
 export const findeArtikel = (slug: string | undefined) =>

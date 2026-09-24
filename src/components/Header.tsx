@@ -18,10 +18,22 @@ interface Hauptpunkt {
 }
 
 // Kurzer Menütitel aus der Artikel-Überschrift (Teil vor Gedankenstrich/Doppelpunkt)
-const RATGEBER_MENUE: MenuePunkt[] = RATGEBER.map((artikel) => ({
-  name: artikel.h1.split(/\s[–:]\s|:\s/)[0],
-  href: ratgeberPfad(artikel.slug),
-}));
+// Nur die meistgesuchten Fragen im Menü – alle Artikel stehen auf der Ratgeber-Seite
+const MENUE_ARTIKEL = [
+  "auto-ummelden-nach-autokauf",
+  "auto-abmelden-lippe",
+  "umzug-auto-ummelden-lippe",
+  "neuwagen-zulassen-lippe",
+  "dt-le-kennzeichen-lippe",
+  "kein-termin-zulassungsstelle-lippe",
+  "fahrzeugpapiere-verloren",
+];
+const RATGEBER_MENUE: MenuePunkt[] = MENUE_ARTIKEL.map((slug) => RATGEBER.find((a) => a.slug === slug))
+  .filter((artikel): artikel is (typeof RATGEBER)[number] => Boolean(artikel))
+  .map((artikel) => ({
+    name: artikel.h1.split(/\s[–:]\s|:\s/)[0],
+    href: ratgeberPfad(artikel.slug),
+  }));
 
 // Aufbau wie bei großen Zulassungsdiensten: eigene Menüzeile, Großbuchstaben, Aufklapplisten
 const HAUPTMENUE: Hauptpunkt[] = [

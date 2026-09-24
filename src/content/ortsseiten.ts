@@ -4,8 +4,9 @@ import type { LeistungsSeite } from "./leistungsseiten";
 /**
  * Ortsseiten für den Kreis Lippe (z. B. /zulassungsdienst-detmold).
  *
- * Jede Seite enthält echte, ortsbezogene Angaben: Fahrzeit laut Google Maps
- * (abgefragt am 23.09.2026), nächste Zulassungsstelle und passendes Kennzeichen.
+ * Jede Seite enthält echte, ortsbezogene Angaben: Fahrzeit (erste sechs Orte laut Google Maps,
+ * abgefragt am 23.09.2026; übrige per Routenplaner am 24.09.2026, aufgerundet), nächste
+ * Zulassungsstelle und passendes Kennzeichen.
  * Nur Orte im Kreis Lippe – Herford und Bielefeld bedienen wir nicht.
  */
 
@@ -19,6 +20,8 @@ interface Ort {
   strecke?: string;
   zulassungsstelle: string;
   kennzeichen: string;
+  /** Weiter Weg: Versand der Unterlagen besonders erwähnen */
+  weit?: boolean;
 }
 
 const ORTE: Ort[] = [
@@ -85,6 +88,110 @@ const ORTE: Ort[] = [
     kennzeichen:
       "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Horn-Bad Meinberg.",
   },
+  {
+    slug: "blomberg",
+    name: "Blomberg",
+    einwohner: "Blomberger",
+    fahrzeit: "ca. 40 Minuten",
+    strecke: "rund 37 km",
+    zulassungsstelle:
+      "Blomberg hat keine eigene Zulassungsstelle. Die nächsten sind in Barntrup und Detmold – beide nur mit vorher online gebuchtem Termin.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Blomberg.",
+    weit: true,
+  },
+  {
+    slug: "barntrup",
+    name: "Barntrup",
+    einwohner: "Barntruper",
+    fahrzeit: "ca. 40 Minuten",
+    strecke: "rund 38 km",
+    zulassungsstelle:
+      "In Barntrup gibt es eine Zulassungsstelle des Kreises Lippe. Wie alle drei Zulassungsstellen im Kreis arbeitet sie nur mit vorher online gebuchtem Termin – und Termine gibt es nur 14 Tage im Voraus.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Barntrup.",
+    weit: true,
+  },
+  {
+    slug: "kalletal",
+    name: "Kalletal",
+    einwohner: "Kalletaler",
+    fahrzeit: "ca. 25 Minuten",
+    strecke: "rund 21 km",
+    zulassungsstelle:
+      "Kalletal hat keine eigene Zulassungsstelle. Die nächste ist in Bad Salzuflen – nur mit vorher online gebuchtem Termin.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Kalletal.",
+  },
+  {
+    slug: "extertal",
+    name: "Extertal",
+    einwohner: "Extertaler",
+    fahrzeit: "ca. 40 Minuten",
+    strecke: "rund 37 km",
+    zulassungsstelle:
+      "Extertal hat keine eigene Zulassungsstelle. Die nächste ist in Barntrup – nur mit vorher online gebuchtem Termin.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Extertal.",
+    weit: true,
+  },
+  {
+    slug: "doerentrup",
+    name: "Dörentrup",
+    einwohner: "Dörentruper",
+    fahrzeit: "ca. 30 Minuten",
+    strecke: "rund 25 km",
+    zulassungsstelle:
+      "Dörentrup hat keine eigene Zulassungsstelle. Die nächste ist in Barntrup – nur mit vorher online gebuchtem Termin.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Dörentrup.",
+  },
+  {
+    slug: "augustdorf",
+    name: "Augustdorf",
+    einwohner: "Augustdorfer",
+    fahrzeit: "ca. 35 Minuten",
+    strecke: "rund 37 km",
+    zulassungsstelle:
+      "Augustdorf hat keine eigene Zulassungsstelle. Die nächste ist in Detmold – nur mit vorher online gebuchtem Termin.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Augustdorf.",
+  },
+  {
+    slug: "schlangen",
+    name: "Schlangen",
+    einwohner: "Schlänger",
+    fahrzeit: "ca. 45 Minuten",
+    zulassungsstelle:
+      "Schlangen hat keine eigene Zulassungsstelle. Die nächste ist in Detmold – nur mit vorher online gebuchtem Termin.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Schlangen.",
+    weit: true,
+  },
+  {
+    slug: "luegde",
+    name: "Lügde",
+    einwohner: "Lügder",
+    fahrzeit: "ca. 55 Minuten",
+    strecke: "rund 52 km",
+    zulassungsstelle:
+      "Lügde hat keine eigene Zulassungsstelle. Die nächste ist in Barntrup – nur mit vorher online gebuchtem Termin.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Lügde.",
+    weit: true,
+  },
+  {
+    slug: "schieder-schwalenberg",
+    name: "Schieder-Schwalenberg",
+    einwohner: "Schieder-Schwalenberger",
+    fahrzeit: "ca. 50 Minuten",
+    strecke: "rund 50 km",
+    zulassungsstelle:
+      "Schieder-Schwalenberg hat keine eigene Zulassungsstelle. Die nächsten sind in Barntrup und Detmold – beide nur mit vorher online gebuchtem Termin.",
+    kennzeichen:
+      "Sie können frei zwischen LIP, DT und LE wählen – alle drei gelten im ganzen Kreis Lippe, auch in Schieder-Schwalenberg.",
+    weit: true,
+  },
 ];
 
 /** Alle 16 Städte und Gemeinden im Kreis Lippe – für die Übersicht auf der Startseite */
@@ -137,7 +244,7 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   chips: ["✓ Ohne Termin", `✓ ${ort.fahrzeit} von ${ort.name}`, "✓ ab 99 € inkl. Gebühren", "✓ Mo–Fr 9–18 · Sa 15–18 Uhr"],
   preis: {
     betrag: "ab 99 €",
-    text: "Zulassung inklusive Verwaltungsgebühren. Sofortabmeldung 40 €, Wunschkennzeichen +13 €.",
+    text: "Ummeldung 99 €, Zulassung 129 € – Verwaltungsgebühren inklusive. Sofortabmeldung 40 €, Wunschkennzeichen +13 € (Gebühr des Straßenverkehrsamts).",
   },
   checklisten: ["umschreibung"],
   schritteTitel: `So läuft es für Kunden aus ${ort.name}`,
@@ -158,6 +265,15 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   abschnitte: [
     { titel: `Zulassungsstelle für ${ort.name}`, text: ort.zulassungsstelle },
     { titel: `Kennzeichen für ${ort.name}: LIP, DT oder LE`, text: ort.kennzeichen },
+    ...(ort.weit
+      ? [
+          {
+            titel: `Weiter Weg aus ${ort.name}? Unterlagen einfach schicken`,
+            text: `Von ${ort.name} nach Bad Salzuflen sind es ${ort.fahrzeit}. Sie müssen nicht selbst kommen: Mit dem PREMIUM-Paket schicken Sie uns die Unterlagen, wir erledigen die Zulassung und senden alles per Express zurück. Die Vollmacht zum Ausdrucken finden Sie unter Formulare.`,
+            link: { href: "/dokumente", text: "Vollmacht und SEPA-Mandat zum Ausdrucken" },
+          },
+        ]
+      : []),
     {
       titel: "Was wir für Sie erledigen",
       punkte: [

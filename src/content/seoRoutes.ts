@@ -43,7 +43,7 @@ export interface RouteSeo {
 export const ROUTE_SEO: RouteSeo[] = [
   {
     path: "/",
-    title: "Zulassungsdienst Bad Salzuflen – KFZ-Zulassung ohne Termin",
+    title: "Zulassungsdienst Bad Salzuflen & Kreis Lippe – ohne Termin",
     description:
       `KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr. 5,0 ★ (${BUSINESS.reviewCount}).`,
   },
@@ -121,9 +121,9 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/dokumente",
-    title: "Vollmacht & SEPA-Mandat als PDF zum Ausdrucken",
+    title: "Formulare KFZ-Zulassung Lippe: Vollmacht, SEPA, Abmeldung",
     description:
-      "Vollmacht für Zulassung und Abmeldung sowie SEPA-Lastschriftmandat als PDF herunterladen – für Kunden im Kreis Lippe, die uns ihre Unterlagen zusenden.",
+      "Vollmacht, SEPA-Lastschriftmandat und Antrag auf Außerbetriebsetzung als PDF zum Ausdrucken – mit Erklärung, wann Sie welches Formular brauchen.",
   },
   {
     path: "/ueber-uns",

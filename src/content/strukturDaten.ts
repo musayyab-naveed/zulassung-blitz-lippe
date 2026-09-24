@@ -191,7 +191,7 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
       ];
     case "/auto-ummelden":
       return [
-        dienstleistung(pfad, "Auto ummelden in Bad Salzuflen", "KFZ-Ummeldung", "Halterwechsel, Adressänderung und Umkennzeichnung ohne Termin – digital in ca. 20 Minuten oder bis zum nächsten Werktag.", { wert: "129", ab: true }),
+        dienstleistung(pfad, "Auto ummelden in Bad Salzuflen", "KFZ-Ummeldung", "Halterwechsel, Adressänderung und Umkennzeichnung ohne Termin – digital in ca. 20 Minuten oder bis zum nächsten Werktag.", { wert: "99", ab: true }),
         faqPage(pfad, alsFaqs(pfad)),
       ];
     case "/wunschkennzeichen":
@@ -222,7 +222,7 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
       if (ortsseite) {
         return [
           {
-            ...dienstleistung(pfad, `KFZ-Zulassung für ${ortsseite.ort}`, "KFZ-Zulassungsdienst", ortsseite.seoBeschreibung, { wert: "129", ab: true }),
+            ...dienstleistung(pfad, `KFZ-Zulassung für ${ortsseite.ort}`, "KFZ-Zulassungsdienst", ortsseite.seoBeschreibung, { wert: "99", ab: true }),
             areaServed: { "@type": "City", name: ortsseite.ort },
           },
           faqPage(pfad, ortsseite.faqs),

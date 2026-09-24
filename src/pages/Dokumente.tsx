@@ -5,6 +5,29 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download, FileText, Info, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import faqSchema from "@/content/faqSchema.json";
+
+const FORMULAR_FAQS: { question: string; answer: string }[] = faqSchema["/dokumente"];
+
+/** Formulare, die wir mit dem Kunden vor Ort ausfüllen – mit passendem Ratgeber */
+const VOR_ORT = [
+  {
+    title: "Verlusterklärung (Fahrzeugschein oder -brief verloren)",
+    description: "Die Erklärung zum Verbleib der Papiere füllen wir mit Ihnen gemeinsam aus.",
+    link: { href: "/ratgeber/fahrzeugpapiere-verloren", text: "Was bei verlorenen Papieren zu tun ist" },
+  },
+  {
+    title: "Antrag auf Kurzzeitkennzeichen",
+    description: "Füllen wir mit Ihnen gemeinsam aus. Wichtig: eine eigene eVB-Nummer für Kurzzeitkennzeichen.",
+    link: { href: "/ratgeber/kurzzeitkennzeichen-ausfuhrkennzeichen", text: "Kurzzeit- oder Ausfuhrkennzeichen?" },
+  },
+];
 
 const documents = [
   {
@@ -22,9 +45,9 @@ const documents = [
     hinweis: "IBAN eintragen und unterschreiben.",
   },
   {
-    title: "Antrag für die Abmeldung",
+    title: "Antrag auf Außerbetriebsetzung (Abmeldung)",
     description:
-      "Nur nötig, wenn Sie uns die Unterlagen zuschicken, statt vorbeizukommen.",
+      "Der Antrag für die Abmeldung – nur nötig, wenn Sie uns die Unterlagen zuschicken, statt vorbeizukommen.",
     href: "/documents/Antrag_AB_2026-03.pdf",
     hinweis: "Bitte unterschreiben – zusammen mit einer Ausweiskopie beilegen.",
   },
@@ -41,10 +64,11 @@ const Dokumente = () => {
       <section className="py-12">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
-            <h1 className="section-title mb-3">Formulare zum Ausdrucken</h1>
+            <h1 className="section-title mb-3">Formulare für die KFZ-Zulassung im Kreis Lippe</h1>
             <p className="section-subtitle mx-auto max-w-2xl">
-              Diese Formulare brauchen Sie nur, wenn Sie uns Ihre Unterlagen zusenden.
-              Kommen Sie persönlich vorbei, füllen wir alles gemeinsam vor Ort aus.
+              Vollmacht, SEPA-Lastschriftmandat und Antrag auf Außerbetriebsetzung zum Ausdrucken. Sie brauchen
+              sie nur, wenn Sie uns Ihre Unterlagen zusenden oder jemand anderes für Sie kommt. Kommen Sie
+              persönlich vorbei, füllen wir alles gemeinsam vor Ort aus.
             </p>
           </div>
 
@@ -73,6 +97,21 @@ const Dokumente = () => {
             ))}
           </div>
 
+          <h2 className="mb-4 mt-10 text-xl font-bold text-secondary">Diese Formulare füllen wir mit Ihnen vor Ort aus</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {VOR_ORT.map((formular) => (
+              <Card key={formular.title} className="surface-card">
+                <CardContent className="p-5">
+                  <h3 className="font-bold text-secondary">{formular.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{formular.description}</p>
+                  <Link to={formular.link.href} className="mt-3 inline-block text-sm font-semibold text-link hover:underline">
+                    {formular.link.text} →
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
           <div className="mt-6 flex items-start gap-3 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3.5">
             <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
             <p className="text-sm text-foreground">
@@ -81,6 +120,18 @@ const Dokumente = () => {
               den Express-Rückversand übernehmen wir.
             </p>
           </div>
+
+          <h2 className="mb-4 mt-12 text-xl font-bold text-secondary">Häufige Fragen zu den Formularen</h2>
+          <Accordion type="single" collapsible className="space-y-3">
+            {FORMULAR_FAQS.map((faq, index) => (
+              <AccordionItem key={faq.question} value={`f-${index}`} className="rounded-xl border border-border px-5">
+                <AccordionTrigger className="text-left font-semibold text-secondary hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-sm text-muted-foreground">{faq.answer}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
 
           <div className="mt-10 text-center">
             <p className="mb-4 text-muted-foreground">
