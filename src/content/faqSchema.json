@@ -110,7 +110,7 @@
     },
     {
       "question": "Was kostet die Zulassung?",
-      "answer": "Die Sofort-Zulassung kostet ab 129 Euro, die klassische Zulassung mit Kennzeichen 129 Euro, mit Hol- und Bringservice 159 Euro und die Sofortabmeldung 40 Euro – jeweils inklusive der Verwaltungsgebühren des Kreises Lippe. Alle Details stehen auf der Preisseite."
+      "answer": "Die Ummeldung kostet 99 Euro, die Sofort-Zulassung direkt vor Ort 129 Euro (die Schilder besorgen Sie selbst), die Zulassung mit Kennzeichen 129 Euro, mit Hol- und Bringservice 159 Euro und die Sofortabmeldung 40 Euro – jeweils inklusive der Verwaltungsgebühren des Kreises Lippe. Alle Details stehen auf der Preisseite."
     }
   ],
   "/auto-abmelden": [
@@ -150,7 +150,7 @@
   "/auto-ummelden": [
     {
       "question": "Was kostet es, ein Auto umzumelden?",
-      "answer": "Die Umschreibung eines Gebrauchtwagens auf Ihren Namen kostet bei uns ab 129 € – Verwaltungsgebühren inklusive, bei BASIS und PREMIUM sogar mit Kennzeichen. Für eine reine Adressänderung nennen wir Ihnen den Preis kurz per WhatsApp."
+      "answer": "Die Ummeldung kostet bei uns 99 € inklusive Verwaltungsgebühren – für den Halterwechsel nach dem Autokauf oder eine neue Adresse, wenn Ihre Kennzeichen am Auto bleiben. Brauchen Sie neue Kennzeichen, kostet die Zulassung mit Kennzeichen 129 €."
     },
     {
       "question": "Welche Unterlagen brauche ich beim Gebrauchtwagen?",
@@ -180,7 +180,7 @@
   "/wunschkennzeichen": [
     {
       "question": "Was kostet ein Wunschkennzeichen?",
-      "answer": "Bei uns kommen zur Zulassung 13 € für Ihr Wunschkennzeichen dazu – Reservierung und Gebühr sind damit erledigt."
+      "answer": "Zur Zulassung kommen 13 € dazu – das ist die Gebühr des Straßenverkehrsamts für das Wunschkennzeichen. Die Reservierung erledigen wir für Sie."
     },
     {
       "question": "Welche Kennzeichen gibt es im Kreis Lippe?",
@@ -284,7 +284,7 @@
   "/auto-anmelden": [
     {
       "question": "Was kostet es, ein Auto in Bad Salzuflen anzumelden?",
-      "answer": "Bei uns ab 129 € – die Verwaltungsgebühren des Straßenverkehrsamts sind schon enthalten. Bei BASIS und PREMIUM sind auch die Kennzeichen dabei. Ein Wunschkennzeichen kostet 13 € extra."
+      "answer": "Die Zulassung kostet bei uns 129 € – die Verwaltungsgebühren des Straßenverkehrsamts sind schon enthalten. Bei SOFORT besorgen Sie die Schilder selbst, bei BASIS und PREMIUM sind sie dabei. Haben Sie einen Gebrauchtwagen gekauft und die Kennzeichen bleiben dran, ist es eine Ummeldung für 99 €. Ein Wunschkennzeichen kostet 13 € extra (Gebühr des Straßenverkehrsamts)."
     },
     {
       "question": "Wie schnell ist mein Auto angemeldet?",

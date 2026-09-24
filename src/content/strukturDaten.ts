@@ -181,7 +181,7 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
       ];
     case "/auto-anmelden":
       return [
-        dienstleistung(pfad, "Auto anmelden in Bad Salzuflen", "KFZ-Zulassung", "Neuzulassung, Umschreibung und Wiederzulassung ohne Termin – digital in ca. 20 Minuten oder bis zum nächsten Werktag, inklusive Verwaltungsgebühren.", { wert: "129", ab: true }),
+        dienstleistung(pfad, "Auto anmelden in Bad Salzuflen", "KFZ-Zulassung", "Neuzulassung, Umschreibung und Wiederzulassung ohne Termin – digital in ca. 20 Minuten oder bis zum nächsten Werktag, inklusive Verwaltungsgebühren.", { wert: "99", ab: true }),
         faqPage(pfad, alsFaqs(pfad)),
       ];
     case "/auto-abmelden":

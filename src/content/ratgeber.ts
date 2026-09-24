@@ -426,7 +426,7 @@ export const RATGEBER: RatgeberArtikel[] = [
       "Zulassungsdienst oder selbst zur Zulassungsstelle? Was ein Zulassungsdienst übernimmt, wie der Preis zustande kommt und worauf Sie beim Vergleich achten.",
     h1: "Was macht ein Zulassungsdienst – und was kostet er?",
     kurzantwort:
-      "Ein Zulassungsdienst erledigt den Gang zur Zulassungsstelle für Sie: Sie geben Ihre Unterlagen ab oder kommen kurz vorbei, der Dienst meldet Ihr Fahrzeug an, um oder ab. Der Preis besteht aus den Gebühren des Amts und dem Honorar des Dienstes. Bei uns sind beide zusammen im Endpreis enthalten – ab 129 €.",
+      "Ein Zulassungsdienst erledigt den Gang zur Zulassungsstelle für Sie: Sie geben Ihre Unterlagen ab oder kommen kurz vorbei, der Dienst meldet Ihr Fahrzeug an, um oder ab. Der Preis besteht aus den Gebühren des Amts und dem Honorar des Dienstes. Bei uns sind beide zusammen im Endpreis enthalten – ab 99 € für die Ummeldung, 129 € für die Zulassung.",
     veroeffentlicht: "2026-09-23",
     aktualisiert: "2026-09-23",
     lesezeitMinuten: 4,

@@ -88,7 +88,7 @@ const Home = () => {
                 Zulassungsdienst Bad Salzuflen –<br className="hidden sm:block" /> KFZ-Zulassung ohne Termin für ganz Lippe
               </h1>
               <p className="text-lg sm:text-xl mb-6 font-semibold text-primary-foreground/95">
-                Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag – ab 129 € inklusive
+                Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag – ab 99 € inklusive
                 aller Gebühren. Für den ganzen Kreis Lippe.
               </p>
 

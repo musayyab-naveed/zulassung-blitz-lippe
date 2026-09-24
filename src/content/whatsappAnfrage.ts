@@ -87,6 +87,7 @@ const ZULASSEN_IN_NACHRICHT: Record<Art, string> = {
 
 /** Paketnamen, wie sie von der Preisseite (?paket=…) mitkommen */
 const PAKET_IN_NACHRICHT: Record<string, string> = {
+  ummeldung: "UMMELDUNG (Kennzeichen bleiben dran)",
   sofort: "SOFORT (digital in ca. 20 Minuten)",
   basis: "BASIS (nächster Werktag, mit Kennzeichen)",
   premium: "PREMIUM (Hol- und Bringservice)",
@@ -171,6 +172,6 @@ export const vorgangAusPaket = (paket: string | null): Vorgang | undefined => {
   if (paket === "abmeldung") return "abmelden";
   if (paket === "sonderkennzeichen") return "sonder";
   if (paket === "ankauf_only") return "verkaufen";
-  if (["sofort", "basis", "premium"].includes(paket)) return "zulassen";
+  if (["ummeldung", "sofort", "basis", "premium"].includes(paket)) return "zulassen";
   return undefined;
 };

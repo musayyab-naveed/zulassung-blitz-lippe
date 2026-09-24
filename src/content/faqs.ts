@@ -42,7 +42,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Was kostet die Zulassung?",
     answer:
-      "Die Zulassung gibt es ab 129 €, die Sofortabmeldung direkt vor Ort für 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Optionale Extras: Wunschkennzeichen +13 €, Feinstaubplakette +6 €.",
+      "Die Ummeldung kostet 99 €, die Zulassung 129 € und die Sofortabmeldung direkt vor Ort 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Dazu kommen nur, wenn Sie es möchten, die Gebühren des Straßenverkehrsamts für Wunschkennzeichen (13 €) und Feinstaubplakette (6 €).",
   },
   {
     question: "Muss ich selbst zur Zulassungsstelle?",

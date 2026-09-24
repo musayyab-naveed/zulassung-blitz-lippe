@@ -45,7 +45,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/",
     title: "Zulassungsdienst Bad Salzuflen – KFZ-Zulassung ohne Termin",
     description:
-      `KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr. 5,0 ★ (${BUSINESS.reviewCount}).`,
+      `KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr. 5,0 ★ (${BUSINESS.reviewCount}).`,
   },
   {
     path: "/angebot",
@@ -55,9 +55,9 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/preise",
-    title: "Preise KFZ-Zulassung Bad Salzuflen – ab 129 €",
+    title: "Preise KFZ-Zulassung Bad Salzuflen – ab 99 €",
     description:
-      "Sofort-Zulassung ab 129 €, mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Sofortabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten.",
+      "Ummeldung 99 €, Zulassung mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Sofortabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten.",
   },
   {
     path: "/zulassungsstelle-bad-salzuflen",
@@ -73,9 +73,9 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/auto-anmelden",
-    title: "Auto anmelden Bad Salzuflen & Lippe – ohne Termin, ab 129 €",
+    title: "Auto anmelden Bad Salzuflen & Lippe – ohne Termin, ab 99 €",
     description:
-      "Auto anmelden in Bad Salzuflen & Lippe ohne Termin: Neuwagen, Gebrauchtwagen, Wiederzulassung – in ca. 20 Min., ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.",
+      "Auto anmelden in Bad Salzuflen & Lippe ohne Termin: Neuwagen, Gebrauchtwagen, Wiederzulassung – in ca. 20 Min., ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.",
   },
   {
     path: "/auto-abmelden",
@@ -85,9 +85,9 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/auto-ummelden",
-    title: "Auto ummelden Bad Salzuflen – ohne Termin, ab 129 €",
+    title: "Auto ummelden Bad Salzuflen – ohne Termin, ab 99 €",
     description:
-      "Auto ummelden in Bad Salzuflen nach Autokauf oder Umzug – ohne Termin beim Amt, in ca. 20 Min., ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.",
+      "Auto ummelden in Bad Salzuflen nach Autokauf oder Umzug – ohne Termin beim Amt, in ca. 20 Min., ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.",
   },
   {
     path: "/wunschkennzeichen",

@@ -109,10 +109,11 @@ const PreisKasten = ({ vorgang, paket }: { vorgang?: Vorgang; paket?: string | n
   const zeilen: { name: string; preis: string; key?: string }[] =
     vorgang === "zulassen"
       ? [
+          { name: "Ummeldung (Kennzeichen bleiben dran)", preis: preisVon("ummeldung"), key: "ummeldung" },
           { name: "Sofort-Zulassung (ca. 20 Min., ohne Schilder)", preis: preisVon("sofort"), key: "sofort" },
           { name: "Mit Kennzeichen (nächster Werktag)", preis: preisVon("basis"), key: "basis" },
           { name: "Mit Hol- und Bringservice", preis: preisVon("premium"), key: "premium" },
-          { name: "Wunschkennzeichen", preis: WUNSCH_PREIS },
+          { name: "Wunschkennzeichen (Gebühr des Amts)", preis: WUNSCH_PREIS },
         ]
       : vorgang === "abmelden"
         ? [
@@ -127,7 +128,8 @@ const PreisKasten = ({ vorgang, paket }: { vorgang?: Vorgang; paket?: string | n
                 { name: "Abmeldung beim Ankauf", preis: "gratis" },
               ]
             : [
-                { name: "Zulassung", preis: preisVon("sofort") },
+                { name: "Ummeldung", preis: preisVon("ummeldung") },
+                { name: "Zulassung mit Kennzeichen", preis: preisVon("basis") },
                 { name: "Sofortabmeldung", preis: preisVon("abmeldung") },
                 { name: "Wunschkennzeichen", preis: WUNSCH_PREIS },
                 { name: "Angebot für Ihr Auto", preis: "kostenlos" },

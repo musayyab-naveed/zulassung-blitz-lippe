@@ -7,12 +7,12 @@
 //
 // Wer einen Preis ändern will, ändert ihn hier – und nur hier.
 
-export type PackageKey = "sofort" | "basis" | "premium" | "abmeldung" | "sonderkennzeichen" | "ankauf_only";
+export type PackageKey = "ummeldung" | "sofort" | "basis" | "premium" | "abmeldung" | "sonderkennzeichen" | "ankauf_only";
 
 export interface PackageDef {
   key: PackageKey;
   title: string;
-  /** Anzeigepreis inkl. Währung, z. B. "ab 129 €" */
+  /** Anzeigepreis inkl. Währung, z. B. "129 €" */
   price: string;
   /** Reine Zahl für schema.org (ohne Währung, ohne "ab") */
   priceValue: string;
@@ -30,12 +30,29 @@ export interface PackageDef {
 
 export const PACKAGES: PackageDef[] = [
   {
+    key: "ummeldung",
+    title: "UMMELDUNG",
+    price: "99 €",
+    priceValue: "99",
+    subtitle: "Halterwechsel oder neue Adresse – Ihre Kennzeichen bleiben am Auto",
+    features: [
+      "Umschreibung auf Ihren Namen oder Adressänderung",
+      "Kennzeichen bleiben dran",
+      "Ohne Termin beim Amt",
+      "Verwaltungsgebühren inkl.",
+    ],
+    buttonText: "UMMELDUNG WÄHLEN",
+    buttonVariant: "cta" as const,
+    schemaDescription:
+      "Halterwechsel oder Adressänderung, bei der die Kennzeichen am Auto bleiben – Verwaltungsgebühren inklusive.",
+  },
+  {
     key: "sofort",
     title: "SOFORT",
-    price: "ab 129 €",
+    price: "129 €",
     priceValue: "129",
     subtitle:
-      "Fertig in ca. 20 Min – Sie warten kurz vor Ort. Kennzeichen besorgen Sie selbst, vor oder nach der Zulassung – zugelassen sind Sie in jedem Fall.",
+      "Digital direkt vor Ort in ca. 20 Min – Sie warten kurz. Die Schilder besorgen Sie selbst, ob vorher oder nachher, entscheiden Sie.",
     popular: true,
     features: [
       "Zulassung digital in ca. 20 Minuten",
@@ -154,6 +171,7 @@ export interface TabellenZeile {
 }
 
 const zeilenInfo: Record<PackageKey, { dauer: string; kennzeichen: string }> = {
+  ummeldung: { dauer: "ca. 20 Minuten oder nächster Werktag", kennzeichen: "bleiben am Auto" },
   sofort: { dauer: "ca. 20 Minuten", kennzeichen: "besorgen Sie selbst" },
   basis: { dauer: "nächster Werktag", kennzeichen: "inklusive" },
   premium: { dauer: "nächster Werktag", kennzeichen: "inklusive, plus Hol- & Bringservice" },
@@ -192,13 +210,13 @@ export const EXTRAS: ExtraDef[] = [
     price: "+13 €",
     priceValue: "13",
     description:
-      "Ihre Wunschkombination für den Kreis Lippe – wir reservieren sie für Sie. Alternativ reservieren Sie selbst vorab online.",
+      "Gebühr des Straßenverkehrsamts für Ihre Wunschkombination im Kreis Lippe – wir reservieren sie für Sie. Alternativ reservieren Sie selbst vorab online.",
   },
   {
     name: "Feinstaubplakette",
     price: "+6 €",
     priceValue: "6",
-    description: "Grüne Umweltplakette, direkt zusammen mit der Zulassung aufgebracht.",
+    description: "Gebühr des Straßenverkehrsamts für die grüne Umweltplakette – direkt zusammen mit der Zulassung aufgebracht.",
   },
 ];
 
@@ -230,17 +248,22 @@ export const PREIS_FAQS: PreisFaq[] = [
   {
     question: "Sind die Verwaltungsgebühren im Preis enthalten?",
     answer:
-      "Ja. Die Gebühren des Straßenverkehrsamts sind in unseren Preisen bereits enthalten. Sie zahlen 129 € für die Zulassung beziehungsweise 40 € für die Sofortabmeldung – es kommt keine Nachzahlung an der Behörde dazu.",
+      "Ja. Die Gebühren des Straßenverkehrsamts sind in unseren Preisen bereits enthalten. Sie zahlen 99 € für die Ummeldung, 129 € für die Zulassung mit Kennzeichen beziehungsweise 40 € für die Sofortabmeldung – es kommt keine Nachzahlung an der Behörde dazu.",
   },
   {
-    question: "Warum steht bei SOFORT „ab 129 €“?",
+    question: "Was ist der Unterschied zwischen SOFORT und BASIS?",
     answer:
-      "Weil bei der Sofort-Zulassung die Kennzeichenschilder nicht enthalten sind – die besorgen Sie selbst, vorher oder nachher. Zugelassen sind Sie in jedem Fall nach ca. 20 Minuten. Möchten Sie die Schilder von uns, wählen Sie BASIS oder PREMIUM für 129 € beziehungsweise 159 € – dort sind sie im Preis enthalten.",
+      "Beide kosten 129 €. Bei SOFORT sind Sie digital direkt vor Ort in ca. 20 Minuten zugelassen – die Schilder besorgen Sie selbst, ob vorher oder nachher, entscheiden Sie. Bei BASIS sind die Schilder dabei, dafür ist alles am nächsten Werktag fertig. PREMIUM (159 €) ist BASIS mit Hol- und Bringservice.",
   },
   {
     question: "Gibt es versteckte Kosten?",
     answer:
-      "Nein. Es gibt genau zwei Aufpreise, und beide entscheiden Sie selbst: Wunschkennzeichen +13 € und Feinstaubplakette +6 €. Alles andere ist im Paketpreis enthalten.",
+      "Nein. Es gibt genau zwei Aufpreise, und beide entscheiden Sie selbst: Wunschkennzeichen +13 € und Feinstaubplakette +6 €. Das sind Gebühren des Straßenverkehrsamts, keine Aufschläge von uns. Alles andere ist im Paketpreis enthalten.",
+  },
+  {
+    question: "Was kostet eine Ummeldung?",
+    answer:
+      "99 € inklusive Verwaltungsgebühren – für den Halterwechsel nach dem Autokauf oder eine neue Adresse, wenn Ihre Kennzeichen am Auto bleiben. Brauchen Sie neue Kennzeichen, ist es eine Zulassung mit Kennzeichen für 129 €.",
   },
   {
     question: "Was kostet die Abmeldung?",

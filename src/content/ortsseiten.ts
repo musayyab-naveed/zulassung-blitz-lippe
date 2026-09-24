@@ -134,9 +134,9 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   kicker: `Zulassungsdienst für ${ort.name}`,
   h1: `KFZ-Zulassung für ${ort.name} – ohne Termin beim Straßenverkehrsamt`,
   intro: `Sie wohnen in ${ort.name} und brauchen eine Zulassung, Umschreibung oder Abmeldung? Wir erledigen das für den ganzen Kreis Lippe – ohne Termin, Mo–Fr 9–18 und Sa 15–18 Uhr. Von ${ort.name} sind Sie in ${ort.fahrzeit} bei uns in Bad Salzuflen, oder Sie schicken uns die Unterlagen.`,
-  chips: ["✓ Ohne Termin", `✓ ${ort.fahrzeit} von ${ort.name}`, "✓ ab 129 € inkl. Gebühren", "✓ Mo–Fr 9–18 · Sa 15–18 Uhr"],
+  chips: ["✓ Ohne Termin", `✓ ${ort.fahrzeit} von ${ort.name}`, "✓ ab 99 € inkl. Gebühren", "✓ Mo–Fr 9–18 · Sa 15–18 Uhr"],
   preis: {
-    betrag: "ab 129 €",
+    betrag: "ab 99 €",
     text: "Zulassung inklusive Verwaltungsgebühren. Sofortabmeldung 40 €, Wunschkennzeichen +13 €.",
   },
   checklisten: ["umschreibung"],
@@ -194,7 +194,7 @@ export const ORTSSEITEN: (LeistungsSeite & { ort: string; seoTitel: string; seoB
     ...seiteFuer(ort),
     ort: ort.name,
     seoTitel: `Zulassungsdienst ${ort.name} – Zulassung ohne Termin`,
-    seoBeschreibung: `KFZ-Zulassung für ${ort.name} ohne Termin beim Amt: ${ort.fahrzeit} bis Bad Salzuflen, ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.`,
+    seoBeschreibung: `KFZ-Zulassung für ${ort.name} ohne Termin beim Amt: ${ort.fahrzeit} bis Bad Salzuflen, ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.`,
   }));
 
 export const findeOrtsseite = (pfad: string) => ORTSSEITEN.find((seite) => seite.path === pfad);

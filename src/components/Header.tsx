@@ -60,11 +60,66 @@ const Header = () => {
   const istAktiv = (punkt: Hauptpunkt) =>
     punkt.pfade.some((pfad) => location.pathname === pfad || location.pathname.startsWith(`${pfad}/`));
 
+  // Menüpunkte – am großen Bildschirm in der Logo-Zeile, bei mittlerer Breite in eigener Zeile darunter
+  const menue = (klasse: string) => (
+    <nav className={klasse} aria-label="Hauptmenü">
+      {HAUPTMENUE.map((punkt, index) => {
+        const aktiv = istAktiv(punkt);
+        // Listen der hinteren Punkte nach rechts ausrichten, sonst ragen sie über den Rand
+        const seite = index >= HAUPTMENUE.length / 2 ? "right-0" : "left-0";
+        const stil = `inline-flex items-center gap-1 whitespace-nowrap border-b-2 py-3 text-[13px] font-bold uppercase tracking-wide transition-colors ${
+          aktiv ? "border-primary text-secondary" : "border-transparent text-secondary hover:border-primary/50"
+        }`;
+        if (!punkt.unterpunkte) {
+          return (
+            <Link key={punkt.name} to={punkt.href} className={stil}>
+              {punkt.name}
+            </Link>
+          );
+        }
+        return (
+          <div key={punkt.name} className="group relative">
+            <Link to={punkt.href} className={stil} onClick={fokusLoesen}>
+              {punkt.name}
+              <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
+            </Link>
+            <div className={`invisible absolute ${seite} top-full z-50 pt-1 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100`}>
+              <ul className="w-80 rounded-xl border border-border bg-background py-2 shadow-xl">
+                {punkt.unterpunkte.map((unter) => (
+                  <li key={unter.name}>
+                    <Link
+                      to={unter.href}
+                      onClick={fokusLoesen}
+                      className="block px-5 py-2.5 text-sm font-medium text-secondary hover:bg-muted hover:text-link"
+                    >
+                      {unter.name}
+                    </Link>
+                  </li>
+                ))}
+                {punkt.alleText && (
+                  <li className="mt-1 border-t border-border pt-1">
+                    <Link
+                      to={punkt.href}
+                      onClick={fokusLoesen}
+                      className="block px-5 py-2.5 text-sm font-bold text-link hover:bg-muted"
+                    >
+                      {punkt.alleText} →
+                    </Link>
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
+        );
+      })}
+    </nav>
+  );
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background">
       {/* Schmale Leiste oben */}
       <div className="hidden lg:block bg-muted">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs flex items-center justify-between text-muted-foreground">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 text-xs flex items-center justify-between text-muted-foreground">
           <span>Bad Salzuflen &amp; Kreis Lippe · Ohne Termin · Mo–Fr 9–18, Sa 15–18 Uhr · Online rund um die Uhr</span>
           <div className="flex items-center gap-5">
             {KLEINE_LINKS.map((link) => (
@@ -80,9 +135,9 @@ const Header = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Logo und Knopf */}
-        <div className="flex justify-between items-center py-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Logo links, Menü in der Mitte, Knopf rechts – eine Zeile am großen Bildschirm */}
+        <div className="flex items-center justify-between gap-6 py-3 xl:py-2">
           <Link to="/" className="flex items-center gap-3 shrink-0">
             <img
               src={logo320}
@@ -91,9 +146,11 @@ const Header = () => {
               width={256}
               height={56}
               alt="KFZ-Sofortzulassung Logo"
-              className="h-12 w-auto object-contain lg:h-14"
+              className="h-12 w-auto object-contain xl:h-11"
             />
           </Link>
+
+          {menue("hidden xl:flex flex-1 items-center justify-center gap-6")}
 
           <Button variant="cta" asChild className="hidden lg:inline-flex whitespace-nowrap rounded-full px-6">
             <Link to="/angebot">Jetzt anfragen</Link>
@@ -109,58 +166,8 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Menüzeile */}
-        <nav className="hidden lg:flex items-center justify-between gap-2 pb-1" aria-label="Hauptmenü">
-          {HAUPTMENUE.map((punkt, index) => {
-            const aktiv = istAktiv(punkt);
-            // Listen der hinteren Punkte nach rechts ausrichten, sonst ragen sie über den Rand
-            const seite = index >= HAUPTMENUE.length / 2 ? "right-0" : "left-0";
-            const stil = `inline-flex items-center gap-1 whitespace-nowrap border-b-2 py-3 text-sm font-bold uppercase tracking-wide transition-colors ${
-              aktiv ? "border-primary text-secondary" : "border-transparent text-secondary hover:border-primary/50"
-            }`;
-            if (!punkt.unterpunkte) {
-              return (
-                <Link key={punkt.name} to={punkt.href} className={stil}>
-                  {punkt.name}
-                </Link>
-              );
-            }
-            return (
-              <div key={punkt.name} className="group relative">
-                <Link to={punkt.href} className={stil} onClick={fokusLoesen}>
-                  {punkt.name}
-                  <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" />
-                </Link>
-                <div className={`invisible absolute ${seite} top-full z-50 pt-1 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100`}>
-                  <ul className="w-80 rounded-xl border border-border bg-background py-2 shadow-xl">
-                    {punkt.unterpunkte.map((unter) => (
-                      <li key={unter.name}>
-                        <Link
-                          to={unter.href}
-                          onClick={fokusLoesen}
-                          className="block px-5 py-2.5 text-sm font-medium text-secondary hover:bg-muted hover:text-link"
-                        >
-                          {unter.name}
-                        </Link>
-                      </li>
-                    ))}
-                    {punkt.alleText && (
-                      <li className="mt-1 border-t border-border pt-1">
-                        <Link
-                          to={punkt.href}
-                          onClick={fokusLoesen}
-                          className="block px-5 py-2.5 text-sm font-bold text-link hover:bg-muted"
-                        >
-                          {punkt.alleText} →
-                        </Link>
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              </div>
-            );
-          })}
-        </nav>
+        {/* Menüzeile nur bei mittlerer Bildschirmbreite (dort passt nicht alles in eine Zeile) */}
+        {menue("hidden lg:flex xl:hidden items-center justify-between gap-2 pb-1")}
 
         {/* Handy-Menü */}
         {isMobileMenuOpen && (

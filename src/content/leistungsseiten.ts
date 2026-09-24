@@ -65,16 +65,16 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
   h1: "Auto anmelden in Bad Salzuflen – ohne Termin, in ca. 20 Minuten",
   intro:
     "Neuwagen, Gebrauchtwagen oder ein abgemeldetes Auto wieder anmelden: Wir erledigen die Zulassung für den ganzen Kreis Lippe – ohne Termin beim Straßenverkehrsamt. Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag.",
-  chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ ab 129 € inkl. Gebühren", "✓ In ca. 20 Minuten fertig"],
+  chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ ab 99 € inkl. Gebühren", "✓ In ca. 20 Minuten fertig"],
   preis: {
-    betrag: "ab 129 €",
-    text: "Zulassung inklusive Verwaltungsgebühren. Bei BASIS und PREMIUM sind die Kennzeichen dabei, Wunschkennzeichen +13 €.",
+    betrag: "ab 99 €",
+    text: "Zulassung 129 € inklusive Verwaltungsgebühren – bei SOFORT besorgen Sie die Schilder selbst, bei BASIS und PREMIUM sind sie dabei. Gebrauchtwagen, bei dem die Kennzeichen dranbleiben: Ummeldung 99 €. Wunschkennzeichen +13 € (Gebühr des Straßenverkehrsamts).",
   },
   faelle: [
     {
       titel: "Neuwagen",
       text: "Fabrikneues Auto, das noch nie zugelassen war.",
-      preis: "ab 129 €",
+      preis: "129 €",
       link: "/angebot?vorgang=zulassen&art=neu",
       linkText: "Neuzulassung anfragen",
       checkliste: "neuzulassung",
@@ -82,7 +82,7 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
     {
       titel: "Gebrauchtwagen",
       text: "Auto gekauft – wir schreiben es auf Sie um.",
-      preis: "ab 129 €",
+      preis: "ab 99 €",
       link: "/angebot?vorgang=zulassen&art=gebraucht",
       linkText: "Umschreibung anfragen",
       checkliste: "umschreibung",
@@ -90,7 +90,7 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
     {
       titel: "Wieder anmelden",
       text: "Ihr Auto war abgemeldet und soll wieder fahren.",
-      preis: "ab 129 €",
+      preis: "129 €",
       link: "/angebot?vorgang=zulassen&art=wieder",
       linkText: "Wiederzulassung anfragen",
       checkliste: "wiederzulassung",
@@ -214,16 +214,16 @@ export const AUTO_UMMELDEN: LeistungsSeite = {
   h1: "Auto ummelden in Bad Salzuflen – nach dem Autokauf oder Umzug",
   intro:
     "Gebrauchtwagen gekauft oder umgezogen? Wir melden Ihr Auto um – ohne Termin beim Straßenverkehrsamt. Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag.",
-  chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ ab 129 € inkl. Gebühren", "✓ In ca. 20 Minuten möglich"],
+  chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ ab 99 € inkl. Gebühren", "✓ In ca. 20 Minuten möglich"],
   preis: {
-    betrag: "ab 129 €",
-    text: "Umschreibung auf Ihren Namen inklusive Verwaltungsgebühren. Adressänderung: Preis kurz per WhatsApp. Ein neues Kennzeichen wie DT oder LE läuft über unser Wunschkennzeichen.",
+    betrag: "ab 99 €",
+    text: "Ummeldung 99 € inklusive Verwaltungsgebühren, wenn Ihre Kennzeichen am Auto bleiben. Mit neuen Kennzeichen 129 €. Ein neues Kennzeichen wie DT oder LE läuft über unser Wunschkennzeichen.",
   },
   faelle: [
     {
       titel: "Gebrauchtwagen gekauft",
       text: "Wir schreiben das Auto auf Sie um – mit neuem oder Wunschkennzeichen.",
-      preis: "ab 129 €",
+      preis: "ab 99 €",
       link: "/angebot?vorgang=zulassen&art=gebraucht",
       linkText: "Umschreibung anfragen",
       checkliste: "umschreibung",
@@ -231,7 +231,7 @@ export const AUTO_UMMELDEN: LeistungsSeite = {
     {
       titel: "Umgezogen",
       text: "Neue Adresse in den Fahrzeugschein – egal ob innerhalb von Lippe oder neu zugezogen.",
-      preis: "auf Anfrage",
+      preis: "99 €",
       link: "/angebot?vorgang=zulassen&art=umzug",
       linkText: "Adressänderung anfragen",
       checkliste: "adressaenderung",
@@ -288,10 +288,10 @@ export const WUNSCHKENNZEICHEN: LeistungsSeite = {
   h1: "Wunschkennzeichen im Kreis Lippe – LIP, DT oder LE",
   intro:
     "Seit April 2026 gibt es im Kreis Lippe wieder die Kennzeichen DT und LE. Wir reservieren Ihre Wunschkombination und erledigen die Zulassung gleich mit – ohne Termin beim Straßenverkehrsamt.",
-  chips: ["✓ LIP, DT oder LE", "✓ Ohne Termin", "✓ +13 € zur Zulassung", `✓ ${OEFFNUNG}`],
+  chips: ["✓ LIP, DT oder LE", "✓ Ohne Termin", "✓ +13 € Gebühr des Amts", `✓ ${OEFFNUNG}`],
   preis: {
     betrag: "+13 €",
-    text: "Zusätzlich zur Zulassung – Reservierung und Gebühr für Ihr Wunschkennzeichen inklusive.",
+    text: "Zusätzlich zur Zulassung – das ist die Gebühr des Straßenverkehrsamts. Die Reservierung erledigen wir für Sie.",
   },
   checklisten: ["wunschkennzeichen", "umkennzeichnung"],
   schritteTitel: "So kommen Sie zu Ihrem Wunschkennzeichen",
