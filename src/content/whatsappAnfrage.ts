@@ -5,7 +5,7 @@ import { vorgangChecklists, type VorgangChecklist } from "./faqs";
  *
  * Der Kunde beantwortet höchstens drei Fragen durch Antippen, danach steht eine
  * fertige WhatsApp-Nachricht bereit. Kein Termin, kein Formular. Die Antworten
- * stehen in der Adresse (?vorgang=…&art=…&wann=…), damit Zurück und Vorwärts im
+ * stehen in der Adresse (?vorgang=…&art=…&evb=…), damit Zurück und Vorwärts im
  * Browser und das Neuladen der Seite ohne Zusatzlogik funktionieren.
  */
 
@@ -22,7 +22,6 @@ export type Art =
   | "unklar"
   | "kurzzeit"
   | "ausfuhr";
-export type Wann = "heute" | "morgen" | "woche" | "offen" | "extern";
 export type Evb = "ja" | "vergleich" | "nein";
 
 export interface Auswahl<T extends string> {
@@ -52,14 +51,6 @@ export const SONDER_ARTEN: Auswahl<Art>[] = [
   { wert: "kurzzeit", titel: "Kurzzeitkennzeichen", text: "5 Tage – für Überführung oder Probefahrt" },
   { wert: "ausfuhr", titel: "Ausfuhrkennzeichen", text: "Für den Export ins Ausland" },
   { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
-];
-
-export const ZEITPUNKTE: Auswahl<Wann>[] = [
-  { wert: "heute", titel: "Heute" },
-  { wert: "morgen", titel: "Morgen" },
-  { wert: "woche", titel: "Diese Woche" },
-  { wert: "offen", titel: "Weiß ich noch nicht" },
-  { wert: "extern", titel: "Ich kann nicht selbst kommen", text: "Hol- und Bringservice oder Versand" },
 ];
 
 /** Hat der Kunde schon eine Versicherung? Nur bei Zulassungen, die eine neue eVB brauchen */
@@ -93,13 +84,6 @@ const ART_IN_NACHRICHT: Record<Art, string> = {
   ausfuhr: "Ausfuhrkennzeichen",
 };
 
-const WANN_IN_NACHRICHT: Record<Exclude<Wann, "extern">, string> = {
-  heute: "heute",
-  morgen: "morgen",
-  woche: "diese Woche",
-  offen: "weiß ich noch nicht",
-};
-
 /** Paketnamen, wie sie von der Preisseite (?paket=…) mitkommen */
 const PAKET_IN_NACHRICHT: Record<string, string> = {
   sofort: "SOFORT (digital in ca. 20 Minuten)",
@@ -113,11 +97,10 @@ export interface AnfrageAntworten {
   vorgang?: Vorgang;
   art?: Art;
   evb?: Evb;
-  wann?: Wann;
   paket?: string;
 }
 
-export const baueNachricht = ({ vorgang, art, evb, wann, paket }: AnfrageAntworten): string => {
+export const baueNachricht = ({ vorgang, art, evb, paket }: AnfrageAntworten): string => {
   const paketZeile =
     paket && PAKET_IN_NACHRICHT[paket] && vorgang !== "sonder"
       ? `Gewünschtes Paket: ${PAKET_IN_NACHRICHT[paket]}`
@@ -153,29 +136,11 @@ export const baueNachricht = ({ vorgang, art, evb, wann, paket }: AnfrageAntwort
   const mitArt = vorgang === "zulassen" && art;
   const evbZeile = evb && brauchtEvbFrage({ vorgang, art }) ? `eVB-Nummer: ${EVB_IN_NACHRICHT[evb]}` : null;
 
-  if (wann === "extern") {
-    return [
-      wasZeile.replace(/\.$/, ", kann aber nicht selbst vorbeikommen."),
-      "",
-      mitArt ? `Vorgang: ${ART_IN_NACHRICHT[mitArt]}` : null,
-      evbZeile,
-      paketZeile,
-      "",
-      "Geht Abholung oder Versand der Unterlagen?",
-      "Mein Wohnort: ",
-    ]
-      .filter((zeile) => zeile !== null)
-      .join("\n")
-      .replace(/\n{3,}/g, "\n\n")
-    .trim();
-  }
-
   return [
     wasZeile,
     "",
     mitArt ? `Vorgang: ${ART_IN_NACHRICHT[mitArt]}` : null,
     evbZeile,
-    wann ? `Ich komme: ${WANN_IN_NACHRICHT[wann]}` : null,
     paketZeile,
   ]
     .filter((zeile) => zeile !== null)

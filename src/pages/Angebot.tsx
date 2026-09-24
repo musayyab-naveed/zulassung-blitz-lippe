@@ -25,7 +25,6 @@ import {
   type Evb,
   type Auswahl,
   type Vorgang,
-  type Wann,
 } from "@/content/whatsappAnfrage";
 import faqSchema from "@/content/faqSchema.json";
 import zb1CodeImg from "@/assets/dokumente/zb1-code-verdeckt.jpg";
@@ -36,7 +35,6 @@ import {
   Banknote,
   Car,
   CheckCircle,
-  Clock,
   FileMinus,
   Globe,
   HelpCircle,
@@ -49,7 +47,6 @@ import {
   ShieldCheck,
   Sparkles,
   Timer,
-  Truck,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
@@ -76,11 +73,6 @@ const ICONS: Record<string, ReactNode> = {
   ja: <CheckCircle className="h-6 w-6" />,
   vergleich: <ShieldCheck className="h-6 w-6" />,
   nein: <HelpCircle className="h-6 w-6" />,
-  heute: <Clock className="h-6 w-6" />,
-  morgen: <Clock className="h-6 w-6" />,
-  woche: <Clock className="h-6 w-6" />,
-  offen: <HelpCircle className="h-6 w-6" />,
-  extern: <Truck className="h-6 w-6" />,
 };
 
 const istVorgang = (v: string | null): v is Vorgang =>
@@ -88,8 +80,6 @@ const istVorgang = (v: string | null): v is Vorgang =>
 const ALLE_ARTEN: string[] = [...ARTEN, ...SONDER_ARTEN].map((a) => a.wert);
 const istArt = (v: string | null): v is Art => v !== null && ALLE_ARTEN.includes(v);
 const istEvb = (v: string | null): v is Evb => v === "ja" || v === "vergleich" || v === "nein";
-const istWann = (v: string | null): v is Wann =>
-  v === "heute" || v === "morgen" || v === "woche" || v === "offen" || v === "extern";
 
 /** Große Antwortkarte – ein Tipp genügt */
 const Karte = <T extends string>({ option, onWahl }: { option: Auswahl<T>; onWahl: (wert: T) => void }) => (
@@ -125,7 +115,6 @@ const Angebot = () => {
       : vorgangAusPaket(paket);
   const vorgangVorgegeben = !istVorgang(vorgangAusUrl) && vorgang !== undefined;
   const art = istArt(params.get("art")) ? (params.get("art") as Art) : undefined;
-  const wann = istWann(params.get("wann")) ? (params.get("wann") as Wann) : undefined;
   const evb = istEvb(params.get("evb")) ? (params.get("evb") as Evb) : undefined;
   // Wer zulässt, wird gefragt, ob die Versicherung (eVB) schon da ist – auch um einen Preisvergleich anzubieten
   const mitEvbSchritt = brauchtEvbFrage({ vorgang, art });
@@ -173,7 +162,7 @@ const Angebot = () => {
     navigate(rest ? `/angebot?${rest}` : "/angebot");
   };
 
-  const antworten = { vorgang, art, evb, wann, paket: paket ?? undefined };
+  const antworten = { vorgang, art, evb, paket: paket ?? undefined };
   const nachricht = baueNachricht(antworten);
   const checkliste = checklisteFuer(antworten);
 
@@ -396,41 +385,6 @@ const Angebot = () => {
                 )}
 
 
-                {/* Kann nicht selbst kommen – nur als aufklappbarer Hinweis, keine Pflichtfrage */}
-                {(vorgang === "zulassen" || vorgang === "abmelden") && (
-                  <details className="group rounded-xl border border-border p-4">
-                    <summary className="cursor-pointer list-none font-semibold text-secondary">
-                      <span className="text-primary group-open:hidden">▸ </span>
-                      <span className="hidden text-primary group-open:inline">▾ </span>
-                      Sie können nicht selbst vorbeikommen?
-                    </summary>
-                    <div className="mt-3">
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="mt-0.5 h-4 w-4 flex-none text-trust-green" />
-                        <span>
-                          <span className="font-semibold text-secondary">In der Nähe:</span> Wir holen die
-                          Unterlagen ab und bringen alles fertig zurück (PREMIUM, 159 €).
-                        </span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <CheckCircle className="mt-0.5 h-4 w-4 flex-none text-trust-green" />
-                        <span>
-                          <span className="font-semibold text-secondary">Weiter weg:</span> Sie schicken
-                          uns die Unterlagen, wir senden alles per Express zurück. Die{" "}
-                          <Link to="/dokumente" className="font-semibold text-link hover:underline">
-                            Vollmacht zum Ausdrucken
-                          </Link>{" "}
-                          liegt bereit.
-                        </span>
-                      </li>
-                    </ul>
-                    <p className="mt-3 text-xs text-muted-foreground">
-                      Schreiben Sie uns Ihren Wohnort – wir sagen Ihnen, was davon für Sie passt.
-                    </p>
-                    </div>
-                  </details>
-                )}
 
                 {/* Ankauf: Formular als Alternative */}
                 {vorgang === "verkaufen" && (
