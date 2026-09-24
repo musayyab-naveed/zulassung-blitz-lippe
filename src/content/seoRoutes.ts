@@ -43,7 +43,7 @@ export interface RouteSeo {
 export const ROUTE_SEO: RouteSeo[] = [
   {
     path: "/",
-    title: "Zulassungsdienst Bad Salzuflen – ohne Termin, Mo–Fr 9–18, Sa 15–18",
+    title: "Zulassungsdienst Bad Salzuflen – KFZ-Zulassung ohne Termin",
     description:
       `KFZ-Zulassung im Kreis Lippe ohne Behördentermin: digital in ca. 20 Minuten, ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr. 5,0 ★ (${BUSINESS.reviewCount}).`,
   },
@@ -73,9 +73,9 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/auto-anmelden",
-    title: "Auto anmelden Bad Salzuflen – ohne Termin, ab 129 €",
+    title: "Auto anmelden Bad Salzuflen & Lippe – ohne Termin, ab 129 €",
     description:
-      "Auto anmelden in Bad Salzuflen ohne Termin: Neuwagen, Gebrauchtwagen oder Wiederzulassung, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren, Mo–Fr 9–18, Sa 15–18 Uhr.",
+      "Auto anmelden in Bad Salzuflen & Lippe ohne Termin: Neuwagen, Gebrauchtwagen, Wiederzulassung – in ca. 20 Min., ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.",
   },
   {
     path: "/auto-abmelden",
@@ -87,7 +87,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/auto-ummelden",
     title: "Auto ummelden Bad Salzuflen – ohne Termin, ab 129 €",
     description:
-      "Auto ummelden in Bad Salzuflen: nach dem Autokauf oder Umzug – ohne Termin beim Amt, digital in ca. 20 Minuten. Ab 129 € inkl. Gebühren, Mo–Fr 9–18, Sa 15–18 Uhr.",
+      "Auto ummelden in Bad Salzuflen nach Autokauf oder Umzug – ohne Termin beim Amt, in ca. 20 Min., ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.",
   },
   {
     path: "/wunschkennzeichen",
@@ -103,7 +103,7 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/kfz-versicherung",
-    title: "eVB-Nummer beantragen & Kfz-Versicherung vergleichen",
+    title: "Kfz-Versicherung vergleichen – mit eVB-Nummer zur Zulassung",
     description:
       "eVB-Nummer beantragen: Kfz-Versicherung vergleichen, abschließen, eVB meist sofort per E-Mail erhalten – und danach ohne Termin in Bad Salzuflen zulassen.",
   },
@@ -134,12 +134,14 @@ export const ROUTE_SEO: RouteSeo[] = [
   {
     path: "/impressum",
     title: "Impressum | KFZ-Sofortzulassung",
+    noindex: true,
     description:
       "Impressum von KFZ-Sofortzulassung in Bad Salzuflen mit allen gesetzlichen Pflichtangaben und Kontaktinformationen für den Kreis Lippe.",
   },
   {
     path: "/datenschutz",
     title: "Datenschutz | KFZ-Sofortzulassung",
+    noindex: true,
     description:
       "Datenschutzerklärung von KFZ-Sofortzulassung in Bad Salzuflen: welche Daten wir verarbeiten, wozu, und welche Rechte Sie dabei haben.",
   },

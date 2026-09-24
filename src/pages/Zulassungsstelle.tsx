@@ -70,7 +70,7 @@ const Zulassungsstelle = () => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Card>
               <CardContent className="p-5">
-                <div className="mb-2 flex items-center gap-2 text-primary">
+                <div className="mb-2 flex items-center gap-2 text-link">
                   <MapPin className="h-4 w-4" />
                   <span className="text-xs font-bold uppercase tracking-wider">Adresse</span>
                 </div>
@@ -81,7 +81,7 @@ const Zulassungsstelle = () => {
             </Card>
             <Card>
               <CardContent className="p-5">
-                <div className="mb-2 flex items-center gap-2 text-primary">
+                <div className="mb-2 flex items-center gap-2 text-link">
                   <Phone className="h-4 w-4" />
                   <span className="text-xs font-bold uppercase tracking-wider">Telefon</span>
                 </div>
@@ -263,7 +263,7 @@ const Zulassungsstelle = () => {
               },
             ].map((s) => (
               <div key={s.nr} className="rounded-xl border border-border bg-background p-5">
-                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-secondary">
                   {s.nr}
                 </div>
                 <h3 className="font-semibold text-secondary">{s.titel}</h3>

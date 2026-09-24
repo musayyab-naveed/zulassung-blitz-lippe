@@ -8,6 +8,7 @@ import GoogleReviews from "@/components/GoogleReviews";
 import Seo from "@/components/Seo";
 import { startseitenFaqs } from "@/content/faqs";
 import hero480 from "@/assets/hero-480.webp";
+import hero680 from "@/assets/hero-680.webp";
 import hero800 from "@/assets/hero-800.webp";
 import hero1200 from "@/assets/hero-1200.webp";
 import { Car, FileText, Shield, ShieldCheck, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
@@ -84,7 +85,7 @@ const Home = () => {
                 NEU: Sofort-Zulassung in ca. 20 Minuten
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white">
-                KFZ-Zulassung in Bad Salzuflen –<br className="hidden sm:block" /> ohne Termin, für den ganzen Kreis Lippe
+                Zulassungsdienst Bad Salzuflen –<br className="hidden sm:block" /> KFZ-Zulassung ohne Termin für ganz Lippe
               </h1>
               <p className="text-lg sm:text-xl mb-6 font-semibold text-primary-foreground/95">
                 Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag – ab 129 € inklusive
@@ -98,7 +99,7 @@ const Home = () => {
                 {["Ohne Termin", "Mo–Fr 9–18 · Sa 15–18 Uhr", "Online rund um die Uhr"].map((punkt) => (
                   <li
                     key={punkt}
-                    className="rounded-full bg-primary-foreground/20 px-3 py-2 text-xs font-medium text-primary-foreground backdrop-blur-sm sm:px-4 sm:text-sm"
+                    className="rounded-full bg-primary-foreground/20 px-3 py-2 text-xs font-medium text-secondary backdrop-blur-sm sm:px-4 sm:text-sm"
                   >
                     ✓ {punkt}
                   </li>
@@ -155,7 +156,7 @@ const Home = () => {
                 <div className="relative z-10">
                   <img
                     src={hero800}
-                    srcSet={`${hero480} 480w, ${hero800} 800w, ${hero1200} 1200w`}
+                    srcSet={`${hero480} 480w, ${hero680} 680w, ${hero800} 800w, ${hero1200} 1200w`}
                     sizes="(min-width: 1024px) 512px, (min-width: 640px) 448px, calc(100vw - 32px)"
                     alt="KFZ-Sofortzulassung Service"
                     width={1600}
@@ -230,7 +231,7 @@ const Home = () => {
                   <div className="mx-auto w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-3">
                     {step.icon}
                   </div>
-                  <div className="w-7 h-7 bg-primary text-primary-foreground rounded-full flex items-center justify-center mx-auto mb-3 text-xs font-bold">
+                  <div className="w-7 h-7 bg-primary text-secondary rounded-full flex items-center justify-center mx-auto mb-3 text-xs font-bold">
                     {index + 1}
                   </div>
                   <CardTitle className="text-lg text-secondary">{step.title}</CardTitle>

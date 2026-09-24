@@ -181,6 +181,11 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
     { href: "/preise", text: "Alle Preise im Überblick" },
     { href: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT oder LE" },
     { href: "/kfz-versicherung", text: "eVB-Nummer beantragen" },
+    // Nachbarorte verlinken, damit Google alle Ortsseiten findet
+    ...ORTE.filter((anderer) => anderer.slug !== ort.slug).map((anderer) => ({
+      href: ortsPfad(anderer.slug),
+      text: `Zulassungsdienst ${anderer.name}`,
+    })),
   ],
 });
 
@@ -189,7 +194,7 @@ export const ORTSSEITEN: (LeistungsSeite & { ort: string; seoTitel: string; seoB
     ...seiteFuer(ort),
     ort: ort.name,
     seoTitel: `Zulassungsdienst ${ort.name} – Zulassung ohne Termin`,
-    seoBeschreibung: `KFZ-Zulassung für ${ort.name}: ohne Termin beim Straßenverkehrsamt, ${ort.fahrzeit} entfernt in Bad Salzuflen, ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.`,
+    seoBeschreibung: `KFZ-Zulassung für ${ort.name} ohne Termin beim Amt: ${ort.fahrzeit} bis Bad Salzuflen, ab 129 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.`,
   }));
 
 export const findeOrtsseite = (pfad: string) => ORTSSEITEN.find((seite) => seite.path === pfad);

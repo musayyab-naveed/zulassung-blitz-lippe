@@ -34,14 +34,14 @@ const PriceCard = ({
   return (
     <Card className={`surface-card relative h-full flex flex-col transition-transform duration-200 hover:-translate-y-1 ${popular || selected ? "border-primary shadow-[0_18px_45px_-26px_hsl(var(--primary)/0.7)]" : ""}`}>
       {popular && (
-        <Badge className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-primary px-3 text-primary-foreground shadow-sm">
+        <Badge className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-primary px-3 text-secondary shadow-sm">
           Populär
         </Badge>
       )}
       
       <CardHeader className="text-center pb-8">
         <CardTitle className="text-2xl font-bold text-secondary mb-2">{title}</CardTitle>
-        <div className="text-4xl font-bold text-primary mb-1 tracking-tight">{price}</div>
+        <div className="text-4xl font-bold text-link mb-1 tracking-tight">{price}</div>
         {subtitle && (
           <p className="text-sm font-semibold text-[hsl(var(--cta-orange))]">{subtitle}</p>
         )}

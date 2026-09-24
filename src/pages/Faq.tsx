@@ -19,7 +19,7 @@ const Faq = () => {
       <section className="relative overflow-hidden py-14 text-primary-foreground">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-primary" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-white">FAQ & Unterlagen</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-white">Welche Unterlagen brauche ich für die Zulassung?</h1>
           <p className="text-lg text-primary-foreground/90">
             Alle Vorgänge und benötigten Unterlagen im Überblick – nach den Vorgaben des
             Straßenverkehrsamts Kreis Lippe.

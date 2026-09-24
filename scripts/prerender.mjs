@@ -76,7 +76,7 @@ for (const route of routes) {
   const canonical = `${SITE_URL}${route.path === "/" ? "/" : route.path}`;
   const title = escapeHtml(route.title);
   const description = escapeHtml(route.description);
-  const isLegal = route.path === "/impressum" || route.path === "/datenschutz";
+  const isLegal = Boolean(route.noindex);
 
   const graph = [
     localBusiness,
@@ -136,10 +136,12 @@ for (const route of routes) {
     );
 
   if (isLegal) {
-    html = html.replace(
-      /<meta name="robots" content="[^"]*" \/>/,
-      `<meta name="robots" content="noindex,follow" />`
-    );
+    html = html
+      .replace(/<meta name="robots" content="[^"]*" \/>/, `<meta name="robots" content="noindex,follow" />`)
+      .replace(/\s*<link rel="canonical" href="[^"]*" \/>/, "");
+  }
+  if (route.path.startsWith(`${RATGEBER_PFAD}/`)) {
+    html = html.replace('<meta property="og:type" content="website" />', '<meta property="og:type" content="article" />');
   }
 
   const inhalt = render(route.path);
@@ -185,13 +187,12 @@ for (const route of routes) {
 }
 
 // Sitemap aus denselben Routen erzeugen – neue Seiten und Artikel landen automatisch darin
-const ohneIndex = new Set(["/impressum", "/datenschutz"]);
 const artikelDatum = new Map(RATGEBER.map((a) => [`${RATGEBER_PFAD}/${a.slug}`, a.aktualisiert]));
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
   ...routes
-    .filter((route) => !ohneIndex.has(route.path))
+    .filter((route) => !route.noindex)
     .map((route) => {
       const lastmod = artikelDatum.get(route.path);
       return `  <url>\n    <loc>${SITE_URL}${route.path}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ""}\n  </url>`;

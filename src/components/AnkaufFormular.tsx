@@ -181,7 +181,7 @@ const AnkaufFormular = () => {
             </div>
           ))}
           {bilder.length < MAX_BILDER && (
-            <label className="flex h-20 w-20 cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-border text-xs text-muted-foreground hover:border-primary hover:text-primary">
+            <label className="flex h-20 w-20 cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-border text-xs text-muted-foreground hover:border-primary hover:text-link">
               <ImagePlus className="mb-1 h-5 w-5" />
               Foto
               <input

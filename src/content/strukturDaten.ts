@@ -1,5 +1,5 @@
 import faqSchema from "./faqSchema.json";
-import { generalFaqs, startseitenFaqs, vorgangChecklists, type FaqItem } from "./faqs";
+import { generalFaqs, startseitenFaqs, type FaqItem } from "./faqs";
 import { EXTRAS, PACKAGES, PREIS_FAQS } from "./preise";
 import { RATGEBER, RATGEBER_PFAD, ratgeberPfad } from "./ratgeber";
 import { findeOrtsseite } from "./ortsseiten";
@@ -44,7 +44,8 @@ export const localBusinessSchema = () => ({
   name: BUSINESS.name,
   url: `${SITE_URL}/`,
   image: `${SITE_URL}${OG_IMAGE}`,
-  logo: `${SITE_URL}${OG_IMAGE}`,
+  logo: `${SITE_URL}/logo.png`,
+  sameAs: [GOOGLE_MAPS_URL],
   telephone: BUSINESS.phone,
   email: BUSINESS.email,
   priceRange: BUSINESS.priceRange,
@@ -167,11 +168,8 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
     case "/faq":
       return [
         faqPage(pfad, [
+          // Nur Fragen, die auf der Seite genau so sichtbar sind
           ...generalFaqs,
-          ...vorgangChecklists.map((vorgang) => ({
-            question: `Welche Unterlagen brauche ich für: ${vorgang.title}?`,
-            answer: vorgang.items.join(", "),
-          })),
         ]),
       ];
     case "/preise":

@@ -21,20 +21,20 @@ const WhatsAppFloatingButton = () => {
         target="_blank"
         onClick={() => window.gtag?.("event", "generate_lead", { method: "whatsapp", quelle: "schwebend" })}
         rel="noreferrer"
-        aria-label="Jetzt per WhatsApp schreiben"
-        className="group relative flex items-center gap-3 rounded-2xl border border-[#20be5d] bg-[#25D366] px-4 py-3 text-white shadow-[0_18px_40px_-18px_rgba(37,211,102,0.85)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-18px_rgba(37,211,102,0.95)]"
+        aria-label="Jetzt chatten: WhatsApp Beratung starten"
+        className="group relative flex items-center gap-3 rounded-2xl border border-[#15803d] bg-[#15803d] px-4 py-3 text-white shadow-[0_18px_40px_-18px_rgba(21,128,61,0.85)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-18px_rgba(21,128,61,0.95)]"
       >
         <span className="absolute -right-1 -top-1 inline-flex h-3 w-3">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70" />
           <span className="relative inline-flex h-3 w-3 rounded-full bg-white" />
         </span>
 
-        <span className="grid h-10 w-10 place-items-center rounded-full bg-white text-[#25D366]">
+        <span className="grid h-10 w-10 place-items-center rounded-full bg-white text-[#15803d]">
           <MessageCircle className="h-5 w-5" />
         </span>
 
         <span className="leading-tight">
-          <span className="block text-[11px] font-semibold uppercase tracking-wide text-white/90">
+          <span className="block text-[11px] font-semibold uppercase tracking-wide text-white">
             Jetzt chatten
           </span>
           <span className="block text-sm font-bold">WhatsApp Beratung starten</span>

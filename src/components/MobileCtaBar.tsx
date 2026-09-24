@@ -25,7 +25,7 @@ const MobileCtaBar = () => {
         {!imVorgang && (
         <Button
           size="sm"
-          className="border border-[#20be5d] bg-[#25D366] text-white hover:bg-[#1fb658]"
+          className="border border-[#15803d] bg-[#15803d] text-white hover:bg-[#166534]"
           asChild
         >
           <a

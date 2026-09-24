@@ -1,8 +1,10 @@
 import { Clock, Phone, Mail, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo320 from "@/assets/logo-320.webp";
+import logo400 from "@/assets/logo-400.webp";
 import logo640 from "@/assets/logo-640.webp";
 import { CONSENT_OEFFNEN_EVENT } from "@/lib/consent";
+import { ORTSSEITEN } from "@/content/ortsseiten";
 
 const Footer = () => {
   return (
@@ -18,7 +20,7 @@ const Footer = () => {
             <div className="mb-4 inline-flex items-center rounded-xl bg-white px-4 py-2">
               <img
                 src={logo320}
-                srcSet={`${logo320} 320w, ${logo640} 640w`}
+                srcSet={`${logo320} 320w, ${logo400} 400w, ${logo640} 640w`}
                 sizes="292px"
                 width={292}
                 height={64}
@@ -153,6 +155,19 @@ const Footer = () => {
             </ul>
           </div>
 
+        </div>
+
+        {/* Einzugsgebiet – verlinkt die Ortsseiten von jeder Seite aus */}
+        <div className="relative mt-10 text-sm text-secondary-foreground/85">
+          <span className="font-semibold text-secondary-foreground">Zulassungsdienst für den Kreis Lippe:</span>{" "}
+          {ORTSSEITEN.map((seite, index) => (
+            <span key={seite.path}>
+              {index > 0 && " · "}
+              <Link to={seite.path} className="hover:text-secondary-foreground hover:underline">
+                {seite.ort}
+              </Link>
+            </span>
+          ))}
         </div>
 
         {/* Bottom Bar */}

@@ -70,7 +70,7 @@ const Preise = () => {
           <div className="mb-10 text-center">
             <h2 className="section-title mb-4">Preise auf einen Blick</h2>
             <p className="section-subtitle mx-auto max-w-2xl">
-              Vier Wege zur Zulassung oder Abmeldung – Sie wählen, wie schnell es gehen soll
+              Alle Leistungen auf einen Blick – Sie wählen, wie schnell es gehen soll
               und wie viel wir übernehmen.
             </p>
           </div>
@@ -83,14 +83,14 @@ const Preise = () => {
                   <span className="font-bold text-secondary">
                     {zeile.leistung}
                     {zeile.beliebt && (
-                      <span className="ml-2 rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
+                      <span className="ml-2 rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-secondary">
                         beliebt
                       </span>
                     )}
                   </span>
                   <span
                     className={`whitespace-nowrap text-lg font-bold ${
-                      zeile.kostenlos ? "text-trust-green" : "text-primary"
+                      zeile.kostenlos ? "text-trust-green" : "text-link"
                     }`}
                   >
                     {zeile.preis}
@@ -127,7 +127,7 @@ const Preise = () => {
                     <td className="px-5 py-4">
                       <span className="font-bold text-secondary">{zeile.leistung}</span>
                       {zeile.beliebt && (
-                        <span className="ml-2 rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
+                        <span className="ml-2 rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-secondary">
                           beliebt
                         </span>
                       )}
@@ -136,7 +136,7 @@ const Preise = () => {
                     <td className="px-5 py-4 text-sm text-foreground">{zeile.kennzeichen}</td>
                     <td
                       className={`whitespace-nowrap px-5 py-4 text-right text-lg font-bold ${
-                        zeile.kostenlos ? "text-trust-green" : "text-primary"
+                        zeile.kostenlos ? "text-trust-green" : "text-link"
                       }`}
                     >
                       {zeile.preis}
@@ -253,7 +253,7 @@ const Preise = () => {
                 <CardContent className="p-6">
                   <div className="mb-2 flex items-baseline justify-between gap-3">
                     <h3 className="text-lg font-bold text-secondary">{extra.name}</h3>
-                    <span className="text-xl font-bold text-primary">{extra.price}</span>
+                    <span className="text-xl font-bold text-link">{extra.price}</span>
                   </div>
                   <p className="text-sm text-muted-foreground">{extra.description}</p>
                 </CardContent>

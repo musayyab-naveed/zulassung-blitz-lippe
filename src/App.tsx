@@ -1,7 +1,3 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Home from "./pages/Home";
@@ -25,8 +21,6 @@ import KfzVersicherung from "./pages/KfzVersicherung";
 import { ORTSSEITEN } from "./content/ortsseiten";
 import RatgeberArtikel from "./pages/RatgeberArtikel";
 import { AUTO_ABMELDEN, AUTO_ANMELDEN, AUTO_UMMELDEN, GEWERBEKUNDEN, WUNSCHKENNZEICHEN } from "./content/leistungsseiten";
-
-const queryClient = new QueryClient();
 
 const ScrollToTop = () => {
   const { pathname, search } = useLocation();
@@ -55,45 +49,41 @@ const AnrufZaehler = () => {
 // Build (scripts/prerender.mjs) mit StaticRouter verwendet, damit jede Seite
 // ihren Text schon im HTML mitbringt.
 export const AppInhalt = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/angebot" element={<Angebot />} />
-        <Route path="/preise" element={<Preise />} />
-        <Route path="/ueber-uns" element={<UeberUns />} />
-        <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
-        <Route path="/evb-nummer" element={<EvbNummer />} />
-        <Route path="/zulassungsstelle-bad-salzuflen" element={<Zulassungsstelle />} />
-        <Route path="/auto-anmelden" element={<Leistungsseite seite={AUTO_ANMELDEN} />} />
-        <Route path="/auto-abmelden" element={<Leistungsseite seite={AUTO_ABMELDEN} />} />
-        <Route path="/auto-ummelden" element={<Leistungsseite seite={AUTO_UMMELDEN} />} />
-        <Route path="/wunschkennzeichen" element={<Leistungsseite seite={WUNSCHKENNZEICHEN} />} />
-        <Route path="/gewerbekunden" element={<Leistungsseite seite={GEWERBEKUNDEN} />} />
-        <Route path="/kfz-versicherung" element={<KfzVersicherung />} />
-        {ORTSSEITEN.map((seite) => (
-          <Route key={seite.path} path={seite.path} element={<Leistungsseite seite={seite} />} />
-        ))}
-        <Route path="/ratgeber" element={<Ratgeber />} />
-        <Route path="/ratgeber/:slug" element={<RatgeberArtikel />} />
-        <Route path="/faq" element={<Faq />} />
-        <Route path="/dokumente" element={<Dokumente />} />
-        <Route path="/blog" element={<Navigate to="/faq" replace />} />
-        <Route path="/blog/:slug" element={<Navigate to="/faq" replace />} />
-        <Route path="/impressum" element={<Impressum />} />
-        <Route path="/datenschutz" element={<Datenschutz />} />
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <AnrufZaehler />
-      <WhatsAppFloatingButton />
-      <MobileCtaBar />
-      <CookieBanner />
-    </TooltipProvider>
-  </QueryClientProvider>
+  <>
+    <ScrollToTop />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/angebot" element={<Angebot />} />
+      <Route path="/preise" element={<Preise />} />
+      <Route path="/ueber-uns" element={<UeberUns />} />
+      <Route path="/fahrzeugankauf" element={<Fahrzeugankauf />} />
+      <Route path="/evb-nummer" element={<EvbNummer />} />
+      <Route path="/zulassungsstelle-bad-salzuflen" element={<Zulassungsstelle />} />
+      <Route path="/auto-anmelden" element={<Leistungsseite seite={AUTO_ANMELDEN} />} />
+      <Route path="/auto-abmelden" element={<Leistungsseite seite={AUTO_ABMELDEN} />} />
+      <Route path="/auto-ummelden" element={<Leistungsseite seite={AUTO_UMMELDEN} />} />
+      <Route path="/wunschkennzeichen" element={<Leistungsseite seite={WUNSCHKENNZEICHEN} />} />
+      <Route path="/gewerbekunden" element={<Leistungsseite seite={GEWERBEKUNDEN} />} />
+      <Route path="/kfz-versicherung" element={<KfzVersicherung />} />
+      {ORTSSEITEN.map((seite) => (
+        <Route key={seite.path} path={seite.path} element={<Leistungsseite seite={seite} />} />
+      ))}
+      <Route path="/ratgeber" element={<Ratgeber />} />
+      <Route path="/ratgeber/:slug" element={<RatgeberArtikel />} />
+      <Route path="/faq" element={<Faq />} />
+      <Route path="/dokumente" element={<Dokumente />} />
+      <Route path="/blog" element={<Navigate to="/faq" replace />} />
+      <Route path="/blog/:slug" element={<Navigate to="/faq" replace />} />
+      <Route path="/impressum" element={<Impressum />} />
+      <Route path="/datenschutz" element={<Datenschutz />} />
+      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+    <AnrufZaehler />
+    <WhatsAppFloatingButton />
+    <MobileCtaBar />
+    <CookieBanner />
+  </>
 );
 
 const App = () => (

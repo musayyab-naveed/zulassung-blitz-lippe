@@ -43,12 +43,13 @@ All colors MUST be HSL.
     --brand-light-blue: 197 100% 64%;
     --brand-dark-navy: 205 100% 10%;
     --brand-gradient: linear-gradient(135deg, hsl(197 100% 64%), hsl(205 100% 10%));
-    --trust-green: 142 76% 36%;
+    --trust-green: 142 76% 30%;
     /* Textlinks: dunkler als --primary, damit sie auf Weiß gut lesbar sind */
     --link: 199 89% 32%;
     --warning-orange: 24 95% 53%;
-    --cta-orange: 24 95% 53%;
-    --cta-orange-hover: 24 95% 48%;
+    /* Dunkleres Orange: weiße Schrift bleibt lesbar (Kontrast über 4,5:1) */
+    --cta-orange: 18 88% 42%;
+    --cta-orange-hover: 18 88% 36%;
     
     /* Shadows */
     --shadow-brand: 0 10px 30px -10px hsl(197 100% 64% / 0.3);

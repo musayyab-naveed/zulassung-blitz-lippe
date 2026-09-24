@@ -24,7 +24,7 @@ const NotFound = () => {
       <Header />
       <section className="py-24">
         <div className="mx-auto max-w-xl px-4 text-center">
-          <p className="text-6xl font-bold text-primary">404</p>
+          <p className="text-6xl font-bold text-link">404</p>
           <h1 className="mt-4 text-2xl font-bold text-secondary sm:text-3xl">
             Diese Seite gibt es leider nicht
           </h1>

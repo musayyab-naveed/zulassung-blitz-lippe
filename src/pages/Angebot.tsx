@@ -96,7 +96,7 @@ const Karte = <T extends string>({ option, onWahl }: { option: Auswahl<T>; onWah
       <span className="block text-base font-semibold text-secondary sm:text-lg">{option.titel}</span>
       {option.text && <span className="block text-sm text-muted-foreground">{option.text}</span>}
     </span>
-    <ArrowRight className="h-5 w-5 flex-none text-muted-foreground transition-colors group-hover:text-primary" />
+    <ArrowRight className="h-5 w-5 flex-none text-muted-foreground transition-colors group-hover:text-link" />
   </button>
 );
 
@@ -197,7 +197,7 @@ const Angebot = () => {
         <div className="mx-auto max-w-2xl px-4 sm:px-6">
           {schritt === "was" && (
             <div className="mb-6 text-center">
-              <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-primary">
+              <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-link">
                 Kein Termin nötig
               </p>
               <h1 className="text-2xl font-bold text-secondary sm:text-3xl">
@@ -227,7 +227,7 @@ const Angebot = () => {
                 <button
                   type="button"
                   onClick={zurueck}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-base font-semibold text-secondary hover:border-primary hover:text-primary"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-base font-semibold text-secondary hover:border-primary hover:text-link"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Zurück
@@ -321,7 +321,7 @@ const Angebot = () => {
                   <Button
                     size="lg"
                     asChild
-                    className="h-14 bg-[#25D366] text-base font-bold text-white hover:bg-[#1fb257]"
+                    className="h-auto min-h-14 whitespace-normal bg-[#15803d] py-3 text-center text-base font-bold text-white hover:bg-[#166534]"
                   >
                     <a href={whatsappLink(nachricht)} target="_blank" rel="noopener noreferrer" onClick={whatsappGeklickt}>
                       <MessageCircle className="mr-2 h-5 w-5" />
@@ -332,9 +332,9 @@ const Angebot = () => {
                     <span className="text-[hsl(var(--cta-orange))]">★</span> 5,0 bei {BUSINESS.reviewCount} Google-Bewertungen ·
                     Kostenlos und unverbindlich – mit der Nachricht beauftragen Sie noch nichts.
                   </p>
-                  <Button size="lg" variant="outline" asChild>
+                  <Button size="lg" variant="outline" asChild className="h-auto whitespace-normal py-3 text-center">
                     <a href={TELEFON_LINK}>
-                      <Phone className="mr-2 h-4 w-4" />
+                      <Phone className="mr-2 h-4 w-4 flex-none" />
                       Kein WhatsApp oder am Computer? Anrufen: {TELEFON_ANZEIGE}
                     </a>
                   </Button>
@@ -443,8 +443,8 @@ const Angebot = () => {
                 {vorgang === "verkaufen" && (
                   <details className="group rounded-xl border border-border p-4">
                     <summary className="cursor-pointer list-none font-semibold text-secondary">
-                      <span className="text-primary group-open:hidden">▸ </span>
-                      <span className="hidden text-primary group-open:inline">▾ </span>
+                      <span className="text-link group-open:hidden">▸ </span>
+                      <span className="hidden text-link group-open:inline">▾ </span>
                       Lieber per Formular? Fotos hier hochladen
                     </summary>
                     <div className="mt-4">
@@ -474,7 +474,7 @@ const Angebot = () => {
                 )}
 
                 <div className="text-center">
-                  <Link to="/angebot" className="text-sm font-semibold text-muted-foreground hover:text-primary">
+                  <Link to="/angebot" className="text-sm font-semibold text-muted-foreground hover:text-link">
                     Andere Anfrage starten
                   </Link>
                 </div>

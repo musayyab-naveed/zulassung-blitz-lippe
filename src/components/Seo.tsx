@@ -29,7 +29,7 @@ const Seo = ({
   description: descriptionProp,
   path,
   image = OG_IMAGE,
-  robots = "index, follow",
+  robots: robotsProp,
   structuredData,
 }: SeoProps) => {
   const location = useLocation();
@@ -41,7 +41,10 @@ const Seo = ({
     const routeSeo = getRouteSeo(path ?? location.pathname);
     const title = titleProp ?? routeSeo?.title ?? siteName;
     const description = descriptionProp ?? routeSeo?.description ?? "";
-    const currentPath = path ?? `${location.pathname}${location.search}`;
+    // Ohne Suchparameter – sonst zeigt z. B. /angebot?vorgang=… auf sich selbst als eigene Seite
+    const currentPath = path ?? location.pathname;
+    const robots = robotsProp ?? (routeSeo?.noindex ? "noindex, follow" : "index, follow");
+    const nichtIndexieren = robots.includes("noindex");
     const canonicalUrl = `${siteUrl}${currentPath.startsWith("/") ? currentPath : `/${currentPath}`}`;
     const imageUrl = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
@@ -54,7 +57,7 @@ const Seo = ({
 
     ensureMetaTag('meta[property="og:title"]', { property: "og:title" }, title);
     ensureMetaTag('meta[property="og:description"]', { property: "og:description" }, description);
-    ensureMetaTag('meta[property="og:type"]', { property: "og:type" }, "website");
+    ensureMetaTag('meta[property="og:type"]', { property: "og:type" }, currentPath.startsWith("/ratgeber/") ? "article" : "website");
     ensureMetaTag('meta[property="og:url"]', { property: "og:url" }, canonicalUrl);
     ensureMetaTag('meta[property="og:image"]', { property: "og:image" }, imageUrl);
     ensureMetaTag('meta[property="og:site_name"]', { property: "og:site_name" }, siteName);
@@ -67,12 +70,15 @@ const Seo = ({
     ensureMetaTag('meta[name="twitter:url"]', { name: "twitter:url" }, canonicalUrl);
 
     let canonicalLink = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonicalLink) {
+    if (nichtIndexieren) {
+      canonicalLink?.remove();
+      canonicalLink = null;
+    } else if (!canonicalLink) {
       canonicalLink = document.createElement("link");
       canonicalLink.setAttribute("rel", "canonical");
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute("href", canonicalUrl);
+    canonicalLink?.setAttribute("href", canonicalUrl);
 
     const existingSchema = document.head.querySelector<HTMLScriptElement>(
       'script[type="application/ld+json"][data-seo="page"]'
@@ -89,7 +95,7 @@ const Seo = ({
     } else if (existingSchema) {
       existingSchema.remove();
     }
-  }, [titleProp, descriptionProp, path, image, robots, structuredData, location.pathname, location.search]);
+  }, [titleProp, descriptionProp, path, image, robotsProp, structuredData, location.pathname]);
 
   return null;
 };

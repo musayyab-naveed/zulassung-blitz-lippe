@@ -3,6 +3,7 @@ import { ChevronDown, Phone, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo320 from "@/assets/logo-320.webp";
+import logo400 from "@/assets/logo-400.webp";
 import logo640 from "@/assets/logo-640.webp";
 import { ZULASSUNGSSERVICE, ZULASSUNGSSERVICE_PFADE, type MenuePunkt } from "@/content/leistungsMenue";
 import { RATGEBER, RATGEBER_PFAD, ratgeberPfad } from "@/content/ratgeber";
@@ -85,7 +86,7 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-3 shrink-0">
             <img
               src={logo320}
-              srcSet={`${logo320} 320w, ${logo640} 640w`}
+              srcSet={`${logo320} 320w, ${logo400} 400w, ${logo640} 640w`}
               sizes="256px"
               width={256}
               height={56}
@@ -170,7 +171,7 @@ const Header = () => {
                   <Link
                     to={punkt.href}
                     className={`block rounded-xl px-3 py-2 text-sm font-bold uppercase tracking-wide ${
-                      istAktiv(punkt) ? "bg-primary text-primary-foreground" : "text-secondary hover:bg-muted"
+                      istAktiv(punkt) ? "bg-primary text-secondary" : "text-secondary hover:bg-muted"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

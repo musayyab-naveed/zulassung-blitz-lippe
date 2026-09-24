@@ -93,7 +93,7 @@ const GoogleReviews = () => {
             <img src={paypalLogo} alt="PayPal" width={105} height={28} className="h-7 w-auto" loading="lazy" />
             <div className="flex items-center gap-2 text-[#0a4d7a]" aria-label="Kauf auf Rechnung">
               <Receipt className="h-6 w-6" strokeWidth={2.4} />
-              <span className="text-lg font-extrabold uppercase tracking-tight">Rechnung</span>
+              <span className="text-lg font-bold uppercase tracking-tight">Rechnung</span>
             </div>
             <img src={mastercardLogo} alt="Mastercard" className="h-9 w-auto" loading="lazy" />
             <img src={visaLogo} alt="Visa" className="h-5 w-auto" loading="lazy" />
@@ -143,7 +143,7 @@ const GoogleReviews = () => {
                 <article className="h-full min-h-[172px] rounded-2xl border border-border/80 bg-white px-5 py-4 shadow-[0_14px_34px_-24px_hsl(var(--secondary)/0.42)]">
                   <div className="flex items-start gap-4">
                     <div className="shrink-0 mt-0.5">
-                      <div className="h-11 w-11 rounded-full bg-primary/15 text-primary flex items-center justify-center text-sm font-bold">
+                      <div className="h-11 w-11 rounded-full bg-primary/15 text-link flex items-center justify-center text-sm font-bold">
                         {initials(review.name)}
                       </div>
                     </div>

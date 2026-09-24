@@ -67,7 +67,7 @@ const KfzVersicherung = () => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             {SCHRITTE.map((schritt, index) => (
               <div key={schritt.titel} className="rounded-xl border border-border bg-background p-5">
-                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-secondary">
                   {index + 1}
                 </div>
                 <h3 className="font-semibold text-secondary">{schritt.titel}</h3>

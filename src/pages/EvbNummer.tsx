@@ -95,7 +95,7 @@ const EvbNummer = () => {
               >
                 <div
                   className={`mt-0.5 flex h-8 w-8 flex-none items-center justify-center rounded-full ${
-                    eintrag.benoetigt ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground"
+                    eintrag.benoetigt ? "bg-primary/10 text-link" : "bg-muted text-muted-foreground"
                   }`}
                 >
                   {eintrag.benoetigt ? (
@@ -236,7 +236,7 @@ const EvbNummer = () => {
                     worauf es ankommt. Das kostet Sie nichts.
                   </p>
                   <div className="flex flex-col gap-3 sm:flex-row">
-                    <Button size="lg" asChild className="bg-[#25D366] text-white hover:bg-[#1fb257]">
+                    <Button size="lg" asChild className="bg-[#15803d] text-white hover:bg-[#166534]">
                       <a href={WHATSAPP_EVB_URL} target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="mr-2 h-5 w-5" />
                         Per WhatsApp fragen
@@ -283,7 +283,7 @@ const EvbNummer = () => {
       {/* Abschluss */}
       <section className="py-14">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-link">
             <ShieldCheck className="h-4 w-4" />
             Zulassungsdienst in Bad Salzuflen, Kreis Lippe
           </div>

@@ -50,7 +50,7 @@ const Fahrzeugankauf = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="max-w-3xl">
               <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-                Auto verkaufen.
+                Auto verkaufen in Bad Salzuflen.
                 <br />
                 Schnell und unkompliziert.
               </h1>
@@ -133,7 +133,7 @@ const Fahrzeugankauf = () => {
             {steps.map((step, index) => (
               <Card key={step.title} className="border-2 hover:border-primary transition-colors">
                 <CardHeader>
-                  <div className="w-10 h-10 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center mb-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 text-link font-bold flex items-center justify-center mb-3">
                     {index + 1}
                   </div>
                   <CardTitle className="text-xl">{step.title}</CardTitle>

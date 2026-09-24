@@ -26,7 +26,13 @@ const CookieBanner = () => {
       ladeAnalytics();
       setWarAkzeptiert(true);
     } else if (wahl === null) {
-      setSichtbar(true);
+      // Erst nach dem Laden der Schriften zeigen – sonst springt der Text beim Schriftwechsel
+      // und der Banner zählt als größtes Element der Seite (schlechtere Ladewerte bei Google)
+      const zeigen = () => setSichtbar(true);
+      const schriften = document.fonts?.ready ?? Promise.resolve();
+      Promise.race([schriften, new Promise((fertig) => setTimeout(fertig, 2500))]).then(() =>
+        setTimeout(zeigen, 400)
+      );
     }
 
     const oeffnen = () => {
@@ -62,10 +68,8 @@ const CookieBanner = () => {
     >
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:gap-6 sm:px-6">
         <p className="text-sm text-muted-foreground">
-          <span className="font-semibold text-secondary">Dürfen wir messen, wie Sie unsere Seite nutzen?</span>{" "}
-          Mit Ihrer Zustimmung setzen wir Google Analytics ein, um zu verstehen, welche Seiten
-          hilfreich sind. Ohne Zustimmung wird nichts geladen. Sie können Ihre Wahl jederzeit
-          unten auf der Seite unter „Cookie-Einstellungen" ändern.{" "}
+          <span className="font-semibold text-secondary">Dürfen wir mit Google Analytics messen, wie unsere Seite genutzt wird?</span>{" "}
+          Ohne Zustimmung wird nichts geladen. Änderbar unten unter „Cookie-Einstellungen".{" "}
           <Link to="/datenschutz" className="font-semibold text-link hover:underline">
             Mehr dazu
           </Link>
