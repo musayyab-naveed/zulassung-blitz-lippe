@@ -88,9 +88,9 @@ const Karte = <T extends string>({ option, onWahl }: { option: Auswahl<T>; onWah
   <button
     type="button"
     onClick={() => onWahl(option.wert)}
-    className="group flex w-full items-center gap-4 rounded-2xl border-2 border-primary/25 bg-[hsl(197_100%_98%)] p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-[hsl(var(--cta-orange))] hover:bg-white hover:shadow-md sm:p-5"
+    className="group flex w-full items-center gap-4 rounded-2xl border-2 border-primary/25 bg-[hsl(197_100%_98%)] p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-white hover:shadow-md sm:p-5"
   >
-    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-secondary text-primary transition-colors group-hover:bg-[hsl(var(--cta-orange))] group-hover:text-white">
+    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-secondary text-primary">
       {ICONS[option.wert]}
     </span>
     <span className="flex-1">
