@@ -19,6 +19,7 @@ const WhatsAppFloatingButton = () => {
       <a
         href="https://wa.me/4915142462280?text=Hallo!%20Ich%20habe%20eine%20Frage.%20Es%20geht%20um%3A%20"
         target="_blank"
+        onClick={() => window.gtag?.("event", "generate_lead", { method: "whatsapp", quelle: "schwebend" })}
         rel="noreferrer"
         aria-label="Jetzt per WhatsApp schreiben"
         className="group relative flex items-center gap-3 rounded-2xl border border-[#20be5d] bg-[#25D366] px-4 py-3 text-white shadow-[0_18px_40px_-18px_rgba(37,211,102,0.85)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-18px_rgba(37,211,102,0.95)]"

@@ -170,7 +170,7 @@ const Angebot = () => {
 
   const whatsappGeklickt = () => {
     // Zählt nur, wenn Analytics per Zustimmung geladen wurde
-    window.gtag?.("event", "generate_lead", { method: "whatsapp", vorgang: vorgang ?? "unbekannt" });
+    window.gtag?.("event", "generate_lead", { method: "whatsapp", quelle: "anfrage", vorgang: vorgang ?? "unbekannt" });
   };
 
   const titel =

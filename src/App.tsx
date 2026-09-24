@@ -38,6 +38,19 @@ const ScrollToTop = () => {
   return null;
 };
 
+// Anrufe über tel:-Links mitzählen – wie die WhatsApp-Klicks nur mit Analytics-Zustimmung
+const AnrufZaehler = () => {
+  useEffect(() => {
+    const klick = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement | null)?.closest?.('a[href^="tel:"]');
+      if (link) window.gtag?.("event", "generate_lead", { method: "telefon", seite: window.location.pathname });
+    };
+    document.addEventListener("click", klick);
+    return () => document.removeEventListener("click", klick);
+  }, []);
+  return null;
+};
+
 // Seiteninhalt ohne Router – wird im Browser mit BrowserRouter und beim
 // Build (scripts/prerender.mjs) mit StaticRouter verwendet, damit jede Seite
 // ihren Text schon im HTML mitbringt.
@@ -75,6 +88,7 @@ export const AppInhalt = () => (
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <AnrufZaehler />
       <WhatsAppFloatingButton />
       <MobileCtaBar />
       <CookieBanner />

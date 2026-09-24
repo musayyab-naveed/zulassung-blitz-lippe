@@ -31,6 +31,7 @@ const MobileCtaBar = () => {
           <a
             href="https://wa.me/4915142462280?text=Hallo!%20Ich%20habe%20eine%20Frage.%20Es%20geht%20um%3A%20"
             target="_blank"
+            onClick={() => window.gtag?.("event", "generate_lead", { method: "whatsapp", quelle: "handy_leiste" })}
             rel="noreferrer"
           >
             <MessageCircle className="h-4 w-4" />

@@ -117,6 +117,7 @@ const AnkaufFormular = () => {
       });
       if (!antwort.ok) throw new Error(`HTTP ${antwort.status}`);
       setGesendet(true);
+      window.gtag?.("event", "generate_lead", { method: "formular", quelle: "ankauf" });
     } catch {
       setFehler(
         "Senden hat nicht geklappt – bitte Internetverbindung prüfen und erneut versuchen, oder rufen Sie uns an."

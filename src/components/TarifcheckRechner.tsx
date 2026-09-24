@@ -45,7 +45,11 @@ const TarifcheckRechner = () => {
             </a>
             .
           </p>
-          <Button size="lg" variant="cta" onClick={() => setGeladen(true)}>
+          <Button size="lg" variant="cta" onClick={() => {
+            setGeladen(true);
+            // Zählt nur mit Analytics-Zustimmung
+            window.gtag?.("event", "tarifcheck_geladen");
+          }}>
             Jetzt vergleichen & eVB-Nummer erhalten*
           </Button>
         </div>
