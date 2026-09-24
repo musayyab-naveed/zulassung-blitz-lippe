@@ -4,7 +4,7 @@ import logo320 from "@/assets/logo-320.webp";
 import logo400 from "@/assets/logo-400.webp";
 import logo640 from "@/assets/logo-640.webp";
 import { CONSENT_OEFFNEN_EVENT } from "@/lib/consent";
-import { ORTSSEITEN } from "@/content/ortsseiten";
+import { ALLE_ORTE_LIPPE, ORTSSEITEN } from "@/content/ortsseiten";
 
 const Footer = () => {
   return (
@@ -157,17 +157,29 @@ const Footer = () => {
 
         </div>
 
-        {/* Einzugsgebiet – verlinkt die Ortsseiten von jeder Seite aus */}
+        {/* Standort und Einzugsgebiet – alle 16 Orte, Ortsseiten verlinkt */}
         <div className="relative mt-10 text-sm text-secondary-foreground/85">
-          <span className="font-semibold text-secondary-foreground">Zulassungsdienst für den Kreis Lippe:</span>{" "}
-          {ORTSSEITEN.map((seite, index) => (
-            <span key={seite.path}>
-              {index > 0 && " · "}
-              <Link to={seite.path} className="hover:text-secondary-foreground hover:underline">
-                {seite.ort}
-              </Link>
-            </span>
-          ))}
+          <p>
+            <span className="font-semibold text-secondary-foreground">Unser Standort: Bad Salzuflen</span> –
+            Zulassungsdienst für den ganzen Kreis Lippe:
+          </p>
+          <p className="mt-1">
+            {ALLE_ORTE_LIPPE.filter((ort) => ort !== "Bad Salzuflen").map((ort, index) => {
+              const seite = ORTSSEITEN.find((s) => s.ort === ort);
+              return (
+                <span key={ort}>
+                  {index > 0 && " · "}
+                  {seite ? (
+                    <Link to={seite.path} className="hover:text-secondary-foreground hover:underline">
+                      {ort}
+                    </Link>
+                  ) : (
+                    ort
+                  )}
+                </span>
+              );
+            })}
+          </p>
         </div>
 
         {/* Bottom Bar */}

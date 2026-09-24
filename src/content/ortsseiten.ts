@@ -137,7 +137,7 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   chips: ["✓ Ohne Termin", `✓ ${ort.fahrzeit} von ${ort.name}`, "✓ ab 129 € inkl. Gebühren", "✓ Mo–Fr 9–18 · Sa 15–18 Uhr"],
   preis: {
     betrag: "ab 129 €",
-    text: "Zulassung inklusive Verwaltungsgebühren. Blitzabmeldung 40 €, Wunschkennzeichen +13 €.",
+    text: "Zulassung inklusive Verwaltungsgebühren. Sofortabmeldung 40 €, Wunschkennzeichen +13 €.",
   },
   checklisten: ["umschreibung"],
   schritteTitel: `So läuft es für Kunden aus ${ort.name}`,

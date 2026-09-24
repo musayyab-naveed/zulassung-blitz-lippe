@@ -137,7 +137,7 @@ const Home = () => {
                 </div>
               </div>
               <p className="mt-4 text-sm text-primary-foreground/85">
-                Auto verkaufen: auch nicht fahrbereite Fahrzeuge – beim Ankauf ist die Abmeldung gratis.
+                Auto verkaufen: unverbindliches Angebot holen – auch für nicht fahrbereite Fahrzeuge. Beim Ankauf ist die Abmeldung gratis.
               </p>
 
               <a
@@ -291,7 +291,7 @@ const Home = () => {
 
             <Card className="surface-card">
               <CardHeader className="pb-3">
-                <CardTitle className="text-xl text-secondary">Blitzabmeldung</CardTitle>
+                <CardTitle className="text-xl text-secondary">Sofortabmeldung</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <ul className="space-y-2.5">
@@ -388,27 +388,34 @@ const Home = () => {
 
 
 
-      {/* Für ganz Lippe: Ortsseiten verlinken */}
+      {/* Standort Bad Salzuflen – für alle 16 Orte im Kreis Lippe */}
       <section className="py-14">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="section-title mb-4">Für den ganzen Kreis Lippe</h2>
+          <h2 className="section-title mb-4">Unser Standort: Bad Salzuflen – für den ganzen Kreis Lippe</h2>
           <p className="section-subtitle mx-auto mb-8 max-w-2xl">
-            Egal ob Detmold, Lemgo oder Lage: Wir lassen Ihr Auto für jede Stadt und Gemeinde im
-            Kreis Lippe zu – vor Ort in Bad Salzuflen, per Versand oder online.
+            Unser Laden ist in der Werler Straße 68 in Bad Salzuflen. Von hier erledigen wir die Zulassung für
+            alle 16 Städte und Gemeinden im Kreis Lippe.
           </p>
+          <a
+            href={ROUTE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-5 inline-flex items-center gap-2 rounded-full bg-[hsl(var(--cta-orange))] px-6 py-3 text-base font-bold text-white shadow-md hover:bg-[hsl(var(--cta-orange-hover))]"
+          >
+            <MapPin className="h-5 w-5" />
+            Bad Salzuflen – hier sind wir
+          </a>
           <div className="flex flex-wrap justify-center gap-2">
-            {ALLE_ORTE_LIPPE.map((ort) => {
+            {ALLE_ORTE_LIPPE.filter((ort) => ort !== "Bad Salzuflen").map((ort) => {
               const seite = ORTSSEITEN.find((s) => s.ort === ort);
+              // Alle Orte sehen gleich aus – nur Bad Salzuflen (Standort) ist hervorgehoben
+              const stil = "rounded-full border border-border bg-background px-4 py-2 text-sm text-secondary";
               return seite ? (
-                <Link
-                  key={ort}
-                  to={seite.path}
-                  className="rounded-full border-2 border-primary/40 bg-primary/5 px-4 py-2 text-sm font-semibold text-secondary hover:border-primary hover:text-link"
-                >
+                <Link key={ort} to={seite.path} className={`${stil} hover:border-primary hover:text-link`}>
                   {ort}
                 </Link>
               ) : (
-                <span key={ort} className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground">
+                <span key={ort} className={stil}>
                   {ort}
                 </span>
               );

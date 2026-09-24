@@ -86,7 +86,7 @@ export const PACKAGES: PackageDef[] = [
   },
   {
     key: "abmeldung",
-    title: "BLITZABMELDUNG",
+    title: "SOFORTABMELDUNG",
     price: "40 €",
     priceValue: "40",
     subtitle: "Sofort vor Ort abgemeldet – Sie warten kurz",
@@ -98,7 +98,7 @@ export const PACKAGES: PackageDef[] = [
     ],
     highlight:
       "Voraussetzung: Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen (Zulassung ab 2015)",
-    buttonText: "BLITZABMELDUNG WÄHLEN",
+    buttonText: "SOFORTABMELDUNG WÄHLEN",
     buttonVariant: "cta" as const,
     schemaDescription: "Fahrzeug direkt vor Ort digital abmelden – Sie warten nur kurz.",
   },
@@ -230,7 +230,7 @@ export const PREIS_FAQS: PreisFaq[] = [
   {
     question: "Sind die Verwaltungsgebühren im Preis enthalten?",
     answer:
-      "Ja. Die Gebühren des Straßenverkehrsamts sind in unseren Preisen bereits enthalten. Sie zahlen 129 € für die Zulassung beziehungsweise 40 € für die Blitzabmeldung – es kommt keine Nachzahlung an der Behörde dazu.",
+      "Ja. Die Gebühren des Straßenverkehrsamts sind in unseren Preisen bereits enthalten. Sie zahlen 129 € für die Zulassung beziehungsweise 40 € für die Sofortabmeldung – es kommt keine Nachzahlung an der Behörde dazu.",
   },
   {
     question: "Warum steht bei SOFORT „ab 129 €“?",
@@ -245,7 +245,7 @@ export const PREIS_FAQS: PreisFaq[] = [
   {
     question: "Was kostet die Abmeldung?",
     answer:
-      "Die Blitzabmeldung kostet 40 € und läuft digital direkt vor Ort. Verkaufen Sie Ihr Fahrzeug an uns, ist die Abmeldung kostenlos – die 40 € entfallen dann.",
+      "Die Sofortabmeldung kostet 40 € und läuft digital direkt vor Ort. Verkaufen Sie Ihr Fahrzeug an uns, ist die Abmeldung kostenlos – die 40 € entfallen dann.",
   },
   {
     question: "Kostet die Ankaufanfrage etwas?",
@@ -255,7 +255,7 @@ export const PREIS_FAQS: PreisFaq[] = [
   {
     question: "Wie kann ich bezahlen?",
     answer:
-      "Bar, mit EC-Karte, per PayPal, per SEPA-Lastschrift oder auf Rechnung. Bezahlt wird erst bei uns vor Ort – nichts im Voraus.",
+      "Bar, mit EC-Karte, per PayPal, per SEPA-Lastschrift oder auf Rechnung. Bezahlt wird erst, wenn alles fertig ist – also wenn Ihr Auto zugelassen oder abgemeldet ist.",
   },
   {
     question: "Ist die KFZ-Steuer im Preis enthalten?",

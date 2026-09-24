@@ -186,7 +186,7 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
       ];
     case "/auto-abmelden":
       return [
-        dienstleistung(pfad, "Auto abmelden in Bad Salzuflen", "KFZ-Abmeldung", "Blitzabmeldung ohne Termin, digital direkt vor Ort – inklusive Verwaltungsgebühren.", { wert: "40" }),
+        dienstleistung(pfad, "Auto abmelden in Bad Salzuflen", "KFZ-Abmeldung", "Sofortabmeldung ohne Termin, digital direkt vor Ort – inklusive Verwaltungsgebühren.", { wert: "40" }),
         faqPage(pfad, alsFaqs(pfad)),
       ];
     case "/auto-ummelden":

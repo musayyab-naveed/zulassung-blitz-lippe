@@ -42,7 +42,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Was kostet die Zulassung?",
     answer:
-      "Die Zulassung gibt es ab 129 €, die Blitzabmeldung direkt vor Ort für 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Optionale Extras: Wunschkennzeichen +13 €, Feinstaubplakette +6 €.",
+      "Die Zulassung gibt es ab 129 €, die Sofortabmeldung direkt vor Ort für 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Optionale Extras: Wunschkennzeichen +13 €, Feinstaubplakette +6 €.",
   },
   {
     question: "Muss ich selbst zur Zulassungsstelle?",
@@ -106,7 +106,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
   },
   {
     key: "abmeldung",
-    title: "Blitzabmeldung (Außerbetriebsetzung)",
+    title: "Sofortabmeldung (Außerbetriebsetzung)",
     items: [
       "Beide Kennzeichenschilder",
       "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",

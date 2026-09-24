@@ -75,7 +75,7 @@ const Fahrzeugankauf = () => {
               <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4">
                 <Button size="lg" variant="cta-large" asChild>
                   <Link to="/angebot?start=verkauf">
-                    Jetzt Fahrzeug verkaufen
+                    Unverbindliches Angebot holen
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -178,7 +178,7 @@ const Fahrzeugankauf = () => {
                   Sie entscheiden erst, wenn Sie unser Angebot kennen.
                 </p>
                 <Button variant="cta" className="w-full" asChild>
-                  <Link to="/angebot?start=verkauf">Jetzt Fahrzeug verkaufen</Link>
+                  <Link to="/angebot?start=verkauf">Unverbindliches Angebot holen</Link>
                 </Button>
               </CardContent>
             </Card>

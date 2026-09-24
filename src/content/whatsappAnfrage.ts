@@ -31,16 +31,16 @@ export interface Auswahl<T extends string> {
 }
 
 export const VORGAENGE: Auswahl<Vorgang>[] = [
-  { wert: "zulassen", titel: "Fahrzeug zulassen oder ummelden", text: "Neu, gebraucht, geerbt, wieder anmelden oder Umzug" },
-  { wert: "abmelden", titel: "Fahrzeug abmelden", text: "Blitzabmeldung direkt vor Ort" },
+  { wert: "zulassen", titel: "Fahrzeug zulassen oder ummelden", text: "Neu, gebraucht, wieder anmelden oder Umzug" },
+  { wert: "abmelden", titel: "Fahrzeug abmelden", text: "Sofortabmeldung direkt vor Ort" },
   { wert: "sonder", titel: "Kurzzeit- oder Ausfuhrkennzeichen", text: "Überführung, Probefahrt oder Export" },
-  { wert: "verkaufen", titel: "Auto an uns verkaufen", text: "Wir kaufen Ihr Auto an – kostenlose Anfrage" },
+  { wert: "verkaufen", titel: "Auto an uns verkaufen", text: "Unverbindliches Angebot holen – kostenlos" },
   { wert: "frage", titel: "Ich habe nur eine Frage", text: "Direkt zu WhatsApp" },
 ];
 
 export const ARTEN: Auswahl<Art>[] = [
   { wert: "neu", titel: "Neuwagen", text: "Fabrikneu, noch nie zugelassen" },
-  { wert: "gebraucht", titel: "Auto übernommen – gekauft, geschenkt oder geerbt", text: "Das Auto kommt auf Ihren Namen" },
+  { wert: "gebraucht", titel: "Gebrauchtwagen gekauft", text: "Das Auto kommt auf Ihren Namen" },
   { wert: "wieder", titel: "Abgemeldetes Auto wieder anmelden", text: "Wiederzulassung" },
   { wert: "umzug", titel: "Umgezogen – Adresse ändern", text: "Innerhalb von Lippe oder neu zugezogen" },
   { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
@@ -77,7 +77,7 @@ const EVB_IN_NACHRICHT: Record<Evb, string> = {
 /** Erster Satz der Nachricht – so, wie ein Kunde es selbst schreiben würde */
 const ZULASSEN_IN_NACHRICHT: Record<Art, string> = {
   neu: "Hallo! Ich möchte einen Neuwagen zulassen.",
-  gebraucht: "Hallo! Ich habe ein Auto übernommen (gekauft, geschenkt oder geerbt) und möchte es auf mich zulassen.",
+  gebraucht: "Hallo! Ich habe einen Gebrauchtwagen gekauft und möchte ihn auf mich zulassen.",
   wieder: "Hallo! Ich möchte mein abgemeldetes Auto wieder anmelden.",
   umzug: "Hallo! Ich bin umgezogen und möchte die Adresse im Fahrzeugschein ändern lassen.",
   unklar: "Hallo! Ich möchte ein Fahrzeug zulassen, weiß aber nicht genau, welcher Fall das ist.",
@@ -90,7 +90,7 @@ const PAKET_IN_NACHRICHT: Record<string, string> = {
   sofort: "SOFORT (digital in ca. 20 Minuten)",
   basis: "BASIS (nächster Werktag, mit Kennzeichen)",
   premium: "PREMIUM (Hol- und Bringservice)",
-  abmeldung: "BLITZABMELDUNG",
+  abmeldung: "SOFORTABMELDUNG",
   sonderkennzeichen: "KURZZEIT- / AUSFUHRKENNZEICHEN",
 };
 
@@ -106,7 +106,7 @@ export interface AnfrageAntworten {
 export const baueNachricht = ({ vorgang, art, evb, paket, wunsch }: AnfrageAntworten): string => {
   if (vorgang === "verkaufen") {
     return [
-      "Hallo! Ich möchte mein Auto an Sie verkaufen.",
+      "Hallo! Ich hätte gern ein unverbindliches Angebot für mein Auto.",
       "",
       "Marke/Modell: ",
       "Baujahr: ",

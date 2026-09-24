@@ -28,6 +28,7 @@ import {
 } from "@/content/whatsappAnfrage";
 import faqSchema from "@/content/faqSchema.json";
 import { BUSINESS } from "@/content/seoRoutes";
+import { EXTRAS, PACKAGES, type PackageKey } from "@/content/preise";
 import zb1CodeImg from "@/assets/dokumente/zb1-code-verdeckt.jpg";
 import plaketteImg from "@/assets/dokumente/plakette-verdeckt.jpg";
 import {
@@ -99,6 +100,72 @@ const Karte = <T extends string>({ option, onWahl }: { option: Auswahl<T>; onWah
     <ArrowRight className="h-5 w-5 flex-none text-muted-foreground transition-colors group-hover:text-link" />
   </button>
 );
+
+const preisVon = (key: PackageKey) => PACKAGES.find((p) => p.key === key)?.price ?? "";
+const WUNSCH_PREIS = EXTRAS.find((e) => e.name === "Wunschkennzeichen")?.price ?? "";
+
+/** „Was es kostet" – passend zum gewählten Vorgang; am Computer rechts neben der Anfrage */
+const PreisKasten = ({ vorgang, paket }: { vorgang?: Vorgang; paket?: string | null }) => {
+  const zeilen: { name: string; preis: string; key?: string }[] =
+    vorgang === "zulassen"
+      ? [
+          { name: "Sofort-Zulassung (ca. 20 Min., ohne Schilder)", preis: preisVon("sofort"), key: "sofort" },
+          { name: "Mit Kennzeichen (nächster Werktag)", preis: preisVon("basis"), key: "basis" },
+          { name: "Mit Hol- und Bringservice", preis: preisVon("premium"), key: "premium" },
+          { name: "Wunschkennzeichen", preis: WUNSCH_PREIS },
+        ]
+      : vorgang === "abmelden"
+        ? [
+            { name: "Sofortabmeldung", preis: preisVon("abmeldung"), key: "abmeldung" },
+            { name: "Wenn wir Ihr Auto ankaufen", preis: "kostenlos" },
+          ]
+        : vorgang === "sonder"
+          ? [{ name: "Kurzzeit- oder Ausfuhrkennzeichen", preis: "Preis im Chat" }]
+          : vorgang === "verkaufen"
+            ? [
+                { name: "Angebot für Ihr Auto", preis: "kostenlos" },
+                { name: "Abmeldung beim Ankauf", preis: "gratis" },
+              ]
+            : [
+                { name: "Zulassung", preis: preisVon("sofort") },
+                { name: "Sofortabmeldung", preis: preisVon("abmeldung") },
+                { name: "Wunschkennzeichen", preis: WUNSCH_PREIS },
+                { name: "Angebot für Ihr Auto", preis: "kostenlos" },
+              ];
+
+  return (
+    <div className="rounded-2xl border border-primary/30 bg-background p-5 shadow-sm">
+      <h2 className="mb-3 text-lg font-bold text-secondary">Was es kostet</h2>
+      <ul className="space-y-2">
+        {zeilen.map((zeile) => (
+          <li
+            key={zeile.name}
+            className={`flex items-baseline justify-between gap-3 rounded-lg px-2 py-1.5 text-sm ${
+              zeile.key && zeile.key === paket ? "bg-primary/10 font-semibold" : ""
+            }`}
+          >
+            <span className="text-secondary">{zeile.name}</span>
+            <span className="whitespace-nowrap font-bold text-secondary">{zeile.preis}</span>
+          </li>
+        ))}
+      </ul>
+      {vorgang !== "verkaufen" && (
+        <p className="mt-3 text-sm text-secondary">
+          Alle Preise inklusive Gebühren des Kreises.{" "}
+          <span className="font-semibold">
+            Bezahlt wird erst, wenn alles fertig ist – also wenn Ihr Auto zugelassen oder abgemeldet ist.
+          </span>
+        </p>
+      )}
+      {vorgang === "verkaufen" && (
+        <p className="mt-3 text-sm text-secondary">Sie entscheiden erst, wenn Sie unser Angebot kennen.</p>
+      )}
+      <p className="mt-3 border-t border-border pt-3 text-sm font-semibold text-secondary">
+        <span className="text-[hsl(var(--cta-orange))]">★★★★★</span> 5,0 · {BUSINESS.reviewCount} Google-Bewertungen
+      </p>
+    </div>
+  );
+};
 
 const Angebot = () => {
   const [params] = useSearchParams();
@@ -181,7 +248,7 @@ const Angebot = () => {
         : schritt === "evb"
           ? "Haben Sie schon die eVB-Nummer für dieses Auto?"
           : vorgang === "verkaufen"
-            ? "Fahrzeug verkaufen – so geht's weiter"
+            ? "Unverbindliches Angebot für Ihr Auto"
             : vorgang === "frage"
               ? "Stellen Sie uns Ihre Frage"
               : "Fast geschafft – nur noch absenden";
@@ -194,7 +261,8 @@ const Angebot = () => {
       <Header />
 
       <section className="bg-muted/40 py-8 sm:py-12">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:grid lg:max-w-5xl lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start lg:gap-8">
+          <div>
           {schritt === "was" && (
             <div className="mb-6 text-center">
               <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-link">
@@ -291,18 +359,10 @@ const Angebot = () => {
             {schritt === "fertig" && (
               <div className="space-y-6">
                 {/* Die fertige Nachricht */}
-                {/* Preis gleich hier – sonst bleibt die wichtigste Frage offen */}
-                {(vorgang === "zulassen" || vorgang === "abmelden" || vorgang === "sonder") && (
-                  <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 text-base text-secondary">
-                    <span className="font-bold">Was es kostet: </span>
-                    {vorgang === "abmelden"
-                      ? "40 € inklusive Gebühren – kostenlos, wenn wir Ihr Auto ankaufen."
-                      : vorgang === "sonder"
-                        ? "Den Preis nennen wir Ihnen im Chat, bevor wir anfangen."
-                        : "ab 129 € – die Gebühren des Kreises sind schon drin. Wunschkennzeichen +13 €. Den genauen Preis für Ihren Fall sagen wir Ihnen im Chat, bevor wir anfangen."}{" "}
-                    <span className="font-semibold">Bezahlt wird erst bei uns vor Ort – nichts im Voraus.</span>
-                  </div>
-                )}
+                {/* Auf dem Handy steht der Preis hier, am Computer rechts daneben */}
+                <div className="lg:hidden">
+                  <PreisKasten vorgang={vorgang} paket={paket} />
+                </div>
 
                 <div>
                   <p className="mb-2 text-base text-secondary">
@@ -340,9 +400,8 @@ const Angebot = () => {
                   </Button>
                   {vorgang !== "frage" && vorgang !== "verkaufen" && (
                     <p className="text-sm text-secondary">
-                      Besonderer Fall – etwa ist der bisherige Halter verstorben, oder Sie erledigen das für
-                      einen Angehörigen? Schreiben Sie es einfach mit in die Nachricht. Wir sagen Ihnen dann
-                      genau, welche Papiere Sie brauchen.
+                      Sie erledigen das für einen Angehörigen oder haben einen besonderen Fall? Schreiben Sie
+                      es einfach mit in die Nachricht. Wir sagen Ihnen dann genau, welche Papiere Sie brauchen.
                     </p>
                   )}
                 </div>
@@ -376,7 +435,7 @@ const Angebot = () => {
                 {vorgang === "abmelden" && (
                   <div className="rounded-xl border border-border p-4">
                     <h2 className="mb-2 font-bold text-secondary">
-                      Für die Blitzabmeldung in wenigen Minuten
+                      Für die Sofortabmeldung in wenigen Minuten
                     </h2>
                     <p className="mb-3 text-sm text-muted-foreground">
                       Fahrzeuge, die ab 2015 zugelassen wurden, haben Sicherheitscodes zum Freirubbeln –
@@ -490,6 +549,12 @@ const Angebot = () => {
               </a>
             </p>
           )}
+          </div>
+
+          {/* Preis immer sichtbar rechts (nur Computer) */}
+          <aside className="hidden lg:sticky lg:top-44 lg:block">
+            <PreisKasten vorgang={vorgang} paket={paket} />
+          </aside>
         </div>
       </section>
 

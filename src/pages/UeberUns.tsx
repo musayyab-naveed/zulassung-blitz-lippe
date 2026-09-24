@@ -52,7 +52,7 @@ const UeberUns = () => {
     "Sofort-Zulassung in ca. 20 Minuten",
     "KFZ-Neuzulassung",
     "KFZ-Umschreibung",
-    "Blitzabmeldung",
+    "Sofortabmeldung",
     "Fahrzeugankauf",
     "Kennzeichen-Reservierung",
     "Hol- und Bringservice",

@@ -149,14 +149,14 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
 
 export const AUTO_ABMELDEN: LeistungsSeite = {
   path: "/auto-abmelden",
-  kicker: "Blitzabmeldung ohne Termin",
+  kicker: "Sofortabmeldung ohne Termin",
   h1: "Auto abmelden in Bad Salzuflen – ohne Termin, in wenigen Minuten",
   intro:
     "Bringen Sie Fahrzeugschein und Kennzeichen vorbei – wir melden Ihr Auto digital direkt vor Ort ab. Kein Termin beim Straßenverkehrsamt, keine Wartenummer. Für 40 €, Gebühren inklusive.",
   chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ 40 € inkl. Gebühren", "✓ Gratis beim Fahrzeugverkauf"],
   preis: {
     betrag: "40 €",
-    text: "Blitzabmeldung inklusive Verwaltungsgebühren. Verkaufen Sie uns Ihr Fahrzeug, ist die Abmeldung kostenlos.",
+    text: "Sofortabmeldung inklusive Verwaltungsgebühren. Verkaufen Sie uns Ihr Fahrzeug, ist die Abmeldung kostenlos.",
   },
   checklisten: ["abmeldung"],
   schritteTitel: "So läuft die Abmeldung bei uns",

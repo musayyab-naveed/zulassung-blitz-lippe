@@ -57,7 +57,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/preise",
     title: "Preise KFZ-Zulassung Bad Salzuflen – ab 129 €",
     description:
-      "Sofort-Zulassung ab 129 €, mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Blitzabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten.",
+      "Sofort-Zulassung ab 129 €, mit Kennzeichen 129 €, Hol- und Bringservice 159 €, Sofortabmeldung 40 €. Verwaltungsgebühren inklusive, keine versteckten Kosten.",
   },
   {
     path: "/zulassungsstelle-bad-salzuflen",
