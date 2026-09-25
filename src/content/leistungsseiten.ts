@@ -117,7 +117,7 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
       punkte: [
         "SOFORT: Sie warten kurz bei uns, die Zulassung läuft digital in ca. 20 Minuten. Die Kennzeichen besorgen Sie selbst.",
         "BASIS: Unterlagen abgeben, am nächsten Werktag alles fertig abholen – mit Kennzeichen.",
-        "PREMIUM: Wir holen die Unterlagen ab und bringen alles fertig zurück, oder Sie schicken uns alles per Post.",
+        "PREMIUM: Wir holen die Unterlagen ab und bringen alles fertig zurück.",
       ],
       link: { href: "/preise", text: "Alle Pakete und Preise" },
     },

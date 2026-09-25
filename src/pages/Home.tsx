@@ -32,7 +32,7 @@ const Home = () => {
       icon: <Shield className="h-8 w-8 text-primary" />,
       title: "Unterlagen mitbringen",
       description:
-        "Vorbeibringen, zuschicken oder im Raum Bad Salzuflen von uns abholen lassen.",
+        "Einfach vorbeibringen – ohne Termin. Im Raum Bad Salzuflen holen wir sie auf Wunsch auch ab.",
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-primary" />,
@@ -480,8 +480,8 @@ const Home = () => {
                 <h3 className="text-2xl font-bold text-secondary mb-4">Wir sind direkt vor Ort für Sie da</h3>
                 <p className="text-muted-foreground mb-6">
                   Kommen Sie einfach vorbei – ohne Termin. Aus Detmold, Lemgo, Lage und dem übrigen
-                  Kreis Lippe sind Sie schnell bei uns; alternativ schicken Sie uns die Unterlagen oder
-                  wir erledigen die Zulassung online.
+                  Kreis Lippe sind Sie schnell bei uns, und mit der Sofort-Zulassung sind Sie in rund
+                  20 Minuten fertig.
                 </p>
               </div>
 
