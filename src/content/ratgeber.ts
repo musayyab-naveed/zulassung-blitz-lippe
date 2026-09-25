@@ -530,6 +530,13 @@ export const RATGEBER: RatgeberArtikel[] = [
         ],
       },
       {
+        titel: "Und wohin mit dem alten Auto?",
+        absaetze: [
+          "Wir kaufen es an – auch wenn es nicht mehr fährt. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab und erledigen die Abmeldung. Beides inklusive.",
+        ],
+        link: { href: "/fahrzeugankauf", text: "Unverbindliches Angebot holen" },
+      },
+      {
         titel: "So geht es bei uns",
         punkte: [
           "Kurz per WhatsApp Bescheid geben oder direkt vorbeikommen – ohne Termin.",
@@ -680,6 +687,13 @@ export const RATGEBER: RatgeberArtikel[] = [
           "Ohne eVB-Nummer geht keine Zulassung. Die bekommen Sie mit dem Abschluss einer Kfz-Versicherung – oft innerhalb weniger Minuten.",
         ],
         link: { href: "/kfz-versicherung", text: "Kfz-Versicherung vergleichen" },
+      },
+      {
+        titel: "Und wohin mit dem alten Auto?",
+        absaetze: [
+          "Wir kaufen es an – auch wenn es nicht mehr fährt. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab und erledigen die Abmeldung. Beides inklusive.",
+        ],
+        link: { href: "/fahrzeugankauf", text: "Unverbindliches Angebot holen" },
       },
     ],
     cta: {

@@ -127,6 +127,11 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
       link: { href: "/kfz-versicherung", text: "eVB-Nummer beantragen" },
     },
     {
+      titel: "Neues Auto gekauft – und das alte?",
+      text: "Wir kaufen Ihr altes Auto an – auch wenn es nicht mehr fährt. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab und erledigen die Abmeldung. Beides inklusive.",
+      link: { href: "/fahrzeugankauf", text: "Unverbindliches Angebot holen" },
+    },
+    {
       titel: "Warum nicht selbst zum Amt?",
       text: "Beim Straßenverkehrsamt Kreis Lippe geht nichts ohne Termin, und Termine gibt es nur 14 Tage im Voraus. Wenn Sie flexibel sind und einen Termin bekommen, ist das günstiger. Wenn es schnell gehen soll oder Sie tagsüber arbeiten, sind Sie bei uns richtig – auch samstags.",
       link: { href: "/zulassungsstelle-bad-salzuflen", text: "Zulassungsstelle Bad Salzuflen: Zeiten & Regeln" },

@@ -52,7 +52,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Kann ich mein altes Fahrzeug gleichzeitig verkaufen?",
     answer:
-      "Ja. Sie können den Fahrzeugankauf mit Zulassung, Abmeldung oder auch unabhängig davon beauftragen. Beim Ankauf ist die Abmeldung gratis.",
+      "Ja. Neues Auto gekauft? Ihr altes kaufen wir an – mit unverbindlichem Angebot, Abholung und Abmeldung inklusive. Das geht zusammen mit der Zulassung oder auch ganz unabhängig davon.",
   },
   {
     question: "Bieten Sie den Service nur in Bad Salzuflen an?",

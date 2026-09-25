@@ -145,9 +145,10 @@ export const PACKAGES: PackageDef[] = [
     priceValue: "0",
     subtitle: "Wir kaufen Ihr Auto an – auch ohne Zulassung bei uns",
     features: [
-      "Kostenlose und unverbindliche Anfrage",
+      "Kostenloses, unverbindliches Angebot",
       "Auch ältere oder nicht fahrbereite Fahrzeuge",
-      "Abmeldung beim Ankauf gratis",
+      "Abholung inklusive",
+      "Abmeldung inklusive",
       "Fachgerechte Verwertung auf Wunsch",
     ],
     buttonText: "AUTO VERKAUFEN",

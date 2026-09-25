@@ -251,16 +251,32 @@
   ],
   "/fahrzeugankauf": [
     {
-      "question": "Kann ich mein Fahrzeug auch ohne Zulassung verkaufen?",
-      "answer": "Ja. Fahrzeugankauf ist bei uns unabhängig von Zulassung, Ummeldung oder Abmeldung möglich."
+      "question": "Ich habe ein neues Auto gekauft – was mache ich mit dem alten?",
+      "answer": "Wir kaufen es an – auch wenn es nicht mehr fährt. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab und erledigen die Abmeldung. Ihr neues Auto melden wir auf Wunsch gleich mit an."
     },
     {
-      "question": "Welche Angaben brauchen Sie für eine Ersteinschätzung?",
-      "answer": "Marke, Modell, Baujahr und Ihre Telefonnummer reichen für den Start. Fotos und Kilometerstand helfen für eine genauere Einschätzung – gern auch direkt per WhatsApp."
+      "question": "Holen Sie das Auto auch ab?",
+      "answer": "Ja. Die Abholung ist beim Ankauf inklusive – bei Ihnen zu Hause oder dort, wo das Auto gerade steht."
+    },
+    {
+      "question": "Kostet die Abmeldung extra?",
+      "answer": "Nein. Wenn wir Ihr Auto ankaufen, ist die Abmeldung inklusive. Ohne Ankauf kostet die Sofortabmeldung 40 €."
+    },
+    {
+      "question": "Ist das Angebot verbindlich?",
+      "answer": "Nein. Das Angebot ist kostenlos und unverbindlich – Sie entscheiden in Ruhe, ob Sie verkaufen möchten."
+    },
+    {
+      "question": "Welche Angaben brauchen Sie für ein Angebot?",
+      "answer": "Marke, Modell, Baujahr und Kilometerstand reichen für den Start. Fotos helfen für eine genauere Einschätzung – gern per WhatsApp."
+    },
+    {
+      "question": "Kann ich mein Auto auch ohne Zulassung verkaufen?",
+      "answer": "Ja. Der Ankauf ist bei uns unabhängig von Zulassung, Ummeldung oder Abmeldung möglich."
     },
     {
       "question": "Was passiert mit nicht fahrbereiten Fahrzeugen?",
-      "answer": "Auch nicht fahrbereite Fahrzeuge können wir übernehmen und die fachgerechte Verwertung koordinieren."
+      "answer": "Auch nicht fahrbereite Fahrzeuge kaufen wir an und kümmern uns auf Wunsch um die fachgerechte Verwertung."
     }
   ],
   "/kfz-versicherung": [

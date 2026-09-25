@@ -135,7 +135,7 @@ const Home = () => {
                 </div>
               </div>
               <p className="mt-4 text-sm text-primary-foreground/85">
-                Auto verkaufen: unverbindliches Angebot holen – auch für nicht fahrbereite Fahrzeuge. Beim Ankauf ist die Abmeldung gratis.
+                Auto verkaufen: Neues Auto gekauft? Ihr altes kaufen wir an – unverbindliches Angebot, Abholung und Abmeldung inklusive.
               </p>
 
               <a

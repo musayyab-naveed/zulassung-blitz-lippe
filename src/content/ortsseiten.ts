@@ -296,7 +296,8 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
       titel: "Was wir für Sie erledigen",
       punkte: [
         "Neuzulassung, Umschreibung nach dem Autokauf und Wiederzulassung",
-        "Abmeldung – beim Verkauf Ihres Autos an uns kostenlos",
+        "Abmeldung – kostenlos, wenn wir Ihr Auto ankaufen",
+        "Ankauf Ihres alten Autos – unverbindliches Angebot, Abholung und Abmeldung inklusive",
         "Adressänderung nach dem Umzug",
         "Wunschkennzeichen mit LIP, DT oder LE",
         "Kurzzeit- und Ausfuhrkennzeichen auf Anfrage",

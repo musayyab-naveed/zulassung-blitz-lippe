@@ -416,6 +416,13 @@ const Angebot = () => {
                       es einfach mit in die Nachricht. Wir sagen Ihnen dann genau, welche Papiere Sie brauchen.
                     </p>
                   )}
+                  {vorgang === "zulassen" && (art === "neu" || art === "gebraucht") && (
+                    <p className="text-sm text-secondary">
+                      <span className="font-semibold">Und das alte Auto soll weg?</span> Wir kaufen es an –
+                      unverbindliches Angebot, Abholung und Abmeldung inklusive. Schreiben Sie es einfach mit in
+                      die Nachricht.
+                    </p>
+                  )}
                 </div>
 
                 {/* Versicherung erst nach dem Absenden – vorher würde der Kunde die Seite verlassen */}

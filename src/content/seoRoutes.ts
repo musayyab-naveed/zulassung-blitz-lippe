@@ -125,7 +125,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/fahrzeugankauf",
     title: "Auto verkaufen Bad Salzuflen – Ankauf im Kreis Lippe",
     description:
-      "Fahrzeug verkaufen in Bad Salzuflen: kostenlose Ersteinschätzung, faire Prüfung vor Ort, Abholung möglich. Beim Ankauf ist die Abmeldung gratis.",
+      "Auto verkaufen in Bad Salzuflen & Lippe: unverbindliches Angebot, Abholung und Abmeldung inklusive – auch für nicht fahrbereite Fahrzeuge.",
   },
   {
     path: "/dokumente",
