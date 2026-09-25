@@ -7,6 +7,7 @@
  * Startseite und einem Canonical auf "/". Suchmaschinen behandeln die
  * Unterseiten dann als Duplikate der Startseite und indexieren sie nicht.
  */
+import { execSync } from "node:child_process";
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import Beasties from "beasties";
 import { dirname, join } from "node:path";
@@ -188,13 +189,25 @@ for (const route of routes) {
 
 // Sitemap aus denselben Routen erzeugen – neue Seiten und Artikel landen automatisch darin
 const artikelDatum = new Map(RATGEBER.map((a) => [`${RATGEBER_PFAD}/${a.slug}`, a.aktualisiert]));
+
+// Echtes Änderungsdatum der Ortsseiten aus Git – Google liest geänderte Seiten dann eher neu ein.
+// Fehlt Git (z. B. flacher Klon), bleibt das Datum einfach weg.
+const gitDatum = (datei) => {
+  try {
+    return execSync(`git log -1 --format=%cs -- ${datei}`, { stdio: ["ignore", "pipe", "ignore"] }).toString().trim() || null;
+  } catch {
+    return null;
+  }
+};
+const ortsseitenDatum = gitDatum("src/content/ortsseiten.ts");
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
   ...routes
     .filter((route) => !route.noindex)
     .map((route) => {
-      const lastmod = artikelDatum.get(route.path);
+      const lastmod =
+        artikelDatum.get(route.path) ?? (route.path.startsWith("/zulassungsdienst-") ? ortsseitenDatum : null);
       return `  <url>\n    <loc>${SITE_URL}${route.path}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ""}\n  </url>`;
     }),
   "</urlset>",
