@@ -95,7 +95,7 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 35 Minuten",
     strecke: "rund 36 km",
     einleitung:
-      "Aus Horn-Bad Meinberg sind es ca. 35 Minuten bis zu uns nach Bad Salzuflen. Ist Ihnen der Weg zu weit, schicken Sie uns die Unterlagen einfach – wir erledigen den Rest und schicken alles zurück.",
+      "Sie wohnen in Horn-Bad Meinberg? Dann müssen Sie für die Zulassung nicht einmal herkommen: Schicken Sie uns die Unterlagen, wir erledigen alles und schicken es zurück. Oder Sie kommen einfach ohne Termin bei uns in Bad Salzuflen vorbei.",
     zulassungsstelle: `Vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
@@ -105,7 +105,7 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 40 Minuten",
     strecke: "rund 37 km",
     einleitung:
-      "Aus Blomberg sind es ca. 40 Minuten bis zu uns nach Bad Salzuflen. Sie können gern vorbeikommen – oder Sie schicken uns die Unterlagen und bekommen alles fertig zurück.",
+      "Aus Blomberg müssen Sie für die Zulassung nicht extra losfahren: Schicken Sie uns die Unterlagen, und Sie bekommen alles fertig zurück. Lieber persönlich? Dann kommen Sie ohne Termin bei uns in Bad Salzuflen vorbei.",
     zulassungsstelle: `Vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Barntrup und Detmold – beide ${NUR_MIT_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
     weit: true,
@@ -116,7 +116,7 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 40 Minuten",
     strecke: "rund 38 km",
     einleitung:
-      "In Barntrup gibt es zwar eine Zulassungsstelle, aber nur mit online gebuchtem Termin. Bei uns kommen Sie ohne Termin dran – nach ca. 40 Minuten Fahrt in Bad Salzuflen, oder Sie schicken uns die Unterlagen einfach zu.",
+      "In Barntrup gibt es zwar eine Zulassungsstelle, aber nur mit online gebuchtem Termin. Bei uns kommen Sie ohne Termin dran – direkt in Bad Salzuflen, oder Sie schicken uns die Unterlagen einfach zu.",
     zulassungsstelle:
       "Die Zulassungsstelle vor Ort arbeitet – wie alle drei im Kreis – nur mit vorher online gebuchtem Termin. Und Termine gibt es nur 14 Tage im Voraus.",
     kennzeichen: KENNZEICHEN_FREI,
@@ -138,7 +138,7 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 40 Minuten",
     strecke: "rund 37 km",
     einleitung:
-      "Aus dem Extertal sind es ca. 40 Minuten bis zu uns nach Bad Salzuflen. Sie müssen aber nicht selbst kommen: Mit dem PREMIUM-Paket schicken Sie uns die Unterlagen und bekommen alles per Express zurück.",
+      "Aus dem Extertal müssen Sie nicht selbst kommen: Mit dem PREMIUM-Paket schicken Sie uns die Unterlagen und bekommen alles per Express zurück. Oder Sie kommen ohne Termin bei uns in Bad Salzuflen vorbei.",
     zulassungsstelle: `Vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Barntrup – ${NUR_MIT_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
     weit: true,
@@ -158,7 +158,7 @@ const ORTE: Ort[] = [
     name: "Augustdorf",
     fahrzeit: "ca. 35 Minuten",
     einleitung:
-      "Aus Augustdorf sind es ca. 35 Minuten bis zu uns nach Bad Salzuflen. Einen Termin brauchen Sie nicht – kommen Sie einfach mit Ihren Unterlagen vorbei oder schicken Sie sie uns zu.",
+      "Sie wohnen in Augustdorf? Kommen Sie ohne Termin bei uns in Bad Salzuflen vorbei – oder schicken Sie uns die Unterlagen einfach zu. Einen Termin beim Amt brauchen Sie in beiden Fällen nicht.",
     zulassungsstelle: `Vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
@@ -167,7 +167,7 @@ const ORTE: Ort[] = [
     name: "Schlangen",
     fahrzeit: "ca. 45 Minuten",
     einleitung:
-      "Aus Schlangen sind es ca. 45 Minuten bis zu uns nach Bad Salzuflen. Ist Ihnen der Weg zu weit, schicken Sie uns die Unterlagen einfach zu – wir erledigen die Zulassung und schicken alles zurück.",
+      "Aus Schlangen geht die Zulassung auch ganz ohne Fahrt: Schicken Sie uns die Unterlagen, wir erledigen alles und schicken es zurück. Oder Sie kommen ohne Termin bei uns in Bad Salzuflen vorbei.",
     zulassungsstelle: `Vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
     weit: true,
@@ -178,7 +178,7 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 55 Minuten",
     strecke: "rund 52 km",
     einleitung:
-      "Lügde liegt ganz im Südosten des Kreises, rund 55 Minuten von uns entfernt. Deshalb geht es auch ohne Fahrt: Sie schicken uns die Unterlagen, wir erledigen die Zulassung und senden alles per Express zurück.",
+      "Lügde liegt ganz im Südosten des Kreises – deshalb machen wir es Ihnen einfach: Unterlagen schicken, wir erledigen die Zulassung und senden alles per Express zurück. Persönlich vorbeikommen geht natürlich auch, ohne Termin.",
     zulassungsstelle: `Vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Barntrup – ${NUR_MIT_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
     weit: true,
@@ -189,7 +189,7 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 50 Minuten",
     strecke: "rund 50 km",
     einleitung:
-      "Aus Schieder-Schwalenberg sind es ca. 50 Minuten bis zu uns nach Bad Salzuflen. Sie können vorbeikommen – oder uns die Unterlagen einfach schicken und alles fertig zurückbekommen.",
+      "Aus Schieder-Schwalenberg können Sie uns die Unterlagen einfach schicken – wir erledigen die Zulassung, und Sie bekommen alles fertig zurück. Oder Sie kommen ohne Termin bei uns in Bad Salzuflen vorbei.",
     zulassungsstelle: `Vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Barntrup und Detmold – beide ${NUR_MIT_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
     weit: true,
@@ -218,6 +218,25 @@ export const ALLE_ORTE_LIPPE = [
 
 export const ortsPfad = (slug: string) => `/zulassungsdienst-${slug}`;
 
+/**
+ * Bis 30 Minuten ist die Fahrzeit ein Vorteil und steht oben. Bei weiteren Wegen wirkt sie
+ * abschreckend – dort stellen wir den Versand nach vorn; die Fahrzeit steht nur in den Fragen.
+ */
+const istNah = (ort: Ort) => Number(ort.fahrzeit.match(/\d+/)?.[0] ?? 0) <= 30;
+
+const VORBEIKOMMEN = {
+  titel: "Vorbeikommen",
+  text: "Werler Straße 68 in Bad Salzuflen – ohne Termin. Die Sofort-Zulassung dauert rund 20 Minuten.",
+};
+const SCHICKEN = {
+  titel: "Unterlagen schicken",
+  text: "Mit dem PREMIUM-Paket schicken Sie uns alles zu – der Express-Rückversand ist inklusive.",
+};
+const ONLINE = {
+  titel: "Oder online",
+  text: "Online-Zulassungen erledigen wir rund um die Uhr. Schreiben Sie uns einfach per WhatsApp.",
+};
+
 const faqsFuer = (ort: Ort): FaqItem[] => [
   {
     question: `Machen Sie auch Zulassungen für ${ort.name}?`,
@@ -245,27 +264,22 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   kicker: "An-, Um- und Abmeldung · Kreis Lippe",
   h1: `Zulassungsdienst für ${ort.name} – ohne Termin beim Straßenverkehrsamt`,
   intro: ort.einleitung,
-  chips: ["✓ Ohne Termin", `✓ ${ort.fahrzeit} Fahrt`, "✓ ab 99 € inkl. Gebühren", "✓ Mo–Fr 9–18 · Sa 15–18 Uhr"],
+  chips: [
+    "✓ Ohne Termin",
+    istNah(ort) ? `✓ ${ort.fahrzeit} Fahrt` : "✓ Auch per Post möglich",
+    "✓ ab 99 € inkl. Gebühren",
+    "✓ Mo–Fr 9–18 · Sa 15–18 Uhr",
+  ],
   preis: {
     betrag: "ab 99 €",
     text: "Ummeldung 99 €, Zulassung 129 € – Verwaltungsgebühren inklusive. Sofortabmeldung 40 €, Wunschkennzeichen +13 € (Gebühr des Straßenverkehrsamts).",
   },
   checklisten: ["umschreibung"],
   schritteTitel: "So einfach geht's",
-  schritte: [
-    {
-      titel: "Vorbeikommen",
-      text: "Werler Straße 68 in Bad Salzuflen – ohne Termin. Die Sofort-Zulassung dauert rund 20 Minuten.",
-    },
-    {
-      titel: "Oder Unterlagen schicken",
-      text: "Mit dem PREMIUM-Paket schicken Sie uns alles zu – der Express-Rückversand ist inklusive.",
-    },
-    {
-      titel: "Oder online",
-      text: "Online-Zulassungen erledigen wir rund um die Uhr. Schreiben Sie uns einfach per WhatsApp.",
-    },
-  ],
+  // Bei weitem Weg steht der Versand zuerst
+  schritte: istNah(ort)
+    ? [VORBEIKOMMEN, { ...SCHICKEN, titel: "Oder Unterlagen schicken" }, ONLINE]
+    : [SCHICKEN, { ...VORBEIKOMMEN, titel: "Oder vorbeikommen" }, ONLINE],
   abschnitte: [
     { titel: "Und die Zulassungsstelle?", text: ort.zulassungsstelle },
     { titel: "LIP, DT oder LE – Sie haben die Wahl", text: ort.kennzeichen },
@@ -314,7 +328,9 @@ export const ORTSSEITEN: (LeistungsSeite & { ort: string; seoTitel: string; seoB
       `Zulassungsdienst ${ort.name} – Zulassung ohne Termin`.length > 60
         ? `Zulassungsdienst ${ort.name} – ohne Termin`
         : `Zulassungsdienst ${ort.name} – Zulassung ohne Termin`,
-    seoBeschreibung: `KFZ-Zulassung für ${ort.name} ohne Termin beim Amt: ${ort.fahrzeit} bis Bad Salzuflen, ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.`,
+    seoBeschreibung: istNah(ort)
+      ? `KFZ-Zulassung für ${ort.name} ohne Termin beim Amt: ${ort.fahrzeit} bis Bad Salzuflen, ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.`
+      : `KFZ-Zulassung für ${ort.name} ohne Termin beim Amt – bei uns in Bad Salzuflen oder bequem per Post. Ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.`,
   }));
 
 export const findeOrtsseite = (pfad: string) => ORTSSEITEN.find((seite) => seite.path === pfad);

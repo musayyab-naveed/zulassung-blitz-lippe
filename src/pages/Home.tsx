@@ -17,9 +17,7 @@ import { RATGEBER, ratgeberPfad } from "@/content/ratgeber";
 import { ALLE_ORTE_LIPPE, ORTSSEITEN } from "@/content/ortsseiten";
 import { BUSINESS } from "@/content/seoRoutes";
 
-const ROUTE_URL =
-  "https://www.google.com/maps/dir/?api=1&destination=" +
-  encodeURIComponent("KFZ-Sofortzulassung, Werler Straße 68, 32105 Bad Salzuflen");
+const ROUTE_URL = BUSINESS.routeUrl;
 
 const Home = () => {
 

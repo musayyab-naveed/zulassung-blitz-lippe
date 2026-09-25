@@ -28,6 +28,11 @@ export const BUSINESS = {
   mapsUrl: "https://maps.google.com/?cid=14697603500579775973",
   /** Direktlink zum Bewertungsformular des Google-Unternehmensprofils */
   bewertungsUrl: "https://g.page/r/CeVlmDWDYPjLEBM/review",
+  /** Navigation zum Laden – mit Place-ID, damit Google Maps genau unseren Eintrag ansteuert */
+  routeUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=" +
+    encodeURIComponent("KFZ-Sofortzulassung, Werler Straße 68, 32105 Bad Salzuflen") +
+    "&destination_place_id=ChIJO5olp8sVukcR5WWYNYNg-Ms",
   inhaber: "Mohammad Massyh Haqparwar",
   openingHours: [
     { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "18:00" },

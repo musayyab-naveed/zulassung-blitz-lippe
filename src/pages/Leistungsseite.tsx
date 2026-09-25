@@ -12,7 +12,8 @@ import {
 import GewerbeAnfrage from "@/components/GewerbeAnfrage";
 import { vorgangChecklists } from "@/content/faqs";
 import type { LeistungsSeite } from "@/content/leistungsseiten";
-import { ArrowRight, CheckCircle, MapPin, MessageCircle, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
+import { BUSINESS } from "@/content/seoRoutes";
 import { Link } from "react-router-dom";
 
 const Checkliste = ({ schluessel }: { schluessel: string }) => {
@@ -78,12 +79,21 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
                 </Button>
               </>
             ) : (
-              <Button size="lg" variant="cta-large" asChild>
-                <Link to={seite.cta.href}>
-                  {seite.cta.button}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
+              <>
+                <Button size="lg" variant="cta-large" asChild>
+                  <Link to={seite.cta.href}>
+                    {seite.cta.button}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                {/* Viele kommen einfach ohne Anfrage vorbei – dann direkt die Navigation öffnen */}
+                <Button size="lg" variant="outline" asChild className="border-white bg-white text-secondary hover:bg-white/90">
+                  <a href={BUSINESS.routeUrl} target="_blank" rel="noopener noreferrer">
+                    <Navigation className="mr-2 h-5 w-5" />
+                    Route planen
+                  </a>
+                </Button>
+              </>
             )}
           </div>
         </div>

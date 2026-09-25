@@ -32,12 +32,16 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Anrufe über tel:-Links mitzählen – wie die WhatsApp-Klicks nur mit Analytics-Zustimmung
+// Anrufe und Routenplanungen mitzählen – wie die WhatsApp-Klicks nur mit Analytics-Zustimmung
 const AnrufZaehler = () => {
   useEffect(() => {
     const klick = (e: MouseEvent) => {
-      const link = (e.target as HTMLElement | null)?.closest?.('a[href^="tel:"]');
-      if (link) window.gtag?.("event", "generate_lead", { method: "telefon", seite: window.location.pathname });
+      const ziel = e.target as HTMLElement | null;
+      if (ziel?.closest?.('a[href^="tel:"]')) {
+        window.gtag?.("event", "generate_lead", { method: "telefon", seite: window.location.pathname });
+      } else if (ziel?.closest?.('a[href*="google.com/maps/dir"]')) {
+        window.gtag?.("event", "generate_lead", { method: "route", seite: window.location.pathname });
+      }
     };
     document.addEventListener("click", klick);
     return () => document.removeEventListener("click", klick);

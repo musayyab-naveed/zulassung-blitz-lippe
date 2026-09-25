@@ -55,9 +55,7 @@ import { Link, useLocation, useNavigate, useSearchParams } from "react-router-do
 
 const ANGEBOT_FAQS: { question: string; answer: string }[] = faqSchema["/angebot"];
 
-const ROUTE_URL =
-  "https://www.google.com/maps/dir/?api=1&destination=" +
-  encodeURIComponent("KFZ-Sofortzulassung, Werler Straße 68, 32105 Bad Salzuflen");
+const ROUTE_URL = BUSINESS.routeUrl;
 
 const ICONS: Record<string, ReactNode> = {
   zulassen: <Car className="h-6 w-6" />,

@@ -1,13 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { MapPin, Navigation } from "lucide-react";
 import { useState } from "react";
+import { BUSINESS } from "@/content/seoRoutes";
 
 const KARTE_URL =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2451.8275759481676!2d8.729726099999997!3d52.0828686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ba15cba7259a3b%3A0xcbf86083359865e5!2sKFZ-Sofortzulassung%20-%20Zulassungsdienst%2C%20Zulassungsservice%20und%20Kennzeichen!5e0!3m2!1sen!2sde!4v1761654634034!5m2!1sen!2sde";
 
-const ROUTE_URL =
-  "https://www.google.com/maps/dir/?api=1&destination=" +
-  encodeURIComponent("KFZ-Sofortzulassung, Werler Straße 68, 32105 Bad Salzuflen");
+const ROUTE_URL = BUSINESS.routeUrl;
 
 /**
  * Google-Karte erst nach Klick laden.
