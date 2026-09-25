@@ -78,7 +78,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/auto-anmelden",
     title: "Auto anmelden Bad Salzuflen & Lippe – ohne Termin, ab 99 €",
     description:
-      "Auto anmelden in Bad Salzuflen & Lippe ohne Termin: Neuwagen, Gebrauchtwagen, Wiederzulassung – in ca. 20 Min., ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr.",
+      "Auto anmelden in Bad Salzuflen & Lippe ohne Termin: Neuwagen, Gebrauchtwagen, Wiederzulassung – in ca. 20 Min., ab 99 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18.",
   },
   {
     path: "/auto-abmelden",
