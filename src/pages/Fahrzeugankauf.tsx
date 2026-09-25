@@ -27,7 +27,7 @@ const VORTEILE = [
   {
     icon: Truck,
     titel: "Abholung inklusive",
-    text: "Wir holen das Auto ab – bei Ihnen zu Hause oder dort, wo es gerade steht.",
+    text: "Wir holen das Auto ab – bei Ihnen zu Hause oder dort, wo es gerade steht. Egal, wo das ist.",
   },
   {
     icon: FileCheck,
@@ -68,15 +68,15 @@ const Fahrzeugankauf = () => {
         <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/80">
-              Fahrzeugankauf · Bad Salzuflen &amp; Kreis Lippe
+              Fahrzeugankauf · egal, wo Ihr Auto steht
             </p>
             <h1 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
-              Auto verkaufen in Bad Salzuflen – wir holen es ab und melden es ab
+              Auto verkaufen – wir kaufen an, holen ab und melden ab
             </h1>
             <p className="mb-6 text-lg text-primary-foreground/90">
-              Neues Auto gekauft und wohin mit dem alten? Wir kaufen es Ihnen ab – auch wenn es nicht mehr
-              fährt. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab und erledigen die
-              Abmeldung.
+              Neues Auto gekauft und wohin mit dem alten? Wir kaufen es Ihnen ab – egal, wo es steht, und
+              auch wenn es nicht mehr fährt. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab
+              und erledigen die Abmeldung.
             </p>
             <ul className="mb-8 flex flex-wrap gap-2">
               {["Unverbindliches Angebot", "Abholung inklusive", "Abmeldung inklusive", "Auch nicht fahrbereit"].map(
@@ -119,7 +119,7 @@ const Fahrzeugankauf = () => {
             />
             <figcaption className="absolute -bottom-4 left-4 right-4 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-secondary shadow-xl sm:left-auto sm:right-6">
               <MapPin className="h-5 w-5 flex-none text-[hsl(var(--cta-orange))]" />
-              Werler Straße 68, Bad Salzuflen
+              Unser Standort: Werler Straße 68, Bad Salzuflen
             </figcaption>
           </figure>
         </div>

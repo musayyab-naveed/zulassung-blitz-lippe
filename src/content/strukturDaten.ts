@@ -177,7 +177,11 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
       return [angebotsKatalog(), faqPage(pfad, PREIS_FAQS)];
     case "/fahrzeugankauf":
       return [
-        dienstleistung(pfad, "Fahrzeugankauf Bad Salzuflen", "Fahrzeugankauf", "Ankauf von Fahrzeugen im Kreis Lippe – unverbindliches Angebot, Abholung und Abmeldung inklusive, auch für nicht fahrbereite Fahrzeuge."),
+        {
+          // Ankauf überall – anders als die Zulassung, die nur im Kreis Lippe läuft
+          ...dienstleistung(pfad, "Fahrzeugankauf", "Fahrzeugankauf", "Ankauf von Fahrzeugen – egal, wo sie stehen: unverbindliches Angebot, Abholung und Abmeldung inklusive, auch für nicht fahrbereite Fahrzeuge."),
+          areaServed: { "@type": "Country", name: "Deutschland" },
+        },
         faqPage(pfad, alsFaqs(pfad)),
       ];
     case "/auto-anmelden":

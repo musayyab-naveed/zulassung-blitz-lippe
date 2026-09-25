@@ -256,7 +256,11 @@
     },
     {
       "question": "Holen Sie das Auto auch ab?",
-      "answer": "Ja. Die Abholung ist beim Ankauf inklusive – bei Ihnen zu Hause oder dort, wo das Auto gerade steht."
+      "answer": "Ja. Die Abholung ist beim Ankauf inklusive – bei Ihnen zu Hause oder dort, wo das Auto gerade steht. Egal, wo das ist."
+    },
+    {
+      "question": "Kaufen Sie nur im Kreis Lippe an?",
+      "answer": "Nein. Autos kaufen wir überall an – nicht nur in Bad Salzuflen und im Kreis Lippe. Schreiben Sie uns einfach, wo Ihr Auto steht."
     },
     {
       "question": "Kostet die Abmeldung extra?",
