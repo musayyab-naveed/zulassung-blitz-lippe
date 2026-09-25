@@ -479,9 +479,12 @@ const Home = () => {
               <div>
                 <h3 className="text-2xl font-bold text-secondary mb-4">Wir sind direkt vor Ort für Sie da</h3>
                 <p className="text-muted-foreground mb-6">
-                  Kommen Sie einfach vorbei – ohne Termin. Aus Detmold, Lemgo, Lage und dem übrigen
-                  Kreis Lippe sind Sie schnell bei uns, und mit der Sofort-Zulassung sind Sie in rund
-                  20 Minuten fertig.
+                  Kommen Sie einfach vorbei – ohne Termin. Aus{" "}
+                  <Link to="/zulassungsdienst-detmold" className="font-semibold text-link hover:underline">Detmold</Link>,{" "}
+                  <Link to="/zulassungsdienst-lemgo" className="font-semibold text-link hover:underline">Lemgo</Link>,{" "}
+                  <Link to="/zulassungsdienst-lage" className="font-semibold text-link hover:underline">Lage</Link> und dem
+                  übrigen Kreis Lippe sind Sie schnell bei uns, und mit der Sofort-Zulassung sind Sie in rund 20 Minuten
+                  fertig.
                 </p>
               </div>
 

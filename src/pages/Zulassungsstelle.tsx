@@ -139,6 +139,14 @@ const Zulassungsstelle = () => {
                 {ort.hinweis && (
                   <div className="mt-1 text-xs text-muted-foreground">({ort.hinweis})</div>
                 )}
+                {ort.ort !== "Bad Salzuflen" && (
+                  <Link
+                    to={`/zulassungsdienst-${ort.ort.toLowerCase()}`}
+                    className="mt-2 inline-block text-sm font-semibold text-link hover:underline"
+                  >
+                    Ohne Termin: Zulassungsdienst für {ort.ort} →
+                  </Link>
+                )}
               </div>
             ))}
           </div>
