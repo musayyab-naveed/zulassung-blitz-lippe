@@ -55,6 +55,10 @@
       "answer": "Die Zulassungsstelle Bad Salzuflen des Kreises Lippe liegt am Louis-Uekermann-Weg 2, 32107 Bad Salzuflen. Sie ist eine von drei Zulassungsstellen im Kreis Lippe – die anderen beiden sind in Barntrup und Detmold."
     },
     {
+      "question": "Ist die Zulassungsstelle Bad Salzuflen das Straßenverkehrsamt?",
+      "answer": "Ja. Die Zulassungsstelle in Bad Salzuflen gehört zum Straßenverkehrsamt des Kreises Lippe. Wer „Straßenverkehrsamt Bad Salzuflen“ sagt, meint dieselbe Stelle am Louis-Uekermann-Weg 2. Die Führerscheinstelle ist dagegen nur in Detmold."
+    },
+    {
       "question": "Brauche ich einen Termin bei der Zulassungsstelle Bad Salzuflen?",
       "answer": "Ja. Der Kreis Lippe schreibt dazu: Eine persönliche Vorsprache jeglicher Art in der Zulassungsstelle ist grundsätzlich nur mit einem Termin möglich. Der Termin wird online gebucht, Sie erhalten eine Wartenummer per E-Mail und bringen diese zum Termin mit. Ohne Termin werden Sie in der Regel nicht bedient."
     },
@@ -63,8 +67,16 @@
       "answer": "Termine sind möglich: Montag 7:30–12:30 Uhr, Dienstag 7:30–12:30 und 13:30–16:00 Uhr, Mittwoch 7:30–12:30 und 13:30–15:00 Uhr, Donnerstag 7:30–12:30 und 13:30–17:00 Uhr, Freitag 7:30–12:30 Uhr. Am Wochenende ist geschlossen."
     },
     {
+      "question": "Welche Telefonnummer hat die Zulassungsstelle Bad Salzuflen?",
+      "answer": "05231 62-1800 – das ist die gemeinsame Nummer der Zulassungsstellen im Kreis Lippe. Erreichbar ist sie Montag bis Freitag von 9 bis 12:30 Uhr, zusätzlich dienstags von 13:30 bis 16 Uhr, mittwochs von 13:30 bis 15 Uhr und donnerstags von 13:30 bis 17 Uhr."
+    },
+    {
       "question": "Hat die Zulassungsstelle Bad Salzuflen samstags geöffnet?",
       "answer": "Nein. Die Zulassungsstellen des Kreises Lippe sind von Montag bis Freitag geöffnet, freitags nur vormittags bis 12:30 Uhr. Samstags und sonntags ist geschlossen. Unser Zulassungsdienst in Bad Salzuflen hat samstags von 15 bis 18 Uhr geöffnet – ohne Termin."
+    },
+    {
+      "question": "Ich habe keinen Termin bekommen – was kann ich tun?",
+      "answer": "Ohne Termin werden Sie bei der Zulassungsstelle in der Regel nicht bedient. Unser Zulassungsdienst in der Werler Straße 68 ist rund 5 km entfernt, mit dem Auto etwa 10 Minuten. Bei uns brauchen Sie keinen Termin: Montag bis Freitag 9–18 Uhr, Samstag 15–18 Uhr."
     },
     {
       "question": "Kann ich mein Auto auch am Wochenende oder abends zulassen lassen?",
@@ -81,6 +93,10 @@
     {
       "question": "Welche Zulassungsstellen gibt es im Kreis Lippe?",
       "answer": "Drei: Bad Salzuflen (Louis-Uekermann-Weg 2), Barntrup (Alverdisser Straße 28) und Detmold (Felix-Fechenbach-Straße 5). Die Führerscheinstelle befindet sich in Detmold."
+    },
+    {
+      "question": "Wie komme ich mit dem Bus zur Zulassungsstelle Bad Salzuflen?",
+      "answer": "Mit der Linie 942, die laut Kreis Lippe stündlich ab dem ZOB Bad Salzuflen fährt. Das Gebäude am Louis-Uekermann-Weg 2 ist barrierefrei."
     },
     {
       "question": "Muss ich selbst zur Zulassungsstelle gehen?",

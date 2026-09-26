@@ -484,7 +484,11 @@ const Home = () => {
                   <Link to="/zulassungsdienst-lemgo" className="font-semibold text-link hover:underline">Lemgo</Link>,{" "}
                   <Link to="/zulassungsdienst-lage" className="font-semibold text-link hover:underline">Lage</Link> und dem
                   übrigen Kreis Lippe sind Sie schnell bei uns, und mit der Sofort-Zulassung sind Sie in rund 20 Minuten
-                  fertig.
+                  fertig. Kein Termin bei der{" "}
+                  <Link to="/zulassungsstelle-bad-salzuflen" className="font-semibold text-link hover:underline">
+                    Zulassungsstelle Bad Salzuflen
+                  </Link>
+                  ? Von dort sind es nur etwa 10 Minuten zu uns.
                 </p>
               </div>
 

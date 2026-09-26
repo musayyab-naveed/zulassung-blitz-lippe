@@ -200,6 +200,7 @@ const gitDatum = (datei) => {
   }
 };
 const ortsseitenDatum = gitDatum("src/content/ortsseiten.ts");
+const seitenDatum = new Map([["/zulassungsstelle-bad-salzuflen", gitDatum("src/content/zulassungsstelle.ts")]]);
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
@@ -207,7 +208,9 @@ const sitemap = [
     .filter((route) => !route.noindex)
     .map((route) => {
       const lastmod =
-        artikelDatum.get(route.path) ?? (route.path.startsWith("/zulassungsdienst-") ? ortsseitenDatum : null);
+        artikelDatum.get(route.path) ??
+        seitenDatum.get(route.path) ??
+        (route.path.startsWith("/zulassungsdienst-") ? ortsseitenDatum : null);
       return `  <url>\n    <loc>${SITE_URL}${route.path}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ""}\n  </url>`;
     }),
   "</urlset>",

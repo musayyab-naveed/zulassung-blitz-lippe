@@ -9,15 +9,21 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Checkliste from "@/components/Checkliste";
 import {
+  AMT_ANFAHRT,
   AMT_QUELLE,
   AMT_REGELN,
   AMT_STANDORTE,
+  AMT_TERMIN_URL,
   AMT_ZEITEN,
+  ENTFERNUNG_ZU_UNS,
+  FAHRZEIT_ZU_UNS,
   VERGLEICH,
   ZST_FAQS,
 } from "@/content/zulassungsstelle";
-import { ArrowRight, Check, Clock, Info, MapPin, Minus, Phone } from "lucide-react";
+import { BUSINESS } from "@/content/seoRoutes";
+import { ArrowRight, CalendarCheck, Check, Clock, CreditCard, Info, MapPin, Minus, Navigation, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Zulassungsstelle = () => {
@@ -32,12 +38,15 @@ const Zulassungsstelle = () => {
       <section className="relative overflow-hidden py-14 text-primary-foreground">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-primary" />
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/80">
+            Straßenverkehrsamt Kreis Lippe
+          </p>
           <h1 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
-            Zulassungsstelle Bad Salzuflen: Termine, Öffnungszeiten – und der Weg ohne Termin
+            Zulassungsstelle Bad Salzuflen: Öffnungszeiten, Termin und Adresse
           </h1>
           <p className="text-lg text-primary-foreground/90">
-            Alle Angaben zum Straßenverkehrsamt Kreis Lippe auf einen Blick. Und daneben ehrlich:
-            wann sich der Gang zum Amt lohnt und wann ein Zulassungsdienst die bessere Wahl ist.
+            Alles zum Straßenverkehrsamt in Bad Salzuflen auf einen Blick. Und falls kein Termin frei
+            ist: Unser Zulassungsdienst liegt {FAHRZEIT_ZU_UNS} entfernt und arbeitet ohne Termin.
           </p>
         </div>
       </section>
@@ -64,7 +73,7 @@ const Zulassungsstelle = () => {
       <section className="pb-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <h2 className="section-title mb-6 text-center">
-            Das Straßenverkehrsamt Kreis Lippe in Zahlen
+            Die Zulassungsstelle Bad Salzuflen auf einen Blick
           </h2>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -77,6 +86,7 @@ const Zulassungsstelle = () => {
                 <p className="font-semibold text-secondary">Zulassungsstelle Bad Salzuflen</p>
                 <p className="text-sm text-muted-foreground">Louis-Uekermann-Weg 2</p>
                 <p className="text-sm text-muted-foreground">32107 Bad Salzuflen</p>
+                <p className="mt-2 text-xs text-muted-foreground">{AMT_ANFAHRT}</p>
               </CardContent>
             </Card>
             <Card>
@@ -89,6 +99,33 @@ const Zulassungsstelle = () => {
                 <p className="text-sm text-muted-foreground">
                   Erreichbar Mo–Fr ab 9:00 Uhr, nachmittags nur Di, Mi und Do
                 </p>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-5">
+                <div className="mb-2 flex items-center gap-2 text-link">
+                  <CalendarCheck className="h-4 w-4" />
+                  <span className="text-xs font-bold uppercase tracking-wider">Termin</span>
+                </div>
+                <p className="font-semibold text-secondary">Nur mit Termin, online gebucht</p>
+                <a
+                  href={AMT_TERMIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-link hover:underline"
+                >
+                  Zur Terminbuchung des Kreises Lippe →
+                </a>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-5">
+                <div className="mb-2 flex items-center gap-2 text-link">
+                  <CreditCard className="h-4 w-4" />
+                  <span className="text-xs font-bold uppercase tracking-wider">Bezahlung</span>
+                </div>
+                <p className="font-semibold text-secondary">Nur Debit- oder Kreditkarte</p>
+                <p className="text-sm text-muted-foreground">Bargeld wird in der Regel nicht mehr angenommen</p>
               </CardContent>
             </Card>
           </div>
@@ -127,6 +164,28 @@ const Zulassungsstelle = () => {
             Quelle: {AMT_QUELLE.name}, abgerufen am {AMT_QUELLE.abgerufen}. Ohne Gewähr – bitte vor
             einem Besuch beim Kreis Lippe gegenprüfen.
           </p>
+
+          <div className="mt-8 rounded-2xl bg-secondary p-6 text-white shadow-lg">
+            <h3 className="text-xl font-bold">Kein Termin bekommen? Wir sind gleich um die Ecke.</h3>
+            <p className="mt-2 text-white/85">
+              Von der Zulassungsstelle zu uns in die Werler Straße 68 sind es {ENTFERNUNG_ZU_UNS}. Bei uns
+              brauchen Sie keinen Termin: Montag bis Freitag 9–18 Uhr, Samstag 15–18 Uhr.
+            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <Button size="lg" variant="cta-large" asChild>
+                <a href={BUSINESS.routeUrl} target="_blank" rel="noopener noreferrer">
+                  <Navigation className="mr-2 h-5 w-5" />
+                  Route zu uns
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" asChild className="border-white bg-white text-secondary hover:bg-white/90">
+                <Link to="/angebot">
+                  Jetzt anfragen
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </div>
 
           <h3 className="mb-3 mt-8 text-lg font-bold text-secondary">
             Die drei Zulassungsstellen im Kreis Lippe
@@ -182,8 +241,32 @@ const Zulassungsstelle = () => {
         </div>
       </section>
 
-      {/* Vergleich */}
+      {/* Unterlagen */}
       <section className="py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="section-title mb-4">Was muss ich zur Zulassungsstelle mitbringen?</h2>
+            <p className="section-subtitle">Die Unterlagen sind beim Amt und bei uns dieselben.</p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {["umschreibung", "neuzulassung", "abmeldung"].map((schluessel) => (
+              <div key={schluessel} className="rounded-xl border border-border bg-background p-5">
+                <Checkliste schluessel={schluessel} />
+              </div>
+            ))}
+          </div>
+          <p className="mt-6 text-center text-sm text-muted-foreground">
+            Alle anderen Fälle, etwa Adressänderung oder neues Kennzeichen, stehen in den{" "}
+            <Link to="/faq" className="font-semibold text-link hover:underline">
+              Checklisten
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
+      {/* Vergleich */}
+      <section className="bg-muted/50 py-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="section-title mb-4">Selbst zum Amt oder über uns?</h2>
@@ -245,7 +328,7 @@ const Zulassungsstelle = () => {
       </section>
 
       {/* Unser Weg */}
-      <section className="bg-muted/50 py-14">
+      <section className="py-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="section-title mb-4">Der Weg ohne Termin – so läuft er ab</h2>
@@ -299,7 +382,7 @@ const Zulassungsstelle = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-14">
+      <section className="bg-muted/50 py-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 text-center">
             <h2 className="section-title mb-4">Häufige Fragen zur Zulassungsstelle</h2>
@@ -326,19 +409,27 @@ const Zulassungsstelle = () => {
       </section>
 
       {/* Abschluss */}
-      <section className="pb-16">
+      <section className="py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="section-title mb-4">Keinen Termin bekommen? Dann kommen Sie zu uns</h2>
           <p className="section-subtitle mx-auto mb-6 max-w-2xl">
             Werler Straße 68 in Bad Salzuflen – Mo bis Fr von 9 bis 18 Uhr, samstags von 15 bis
             18 Uhr. Ohne Termin, ohne Wartenummer.
           </p>
-          <Button size="lg" variant="cta-large" asChild>
-            <Link to="/angebot">
-              JETZT KOSTENLOS ANFRAGEN
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button size="lg" variant="cta-large" asChild>
+              <Link to="/angebot">
+                JETZT KOSTENLOS ANFRAGEN
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <a href={BUSINESS.routeUrl} target="_blank" rel="noopener noreferrer">
+                <Navigation className="mr-2 h-5 w-5" />
+                Route planen
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 

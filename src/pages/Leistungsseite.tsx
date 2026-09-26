@@ -10,30 +10,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import GewerbeAnfrage from "@/components/GewerbeAnfrage";
-import { vorgangChecklists } from "@/content/faqs";
+import Checkliste from "@/components/Checkliste";
 import type { LeistungsSeite } from "@/content/leistungsseiten";
 import { ArrowRight, CheckCircle, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
 import { BUSINESS } from "@/content/seoRoutes";
 import { Link } from "react-router-dom";
-
-const Checkliste = ({ schluessel }: { schluessel: string }) => {
-  const liste = vorgangChecklists.find((eintrag) => eintrag.key === schluessel);
-  if (!liste) return null;
-  return (
-    <div>
-      <h3 className="mb-3 font-bold text-secondary">{liste.title}</h3>
-      <ul className="space-y-2">
-        {liste.items.map((punkt) => (
-          <li key={punkt} className="flex items-start gap-2 text-sm text-secondary">
-            <CheckCircle className="mt-0.5 h-4 w-4 flex-none text-trust-green" />
-            <span>{punkt}</span>
-          </li>
-        ))}
-      </ul>
-      {liste.hint && <p className="mt-3 text-xs text-muted-foreground">{liste.hint}</p>}
-    </div>
-  );
-};
 
 /** Gemeinsame Vorlage für Abmelden, Ummelden, Wunschkennzeichen und Gewerbekunden */
 const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {

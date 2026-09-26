@@ -4,16 +4,27 @@ import faqSchema from "./faqSchema.json";
  * Inhalte der Seite /zulassungsstelle-bad-salzuflen.
  *
  * WICHTIG: Alle Angaben zum Straßenverkehrsamt stammen aus dem Serviceportal des
- * Kreises Lippe (kreis-lippe.de, Bereich Straßenverkehrsamt), abgerufen am 23.09.2026.
+ * Kreises Lippe (kreis-lippe.de, Zulassungsstelle Bad Salzuflen), zuletzt geprüft am 27.09.2026.
  * Nichts davon ist geschätzt. Wenn der Kreis etwas ändert, muss diese Datei nachgezogen
  * werden – deshalb steht das Abrufdatum auch sichtbar auf der Seite.
  */
 
 export const AMT_QUELLE = {
-  url: "https://www.kreis-lippe.de/kreis-lippe/optigov?vid=30&ansicht=einrichtung&eintrag=80",
-  name: "Serviceportal Kreis Lippe, Bereich Straßenverkehrsamt",
-  abgerufen: "23.09.2026",
+  url: "https://www.kreis-lippe.de/kreis-lippe/optigov?vid=30&ansicht=einrichtung&eintrag=1",
+  name: "Serviceportal Kreis Lippe, Zulassungsstelle Bad Salzuflen",
+  abgerufen: "27.09.2026",
 };
+
+/** Online-Terminbuchung des Kreises – ohne Termin wird man dort nicht bedient. */
+export const AMT_TERMIN_URL =
+  "https://termine.kreislippe.de/m/kreis-lippe/extern/calendar/?uid=54ffe7d0-4c9b-4e84-abe5-0ca713843713";
+
+/** Laut Serviceportal: Linie 942 stündlich ab ZOB, Gebäude barrierefrei. */
+export const AMT_ANFAHRT = "Bus: Linie 942, stündlich ab Bad Salzuflen ZOB · Gebäude barrierefrei";
+
+/** Google Maps, Route Louis-Uekermann-Weg 2 → Werler Straße 68 (geprüft am 27.09.2026: 5 km, 7 Min. ohne Verkehr). */
+export const FAHRZEIT_ZU_UNS = "etwa 10 Minuten";
+export const ENTFERNUNG_ZU_UNS = `rund 5 km, mit dem Auto ${FAHRZEIT_ZU_UNS}`;
 
 export interface Oeffnungszeit {
   tag: string;
@@ -97,7 +108,7 @@ export const VERGLEICH: VergleichsZeile[] = [
   { merkmal: "Bezahlung", amt: "nur Karte", wir: "bar, EC, PayPal, SEPA, Rechnung", vorteilWir: true },
   { merkmal: "Kennzeichenschilder", amt: "besorgen Sie selbst", wir: "bei BASIS und PREMIUM inklusive", vorteilWir: true },
   { merkmal: "Kosten", amt: "nur die Verwaltungsgebühren", wir: "ab 99 € inklusive der Gebühren", vorteilWir: false },
-  { merkmal: "Ihr Zeitaufwand", amt: "Termin suchen, hinfahren, warten", wir: "Unterlagen abgeben oder schicken", vorteilWir: true },
+  { merkmal: "Ihr Zeitaufwand", amt: "Termin suchen, hinfahren, warten", wir: "einmal vorbeikommen – ohne Termin", vorteilWir: true },
 ];
 
 export const ZST_FAQS: { question: string; answer: string }[] =

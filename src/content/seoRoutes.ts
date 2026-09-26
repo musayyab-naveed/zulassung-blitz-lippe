@@ -69,9 +69,9 @@ export const ROUTE_SEO: RouteSeo[] = [
   },
   {
     path: "/zulassungsstelle-bad-salzuflen",
-    title: "Zulassungsstelle Bad Salzuflen – Termine & Öffnungszeiten",
+    title: "Zulassungsstelle Bad Salzuflen: Öffnungszeiten & Termin",
     description:
-      "Zulassungsstelle Bad Salzuflen: Adresse, Öffnungszeiten, Terminpflicht und die Regeln des Kreises Lippe – plus der Weg ohne Termin, Mo–Fr 9–18 und Sa 15–18 Uhr.",
+      "Straßenverkehrsamt Bad Salzuflen, Louis-Uekermann-Weg 2: Öffnungszeiten, Termin, Telefon, Unterlagen. Kein Termin frei? Wir sind 10 Minuten entfernt.",
   },
   {
     path: "/evb-nummer",
