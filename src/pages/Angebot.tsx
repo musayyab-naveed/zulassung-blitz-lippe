@@ -18,6 +18,7 @@ import {
   VORGAENGE,
   baueNachricht,
   checklisteFuer,
+  paketPasst,
   vorgangAusPaket,
   whatsappLink,
   brauchtEvbFrage,
@@ -45,6 +46,7 @@ import {
   MessageCircle,
   Navigation,
   Phone,
+  RectangleHorizontal,
   RotateCcw,
   ShieldCheck,
   Sparkles,
@@ -62,6 +64,7 @@ const ICONS: Record<string, ReactNode> = {
   abmelden: <FileMinus className="h-6 w-6" />,
   sonder: <Timer className="h-6 w-6" />,
   umzug: <HomeIcon className="h-6 w-6" />,
+  kennzeichen: <RectangleHorizontal className="h-6 w-6" />,
   kurzzeit: <Timer className="h-6 w-6" />,
   ausfuhr: <Globe className="h-6 w-6" />,
   verkaufen: <Banknote className="h-6 w-6" />,
@@ -103,9 +106,22 @@ const preisVon = (key: PackageKey) => PACKAGES.find((p) => p.key === key)?.price
 const WUNSCH_PREIS = EXTRAS.find((e) => e.name === "Wunschkennzeichen")?.price ?? "";
 
 /** „Was es kostet" – passend zum gewählten Vorgang; am Computer rechts neben der Anfrage */
-const PreisKasten = ({ vorgang, paket }: { vorgang?: Vorgang; paket?: string | null }) => {
+const PreisKasten = ({ vorgang, art, paket }: { vorgang?: Vorgang; art?: Art; paket?: string | null }) => {
   const zeilen: { name: string; preis: string; key?: string }[] =
-    vorgang === "zulassen"
+    vorgang === "zulassen" && art === "kennzeichen"
+      ? [
+          { name: "Neues Kennzeichen mit Schildern (nächster Werktag)", preis: preisVon("basis"), key: "basis" },
+          { name: "Mit Hol- und Bringservice", preis: preisVon("premium"), key: "premium" },
+          { name: "Wunschkennzeichen (Gebühr des Amts)", preis: WUNSCH_PREIS },
+        ]
+      : vorgang === "zulassen" && (art === "neu" || art === "wieder")
+      ? [
+          { name: "Sofort-Zulassung (ca. 20 Min., ohne Schilder)", preis: preisVon("sofort"), key: "sofort" },
+          { name: "Mit Kennzeichen (nächster Werktag)", preis: preisVon("basis"), key: "basis" },
+          { name: "Mit Hol- und Bringservice", preis: preisVon("premium"), key: "premium" },
+          { name: "Wunschkennzeichen (Gebühr des Amts)", preis: WUNSCH_PREIS },
+        ]
+      : vorgang === "zulassen"
       ? [
           { name: "Ummeldung (Kennzeichen bleiben dran)", preis: preisVon("ummeldung"), key: "ummeldung" },
           { name: "Sofort-Zulassung (ca. 20 Min., ohne Schilder)", preis: preisVon("sofort"), key: "sofort" },
@@ -141,7 +157,7 @@ const PreisKasten = ({ vorgang, paket }: { vorgang?: Vorgang; paket?: string | n
           <li
             key={zeile.name}
             className={`flex items-baseline justify-between gap-3 rounded-lg px-2 py-1.5 text-sm ${
-              zeile.key && zeile.key === paket ? "bg-white/15 font-semibold" : ""
+              zeile.key && zeile.key === paket && paketPasst(paket, art) ? "bg-white/15 font-semibold" : ""
             }`}
           >
             <span className="text-white/90">{zeile.name}</span>
@@ -151,7 +167,7 @@ const PreisKasten = ({ vorgang, paket }: { vorgang?: Vorgang; paket?: string | n
       </ul>
       {vorgang !== "verkaufen" && (
         <p className="mt-3 text-sm text-white/85">
-          Alle Preise inklusive Gebühren des Kreises.{" "}
+          Alle Preise inklusive Verwaltungsgebühren des Kreises.{" "}
           <span className="font-semibold text-white">
             Bezahlt wird erst, wenn alles fertig ist – also wenn Ihr Auto zugelassen oder abgemeldet ist.
           </span>
@@ -373,7 +389,7 @@ const Angebot = () => {
                 {/* Die fertige Nachricht */}
                 {/* Auf dem Handy steht der Preis hier, am Computer rechts daneben */}
                 <div className="lg:hidden">
-                  <PreisKasten vorgang={vorgang} paket={paket} />
+                  <PreisKasten vorgang={vorgang} art={art} paket={paket} />
                 </div>
 
                 <div>
@@ -574,7 +590,7 @@ const Angebot = () => {
           {/* Preis rechts neben der fertigen Nachricht (nur Computer) */}
           {schritt === "fertig" && (
             <aside className="hidden lg:sticky lg:top-44 lg:block">
-              <PreisKasten vorgang={vorgang} paket={paket} />
+              <PreisKasten vorgang={vorgang} art={art} paket={paket} />
             </aside>
           )}
         </div>

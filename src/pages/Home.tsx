@@ -24,7 +24,7 @@ const Home = () => {
   const steps = [
     {
       icon: <FileText className="h-8 w-8 text-primary" />,
-      title: "Kurz Bescheid geben",
+      title: "Vorbeikommen oder schreiben",
       description:
         "Per WhatsApp in wenigen Fingertipps – oder einfach vorbeikommen. Einen Termin brauchen Sie nicht.",
     },
@@ -32,18 +32,18 @@ const Home = () => {
       icon: <Shield className="h-8 w-8 text-primary" />,
       title: "Unterlagen mitbringen",
       description:
-        "Einfach vorbeibringen – ohne Termin. Im Raum Bad Salzuflen holen wir sie auf Wunsch auch ab.",
+        "Einfach vorbeibringen – ohne Termin. Mit PREMIUM (159 €) holen wir sie im Raum Bad Salzuflen auch ab.",
     },
     {
       icon: <CheckCircle className="h-8 w-8 text-primary" />,
       title: "Zugelassen in 20 Min – oder am nächsten Werktag",
       description:
-        "Sofort-Zulassung: in ca. 20 Minuten zugelassen – losfahren, sobald Ihre Schilder dran sind. Klassisch: am nächsten Werktag fertig, mit Schildern, inkl. Rückversand oder Abholung.",
+        "Sofort-Zulassung: in ca. 20 Minuten zugelassen – losfahren, sobald Ihre Schilder dran sind. Klassisch: am nächsten Werktag fertig, mit Schildern – mit PREMIUM bringen wir alles zurück.",
     },
   ];
 
   const checklistZulassung = [
-    "Personalausweis oder Reisepass",
+    "Personalausweis – oder Reisepass mit Meldebescheinigung",
     "eVB-Nummer Ihrer KFZ-Versicherung",
     "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
     "Gebrauchtwagen: Fahrzeugschein (Zulassungsbescheinigung Teil I)",
@@ -55,7 +55,7 @@ const Home = () => {
   const checklistAbmeldung = [
     "Beide Kennzeichenschilder",
     "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
-    "Personalausweis oder Reisepass",
+    "Personalausweis – oder Reisepass mit Meldebescheinigung",
     "Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen-Plaketten (bei Zulassung ab 2015 vorhanden)",
   ];
 
@@ -87,7 +87,7 @@ const Home = () => {
               </h1>
               <p className="text-lg sm:text-xl mb-6 font-semibold text-primary-foreground/95">
                 Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag – ab 99 € inklusive
-                aller Gebühren. Für den ganzen Kreis Lippe.
+                Verwaltungsgebühren. Für den ganzen Kreis Lippe.
               </p>
 
               <p className="mb-4 text-sm font-semibold text-white sm:text-base">
@@ -119,7 +119,7 @@ const Home = () => {
                   <Button size="lg" variant="cta" asChild className="h-auto py-4 text-base font-bold">
                     <Link to="/kfz-versicherung">
                       <ShieldCheck className="mr-2 h-5 w-5" />
-                      eVB-Nummer beantragen
+                      Kfz-Versicherung vergleichen
                     </Link>
                   </Button>
                   <Button
@@ -204,7 +204,7 @@ const Home = () => {
           </div>
           <Button size="lg" variant="cta" asChild className="w-full flex-none md:w-auto">
             <Link to="/kfz-versicherung">
-              eVB-Nummer beantragen
+              Kfz-Versicherung vergleichen
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
@@ -466,7 +466,7 @@ const Home = () => {
           <div className="text-center mb-8">
             <h2 className="section-title mb-4">Besuchen Sie uns</h2>
             <p className="section-subtitle">
-              Finden Sie uns in Bad Salzuflen, im Herzen des Kreises Lippe
+              Unser Laden in Bad Salzuflen – für den ganzen Kreis Lippe
             </p>
           </div>
 

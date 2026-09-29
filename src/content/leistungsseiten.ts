@@ -68,7 +68,7 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
   chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ ab 99 € inkl. Gebühren", "✓ In ca. 20 Minuten fertig"],
   preis: {
     betrag: "ab 99 €",
-    text: "Zulassung 129 € inklusive Verwaltungsgebühren – bei SOFORT besorgen Sie die Schilder selbst, bei BASIS und PREMIUM sind sie dabei. Gebrauchtwagen, bei dem die Kennzeichen dranbleiben: Ummeldung 99 €. Wunschkennzeichen +13 € (Gebühr des Straßenverkehrsamts).",
+    text: "Zulassung 129 € inklusive Verwaltungsgebühren – bei SOFORT besorgen Sie die Schilder selbst, bei BASIS (129 €) und PREMIUM (159 €, mit Hol- und Bringservice) sind sie dabei. Gebrauchtwagen, bei dem die Kennzeichen dranbleiben: Ummeldung 99 €. Wunschkennzeichen +13 € (Gebühr des Straßenverkehrsamts).",
   },
   faelle: [
     {
@@ -99,7 +99,7 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
   schritteTitel: "So melden Sie Ihr Auto bei uns an",
   schritte: [
     {
-      titel: "Kurz Bescheid geben",
+      titel: "Vorbeikommen oder schreiben",
       text: "Per WhatsApp in wenigen Fingertipps – oder einfach vorbeikommen. Einen Termin brauchen Sie nicht.",
     },
     {
@@ -117,14 +117,14 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
       punkte: [
         "SOFORT: Sie warten kurz bei uns, die Zulassung läuft digital in ca. 20 Minuten. Die Kennzeichen besorgen Sie selbst.",
         "BASIS: Unterlagen abgeben, am nächsten Werktag alles fertig abholen – mit Kennzeichen.",
-        "PREMIUM: Wir holen die Unterlagen ab und bringen alles fertig zurück.",
+        "PREMIUM (159 €): Wir holen die Unterlagen im Raum Bad Salzuflen ab und bringen alles fertig zurück.",
       ],
       link: { href: "/preise", text: "Alle Pakete und Preise" },
     },
     {
       titel: "Noch keine eVB-Nummer?",
       text: "Ohne Kfz-Versicherung keine Zulassung. Die eVB-Nummer bekommen Sie, sobald Sie eine Versicherung abschließen – meist sofort per E-Mail. Auf unserer Seite können Sie Tarife vergleichen.",
-      link: { href: "/kfz-versicherung", text: "eVB-Nummer beantragen" },
+      link: { href: "/kfz-versicherung", text: "Kfz-Versicherung vergleichen" },
     },
     {
       titel: "Neues Auto gekauft – und das alte?",
@@ -133,7 +133,7 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
     },
     {
       titel: "Warum nicht selbst zum Amt?",
-      text: "Beim Straßenverkehrsamt Kreis Lippe geht nichts ohne Termin, und Termine gibt es nur 14 Tage im Voraus. Wenn Sie flexibel sind und einen Termin bekommen, ist das günstiger. Wenn es schnell gehen soll oder Sie tagsüber arbeiten, sind Sie bei uns richtig – auch samstags.",
+      text: "Beim Straßenverkehrsamt Kreis Lippe geht nichts ohne Termin, und buchen lassen sich Termine höchstens 14 Tage im Voraus. Wenn Sie flexibel sind und einen Termin bekommen, ist das günstiger. Wenn es schnell gehen soll oder Sie tagsüber arbeiten, sind Sie bei uns richtig – auch samstags.",
       link: { href: "/zulassungsstelle-bad-salzuflen", text: "Zulassungsstelle Bad Salzuflen: Zeiten & Regeln" },
     },
   ],
@@ -147,7 +147,7 @@ export const AUTO_ANMELDEN: LeistungsSeite = {
   },
   verwandt: [
     { href: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT oder LE" },
-    { href: "/kfz-versicherung", text: "eVB-Nummer beantragen" },
+    { href: "/kfz-versicherung", text: "Kfz-Versicherung vergleichen" },
     { href: "/auto-abmelden", text: "Auto abmelden" },
   ],
 };
@@ -158,7 +158,7 @@ export const AUTO_ABMELDEN: LeistungsSeite = {
   h1: "Auto abmelden in Bad Salzuflen – ohne Termin, in wenigen Minuten",
   intro:
     "Bringen Sie Fahrzeugschein und Kennzeichen vorbei – wir melden Ihr Auto digital direkt vor Ort ab. Kein Termin beim Straßenverkehrsamt, keine Wartenummer. Für 40 €, Gebühren inklusive.",
-  chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ 40 € inkl. Gebühren", "✓ Gratis beim Fahrzeugverkauf"],
+  chips: ["✓ Ohne Termin", `✓ ${OEFFNUNG}`, "✓ 40 € inkl. Gebühren", "✓ Gratis, wenn wir Ihr Auto kaufen"],
   preis: {
     betrag: "40 €",
     text: "Sofortabmeldung inklusive Verwaltungsgebühren. Verkaufen Sie uns Ihr Fahrzeug, ist die Abmeldung kostenlos.",
@@ -201,7 +201,7 @@ export const AUTO_ABMELDEN: LeistungsSeite = {
   faqTitel: "Häufige Fragen zur Abmeldung",
   faqs: faqs["/auto-abmelden"],
   cta: {
-    titel: "Auto abmelden – heute noch",
+    titel: "Auto abmelden – ohne Termin",
     text: "Kurz per WhatsApp Bescheid geben oder einfach vorbeikommen: Werler Straße 68, 32105 Bad Salzuflen.",
     href: "/angebot?vorgang=abmelden",
     button: "ABMELDUNG ANFRAGEN",
@@ -227,7 +227,7 @@ export const AUTO_UMMELDEN: LeistungsSeite = {
   faelle: [
     {
       titel: "Gebrauchtwagen gekauft",
-      text: "Wir schreiben das Auto auf Sie um – mit neuem oder Wunschkennzeichen.",
+      text: "Wir schreiben das Auto auf Sie um: 99 €, wenn die Kennzeichen dranbleiben – mit neuen oder Wunschkennzeichen 129 €.",
       preis: "ab 99 €",
       link: "/angebot?vorgang=zulassen&art=gebraucht",
       linkText: "Umschreibung anfragen",
@@ -245,7 +245,7 @@ export const AUTO_UMMELDEN: LeistungsSeite = {
   schritteTitel: "So läuft das Ummelden bei uns",
   schritte: [
     {
-      titel: "Kurz Bescheid geben",
+      titel: "Vorbeikommen oder schreiben",
       text: "Per WhatsApp sagen, worum es geht – oder einfach vorbeikommen. Einen Termin brauchen Sie nicht.",
     },
     {
@@ -396,7 +396,7 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
         "Ihr Kunde fährt schneller vom Hof, solange die Freude am neuen Auto noch frisch ist.",
         "Abmeldungen von Inzahlungnahmen gleich mit – damit enden KFZ-Steuer und Versicherung für das Fahrzeug.",
         "Fahrzeuge, die Sie nicht selbst verkaufen möchten, kaufen wir an – auch nicht fahrbereite.",
-        "Unterlagen auch samstags von 15 bis 18 Uhr abgeben.",
+        "Unterlagen Mo–Fr von 9 bis 18 Uhr und samstags von 15 bis 18 Uhr abgeben.",
       ],
     },
     {

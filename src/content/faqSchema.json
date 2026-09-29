@@ -2,7 +2,7 @@
   "/evb-nummer": [
     {
       "question": "Was ist eine eVB-Nummer?",
-      "answer": "Die eVB-Nummer ist die elektronische Versicherungsbestätigung Ihrer KFZ-Versicherung. Sie besteht aus sieben Zeichen und beweist der Zulassungsstelle, dass für Ihr Fahrzeug eine Haftpflichtversicherung besteht. Ohne eVB-Nummer kann in Deutschland kein Fahrzeug zugelassen werden."
+      "answer": "Die eVB-Nummer ist die elektronische Versicherungsbestätigung Ihrer KFZ-Versicherung. Sie besteht aus sieben Zeichen und bestätigt der Zulassungsstelle, dass Ihre Versicherung das Fahrzeug ab der Zulassung versichert. Ohne eVB-Nummer kann in Deutschland kein Fahrzeug zugelassen werden."
     },
     {
       "question": "Wo bekomme ich eine eVB-Nummer?",
@@ -72,7 +72,7 @@
     },
     {
       "question": "Hat die Zulassungsstelle Bad Salzuflen samstags geöffnet?",
-      "answer": "Nein. Die Zulassungsstellen des Kreises Lippe sind von Montag bis Freitag geöffnet, freitags nur vormittags bis 12:30 Uhr. Samstags und sonntags ist geschlossen. Unser Zulassungsdienst in Bad Salzuflen hat samstags von 15 bis 18 Uhr geöffnet – ohne Termin."
+      "answer": "Nein. Die Zulassungsstellen des Kreises Lippe sind von Montag bis Freitag geöffnet, freitags nur vormittags bis 12:30 Uhr. Samstags und sonntags ist geschlossen. Unser Zulassungsdienst in Bad Salzuflen hat Montag bis Freitag von 9 bis 18 Uhr und samstags von 15 bis 18 Uhr geöffnet – ohne Termin."
     },
     {
       "question": "Ich habe keinen Termin bekommen – was kann ich tun?",
@@ -186,11 +186,11 @@
     },
     {
       "question": "Wie schnell geht das Ummelden?",
-      "answer": "Mit der Sofort-Zulassung digital in ca. 20 Minuten, klassisch bis zum nächsten Werktag. Einen Termin brauchen Sie bei uns nicht."
+      "answer": "Digital in ca. 20 Minuten, klassisch bis zum nächsten Werktag. Einen Termin brauchen Sie bei uns nicht."
     },
     {
       "question": "Kann jemand anderes das Auto für mich ummelden?",
-      "answer": "Ja, mit einer Vollmacht und Ihrem Personalausweis (oder einer Kopie davon). Die Vollmacht gibt es auf unserer Seite Formulare zum Ausdrucken."
+      "answer": "Ja. Mitbringen muss die Person Ihre unterschriebene Vollmacht, Ihren Personalausweis (oder eine Kopie davon) und das von Ihnen unterschriebene SEPA-Mandat für die KFZ-Steuer. Vollmacht und SEPA-Mandat gibt es auf unserer Seite Formulare zum Ausdrucken."
     }
   ],
   "/wunschkennzeichen": [
@@ -220,7 +220,7 @@
     },
     {
       "question": "Kann ich kurze Kennzeichen wie DT-A 1 reservieren?",
-      "answer": "Nicht online. Kennzeichen mit nur ein oder zwei Stellen nach dem Kürzel vergibt der Kreis Lippe nur persönlich am Schalter."
+      "answer": "Nicht online. Kennzeichen mit nur einer oder zwei Stellen nach dem Kürzel vergibt der Kreis Lippe nur persönlich am Schalter."
     }
   ],
   "/gewerbekunden": [
@@ -320,7 +320,7 @@
   "/auto-anmelden": [
     {
       "question": "Was kostet es, ein Auto in Bad Salzuflen anzumelden?",
-      "answer": "Die Zulassung kostet bei uns 129 € – die Verwaltungsgebühren des Straßenverkehrsamts sind schon enthalten. Bei SOFORT besorgen Sie die Schilder selbst, bei BASIS und PREMIUM sind sie dabei. Haben Sie einen Gebrauchtwagen gekauft und die Kennzeichen bleiben dran, ist es eine Ummeldung für 99 €. Ein Wunschkennzeichen kostet 13 € extra (Gebühr des Straßenverkehrsamts)."
+      "answer": "Die Zulassung kostet bei uns 129 € – die Verwaltungsgebühren des Straßenverkehrsamts sind schon enthalten. Bei SOFORT besorgen Sie die Schilder selbst, bei BASIS (129 €) und PREMIUM (159 €, mit Hol- und Bringservice) sind sie dabei. Haben Sie einen Gebrauchtwagen gekauft und die Kennzeichen bleiben dran, ist es eine Ummeldung für 99 €. Ein Wunschkennzeichen kostet 13 € extra (Gebühr des Straßenverkehrsamts)."
     },
     {
       "question": "Wie schnell ist mein Auto angemeldet?",
@@ -336,17 +336,17 @@
     },
     {
       "question": "Kann jemand anderes mein Auto für mich anmelden?",
-      "answer": "Ja, mit einer Vollmacht und Ihrem Personalausweis (oder einer Kopie davon). Die Vollmacht gibt es auf unserer Seite Formulare zum Ausdrucken."
+      "answer": "Ja. Mitbringen muss die Person Ihre unterschriebene Vollmacht, Ihren Personalausweis (oder eine Kopie davon) und das von Ihnen unterschriebene SEPA-Mandat für die KFZ-Steuer. Vollmacht und SEPA-Mandat gibt es auf unserer Seite Formulare zum Ausdrucken."
     },
     {
       "question": "Ich wohne nicht in Bad Salzuflen – geht das trotzdem?",
-      "answer": "Ja. Wir lassen für den ganzen Kreis Lippe zu, also auch für Detmold, Lemgo, Lage und alle anderen Orte. Kommen Sie einfach ohne Termin vorbei – mit der Sofort-Zulassung sind Sie in rund 20 Minuten fertig."
+      "answer": "Ja. Wir lassen für den ganzen Kreis Lippe zu, also auch für Detmold, Lemgo, Lage und alle anderen Orte im Kreis Lippe. Kommen Sie einfach ohne Termin vorbei – mit der Sofort-Zulassung sind Sie in rund 20 Minuten fertig."
     }
   ],
   "/dokumente": [
     {
       "question": "Wann brauche ich eine Vollmacht für die Zulassung?",
-      "answer": "Immer dann, wenn nicht der Halter selbst die Zulassung erledigt – zum Beispiel, wenn Sie das Auto für Eltern oder Partner anmelden oder uns die Unterlagen zuschicken. Die Vollmacht muss der Halter unterschreiben; dazu kommt sein Ausweis oder eine Kopie davon."
+      "answer": "Immer dann, wenn nicht der Halter selbst die Zulassung erledigt – zum Beispiel, wenn Sie das Auto für Eltern oder Partner anmelden oder wir die Unterlagen im PREMIUM-Paket bei Ihnen abholen. Die Vollmacht muss der Halter unterschreiben; dazu kommt sein Ausweis oder eine Kopie davon."
     },
     {
       "question": "Wofür ist das SEPA-Lastschriftmandat?",
@@ -354,7 +354,7 @@
     },
     {
       "question": "Was ist der Antrag auf Außerbetriebsetzung?",
-      "answer": "Das ist der Antrag für die Abmeldung eines Fahrzeugs. Sie brauchen ihn nur, wenn Sie uns die Unterlagen zuschicken. Kommen Sie vorbei, füllen wir alles gemeinsam aus."
+      "answer": "Das ist der Antrag für die Abmeldung eines Fahrzeugs. Kommen Sie vorbei, füllen wir ihn gemeinsam mit Ihnen aus – ausgedruckt brauchen Sie ihn nur, wenn wir die Unterlagen im PREMIUM-Paket abholen."
     },
     {
       "question": "Mein Fahrzeugschein ist weg – welches Formular brauche ich?",
@@ -366,7 +366,7 @@
     },
     {
       "question": "Muss ich die Formulare vorher ausdrucken?",
-      "answer": "Nein. Wenn Sie persönlich vorbeikommen, füllen wir alles gemeinsam vor Ort aus. Die Formulare brauchen Sie nur, wenn Sie uns die Unterlagen zuschicken oder jemand anderes für Sie kommt."
+      "answer": "Nein. Wenn Sie persönlich vorbeikommen, füllen wir alles gemeinsam vor Ort aus. Die Formulare brauchen Sie nur, wenn jemand anderes für Sie kommt oder wir die Unterlagen im PREMIUM-Paket abholen."
     }
   ]
 }

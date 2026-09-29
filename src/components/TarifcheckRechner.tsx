@@ -50,7 +50,7 @@ const TarifcheckRechner = () => {
             // Zählt nur mit Analytics-Zustimmung
             window.gtag?.("event", "tarifcheck_geladen");
           }}>
-            Jetzt vergleichen & eVB-Nummer erhalten*
+            Jetzt Kfz-Versicherung vergleichen*
           </Button>
         </div>
       )}

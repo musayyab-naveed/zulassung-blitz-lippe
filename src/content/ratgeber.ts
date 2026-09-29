@@ -50,7 +50,7 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Seit dem 25. April 2026 gibt es im Kreis Lippe wieder die Kennzeichen DT (Detmold) und LE (Lemgo) – zusätzlich zu LIP. Alle drei kann jeder im Kreis wählen. Wer von LIP auf DT oder LE wechseln will, braucht beim Straßenverkehrsamt einen Termin; bei uns läuft es als Wunschkennzeichen ohne Termin.",
     veroeffentlicht: "2026-09-23",
-    aktualisiert: "2026-09-23",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
@@ -81,7 +81,7 @@ export const RATGEBER: RatgeberArtikel[] = [
           "Sie haben schon ein LIP-Kennzeichen und möchten wechseln? Das nennt sich Umkennzeichnung. Sie bekommen neue Schilder und neue Eintragungen in den Fahrzeugpapieren. Beim Straßenverkehrsamt geht das nur mit gebuchtem Termin.",
         ],
         punkte: [
-          "Personalausweis oder Reisepass",
+          "Personalausweis – oder Reisepass mit Meldebescheinigung",
           "Fahrzeugschein und Fahrzeugbrief (Zulassungsbescheinigung Teil I und II)",
           "Beide bisherigen Kennzeichen",
           "Ihre Wunschkombination",
@@ -114,14 +114,14 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Ohne gebuchten Termin werden Sie bei den Zulassungsstellen des Kreises Lippe grundsätzlich nicht bedient. Neue Termine schaltet der Kreis jeden Morgen frei, aber immer nur für die nächsten 14 Tage. Wer schneller sein muss, lässt online über i-Kfz zu oder geht zu einem Zulassungsdienst, der ohne Termin arbeitet.",
     veroeffentlicht: "2026-09-23",
-    aktualisiert: "2026-09-23",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
         titel: "Warum es so schwer ist, einen Termin zu bekommen",
         absaetze: [
           "Der Kreis Lippe hat drei Zulassungsstellen: in Bad Salzuflen, Barntrup und Detmold. Bei allen gilt: Eine persönliche Vorsprache ist nur mit einem vorher online gebuchten Termin möglich.",
-          "Termine gibt es nur vormittags an allen Werktagen und nachmittags nur dienstags, mittwochs und donnerstags. Samstags ist geschlossen. Gebucht werden kann immer nur 14 Tage im Voraus – sind diese Tage voll, bleibt nur, am nächsten Morgen wieder nachzuschauen.",
+          "Termine gibt es montags bis freitags vormittags, nachmittags nur dienstags, mittwochs und donnerstags. Samstags ist geschlossen. Gebucht werden kann immer nur 14 Tage im Voraus – sind diese Tage voll, bleibt nur, am nächsten Morgen wieder nachzuschauen.",
           "Seit der Kreis im April 2026 die Kennzeichen DT und LE wieder eingeführt hat, wollen zusätzlich viele Lipperinnen und Lipper ihr Kennzeichen wechseln. Auch dafür braucht man beim Amt einen Termin.",
         ],
       },
@@ -151,7 +151,7 @@ export const RATGEBER: RatgeberArtikel[] = [
         punkte: [
           "Die Bestätigung per E-Mail enthält Ihre Wartenummer – ohne sie geht es nicht weiter.",
           "Es wird nur der Vorgang bearbeitet, den Sie gebucht haben – kein zweites Fahrzeug nebenbei.",
-          "Seien Sie pünktlich: Mit dem Aufruf wird der Termin gelöscht.",
+          "Seien Sie pünktlich: Wer beim Aufruf nicht da ist, verliert den Termin.",
           "Bezahlt wird in der Regel nur mit Karte, nicht bar.",
           "Alle Unterlagen vollständig mitbringen – welche das sind, steht in unseren Checklisten.",
         ],
@@ -177,7 +177,7 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Mit i-Kfz können Sie Ihr Auto über das Internet zulassen, umschreiben oder abmelden – ohne Termin beim Amt und rund um die Uhr. Sie brauchen dafür einen Personalausweis mit Online-Funktion samt PIN, Fahrzeugpapiere mit Sicherheitscodes und eine eVB-Nummer. Klappt es nicht, übernehmen wir den Vorgang für Sie.",
     veroeffentlicht: "2026-09-23",
-    aktualisiert: "2026-09-23",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 4,
     abschnitte: [
       {
@@ -191,7 +191,7 @@ export const RATGEBER: RatgeberArtikel[] = [
         punkte: [
           "Personalausweis mit freigeschalteter Online-Ausweisfunktion und Ihre sechsstellige PIN",
           "Ein Smartphone mit NFC (oder ein Kartenlesegerät) und die kostenlose AusweisApp",
-          "Fahrzeugschein und Fahrzeugbrief mit Sicherheitscodes – bei Fahrzeugen, die ab 2015 zugelassen wurden, sind die vorhanden",
+          "Fahrzeugschein und Fahrzeugbrief mit Sicherheitscode – den Fahrzeugschein gibt es damit seit 2015, den Fahrzeugbrief erst seit Oktober 2017",
           "Bei angemeldeten Fahrzeugen: die Plaketten auf den Kennzeichen mit ihrem Code",
           "Die eVB-Nummer Ihrer Versicherung und Ihre IBAN für die KFZ-Steuer",
           "Eine Möglichkeit, die Gebühren online zu bezahlen",
@@ -208,7 +208,7 @@ export const RATGEBER: RatgeberArtikel[] = [
           "Den Bescheid per E-Mail erhalten. Papiere und Plaketten kommen per Post.",
         ],
         absaetze: [
-          "Mit dem Bescheid zum Ausdrucken dürfen Sie in der Regel schon fahren, bis die Unterlagen per Post da sind. Die Kennzeichenschilder brauchen Sie trotzdem – die besorgen Sie selbst.",
+          "Mit dem Bescheid zum Ausdrucken dürfen Sie in der Regel schon fahren – bis zu 10 Tage, bis die Unterlagen per Post da sind. Die Kennzeichenschilder brauchen Sie trotzdem – die besorgen Sie selbst.",
         ],
       },
       {
@@ -224,7 +224,7 @@ export const RATGEBER: RatgeberArtikel[] = [
       {
         titel: "Wenn es nicht klappt: Wir machen es für Sie",
         absaetze: [
-          "Bei uns brauchen Sie weder Ausweis-PIN noch Lesegerät. Kommen Sie mit Ihren Unterlagen vorbei, und wir erledigen die Zulassung digital in ca. 20 Minuten. Online-Zulassungen übernehmen wir rund um die Uhr – schreiben Sie uns einfach per WhatsApp.",
+          "Bei uns brauchen Sie weder Ausweis-PIN noch Lesegerät. Kommen Sie mit Ihren Unterlagen vorbei: Mit Sicherheitscodes erledigen wir die Zulassung digital in ca. 20 Minuten, ohne Codes klassisch bis zum nächsten Werktag. Online-Zulassungen übernehmen wir rund um die Uhr – schreiben Sie uns einfach per WhatsApp.",
         ],
       },
     ],
@@ -247,14 +247,14 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Ist der Fahrzeugschein weg, stellt die Zulassungsstelle nach einer Verlusterklärung einen neuen aus. Beim Fahrzeugbrief dauert es länger, weil das Amt zuerst prüft, ob das Fahrzeug gesucht wird und wo der alte Brief ist. Wurden die Papiere gestohlen, gehört immer eine Anzeige bei der Polizei dazu.",
     veroeffentlicht: "2026-09-23",
-    aktualisiert: "2026-09-23",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
         titel: "Erst einmal: Welches Papier fehlt?",
         punkte: [
           "Fahrzeugschein = Zulassungsbescheinigung Teil I. Den haben Sie beim Fahren dabei.",
-          "Fahrzeugbrief = Zulassungsbescheinigung Teil II. Der gehört sicher nach Hause – er beweist, wem das Auto gehört.",
+          "Fahrzeugbrief = Zulassungsbescheinigung Teil II. Der gehört sicher nach Hause – ohne ihn können Sie das Auto weder verkaufen noch umschreiben lassen.",
         ],
       },
       {
@@ -269,7 +269,7 @@ export const RATGEBER: RatgeberArtikel[] = [
           "Sie beantragen bei der Zulassungsstelle einen neuen Fahrzeugschein. Dafür erklären Sie, dass der alte verloren ist – meist mit einer Versicherung an Eides statt. Das geht in der Regel nur persönlich, weil Sie die Erklärung selbst abgeben müssen.",
         ],
         punkte: [
-          "Personalausweis oder Reisepass",
+          "Personalausweis – oder Reisepass mit Meldebescheinigung",
           "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
           "Nachweis über die gültige Hauptuntersuchung, falls vorhanden",
           "Bei Diebstahl: die Anzeige der Polizei",
@@ -281,7 +281,7 @@ export const RATGEBER: RatgeberArtikel[] = [
           "Beim Fahrzeugbrief ist es aufwendiger: Die Zulassungsstelle fragt beim Kraftfahrt-Bundesamt nach und erklärt den alten Brief für ungültig, bevor ein neuer ausgestellt wird. Das kann einige Tage dauern. Auch hier geben Sie eine Versicherung an Eides statt ab.",
         ],
         punkte: [
-          "Personalausweis oder Reisepass",
+          "Personalausweis – oder Reisepass mit Meldebescheinigung",
           "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
           "Bei Diebstahl: die Anzeige der Polizei",
           "Bei finanzierten Fahrzeugen gegebenenfalls eine Bestätigung der Bank",
@@ -313,7 +313,7 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Das Kurzzeitkennzeichen gilt 5 Tage und ist für Probe- und Überführungsfahrten gedacht. Das Ausfuhrkennzeichen brauchen Sie, wenn das Fahrzeug dauerhaft ins Ausland geht. Für beide brauchen Sie eine eigene eVB-Nummer – eine normale eVB passt nicht.",
     veroeffentlicht: "2026-09-23",
-    aktualisiert: "2026-09-23",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
@@ -336,7 +336,7 @@ export const RATGEBER: RatgeberArtikel[] = [
       {
         titel: "Und rote Kennzeichen?",
         absaetze: [
-          "Rote Kennzeichen („rote Nummern“) sind etwas anderes: Sie bekommen nur Autohändler, Werkstätten und Hersteller für ihren Betrieb sowie Oldtimer-Sammler. Für Privatleute sind sie nicht gedacht.",
+          "Rote Kennzeichen („rote Nummern“) sind etwas anderes: Sie bekommen nur Autohändler, Werkstätten und Hersteller für ihren Betrieb. Einzige Ausnahme für Privatleute: das 07-Kennzeichen für Oldtimer-Sammler.",
         ],
       },
       {
@@ -356,7 +356,7 @@ export const RATGEBER: RatgeberArtikel[] = [
       },
     ],
     cta: {
-      text: "Kurzzeit- oder Ausfuhrkennzeichen gebraucht? Zwei Fragen antippen, dann geht es zu WhatsApp.",
+      text: "Brauchen Sie ein Kurzzeit- oder Ausfuhrkennzeichen? Kurz antippen, dann geht es zu WhatsApp.",
       href: "/angebot?vorgang=sonder",
       button: "KENNZEICHEN ANFRAGEN",
     },
@@ -426,9 +426,9 @@ export const RATGEBER: RatgeberArtikel[] = [
       "Zulassungsdienst oder selbst zur Zulassungsstelle? Was ein Zulassungsdienst übernimmt, wie der Preis zustande kommt und worauf Sie beim Vergleich achten.",
     h1: "Was macht ein Zulassungsdienst – und was kostet er?",
     kurzantwort:
-      "Ein Zulassungsdienst erledigt den Gang zur Zulassungsstelle für Sie: Sie geben Ihre Unterlagen ab oder kommen kurz vorbei, der Dienst meldet Ihr Fahrzeug an, um oder ab. Der Preis besteht aus den Gebühren des Amts und dem Honorar des Dienstes. Bei uns sind beide zusammen im Endpreis enthalten – ab 99 € für die Ummeldung, 129 € für die Zulassung.",
+      "Ein Zulassungsdienst erledigt den Gang zur Zulassungsstelle für Sie: Sie geben Ihre Unterlagen ab oder kommen kurz vorbei, der Dienst meldet Ihr Fahrzeug an, um oder ab. Der Preis besteht aus den Gebühren des Amts und dem Honorar des Dienstes. Bei uns sind beide zusammen im Endpreis enthalten – 99 € für die Ummeldung, ab 129 € für die Zulassung.",
     veroeffentlicht: "2026-09-23",
-    aktualisiert: "2026-09-23",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 4,
     abschnitte: [
       {
@@ -452,7 +452,7 @@ export const RATGEBER: RatgeberArtikel[] = [
           "Gegebenenfalls Kennzeichenschilder, Wunschkennzeichen und Feinstaubplakette",
         ],
         absaetze: [
-          "Viele Anbieter nennen nur ihr eigenes Honorar – die Gebühren und Schilder kommen später dazu. Fragen Sie deshalb immer nach dem Endpreis. Unsere Preise sind Endpreise inklusive Verwaltungsgebühren.",
+          "Viele Anbieter nennen nur ihr eigenes Honorar – die Gebühren und Schilder kommen später dazu. Fragen Sie deshalb immer nach dem Endpreis. Bei uns sind die Verwaltungsgebühren drin – dazu kommen nur, wenn Sie es möchten, Wunschkennzeichen (13 €) und Feinstaubplakette (6 €) als Gebühr des Amts; bei SOFORT besorgen Sie die Schilder selbst.",
         ],
         link: { href: "/preise", text: "Unsere Preise im Überblick" },
       },
@@ -475,7 +475,7 @@ export const RATGEBER: RatgeberArtikel[] = [
       {
         titel: "Woran Sie einen guten Zulassungsdienst erkennen",
         punkte: [
-          "Klare Endpreise inklusive Gebühren",
+          "Klare Endpreise inklusive Verwaltungsgebühren",
           "Feste Adresse und Öffnungszeiten, an denen Sie jemanden erreichen",
           "Echte Bewertungen, zum Beispiel bei Google",
           "Ehrliche Auskunft, welche Unterlagen Sie brauchen – bevor Sie losfahren",
@@ -501,13 +501,13 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Nach dem Kauf muss das Auto auf Sie umgeschrieben werden – und zwar zügig. Sie brauchen Ausweis, eVB-Nummer, Fahrzeugschein, Fahrzeugbrief und Ihre IBAN für die KFZ-Steuer. Bei uns in Bad Salzuflen geht das ohne Termin: 99 €, wenn die Kennzeichen dranbleiben, 129 € mit neuen Kennzeichen.",
     veroeffentlicht: "2026-09-24",
-    aktualisiert: "2026-09-24",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
         titel: "Diese Unterlagen brauchen Sie",
         punkte: [
-          "Personalausweis oder Reisepass",
+          "Personalausweis – oder Reisepass mit Meldebescheinigung",
           "eVB-Nummer Ihrer neuen Kfz-Versicherung",
           "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
           "Fahrzeugbrief (Zulassungsbescheinigung Teil II)",
@@ -519,7 +519,7 @@ export const RATGEBER: RatgeberArtikel[] = [
       {
         titel: "Bleiben die Kennzeichen dran?",
         absaetze: [
-          "Oft ja: Ist das Auto noch angemeldet und Sie möchten das Kennzeichen behalten, bleibt es einfach dran – das ist eine Ummeldung für 99 €. Möchten Sie neue Kennzeichen, zum Beispiel ein Wunschkennzeichen mit LIP, DT oder LE, kostet die Zulassung 129 €.",
+          "Oft ja: Ist das Auto noch angemeldet und Sie möchten das Kennzeichen behalten, bleibt es einfach dran – das ist eine Ummeldung für 99 €. Möchten Sie neue Kennzeichen mit LIP, DT oder LE, kostet die Zulassung 129 € – ein Wunschkennzeichen kommt mit 13 € Gebühr des Amts dazu.",
           "Ob in Ihrem Fall die alten Kennzeichen bleiben können, sagen wir Ihnen kurz per WhatsApp.",
         ],
       },
@@ -565,7 +565,7 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Zum Abmelden brauchen Sie den Fahrzeugschein und beide Kennzeichen. Den Fahrzeugbrief brauchen Sie dafür nicht. Mit den Sicherheitscodes auf Fahrzeugschein und Plaketten (Zulassung ab 2015) melden wir Ihr Auto bei uns in Bad Salzuflen sofort ab – für 40 €, ohne Termin.",
     veroeffentlicht: "2026-09-24",
-    aktualisiert: "2026-09-24",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
@@ -573,7 +573,7 @@ export const RATGEBER: RatgeberArtikel[] = [
         punkte: [
           "Fahrzeugschein (Zulassungsbescheinigung Teil I)",
           "Beide Kennzeichenschilder",
-          "Personalausweis oder Reisepass",
+          "Personalausweis – oder Reisepass mit Meldebescheinigung",
           "Bei Verschrottung: den Verwertungsnachweis",
         ],
       },
@@ -617,7 +617,7 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Nach einem Umzug müssen Sie die neue Adresse in den Fahrzeugschein eintragen lassen. Ihr bisheriges Kennzeichen dürfen Sie seit 2015 behalten – auch wenn Sie aus einem anderen Kreis nach Lippe ziehen. Bei uns kostet die Adressänderung 99 € inklusive Gebühren, ohne Termin.",
     veroeffentlicht: "2026-09-24",
-    aktualisiert: "2026-09-24",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
@@ -631,7 +631,7 @@ export const RATGEBER: RatgeberArtikel[] = [
       {
         titel: "Kennzeichen behalten oder wechseln?",
         absaetze: [
-          "Sie können Ihr altes Kennzeichen behalten, auch wenn es aus einem anderen Kreis stammt. Wer lieber ein Lippe-Kennzeichen möchte, kann LIP, DT oder LE wählen – dann kommen neue Schilder dazu und es wird eine Zulassung mit Kennzeichen für 129 €.",
+          "Sie können Ihr altes Kennzeichen behalten, auch wenn es aus einem anderen Kreis stammt. Wer lieber ein Lippe-Kennzeichen möchte, kann LIP, DT oder LE wählen – dann kommen neue Schilder dazu und es wird eine Zulassung mit Kennzeichen für 129 €, mit Wunschkennzeichen plus 13 € Gebühr des Amts.",
         ],
         link: { href: "/ratgeber/dt-le-kennzeichen-lippe", text: "DT und LE: Kennzeichen in Lippe" },
       },
@@ -661,13 +661,13 @@ export const RATGEBER: RatgeberArtikel[] = [
     kurzantwort:
       "Für einen Neuwagen brauchen Sie Ausweis, eVB-Nummer, den Fahrzeugbrief und die COC-Papiere vom Autohaus sowie Ihre IBAN für die KFZ-Steuer. Bei uns in Bad Salzuflen kostet die Zulassung 129 € inklusive Gebühren – ohne Termin, digital in ca. 20 Minuten oder mit Kennzeichen bis zum nächsten Werktag.",
     veroeffentlicht: "2026-09-24",
-    aktualisiert: "2026-09-24",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
         titel: "Diese Unterlagen brauchen Sie",
         punkte: [
-          "Personalausweis oder Reisepass",
+          "Personalausweis – oder Reisepass mit Meldebescheinigung",
           "eVB-Nummer Ihrer Kfz-Versicherung",
           "Fahrzeugbrief (Zulassungsbescheinigung Teil II) vom Autohaus",
           "COC-Papiere (Übereinstimmungsbescheinigung) vom Autohaus",
@@ -713,13 +713,13 @@ export const RATGEBER: RatgeberArtikel[] = [
       "Sie melden ein Auto für Eltern, Partner oder Kinder an? Welche Vollmacht und welche Unterlagen Sie brauchen – mit Vordruck zum Ausdrucken.",
     h1: "Auto für jemand anderen anmelden – Vollmacht und Unterlagen",
     kurzantwort:
-      "Sie können ein Auto auch für jemand anderen anmelden, ummelden oder abmelden. Dafür brauchen Sie eine vom Halter unterschriebene Vollmacht, seinen Ausweis oder eine Kopie davon und Ihren eigenen Ausweis. Für die Anmeldung kommen eVB-Nummer, Fahrzeugpapiere und ein SEPA-Mandat des Kontoinhabers dazu.",
+      "Sie können ein Auto auch für jemand anderen anmelden oder ummelden. Dafür brauchen Sie eine vom Halter unterschriebene Vollmacht, seinen Ausweis oder eine Kopie davon und Ihren eigenen Ausweis. Für die Anmeldung kommen eVB-Nummer, Fahrzeugpapiere und ein SEPA-Mandat des Kontoinhabers dazu. Zum Abmelden brauchen Sie keine Vollmacht – dafür reichen Fahrzeugschein und Kennzeichen.",
     veroeffentlicht: "2026-09-24",
-    aktualisiert: "2026-09-24",
+    aktualisiert: "2026-09-29",
     lesezeitMinuten: 3,
     abschnitte: [
       {
-        titel: "Das brauchen Sie immer",
+        titel: "Das brauchen Sie zum An- oder Ummelden",
         punkte: [
           "Vollmacht, vom Halter unterschrieben",
           "Ausweis des Halters oder eine Kopie davon",
@@ -730,7 +730,7 @@ export const RATGEBER: RatgeberArtikel[] = [
       {
         titel: "Zusätzlich für die Anmeldung",
         punkte: [
-          "eVB-Nummer – die Versicherung muss auf den Halter laufen",
+          "eVB-Nummer, ausgestellt für den Halter",
           "Fahrzeugschein und Fahrzeugbrief, bei Neuwagen die COC-Papiere",
           "SEPA-Lastschriftmandat für die KFZ-Steuer, vom Kontoinhaber unterschrieben",
         ],

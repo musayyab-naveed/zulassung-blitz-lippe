@@ -60,8 +60,8 @@ export const EVB_VORGAENGE: EvbVorgang[] = [
     benoetigt: false,
   },
   {
-    vorgang: "Adressänderung im selben Kreis",
-    beschreibung: "Umzug ohne neues Kennzeichen",
+    vorgang: "Adressänderung nach einem Umzug",
+    beschreibung: "Neue Adresse in den Fahrzeugschein – auch wenn Sie neu nach Lippe ziehen",
     benoetigt: false,
   },
 ];
@@ -98,9 +98,9 @@ export const EVB_FEHLER: EvbFehler[] = [
       "SMS lieber weiter, statt die Nummer abzutippen.",
   },
   {
-    titel: "Es ist eine eVB für ein Kurzzeitkennzeichen",
+    titel: "Es ist eine eVB für ein Kurzzeit- oder Ausfuhrkennzeichen",
     text:
-      "Für Kurzzeitkennzeichen gibt es eine eigene eVB-Art. Für eine normale Zulassung ist sie " +
-      "nicht zu gebrauchen. Brauchen Sie wirklich ein Kurzzeitkennzeichen, fragen Sie uns kurz per WhatsApp.",
+      "Für Kurzzeit- und Ausfuhrkennzeichen gibt es eigene eVB-Arten. Für eine normale Zulassung sind sie " +
+      "nicht zu gebrauchen. Brauchen Sie wirklich eines dieser Kennzeichen, fragen Sie uns kurz per WhatsApp.",
   },
 ];

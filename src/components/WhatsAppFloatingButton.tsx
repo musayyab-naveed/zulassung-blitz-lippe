@@ -21,7 +21,7 @@ const WhatsAppFloatingButton = () => {
         target="_blank"
         onClick={() => window.gtag?.("event", "generate_lead", { method: "whatsapp", quelle: "schwebend" })}
         rel="noreferrer"
-        aria-label="Jetzt chatten: WhatsApp Beratung starten"
+        aria-label="Jetzt chatten: WhatsApp-Beratung starten"
         className="group relative flex items-center gap-3 rounded-2xl border border-[#15803d] bg-[#15803d] px-4 py-3 text-white shadow-[0_18px_40px_-18px_rgba(21,128,61,0.85)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-18px_rgba(21,128,61,0.95)]"
       >
         <span className="absolute -right-1 -top-1 inline-flex h-3 w-3">
@@ -37,7 +37,7 @@ const WhatsAppFloatingButton = () => {
           <span className="block text-[11px] font-semibold uppercase tracking-wide text-white">
             Jetzt chatten
           </span>
-          <span className="block text-sm font-bold">WhatsApp Beratung starten</span>
+          <span className="block text-sm font-bold">WhatsApp-Beratung starten</span>
         </span>
       </a>
     </div>

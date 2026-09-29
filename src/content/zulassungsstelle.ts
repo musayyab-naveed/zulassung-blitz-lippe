@@ -108,7 +108,7 @@ export const VERGLEICH: VergleichsZeile[] = [
   { merkmal: "Bezahlung", amt: "nur Karte", wir: "bar, EC, PayPal, SEPA, Rechnung", vorteilWir: true },
   { merkmal: "Kennzeichenschilder", amt: "besorgen Sie selbst", wir: "bei BASIS und PREMIUM inklusive", vorteilWir: true },
   { merkmal: "Kosten", amt: "nur die Verwaltungsgebühren", wir: "ab 99 € inklusive der Gebühren", vorteilWir: false },
-  { merkmal: "Ihr Zeitaufwand", amt: "Termin suchen, hinfahren, warten", wir: "einmal vorbeikommen – ohne Termin", vorteilWir: true },
+  { merkmal: "Ihr Zeitaufwand", amt: "Termin suchen, hinfahren, warten", wir: "vorbeikommen – ohne Termin", vorteilWir: true },
 ];
 
 export const ZST_FAQS: { question: string; answer: string }[] =

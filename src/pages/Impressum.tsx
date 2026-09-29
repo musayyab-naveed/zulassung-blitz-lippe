@@ -23,7 +23,7 @@ const Impressum = () => {
               Impressum
             </h1>
             <p className="text-lg text-muted-foreground">
-              Angaben gemäß § 5 TMG
+              Angaben gemäß § 5 DDG
             </p>
           </div>
 
@@ -62,7 +62,7 @@ const Impressum = () => {
                   <p className="flex items-center gap-2">
                     <Phone className="h-4 w-4" />
                     <a href="tel:+4915142462280" className="text-link hover:underline">
-                      +49 151 42462280
+                      +49 1514 2462280
                     </a>
                   </p>
                   <p className="flex items-center gap-2">
@@ -83,29 +83,6 @@ const Impressum = () => {
                   DE354946854
                 </p>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Legal Information */}
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="text-secondary">EU-Streitschlichtung</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">
-                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
-                <a
-                  href="https://ec.europa.eu/consumers/odr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-link hover:underline ml-1"
-                >
-                  https://ec.europa.eu/consumers/odr
-                </a>
-              </p>
-              <p className="text-muted-foreground">
-                Unsere E-Mail-Adresse finden Sie oben im Impressum.
-              </p>
             </CardContent>
           </Card>
 
@@ -143,7 +120,7 @@ const Impressum = () => {
           {/* Additional Information */}
           <div className="mt-12 text-center text-sm text-muted-foreground">
             <p>
-              Haftung für Inhalte: Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+              Haftung für Inhalte: Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
             </p>
             <p className="mt-2">
               Haftung für Links: Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.

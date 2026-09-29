@@ -66,7 +66,7 @@ const GoogleReviews = () => {
   const totalReviews = BUSINESS.reviewCount;
 
   const avgRating = useMemo(
-    () => (reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length).toFixed(1),
+    () => (reviews.reduce((acc, item) => acc + item.rating, 0) / reviews.length).toFixed(1).replace(".", ","),
     [reviews]
   );
 
@@ -121,7 +121,7 @@ const GoogleReviews = () => {
             ))}
             <span className="text-2xl font-bold text-secondary ml-2">{avgRating}</span>
           </div>
-          <p className="text-muted-foreground">Basierend auf {totalReviews} echten Bewertungen</p>
+          <p className="text-muted-foreground">Basierend auf {totalReviews} Bewertungen bei Google</p>
           <a
             href={BUSINESS.mapsUrl}
             target="_blank"

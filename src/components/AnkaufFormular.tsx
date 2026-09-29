@@ -202,7 +202,7 @@ const AnkaufFormular = () => {
       {fehler && <p className="text-sm font-medium text-destructive">{fehler}</p>}
 
       <Button type="submit" disabled={sendet} className="w-full sm:w-auto">
-        {sendet ? "Wird gesendet …" : "Unverbindliches Angebot anfordern"}
+        {sendet ? "Wird gesendet …" : "Unverbindliches Angebot holen"}
       </Button>
       <p className="text-xs text-muted-foreground">
         Ihre Angaben nutzen wir nur für diese Anfrage.{" "}

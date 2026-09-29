@@ -33,9 +33,9 @@ const documents = [
   {
     title: "Vollmacht für die Zulassung",
     description:
-      "Damit dürfen wir Ihr Fahrzeug in Ihrem Namen an-, um- oder wieder zulassen.",
+      "Damit dürfen wir Ihr Fahrzeug in Ihrem Namen anmelden, ummelden oder wieder zulassen.",
     href: "/documents/Vollmacht_Zulassung.pdf",
-    hinweis: "Bitte unterschreiben – zusammen mit einer Ausweiskopie beilegen.",
+    hinweis: "Bitte unterschreiben und eine Kopie Ihres Ausweises mitgeben.",
   },
   {
     title: "SEPA-Lastschriftmandat",
@@ -47,9 +47,9 @@ const documents = [
   {
     title: "Antrag auf Außerbetriebsetzung (Abmeldung)",
     description:
-      "Der Antrag für die Abmeldung – nur nötig, wenn Sie uns die Unterlagen zuschicken, statt vorbeizukommen.",
+      "Der Antrag für die Abmeldung. Kommen Sie vorbei, füllen wir ihn mit Ihnen aus – ausgedruckt brauchen Sie ihn nur im PREMIUM-Paket.",
     href: "/documents/Antrag_AB_2026-03.pdf",
-    hinweis: "Bitte unterschreiben – zusammen mit einer Ausweiskopie beilegen.",
+    hinweis: "Bitte unterschreiben und eine Kopie Ihres Ausweises mitgeben.",
   },
 ];
 
@@ -67,8 +67,8 @@ const Dokumente = () => {
             <h1 className="section-title mb-3">Formulare für die KFZ-Zulassung im Kreis Lippe</h1>
             <p className="section-subtitle mx-auto max-w-2xl">
               Vollmacht, SEPA-Lastschriftmandat und Antrag auf Außerbetriebsetzung zum Ausdrucken. Sie brauchen
-              sie nur, wenn Sie uns Ihre Unterlagen zusenden oder jemand anderes für Sie kommt. Kommen Sie
-              persönlich vorbei, füllen wir alles gemeinsam vor Ort aus.
+              sie nur, wenn jemand anderes für Sie kommt oder wir Ihre Unterlagen im PREMIUM-Paket abholen.
+              Kommen Sie selbst vorbei, füllen wir alles gemeinsam vor Ort aus.
             </p>
           </div>
 
@@ -115,9 +115,9 @@ const Dokumente = () => {
           <div className="mt-6 flex items-start gap-3 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3.5">
             <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
             <p className="text-sm text-foreground">
-              <span className="font-semibold text-secondary">Versandadresse:</span> KFZ-Sofortzulassung ·
-              Werler Straße 68 · 32105 Bad Salzuflen. Am besten versichert mit Sendungsverfolgung –
-              den Express-Rückversand übernehmen wir.
+              <span className="font-semibold text-secondary">Nur für PREMIUM per Versand:</span> KFZ-Sofortzulassung ·
+              Werler Straße 68 · 32105 Bad Salzuflen. Am besten versichert mit Sendungsverfolgung – den
+              Express-Rückversand übernehmen wir im PREMIUM-Paket (159 €).
             </p>
           </div>
 
@@ -135,7 +135,7 @@ const Dokumente = () => {
 
           <div className="mt-10 text-center">
             <p className="mb-4 text-muted-foreground">
-              Sie kommen lieber persönlich vorbei? Dann brauchen Sie hier gar nichts:
+              Sie kommen lieber persönlich vorbei? Dann brauchen Sie keines dieser Formulare:
             </p>
             <Button size="lg" variant="cta-large" asChild>
               <Link to="/angebot">

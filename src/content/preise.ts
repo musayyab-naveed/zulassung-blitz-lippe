@@ -73,6 +73,7 @@ export const PACKAGES: PackageDef[] = [
     subtitle: "Fertig am nächsten Werktag – Sie bringen & holen die Unterlagen",
     features: [
       "Fertig am nächsten Werktag",
+      "Kennzeichenschilder inklusive",
       "Unterlagen vor Ort abgeben",
       "Verwaltungsgebühren inkl.",
       "Sie möchten Ihr altes Fahrzeug verkaufen? Wir kaufen es gerne an",
@@ -151,7 +152,7 @@ export const PACKAGES: PackageDef[] = [
       "Abmeldung inklusive",
       "Fachgerechte Verwertung auf Wunsch",
     ],
-    buttonText: "AUTO VERKAUFEN",
+    buttonText: "UNVERBINDLICHES ANGEBOT HOLEN",
     buttonVariant: "cta" as const,
     schemaDescription:
       "Kostenlose und unverbindliche Ankaufanfrage – beim Ankauf ist die Abmeldung gratis.",
@@ -227,7 +228,7 @@ export const IM_PREIS_ENTHALTEN: string[] = [
   "Unser kompletter Behördengang – Sie müssen nicht zur Zulassungsstelle",
   "Beratung und Prüfung Ihrer Unterlagen vor der Zulassung",
   "Bei BASIS und PREMIUM: die Kennzeichenschilder",
-  "Keine Wartenummer, kein Behördentermin, keine Anfahrt für Sie",
+  "Keine Wartenummer und kein Behördentermin",
 ];
 
 /** Ehrliche Abgrenzung – schafft Vertrauen und spart Fehlanfragen */
@@ -336,11 +337,11 @@ export const PREIS_VERGLEICH: VergleichsPunkt[] = [
     frage: "Sind die Kennzeichenschilder enthalten?",
     beiUns: "Bei BASIS und PREMIUM ja",
     hinweis:
-      "Schilder kosten sonst extra. Bei SOFORT besorgen Sie sie selbst – deshalb steht dort „ab“ und nicht ein fester Preis.",
+      "Schilder kosten sonst oft extra. Bei SOFORT besorgen Sie sie selbst – das steht direkt beim Paket dabei.",
   },
   {
     frage: "Steht ein „ab“ oder ein Sternchen am Preis?",
-    beiUns: "Nur bei SOFORT, und dort steht auch warum",
+    beiUns: "Kein Sternchen – „ab 99 €“ ist der Preis der Ummeldung, jedes Paket hat einen festen Preis",
     hinweis:
       "Ein Sternchen am Preis heißt fast immer: Da kommt noch etwas dazu. Lesen Sie, was im Kleingedruckten steht.",
   },

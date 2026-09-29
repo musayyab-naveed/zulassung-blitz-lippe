@@ -166,7 +166,7 @@ const Zulassungsstelle = () => {
           </p>
 
           <div className="mt-8 rounded-2xl bg-secondary p-6 text-white shadow-lg">
-            <h3 className="text-xl font-bold">Kein Termin bekommen? Wir sind gleich um die Ecke.</h3>
+            <h3 className="text-xl font-bold">Kein Termin bekommen? Wir sind nur etwa 10 Minuten entfernt.</h3>
             <p className="mt-2 text-white/85">
               Von der Zulassungsstelle zu uns in die Werler Straße 68 sind es {ENTFERNUNG_ZU_UNS}. Bei uns
               brauchen Sie keinen Termin: Montag bis Freitag 9–18 Uhr, Samstag 15–18 Uhr.
@@ -345,7 +345,7 @@ const Zulassungsstelle = () => {
               {
                 nr: "2",
                 titel: "Wir erledigen den Behördengang",
-                text: "Digital in ca. 20 Minuten, oder klassisch bis zum nächsten Werktag – inklusive Kennzeichen.",
+                text: "Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag – Schilder bei BASIS und PREMIUM inklusive.",
               },
               {
                 nr: "3",

@@ -14,7 +14,7 @@ export const ZULASSUNGSSERVICE: MenuePunkt[] = [
   { name: "Kurzzeit- & Ausfuhrkennzeichen", href: "/angebot?vorgang=sonder" },
   { name: "Saisonkennzeichen", href: "/ratgeber/saisonkennzeichen" },
   { name: "Hol- und Bringservice", href: "/preise" },
-  { name: "eVB-Nummer beantragen", href: "/kfz-versicherung" },
+  { name: "Kfz-Versicherung vergleichen", href: "/kfz-versicherung" },
   { name: "Für Firmen & Partner", href: "/gewerbekunden" },
 ];
 

@@ -19,6 +19,7 @@ export type Art =
   | "gebraucht"
   | "wieder"
   | "umzug"
+  | "kennzeichen"
   | "unklar"
   | "kurzzeit"
   | "ausfuhr";
@@ -43,6 +44,7 @@ export const ARTEN: Auswahl<Art>[] = [
   { wert: "gebraucht", titel: "Gebrauchtwagen gekauft", text: "Das Auto kommt auf Ihren Namen" },
   { wert: "wieder", titel: "Abgemeldetes Auto wieder anmelden", text: "Wiederzulassung" },
   { wert: "umzug", titel: "Umgezogen – Adresse ändern", text: "Innerhalb von Lippe oder neu zugezogen" },
+  { wert: "kennzeichen", titel: "Nur neues Kennzeichen", text: "Gleiches Auto, anderes Kennzeichen – z. B. DT oder LE" },
   { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
 ];
 
@@ -80,6 +82,7 @@ const ZULASSEN_IN_NACHRICHT: Record<Art, string> = {
   gebraucht: "Hallo! Ich habe einen Gebrauchtwagen gekauft und möchte ihn auf mich zulassen.",
   wieder: "Hallo! Ich möchte mein abgemeldetes Auto wieder anmelden.",
   umzug: "Hallo! Ich bin umgezogen und möchte die Adresse im Fahrzeugschein ändern lassen.",
+  kennzeichen: "Hallo! Ich möchte für mein Auto ein neues Kennzeichen.",
   unklar: "Hallo! Ich möchte ein Fahrzeug zulassen, weiß aber nicht genau, welcher Fall das ist.",
   kurzzeit: "Hallo! Ich brauche ein Kurzzeitkennzeichen.",
   ausfuhr: "Hallo! Ich brauche ein Ausfuhrkennzeichen.",
@@ -94,6 +97,10 @@ const PAKET_IN_NACHRICHT: Record<string, string> = {
   abmeldung: "SOFORTABMELDUNG",
   sonderkennzeichen: "KURZZEIT- / AUSFUHRKENNZEICHEN",
 };
+
+/** Die Ummeldung (99 €, Kennzeichen bleiben dran) passt nicht zu Neuwagen, Wiederzulassung oder neuem Kennzeichen */
+export const paketPasst = (paket?: string | null, art?: Art) =>
+  !(paket === "ummeldung" && (art === "neu" || art === "wieder" || art === "kennzeichen"));
 
 export interface AnfrageAntworten {
   vorgang?: Vorgang;
@@ -134,7 +141,7 @@ export const baueNachricht = ({ vorgang, art, evb, paket, wunsch }: AnfrageAntwo
   const evbZeile = evb && brauchtEvbFrage({ vorgang, art }) ? EVB_IN_NACHRICHT[evb] : null;
   const wunschZeile = wunsch && vorgang === "zulassen" ? "Ich hätte gern ein Wunschkennzeichen (LIP, DT oder LE)." : null;
   const paketZeile =
-    paket && PAKET_IN_NACHRICHT[paket] && vorgang !== "sonder"
+    paket && PAKET_IN_NACHRICHT[paket] && vorgang !== "sonder" && paketPasst(paket, art)
       ? `Am liebsten mit dem Paket ${PAKET_IN_NACHRICHT[paket]}.`
       : null;
 
@@ -152,6 +159,7 @@ export const checklisteFuer = ({ vorgang, art }: AnfrageAntworten): VorgangCheck
     neu: "neuzulassung",
     wieder: "wiederzulassung",
     umzug: "adressaenderung",
+    kennzeichen: "umkennzeichnung",
   };
   const key =
     vorgang === "abmelden"

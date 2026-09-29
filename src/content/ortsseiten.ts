@@ -36,6 +36,9 @@ const KENNZEICHEN_FREI =
 
 const NUR_MIT_TERMIN = "nur mit vorher online gebuchtem Termin.";
 
+/** Damit niemand „in Bad Salzuflen nur mit Termin“ auf uns bezieht */
+const BEI_UNS_OHNE_TERMIN = " Bei uns in der Werler Straße 68 brauchen Sie keinen Termin.";
+
 const ORTE: Ort[] = [
   {
     slug: "detmold",
@@ -45,10 +48,10 @@ const ORTE: Ort[] = [
     einleitung:
       "Bei der Zulassungsstelle in Detmold geht nichts ohne online gebuchten Termin. Bei uns schon: Über die B239 sind Sie in ca. 25 Minuten in Bad Salzuflen, und die Sofort-Zulassung dauert rund 20 Minuten.",
     zulassungsstelle:
-      "Nein. Die Zulassungsstelle in der Felix-Fechenbach-Straße 5 arbeitet – wie alle drei im Kreis – nur mit vorher online gebuchtem Termin, und Termine gibt es nur 14 Tage im Voraus. Bei uns in Bad Salzuflen brauchen Sie keinen Termin.",
+      "Nein. Die Zulassungsstelle in der Felix-Fechenbach-Straße 5 arbeitet – wie alle drei im Kreis – nur mit vorher online gebuchtem Termin, und buchen lassen sich Termine höchstens 14 Tage im Voraus. Bei uns in Bad Salzuflen brauchen Sie keinen Termin.",
     hatZulassungsstelle: true,
     kennzeichen:
-      "Seit April 2026 gibt es wieder DT, das frühere Detmolder Kennzeichen. Genauso möglich sind LIP und LE – alle drei gelten im ganzen Kreis Lippe.",
+      "Seit April 2026 gibt es das alte Kennzeichen DT wieder. Genauso möglich sind LIP und LE – alle drei gelten im ganzen Kreis Lippe.",
   },
   {
     slug: "lemgo",
@@ -57,9 +60,9 @@ const ORTE: Ort[] = [
     strecke: "rund 16 km",
     einleitung:
       "Ob neues LE-Kennzeichen, Umschreibung nach dem Autokauf oder Abmeldung: Aus Lemgo sind Sie in ca. 20 Minuten bei uns in Bad Salzuflen – ganz ohne Termin beim Amt.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Bad Salzuflen, Detmold und Barntrup – alle ${NUR_MIT_TERMIN}`,
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Bad Salzuflen, Detmold und Barntrup – alle ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen:
-      "Seit April 2026 gibt es wieder LE, das frühere Lemgoer Kennzeichen. Genauso möglich sind LIP und DT – alle drei gelten im ganzen Kreis Lippe.",
+      "Seit April 2026 gibt es das alte Kennzeichen LE wieder. Genauso möglich sind LIP und DT – alle drei gelten im ganzen Kreis Lippe.",
   },
   {
     slug: "lage",
@@ -68,7 +71,7 @@ const ORTE: Ort[] = [
     strecke: "rund 12,5 km über die B239",
     einleitung:
       "Aus Lage sind Sie über die B239 in ca. 15 Minuten bei uns in Bad Salzuflen. Kommen Sie einfach mit Ihren Unterlagen vorbei – einen Termin brauchen Sie nicht.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Detmold und Bad Salzuflen – beide ${NUR_MIT_TERMIN}`,
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Detmold und Bad Salzuflen – beide ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -78,7 +81,7 @@ const ORTE: Ort[] = [
     strecke: "rund 10 km",
     einleitung:
       "Leopoldshöhe ist unser direkter Nachbar: In ca. 15 Minuten sind Sie bei uns in Bad Salzuflen. Zulassung, Umschreibung oder Abmeldung erledigen wir ohne Termin – Mo–Fr 9–18 Uhr und Sa 15–18 Uhr.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Bad Salzuflen – ${NUR_MIT_TERMIN}`,
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist die Zulassungsstelle in Bad Salzuflen am Louis-Uekermann-Weg – ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -87,7 +90,7 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 20 Minuten",
     einleitung:
       "Aus Oerlinghausen sind Sie in ca. 20 Minuten bei uns in Bad Salzuflen. Einen Termin brauchen Sie nicht – kommen Sie einfach mit Ihren Unterlagen vorbei.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Bad Salzuflen und Detmold – beide ${NUR_MIT_TERMIN}`,
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Bad Salzuflen und Detmold – beide ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -97,7 +100,7 @@ const ORTE: Ort[] = [
     strecke: "rund 36 km",
     einleitung:
       "Aus Horn-Bad Meinberg müssen Sie nicht auf einen Termin beim Amt warten: Kommen Sie einfach zu uns nach Bad Salzuflen – die Sofort-Zulassung dauert rund 20 Minuten.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}`,
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -106,8 +109,8 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 40 Minuten",
     strecke: "rund 37 km",
     einleitung:
-      "Statt auf einen Termin bei der Zulassungsstelle zu warten, kommen Sie aus Blomberg einfach zu uns nach Bad Salzuflen – ohne Termin, Mo–Fr 9–18 Uhr und Sa 15–18 Uhr. In rund 20 Minuten sind Sie zugelassen.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Barntrup und Detmold – beide ${NUR_MIT_TERMIN}`,
+      "Statt auf einen Termin bei der Zulassungsstelle zu warten, kommen Sie aus Blomberg einfach zu uns nach Bad Salzuflen, Mo–Fr 9–18 Uhr und Sa 15–18 Uhr. Mit der Sofort-Zulassung sind Sie in rund 20 Minuten zugelassen.",
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Barntrup und Detmold – beide ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -116,9 +119,9 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 40 Minuten",
     strecke: "rund 38 km",
     einleitung:
-      "In Barntrup gibt es zwar eine Zulassungsstelle, aber nur mit online gebuchtem Termin. Bei uns kommen Sie ohne Termin dran – einfach vorbeikommen, und in rund 20 Minuten sind Sie zugelassen.",
+      "In Barntrup gibt es zwar eine Zulassungsstelle, aber nur mit online gebuchtem Termin. Bei uns kommen Sie ohne Termin dran – einfach vorbeikommen, und mit der Sofort-Zulassung sind Sie in rund 20 Minuten zugelassen.",
     zulassungsstelle:
-      "Nein. Die Zulassungsstelle in der Alverdisser Straße 28 arbeitet – wie alle drei im Kreis – nur mit vorher online gebuchtem Termin, und Termine gibt es nur 14 Tage im Voraus. Bei uns in Bad Salzuflen brauchen Sie keinen Termin.",
+      "Nein. Die Zulassungsstelle in der Alverdisser Straße 28 arbeitet – wie alle drei im Kreis – nur mit vorher online gebuchtem Termin, und buchen lassen sich Termine höchstens 14 Tage im Voraus. Bei uns in Bad Salzuflen brauchen Sie keinen Termin.",
     hatZulassungsstelle: true,
     kennzeichen: KENNZEICHEN_FREI,
   },
@@ -129,7 +132,7 @@ const ORTE: Ort[] = [
     strecke: "rund 21 km",
     einleitung:
       "Aus dem Kalletal sind Sie in ca. 25 Minuten bei uns in Bad Salzuflen. Kommen Sie einfach ohne Termin vorbei – die Sofort-Zulassung dauert rund 20 Minuten.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Bad Salzuflen – ${NUR_MIT_TERMIN}`,
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist die Zulassungsstelle in Bad Salzuflen am Louis-Uekermann-Weg – ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -138,8 +141,8 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 40 Minuten",
     strecke: "rund 37 km",
     einleitung:
-      "Aus dem Extertal kommen Sie ohne Termin zu uns nach Bad Salzuflen – kein Warten auf einen Behördentermin. Die Sofort-Zulassung dauert rund 20 Minuten, geöffnet ist Mo–Fr 9–18 Uhr und Sa 15–18 Uhr.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Barntrup – ${NUR_MIT_TERMIN}`,
+      "Aus dem Extertal kommen Sie ohne Termin zu uns nach Bad Salzuflen. Die Sofort-Zulassung dauert rund 20 Minuten, geöffnet ist Mo–Fr 9–18 Uhr und Sa 15–18 Uhr.",
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Barntrup – ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -149,7 +152,7 @@ const ORTE: Ort[] = [
     strecke: "rund 25 km",
     einleitung:
       "Aus Dörentrup sind Sie in ca. 30 Minuten bei uns in Bad Salzuflen – ohne Termin, Mo–Fr 9–18 Uhr und Sa 15–18 Uhr. Zulassung, Umschreibung oder Abmeldung erledigen wir direkt vor Ort.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Barntrup – ${NUR_MIT_TERMIN}`,
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Barntrup – ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -157,8 +160,8 @@ const ORTE: Ort[] = [
     name: "Augustdorf",
     fahrzeit: "ca. 35 Minuten",
     einleitung:
-      "Sie wohnen in Augustdorf? Kommen Sie ohne Termin bei uns in Bad Salzuflen vorbei – die Sofort-Zulassung dauert rund 20 Minuten. Einen Termin beim Amt brauchen Sie nicht.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}`,
+      "Sie wohnen in Augustdorf? Kommen Sie einfach ohne Termin bei uns in Bad Salzuflen vorbei – die Sofort-Zulassung dauert rund 20 Minuten.",
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -166,8 +169,8 @@ const ORTE: Ort[] = [
     name: "Schlangen",
     fahrzeit: "ca. 45 Minuten",
     einleitung:
-      "Aus Schlangen zur Zulassung ohne Termin: Kommen Sie einfach zu uns nach Bad Salzuflen, Mo–Fr 9–18 Uhr und Sa 15–18 Uhr. In rund 20 Minuten sind Sie zugelassen – statt auf einen Behördentermin zu warten.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}`,
+      "Aus Schlangen zur Zulassung ohne Termin: Kommen Sie einfach zu uns nach Bad Salzuflen, Mo–Fr 9–18 Uhr und Sa 15–18 Uhr. Mit der Sofort-Zulassung sind Sie in rund 20 Minuten zugelassen.",
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Detmold – ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -176,8 +179,8 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 55 Minuten",
     strecke: "rund 52 km",
     einleitung:
-      "Aus Lügde zur Zulassung ohne Termin: Bei uns in Bad Salzuflen kommen Sie einfach vorbei – Mo–Fr 9–18 Uhr und Sa 15–18 Uhr – und sind in rund 20 Minuten zugelassen.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Barntrup – ${NUR_MIT_TERMIN}`,
+      "Aus Lügde zur Zulassung ohne Termin: Bei uns in Bad Salzuflen kommen Sie einfach vorbei – Mo–Fr 9–18 Uhr und Sa 15–18 Uhr – und sind mit der Sofort-Zulassung in rund 20 Minuten zugelassen.",
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächste ist in Barntrup – ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
   {
@@ -186,8 +189,8 @@ const ORTE: Ort[] = [
     fahrzeit: "ca. 50 Minuten",
     strecke: "rund 50 km",
     einleitung:
-      "Aus Schieder-Schwalenberg kommen Sie ohne Termin zu uns nach Bad Salzuflen. Kein Warten auf einen Termin beim Amt – die Sofort-Zulassung dauert rund 20 Minuten.",
-    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Barntrup und Detmold – beide ${NUR_MIT_TERMIN}`,
+      "Aus Schieder-Schwalenberg kommen Sie ohne Termin zu uns nach Bad Salzuflen – die Sofort-Zulassung dauert rund 20 Minuten, geöffnet ist Mo–Fr 9–18 Uhr und Sa 15–18 Uhr.",
+    zulassungsstelle: `Nein, vor Ort gibt es keine eigene Zulassungsstelle. Die nächsten sind in Barntrup und Detmold – beide ${NUR_MIT_TERMIN}${BEI_UNS_OHNE_TERMIN}`,
     kennzeichen: KENNZEICHEN_FREI,
   },
 ];
@@ -215,18 +218,18 @@ export const ALLE_ORTE_LIPPE = [
 export const ortsPfad = (slug: string) => `/zulassungsdienst-${slug}`;
 
 /**
- * Bis 30 Minuten ist die Fahrzeit ein Vorteil und steht oben. Bei weiteren Wegen wirkt sie
+ * Bis 25 Minuten ist die Fahrzeit ein Vorteil und steht oben. Bei weiteren Wegen wirkt sie
  * abschreckend – dort steht stattdessen der echte Vorteil: ohne Termin in ca. 20 Minuten zugelassen.
  * Den Versand der Unterlagen bewerben wir hier bewusst nicht – das verunsichert eher.
  */
-const istNah = (ort: Ort) => Number(ort.fahrzeit.match(/\d+/)?.[0] ?? 0) <= 30;
+const istNah = (ort: Ort) => Number(ort.fahrzeit.match(/\d+/)?.[0] ?? 0) <= 25;
 
 
 const faqsFuer = (ort: Ort): FaqItem[] => [
   {
-    question: `Machen Sie auch Zulassungen für ${ort.name}?`,
+    question: "Machen Sie Zulassungen für den ganzen Kreis Lippe?",
     answer:
-      "Ja. Wir erledigen Zulassungen, Umschreibungen und Abmeldungen für den ganzen Kreis Lippe – ohne Termin beim Straßenverkehrsamt.",
+      "Ja. Wir erledigen Zulassungen, Umschreibungen und Abmeldungen für alle 16 Städte und Gemeinden im Kreis Lippe – ohne Termin beim Straßenverkehrsamt.",
   },
   {
     question: "Wie weit ist es bis zu Ihnen?",
@@ -257,18 +260,18 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   ],
   preis: {
     betrag: "ab 99 €",
-    text: "Ummeldung 99 €, Zulassung 129 € – Verwaltungsgebühren inklusive. Sofortabmeldung 40 €, Wunschkennzeichen +13 € (Gebühr des Straßenverkehrsamts).",
+    text: "Ummeldung 99 € (Kennzeichen bleiben dran), Zulassung mit neuen Kennzeichen 129 € – Verwaltungsgebühren inklusive. Sofortabmeldung 40 € (mit Sicherheitscodes, Zulassung ab 2015), Wunschkennzeichen +13 € (Gebühr des Straßenverkehrsamts).",
   },
   checklisten: ["umschreibung"],
   schritteTitel: "So einfach geht's",
   schritte: [
     {
-      titel: "Kurz Bescheid geben",
-      text: "Per WhatsApp oder einfach direkt vorbeikommen – einen Termin brauchen Sie nicht.",
+      titel: "Vorbeikommen oder schreiben",
+      text: "Einfach vorbeikommen oder vorher kurz per WhatsApp Bescheid geben – einen Termin brauchen Sie nicht.",
     },
     {
       titel: "Unterlagen mitbringen",
-      text: "Werler Straße 68 in Bad Salzuflen. Was Sie brauchen, steht oben in der Liste.",
+      text: "Werler Straße 68 in Bad Salzuflen. Die Liste oben gilt für den Gebrauchtwagen – für alle anderen Fälle finden Sie unten die Checklisten.",
     },
     {
       titel: "Zugelassen",
@@ -282,7 +285,7 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
         ? `Kann ich in ${ort.name} ohne Termin zur Zulassungsstelle?`
         : `Gibt es in ${ort.name} eine Zulassungsstelle?`,
       text: ort.zulassungsstelle,
-      link: { href: "/zulassungsstelle-bad-salzuflen", text: "Alle Zulassungsstellen im Kreis Lippe: Adressen und Terminzeiten" },
+      link: { href: "/zulassungsstelle-bad-salzuflen", text: "Die drei Zulassungsstellen im Kreis Lippe mit Adressen" },
     },
     { titel: "LIP, DT oder LE – Sie haben die Wahl", text: ort.kennzeichen },
     {
@@ -309,7 +312,8 @@ const seiteFuer = (ort: Ort): LeistungsSeite => ({
   verwandt: [
     { href: "/preise", text: "Alle Preise im Überblick" },
     { href: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT oder LE" },
-    { href: "/kfz-versicherung", text: "eVB-Nummer beantragen" },
+    { href: "/faq", text: "Checklisten: Welche Unterlagen Sie brauchen" },
+    { href: "/kfz-versicherung", text: "Kfz-Versicherung vergleichen" },
   ],
 });
 

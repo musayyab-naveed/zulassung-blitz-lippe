@@ -76,7 +76,7 @@ const Datenschutz = () => {
                 <p className="flex items-center gap-2">
                   <span className="font-medium">Telefon:</span>
                   <a href="tel:+4915142462280" className="text-link hover:underline">
-                    +49 151 42462280
+                    +49 1514 2462280
                   </a>
                 </p>
               </div>
@@ -95,7 +95,7 @@ const Datenschutz = () => {
               <div>
                 <h3 className="font-semibold text-secondary mb-3">Umfang der Verarbeitung personenbezogener Daten</h3>
                 <p className="text-muted-foreground">
-                  Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten unserer Nutzer erfolgt regelmäßig nur nach Einwilligung der Nutzer. Eine Ausnahme gilt in solchen Fällen, in denen eine vorherige Einholung einer Einwilligung aus tatsächlichen Gründen nicht möglich ist und die Verarbeitung der Daten durch gesetzliche Vorschriften gestattet ist.
+                  Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Auf welcher Rechtsgrundlage wir Daten jeweils verarbeiten, steht bei den einzelnen Abschnitten unten.
                 </p>
               </div>
 
@@ -110,6 +110,9 @@ const Datenschutz = () => {
                 <p className="text-muted-foreground mt-2">
                   Soweit eine Verarbeitung personenbezogener Daten zur Erfüllung einer rechtlichen Verpflichtung erforderlich ist, der unser Unternehmen unterliegt, dient Art. 6 Abs. 1 lit. c DSGVO als Rechtsgrundlage.
                 </p>
+                <p className="text-muted-foreground mt-2">
+                  Ist die Verarbeitung zur Wahrung eines berechtigten Interesses unseres Unternehmens erforderlich und überwiegen Ihre Interessen nicht, dient Art. 6 Abs. 1 lit. f DSGVO als Rechtsgrundlage.
+                </p>
               </div>
 
               <div>
@@ -118,6 +121,29 @@ const Datenschutz = () => {
                   Die personenbezogenen Daten der betroffenen Person werden gelöscht oder gesperrt, sobald der Zweck der Speicherung entfällt. Eine Speicherung kann darüber hinaus dann erfolgen, wenn dies durch den europäischen oder nationalen Gesetzgeber in unionsrechtlichen Verordnungen, Gesetzen oder sonstigen Vorschriften, denen der Verantwortliche unterliegt, vorgesehen wurde.
                 </p>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Hosting */}
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-secondary">
+                <Database className="h-6 w-6 text-primary" />
+                Hosting
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-muted-foreground">
+              <p>
+                Unsere Website liegt bei Netlify, Inc., 101 2nd Street, San Francisco, CA 94105, USA.
+                Beim Aufruf der Website verarbeitet Netlify die unten genannten Zugriffsdaten, damit die
+                Seite ausgeliefert werden kann. Dabei können Daten in die USA übertragen werden. Netlify
+                ist nach dem EU-US Data Privacy Framework zertifiziert; die EU-Kommission hat dafür einen
+                Angemessenheitsbeschluss gefasst. Mit Netlify besteht ein Vertrag zur Auftragsverarbeitung.
+              </p>
+              <p>
+                Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist eine
+                sichere und zuverlässige Bereitstellung unserer Website.
+              </p>
             </CardContent>
           </Card>
 
@@ -131,7 +157,7 @@ const Datenschutz = () => {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                Die Internetseite der KFZ-Sofortzulassungsdienst erfasst mit jedem Aufruf der Internetseite durch eine betroffene Person oder ein automatisiertes System eine Reihe von allgemeinen Daten und Informationen. Diese allgemeinen Daten und Informationen werden in den Serverlogfiles des Providers gespeichert.
+                Unsere Website erfasst mit jedem Aufruf durch eine Person oder ein automatisiertes System eine Reihe allgemeiner Daten und Informationen. Diese werden in den Serverlogfiles unseres Hosters Netlify gespeichert.
               </p>
               <div className="space-y-2 text-muted-foreground">
                 <p><strong>Erfasste Daten umfassen:</strong></p>
@@ -256,7 +282,7 @@ const Datenschutz = () => {
               <p>
                 Auf der Seite „Kfz-Versicherung vergleichen“ binden wir einen Vergleichsrechner der
                 TARIFCHECK24 GmbH, Zollstr. 11b, 21465 Wentorf bei Hamburg, ein. Der Rechner wird erst
-                geladen, wenn Sie auf „Jetzt vergleichen &amp; eVB-Nummer erhalten“ klicken. Erst dann wird eine
+                geladen, wenn Sie auf „Jetzt Kfz-Versicherung vergleichen“ klicken. Erst dann wird eine
                 Verbindung zu den Servern von TARIFCHECK24 (partner-versicherung.de) aufgebaut; dabei
                 wird unter anderem Ihre IP-Adresse übertragen.
               </p>
@@ -266,6 +292,19 @@ const Datenschutz = () => {
                 und einen möglichen Vertragsabschluss ist TARIFCHECK24 GmbH. Wir erhalten keine Ihrer
                 Eingaben, sondern nur bei einem Abschluss eine Provision.
               </p>
+              <p>
+                Rechtsgrundlage für das Laden des Rechners ist Ihre Einwilligung durch den Klick (Art. 6
+                Abs. 1 lit. a DSGVO). Näheres steht in der{" "}
+                <a
+                  href="https://www.tarifcheck.de/datenschutz/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-link hover:underline"
+                >
+                  Datenschutzerklärung von TARIFCHECK24
+                </a>
+                .
+              </p>
             </CardContent>
           </Card>
 
@@ -274,21 +313,24 @@ const Datenschutz = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-secondary">
                 <Mail className="h-6 w-6 text-primary" />
-                Kontaktaufnahme über Kontaktformular oder E-Mail
+                Kontaktaufnahme per Formular oder E-Mail
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                Bei der Kontaktaufnahme mit uns über das Kontaktformular oder per E-Mail werden die von Ihnen übermittelten personenbezogenen Daten von uns gespeichert. Diese Daten speichern wir ausschließlich zu dem Zweck, auf Ihre Anfrage zu antworten.
+                Auf unserer Website gibt es zwei Formulare: die Ankaufanfrage für Ihr Auto und die Anfrage
+                für Firmenkunden. Beim Absenden werden Ihre Angaben über eine Serverfunktion unseres Hosters
+                Netlify an unser E-Mail-Postfach geschickt. Unsere E-Mails laufen über Zoho Mail (Zoho
+                Corporation B.V., Beneluxlaan 4B, 3527 HT Utrecht, Niederlande) auf Servern in der EU. Wir
+                verwenden die Daten ausschließlich, um Ihre Anfrage zu bearbeiten. Dasselbe gilt, wenn Sie
+                uns direkt eine E-Mail schreiben.
               </p>
               <div className="space-y-2 text-muted-foreground">
                 <p><strong>Verarbeitete Daten:</strong></p>
                 <ul className="list-disc pl-6 space-y-1">
-                  <li>Name</li>
-                  <li>E-Mail-Adresse</li>
-                  <li>Telefonnummer (falls angegeben)</li>
-                  <li>Nachrichtentext</li>
-                  <li>Fahrzeugdaten (falls im Rahmen der Zulassung angegeben)</li>
+                  <li>Ankaufanfrage: Marke, Modell, Baujahr, Kilometerstand, Telefonnummer und – falls Sie welche hochladen – Fotos des Fahrzeugs</li>
+                  <li>Firmenkunden: Firma, Art des Betriebs, Ansprechpartner, Telefonnummer, E-Mail-Adresse (falls angegeben), ungefähre Anzahl der Zulassungen und Ihre Nachricht</li>
+                  <li>E-Mail: Ihre E-Mail-Adresse und alles, was Sie uns schreiben</li>
                 </ul>
               </div>
               <p className="text-muted-foreground mt-4">
@@ -342,9 +384,23 @@ const Datenschutz = () => {
               </div>
 
               <div>
+                <h3 className="font-semibold text-secondary mb-2">Recht auf Widerruf einer Einwilligung (Art. 7 Abs. 3 DSGVO)</h3>
+                <p className="text-muted-foreground">
+                  Eine Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, zum Beispiel für Google Analytics über „Cookie-Einstellungen" ganz unten auf jeder Seite.
+                </p>
+              </div>
+
+              <div>
                 <h3 className="font-semibold text-secondary mb-2">Recht auf Widerspruch (Art. 21 DSGVO)</h3>
                 <p className="text-muted-foreground">
                   Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung der Sie betreffenden personenbezogenen Daten Widerspruch einzulegen.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-secondary mb-2">Beschwerderecht bei einer Aufsichtsbehörde (Art. 77 DSGVO)</h3>
+                <p className="text-muted-foreground">
+                  Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Für uns zuständig ist die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen, Postfach 20 04 44, 40102 Düsseldorf, www.ldi.nrw.de.
                 </p>
               </div>
             </CardContent>
@@ -370,7 +426,7 @@ const Datenschutz = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-secondary">
                 <Mail className="h-6 w-6 text-primary" />
-                Kontakt zum Datenschutzbeauftragten
+                Fragen zum Datenschutz
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -387,7 +443,7 @@ const Datenschutz = () => {
                 <p>
                   <strong>Telefon:</strong>{" "}
                   <a href="tel:+4915142462280" className="text-link hover:underline">
-                    +49 151 42462280
+                    +49 1514 2462280
                   </a>
                 </p>
               </div>
@@ -397,7 +453,7 @@ const Datenschutz = () => {
           {/* Update Notice */}
           <div className="text-center text-sm text-muted-foreground mt-8">
             <p className="mb-2">
-              <strong>Stand der Datenschutzerklärung:</strong> 28. Oktober 2024
+              <strong>Stand der Datenschutzerklärung:</strong> 29. September 2026
             </p>
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung gelegentlich anzupassen, um sie stets an die aktuellen rechtlichen Anforderungen anzupassen oder um Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen.

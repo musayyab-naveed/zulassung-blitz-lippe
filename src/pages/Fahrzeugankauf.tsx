@@ -37,7 +37,7 @@ const VORTEILE = [
   {
     icon: Car,
     titel: "Neues Auto gleich mit anmelden",
-    text: "Ihr neues Auto melden wir ohne Termin an. Alles aus einer Hand – ein Ansprechpartner für beides.",
+    text: "Wohnen Sie im Kreis Lippe, melden wir Ihr neues Auto gleich ohne Termin an. Alles aus einer Hand – ein Ansprechpartner für beides.",
   },
 ];
 

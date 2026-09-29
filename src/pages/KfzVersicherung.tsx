@@ -31,10 +31,10 @@ const SCHRITTE = [
 ];
 
 const TIPPS = [
-  "Versicherungsnehmer und späterer Halter sollten dieselbe Person sein – sonst passt die eVB-Nummer nicht zur Zulassung.",
+  "Den späteren Halter richtig angeben – auf ihn wird das Auto zugelassen, und dazu muss die eVB-Nummer passen.",
   "Die richtige Fahrzeugart wählen: Eine eVB für ein Auto gilt nicht für ein Motorrad oder einen Anhänger.",
   "Als Versicherungsbeginn den Tag angeben, an dem Sie zulassen möchten.",
-  "Haben Sie schon eine Schadenfreiheitsklasse aus einem anderen Vertrag, geben Sie sie an – das senkt den Beitrag oft deutlich.",
+  "Haben Sie schon eine Schadenfreiheitsklasse aus einem anderen Vertrag, geben Sie sie richtig an – die Versicherung prüft das nach.",
 ];
 
 const KfzVersicherung = () => {
@@ -47,10 +47,10 @@ const KfzVersicherung = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-secondary via-secondary to-primary" />
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/80">
-            eVB-Nummer in wenigen Minuten
+            Kfz-Versicherung · Werbung
           </p>
           <h1 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
-            eVB-Nummer beantragen: Kfz-Versicherung vergleichen und direkt bei uns zulassen
+            Kfz-Versicherung vergleichen – mit der eVB-Nummer direkt bei uns zulassen
           </h1>
           <p className="mx-auto max-w-3xl text-lg text-primary-foreground/90">
             Die eVB-Nummer bekommen Sie, sobald Sie eine Kfz-Versicherung abschließen – meist sofort
@@ -81,7 +81,7 @@ const KfzVersicherung = () => {
       {/* Rechner */}
       <section className="bg-muted/50 py-14">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-4 text-center">Versicherung vergleichen und eVB-Nummer erhalten</h2>
+          <h2 className="section-title mb-4 text-center">Kfz-Versicherung vergleichen und abschließen</h2>
           <p className="section-subtitle mx-auto mb-8 max-w-2xl text-center">
             Bitte nutzen Sie den Vergleich nur, wenn Sie das Fahrzeug auch wirklich versichern und
             zulassen möchten.

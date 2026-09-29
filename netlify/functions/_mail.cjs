@@ -149,6 +149,13 @@ function formatWebsiteLeadEmail(lead) {
       { label: "Premium-Abwicklung", value: data.premiumAbwicklung },
       { label: "Dienstleistungen", value: services.join(", ") },
     ]),
+    // Firmenkunden-Formular (/gewerbekunden) schickt diese Felder direkt mit
+    ...formatSectionLines("Firma", [
+      { label: "Firma", value: data.firma },
+      { label: "Art des Betriebs", value: data.betrieb },
+      { label: "Zulassungen pro Monat", value: data.zulassungenProMonat },
+      { label: "Nachricht", value: data.nachricht },
+    ]),
     ...formatSectionLines("Fahrzeugdaten", [
       { label: "Marke", value: fahrzeugdaten.marke },
       { label: "Modell", value: fahrzeugdaten.modell },
@@ -205,6 +212,12 @@ function formatLeadEmailHtml(lead) {
           { label: "Premium-Abwicklung", value: data.premiumAbwicklung },
           { label: "Dienstleistungen", value: services.join(", ") },
         ])}
+        ${renderHtmlSection("Firma", [
+          { label: "Firma", value: data.firma },
+          { label: "Art des Betriebs", value: data.betrieb },
+          { label: "Zulassungen pro Monat", value: data.zulassungenProMonat },
+          { label: "Nachricht", value: data.nachricht },
+        ])}
         ${renderHtmlSection("Fahrzeugdaten", [
           { label: "Marke", value: fahrzeugdaten.marke },
           { label: "Modell", value: fahrzeugdaten.modell },
@@ -233,8 +246,9 @@ function formatLeadEmailHtml(lead) {
 
 function formatLeadSubject(lead) {
   if (String(lead.eventType || "").startsWith("website.")) {
-    const summary = getWebsiteLeadSummary(lead.responses || {});
-    return `[Website] ${summary.paket} | ${summary.fahrzeug}`;
+    const data = lead.responses || {};
+    const summary = getWebsiteLeadSummary(data);
+    return `[Website] ${summary.paket} | ${data.firma ? safeText(data.firma) : summary.fahrzeug}`;
   }
   return `[Cal.com] Neue Buchung ${lead.name ? `- ${lead.name}` : ""}`;
 }

@@ -27,12 +27,12 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Was brauche ich für die Sofort-Zulassung?",
     answer:
-      "Die eVB-Nummer Ihrer Versicherung, Ihren Personalausweis, die Zulassungsbescheinigung Teil I und II sowie Ihre IBAN für die KFZ-Steuer – nach ca. 20 Minuten sind Sie zugelassen. Die Kennzeichen besorgen Sie selbst, wann Sie möchten (Wunschkennzeichen möglich, +13 €): vorher oder nachher. Zugelassen sind Sie in jedem Fall – losfahren dürfen Sie, sobald die Schilder montiert sind.",
+      "Die eVB-Nummer Ihrer Versicherung, Ihren Personalausweis, den Fahrzeugbrief (Zulassungsbescheinigung Teil II) – beim Gebrauchtwagen auch den Fahrzeugschein (Teil I), beim Neuwagen stattdessen die COC-Papiere – sowie Ihre IBAN für die KFZ-Steuer. Nach ca. 20 Minuten sind Sie zugelassen. Die Kennzeichen besorgen Sie selbst, wann Sie möchten (Wunschkennzeichen möglich, +13 €): vorher oder nachher. Zugelassen sind Sie in jedem Fall – losfahren dürfen Sie, sobald die Schilder montiert sind.",
   },
   {
     question: "Was ist der Unterschied zwischen SOFORT, BASIS und PREMIUM?",
     answer:
-      "SOFORT: Sie kommen kurz vorbei, die Zulassung läuft digital in ca. 20 Minuten – die Kennzeichen besorgen Sie selbst. BASIS: Sie geben die Unterlagen ab und holen am nächsten Werktag alles fertig inklusive Kennzeichen wieder ab. PREMIUM: wie BASIS, aber wir holen und bringen die Unterlagen (Abholung im Raum Bad Salzuflen, ca. 10 Minuten Fahrweg – sonst bequem per Versand).",
+      "SOFORT: Sie kommen kurz vorbei, die Zulassung läuft digital in ca. 20 Minuten – die Kennzeichen besorgen Sie selbst. BASIS: Sie geben die Unterlagen ab und holen am nächsten Werktag alles fertig inklusive Kennzeichen wieder ab. PREMIUM (159 €): wie BASIS, aber wir holen und bringen die Unterlagen – im Umkreis von ca. 10 Autominuten um Bad Salzuflen, sonst per Versand mit Express-Rückversand.",
   },
   {
     question: "Bekomme ich die Kennzeichen bei Ihnen?",
@@ -42,7 +42,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Was kostet die Zulassung?",
     answer:
-      "Die Ummeldung kostet 99 €, die Zulassung 129 € und die Sofortabmeldung direkt vor Ort 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Dazu kommen nur, wenn Sie es möchten, die Gebühren des Straßenverkehrsamts für Wunschkennzeichen (13 €) und Feinstaubplakette (6 €).",
+      "Die Ummeldung kostet 99 €, die Zulassung 129 € (mit Hol- und Bringservice 159 €) und die Sofortabmeldung direkt vor Ort 40 € – Verwaltungsgebühren inklusive, keine versteckten Kosten. Dazu kommen nur, wenn Sie es möchten, die Gebühren des Straßenverkehrsamts für Wunschkennzeichen (13 €) und Feinstaubplakette (6 €).",
   },
   {
     question: "Muss ich selbst zur Zulassungsstelle?",
@@ -57,7 +57,7 @@ export const generalFaqs: FaqItem[] = [
   {
     question: "Bieten Sie den Service nur in Bad Salzuflen an?",
     answer:
-      "Der Schwerpunkt liegt auf Bad Salzuflen und dem Kreis Lippe, inklusive persönlicher Betreuung vor Ort.",
+      "Zulassungen erledigen wir für den ganzen Kreis Lippe – alle 16 Städte und Gemeinden, persönlich bei uns in Bad Salzuflen. Autos kaufen wir überall an.",
   },
   {
     question: "Brauche ich einen Termin?",
@@ -72,7 +72,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     key: "neuzulassung",
     title: "Neuzulassung (Neufahrzeug)",
     items: [
-      "Personalausweis oder Reisepass",
+      "Personalausweis – oder Reisepass mit Meldebescheinigung",
       "eVB-Nummer Ihrer KFZ-Versicherung",
       "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
       "EU-Übereinstimmungsbescheinigung (COC-Papiere)",
@@ -83,7 +83,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     key: "umschreibung",
     title: "Umschreibung / Halterwechsel (Gebrauchtwagen)",
     items: [
-      "Personalausweis oder Reisepass",
+      "Personalausweis – oder Reisepass mit Meldebescheinigung",
       "eVB-Nummer Ihrer KFZ-Versicherung",
       "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
       "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
@@ -96,7 +96,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     key: "wiederzulassung",
     title: "Wiederzulassung (nach Abmeldung)",
     items: [
-      "Personalausweis oder Reisepass",
+      "Personalausweis – oder Reisepass mit Meldebescheinigung",
       "eVB-Nummer Ihrer KFZ-Versicherung",
       "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
       "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
@@ -110,7 +110,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     items: [
       "Beide Kennzeichenschilder",
       "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
-      "Personalausweis oder Reisepass",
+      "Personalausweis – oder Reisepass mit Meldebescheinigung",
       "Sicherheitscodes zum Freirubbeln auf Fahrzeugschein und Kennzeichen-Plaketten (bei Zulassung ab 2015 vorhanden)",
       "Bei Verschrottung: Verwertungsnachweis",
     ],
@@ -138,7 +138,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     key: "umkennzeichnung",
     title: "Neues Kennzeichen (z. B. von LIP auf DT oder LE)",
     items: [
-      "Personalausweis oder Reisepass",
+      "Personalausweis – oder Reisepass mit Meldebescheinigung",
       "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
       "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",
       "Beide bisherigen Kennzeichenschilder",
@@ -150,9 +150,10 @@ export const vorgangChecklists: VorgangChecklist[] = [
     title: "Zulassung im Auftrag (Händler, Firmen, Vollmacht)",
     items: [
       "Vollmacht des Halters",
-      "Personalausweis des Halters oder eine Kopie davon",
+      "Personalausweis des Halters oder eine Kopie davon – ist eine Firma der Halter, der Ausweis der vertretungsberechtigten Person",
+      "Ist eine Firma der Halter: Handelsregisterauszug oder Gewerbeanmeldung",
       "eVB-Nummer der Versicherung des Halters",
-      "SEPA-Lastschriftmandat für die KFZ-Steuer, vom Halter unterschrieben",
+      "SEPA-Lastschriftmandat für die KFZ-Steuer, vom Kontoinhaber unterschrieben",
       "Fahrzeugschein und Fahrzeugbrief (amtlich „Teil I“ und „Teil II“)",
       "Bei Neuwagen: COC-Papiere",
     ],
@@ -162,7 +163,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     key: "kurzzeitkennzeichen",
     title: "Kurzzeitkennzeichen (5 Tage)",
     items: [
-      "Personalausweis oder Reisepass",
+      "Personalausweis – oder Reisepass mit Meldebescheinigung",
       "eVB-Nummer speziell für Kurzzeitkennzeichen – die normale passt hier nicht, Sie bekommen sie bei einer Kfz-Versicherung",
       "Fahrzeugschein oder Fahrzeugbrief des Fahrzeugs",
       "Nachweis über die gültige Hauptuntersuchung (TÜV)",
@@ -174,7 +175,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
     key: "ausfuhrkennzeichen",
     title: "Ausfuhrkennzeichen (Export)",
     items: [
-      "Personalausweis oder Reisepass",
+      "Personalausweis – oder Reisepass mit Meldebescheinigung",
       "eVB-Nummer speziell für Ausfuhrkennzeichen – die normale passt hier nicht, Sie bekommen sie bei einer Kfz-Versicherung",
       "Fahrzeugschein – das kleine Papier, das Sie im Auto dabeihaben (amtlich „Teil I“)",
       "Fahrzeugbrief – das größere Papier, meist zu Hause abgelegt (amtlich „Teil II“)",

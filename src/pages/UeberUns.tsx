@@ -43,7 +43,7 @@ const UeberUns = () => {
 
   const stats = [
     { number: "1000+", label: "Zufriedene Kunden" },
-    { number: "20 Min", label: "Sofort-Zulassung" },
+    { number: "ca. 20 Min", label: "Sofort-Zulassung" },
     { number: "5,0★", label: "Google Bewertung" },
     { number: "5+", label: "Jahre Erfahrung" }
   ];
@@ -233,10 +233,10 @@ const UeberUns = () => {
                 <div className="flex items-start space-x-4">
                   <MapPin className="h-6 w-6 text-primary mt-1" />
                   <div>
-                    <h3 className="font-semibold text-secondary">Servicegebiet</h3>
+                    <h3 className="font-semibold text-secondary">Standort</h3>
                     <p className="text-muted-foreground">
-                      Alle 16 Städte und Gemeinden im Kreis Lippe<br />
-                      Nordrhein-Westfalen
+                      Werler Straße 68, 32105 Bad Salzuflen<br />
+                      Zulassungen für alle 16 Städte und Gemeinden im Kreis Lippe
                     </p>
                   </div>
                 </div>
@@ -247,9 +247,9 @@ const UeberUns = () => {
                     <h3 className="font-semibold text-secondary">Telefon</h3>
                     <p className="text-muted-foreground">
                       <a href="tel:+4915142462280" className="hover:text-link transition-colors">
-                        +4915142462280
+                        01514 2462280
                       </a><br />
-                      <span className="text-sm">Mo-Fr: 9:00-18:00 Uhr · Sa: 15:00-18:00 Uhr</span>
+                      <span className="text-sm">Mo–Fr 9–18 Uhr · Sa 15–18 Uhr</span>
                     </p>
                   </div>
                 </div>
@@ -262,7 +262,7 @@ const UeberUns = () => {
                       <a href="mailto:info@sofortzulassung.com" className="hover:text-link transition-colors">
                         info@sofortzulassung.com
                       </a><br />
-                      <span className="text-sm">Antwort innerhalb von 24 Stunden</span>
+                      <span className="text-sm">Antwort meist am selben oder nächsten Werktag</span>
                     </p>
                   </div>
                 </div>
@@ -294,7 +294,7 @@ const UeberUns = () => {
                     <p className="text-sm text-muted-foreground">
                       ✓ NEU: Sofort-Zulassung in ca. 20 Minuten<br />
                       ✓ Kostenlose Beratung<br />
-                      ✓ 24h Bearbeitungsgarantie für den klassischen Weg
+                      ✓ Klassisch in der Regel am nächsten Werktag fertig
                     </p>
                   </div>
                 </CardContent>

@@ -89,7 +89,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/auto-abmelden",
     title: "Auto abmelden Bad Salzuflen – ohne Termin, 40 €",
     description:
-      "Auto abmelden in Bad Salzuflen ohne Termin: digital in wenigen Minuten, 40 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr. Beim Fahrzeugverkauf gratis.",
+      "Auto abmelden in Bad Salzuflen ohne Termin: digital in wenigen Minuten, 40 € inkl. Gebühren. Mo–Fr 9–18, Sa 15–18 Uhr. Gratis, wenn wir Ihr Auto kaufen.",
   },
   {
     path: "/auto-ummelden",
@@ -113,7 +113,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/kfz-versicherung",
     title: "Kfz-Versicherung vergleichen – mit eVB-Nummer zur Zulassung",
     description:
-      "eVB-Nummer beantragen: Kfz-Versicherung vergleichen, abschließen, eVB meist sofort per E-Mail erhalten – und danach ohne Termin in Bad Salzuflen zulassen.",
+      "Kfz-Versicherung selbst vergleichen und abschließen – die eVB-Nummer kommt meist sofort per E-Mail. Danach ohne Termin in Bad Salzuflen zulassen.",
   },
   {
     path: "/faq",

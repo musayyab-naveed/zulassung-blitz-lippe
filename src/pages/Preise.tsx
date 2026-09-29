@@ -224,9 +224,9 @@ const Preise = () => {
           <div className="mt-6 rounded-xl border border-white/25 bg-white/10 p-5">
             <h3 className="font-bold text-white">Beispiel: Gebrauchtwagen mit Wunschkennzeichen</h3>
             <p className="mt-2 text-sm text-white">
-              BASIS 129 € (mit Schildern und allen Gebühren) + Wunschkennzeichen 13 € ={" "}
-              <span className="font-bold">142 € komplett</span>. Keine Versandkosten, keine
-              Nachzahlung beim Amt, keine Online-Ausweisprüfung.
+              BASIS 129 € (mit Schildern und Verwaltungsgebühren) + Wunschkennzeichen 13 € ={" "}
+              <span className="font-bold">142 € komplett</span>. Keine Nachzahlung beim Amt, keine
+              Online-Ausweisprüfung.
             </p>
           </div>
 
