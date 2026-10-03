@@ -267,6 +267,10 @@
   ],
   "/fahrzeugankauf": [
     {
+      "question": "Kaufen Sie auch Autos mit Motorschaden, Unfall oder ohne TÜV?",
+      "answer": "Ja. Wir kaufen auch Autos, die nicht mehr fahren oder keinen gültigen TÜV mehr haben – auf Wunsch kümmern wir uns um die fachgerechte Verwertung. Schreiben Sie uns kurz, was mit dem Auto los ist, dann bekommen Sie ein unverbindliches Angebot."
+    },
+    {
       "question": "Ich habe ein neues Auto gekauft – was mache ich mit dem alten?",
       "answer": "Wir kaufen es an – auch wenn es nicht mehr fährt. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab und erledigen die Abmeldung. Ihr neues Auto melden wir auf Wunsch gleich mit an."
     },
@@ -275,12 +279,20 @@
       "answer": "Ja. Die Abholung ist beim Ankauf inklusive – bei Ihnen zu Hause oder dort, wo das Auto gerade steht. Egal, wo das ist."
     },
     {
+      "question": "Kann ich mit dem Auto auch bei Ihnen vorbeikommen?",
+      "answer": "Ja, gern. Sie finden uns in der Werler Straße 68 in Bad Salzuflen – Montag bis Freitag 9–18 Uhr, Samstag 15–18 Uhr. Schreiben Sie am besten vorher kurz per WhatsApp, welches Auto es ist."
+    },
+    {
       "question": "Kaufen Sie nur im Kreis Lippe an?",
       "answer": "Nein. Autos kaufen wir überall an – nicht nur in Bad Salzuflen und im Kreis Lippe. Schreiben Sie uns einfach, wo Ihr Auto steht."
     },
     {
       "question": "Kostet die Abmeldung extra?",
       "answer": "Nein. Wenn wir Ihr Auto ankaufen, ist die Abmeldung inklusive. Ohne Ankauf kostet die Sofortabmeldung 40 €."
+    },
+    {
+      "question": "Was brauche ich für den Verkauf?",
+      "answer": "Fahrzeugschein und Fahrzeugbrief (Zulassungsbescheinigung Teil I und II), alle Schlüssel und Ihren Personalausweis. Um die Abmeldung kümmern wir uns."
     },
     {
       "question": "Ist das Angebot verbindlich?",
@@ -293,10 +305,6 @@
     {
       "question": "Kann ich mein Auto auch ohne Zulassung verkaufen?",
       "answer": "Ja. Der Ankauf ist bei uns unabhängig von Zulassung, Ummeldung oder Abmeldung möglich."
-    },
-    {
-      "question": "Was passiert mit nicht fahrbereiten Fahrzeugen?",
-      "answer": "Auch nicht fahrbereite Fahrzeuge kaufen wir an und kümmern uns auf Wunsch um die fachgerechte Verwertung."
     }
   ],
   "/kfz-versicherung": [

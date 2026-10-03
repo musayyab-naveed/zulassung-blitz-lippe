@@ -141,7 +141,7 @@ export const PACKAGES: PackageDef[] = [
   },
   {
     key: "ankauf_only",
-    title: "FAHRZEUGANKAUF",
+    title: "AUTOANKAUF",
     price: "kostenlos",
     priceValue: "0",
     subtitle: "Wir kaufen Ihr Auto an – auch ohne Zulassung bei uns",
@@ -191,7 +191,7 @@ export const PREIS_TABELLE: TabellenZeile[] = [
     beliebt: pkg.popular,
   })),
   {
-    leistung: "Fahrzeugankauf",
+    leistung: "Autoankauf",
     dauer: zeilenInfo.ankauf_only.dauer,
     kennzeichen: zeilenInfo.ankauf_only.kennzeichen,
     preis: "kostenlos",

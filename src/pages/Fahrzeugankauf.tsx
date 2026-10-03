@@ -68,15 +68,15 @@ const Fahrzeugankauf = () => {
         <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-wider text-white/80">
-              Fahrzeugankauf · egal, wo Ihr Auto steht
+              Autoankauf · egal, wo Ihr Auto steht
             </p>
             <h1 className="mb-4 text-3xl font-bold text-white sm:text-4xl">
-              Auto verkaufen – wir kaufen an, holen ab und melden ab
+              Autoankauf in Bad Salzuflen und im Kreis Lippe
             </h1>
             <p className="mb-6 text-lg text-primary-foreground/90">
-              Neues Auto gekauft und wohin mit dem alten? Wir kaufen es Ihnen ab – egal, wo es steht, und
-              auch wenn es nicht mehr fährt. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab
-              und erledigen die Abmeldung.
+              Sie möchten Ihr Auto verkaufen? Wir kaufen es Ihnen ab – auch wenn es nicht mehr fährt oder keinen
+              TÜV mehr hat. Sie bekommen ein unverbindliches Angebot, wir holen das Auto ab und erledigen die
+              Abmeldung.
             </p>
             <ul className="mb-8 flex flex-wrap gap-2">
               {["Unverbindliches Angebot", "Abholung inklusive", "Abmeldung inklusive", "Auch nicht fahrbereit"].map(
@@ -175,7 +175,7 @@ const Fahrzeugankauf = () => {
       {/* Fragen */}
       <section className="py-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <h2 className="section-title mb-8 text-center">Häufige Fragen zum Autoverkauf</h2>
+          <h2 className="section-title mb-8 text-center">Häufige Fragen zum Autoankauf</h2>
           <Accordion type="single" collapsible className="space-y-3">
             {ANKAUF_FAQS.map((faq, index) => (
               <AccordionItem key={faq.question} value={`a-${index}`} className="rounded-xl border border-border bg-background px-5">

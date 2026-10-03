@@ -90,7 +90,7 @@ const Footer = () => {
                 { to: "/wunschkennzeichen", text: "Wunschkennzeichen LIP, DT, LE" },
                 { to: "/gewerbekunden", text: "Für Firmen & Partner" },
                 { to: "/kfz-versicherung", text: "Kfz-Versicherung vergleichen" },
-                { to: "/fahrzeugankauf", text: "Fahrzeugankauf" },
+                { to: "/fahrzeugankauf", text: "Autoankauf" },
               ].map((link) => (
                 <li key={link.to}>
                   <Link

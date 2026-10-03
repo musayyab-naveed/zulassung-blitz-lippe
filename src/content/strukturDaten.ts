@@ -179,7 +179,7 @@ export const seitenSchema = (pfad: string): Record<string, unknown>[] => {
       return [
         {
           // Ankauf überall – anders als die Zulassung, die nur im Kreis Lippe läuft
-          ...dienstleistung(pfad, "Fahrzeugankauf", "Fahrzeugankauf", "Ankauf von Fahrzeugen – egal, wo sie stehen: unverbindliches Angebot, Abholung und Abmeldung inklusive, auch für nicht fahrbereite Fahrzeuge."),
+          ...dienstleistung(pfad, "Autoankauf", "Autoankauf", "Autoankauf – egal, wo das Auto steht: unverbindliches Angebot, Abholung und Abmeldung inklusive, auch für Autos, die nicht mehr fahren oder keinen TÜV mehr haben."),
           areaServed: { "@type": "Country", name: "Deutschland" },
         },
         faqPage(pfad, alsFaqs(pfad)),

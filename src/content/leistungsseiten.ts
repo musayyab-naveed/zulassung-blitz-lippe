@@ -428,7 +428,7 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
     button: "PER WHATSAPP SCHREIBEN",
   },
   verwandt: [
-    { href: "/fahrzeugankauf", text: "Fahrzeugankauf" },
+    { href: "/fahrzeugankauf", text: "Autoankauf" },
     { href: "/angebot?vorgang=sonder", text: "Kurzzeit- & Ausfuhrkennzeichen" },
     { href: "/dokumente", text: "Vollmacht & SEPA-Mandat zum Ausdrucken" },
   ],

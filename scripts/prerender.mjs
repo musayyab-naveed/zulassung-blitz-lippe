@@ -200,7 +200,10 @@ const gitDatum = (datei) => {
   }
 };
 const ortsseitenDatum = gitDatum("src/content/ortsseiten.ts");
-const seitenDatum = new Map([["/zulassungsstelle-bad-salzuflen", gitDatum("src/content/zulassungsstelle.ts")]]);
+const seitenDatum = new Map([
+  ["/zulassungsstelle-bad-salzuflen", gitDatum("src/content/zulassungsstelle.ts")],
+  ["/fahrzeugankauf", gitDatum("src/pages/Fahrzeugankauf.tsx")],
+]);
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',

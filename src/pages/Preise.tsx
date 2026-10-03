@@ -149,7 +149,7 @@ const Preise = () => {
 
           <p className="mt-4 text-center text-sm text-muted-foreground">
             Alle Preise inkl. Verwaltungsgebühren des Straßenverkehrsamts Kreis Lippe.
-            Beim Fahrzeugankauf ist die Abmeldung gratis.
+            Beim Autoankauf ist die Abmeldung gratis.
           </p>
         </div>
       </section>

@@ -45,7 +45,7 @@ const HAUPTMENUE: Hauptpunkt[] = [
     alleText: "Alle Preise im Überblick",
   },
   { name: "eVB & Versicherung", href: "/kfz-versicherung", pfade: ["/kfz-versicherung", "/evb-nummer"] },
-  { name: "Fahrzeugankauf", href: "/fahrzeugankauf", pfade: ["/fahrzeugankauf"] },
+  { name: "Autoankauf", href: "/fahrzeugankauf", pfade: ["/fahrzeugankauf"] },
   { name: "Firmen & Partner", href: "/gewerbekunden", pfade: ["/gewerbekunden"] },
   {
     name: "Ratgeber",

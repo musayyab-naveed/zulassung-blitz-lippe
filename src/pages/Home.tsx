@@ -336,7 +336,7 @@ const Home = () => {
           <div className="text-center mb-10">
             <h2 className="section-title mb-4">Häufige Fragen</h2>
             <p className="section-subtitle">
-              Alles Wichtige zu Zulassung, Sofort-Zulassung und Fahrzeugankauf – kurz beantwortet
+              Alles Wichtige zu Zulassung, Sofort-Zulassung und Autoankauf – kurz beantwortet
             </p>
           </div>
 

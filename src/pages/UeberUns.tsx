@@ -53,7 +53,7 @@ const UeberUns = () => {
     "KFZ-Neuzulassung",
     "KFZ-Umschreibung",
     "Sofortabmeldung",
-    "Fahrzeugankauf",
+    "Autoankauf",
     "Kennzeichen-Reservierung",
     "Hol- und Bringservice",
     "Wunschkennzeichen"
