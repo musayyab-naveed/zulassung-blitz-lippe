@@ -10,20 +10,27 @@ function safeText(value) {
   }
 }
 
+// Nur echte Fotos durchlassen – sonst könnte jeder beliebige Dateien (z. B. Schadsoftware) in unser Postfach schicken
+const ERLAUBTE_BILDTYPEN = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
+const MAX_BILDER = 4;
+const MAX_BILD_BASE64 = 4 * 1024 * 1024; // ca. 3 MB pro Foto – das Formular verkleinert Fotos vorher
+
 function normalizeImageAttachments(body = {}) {
-  const raw = Array.isArray(body.imageAttachments) ? body.imageAttachments : [];
+  const raw = Array.isArray(body.imageAttachments) ? body.imageAttachments.slice(0, MAX_BILDER) : [];
   return raw
-    .filter((item) => typeof item?.dataUrl === "string" && item.dataUrl.startsWith("data:"))
     .map((item, index) => {
-      const matches = item.dataUrl.match(/^data:(.+?);base64,(.+)$/);
-      if (!matches) return null;
-      const contentType = String(item.type || matches[1] || "image/jpeg");
-      const extension = contentType.split("/")[1] || "jpg";
-      const safeName = String(item.name || `fahrzeugbild-${index + 1}.${extension}`)
-        .replace(/[^\w.\-() ]/g, "_")
-        .slice(0, 120);
+      const matches =
+        typeof item?.dataUrl === "string" &&
+        item.dataUrl.match(/^data:(image\/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=]+)$/);
+      if (!matches || matches[2].length > MAX_BILD_BASE64) return null;
+      const contentType = matches[1];
+      const basis =
+        String(item.name || "")
+          .replace(/\.[^.]*$/, "")
+          .replace(/[^\w\-() ]/g, "_")
+          .slice(0, 100) || `fahrzeugbild-${index + 1}`;
       return {
-        filename: safeName || `fahrzeugbild-${index + 1}.${extension}`,
+        filename: `${basis}.${ERLAUBTE_BILDTYPEN[contentType]}`,
         content: matches[2],
         encoding: "base64",
         contentType,

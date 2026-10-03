@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import Honigtopf from "@/components/Honigtopf";
+import { emailVerdaechtig, telefonGueltig, useSpamschutz } from "@/lib/spamschutz";
 import { CheckCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
@@ -35,6 +37,7 @@ const GewerbeAnfrage = () => {
   const [sendet, setSendet] = useState(false);
   const [gesendet, setGesendet] = useState(false);
   const [fehler, setFehler] = useState("");
+  const { honigtopf, pruefwerte } = useSpamschutz();
 
   const feld = (name: keyof typeof daten) => ({
     value: daten[name],
@@ -45,6 +48,14 @@ const GewerbeAnfrage = () => {
     e.preventDefault();
     if (!daten.firma.trim() || !daten.ansprechpartner.trim() || !daten.telefon.trim()) {
       setFehler("Bitte Firma, Ansprechpartner und Telefonnummer angeben.");
+      return;
+    }
+    if (!telefonGueltig(daten.telefon)) {
+      setFehler("Bitte eine gültige Telefonnummer mit Vorwahl angeben, z. B. 05222 … oder 0151 …");
+      return;
+    }
+    if (emailVerdaechtig(daten.email)) {
+      setFehler("Bitte prüfen Sie Ihre E-Mail-Adresse – oder lassen Sie das Feld einfach leer.");
       return;
     }
     setSendet(true);
@@ -64,8 +75,13 @@ const GewerbeAnfrage = () => {
           zulassungenProMonat: daten.menge === BITTE_WAEHLEN ? undefined : daten.menge,
           nachricht: daten.nachricht,
           submittedAt: new Date().toISOString(),
+          ...pruefwerte(),
         }),
       });
+      if (antwort.status === 400) {
+        setFehler("Bitte prüfen Sie Telefonnummer und E-Mail-Adresse.");
+        return;
+      }
       if (!antwort.ok) throw new Error(`HTTP ${antwort.status}`);
       setGesendet(true);
       window.gtag?.("event", "generate_lead", { method: "formular", quelle: "gewerbe" });
@@ -98,6 +114,7 @@ const GewerbeAnfrage = () => {
 
   return (
     <form onSubmit={absenden} className="space-y-3">
+      <Honigtopf ref={honigtopf} />
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <label className="text-sm font-medium text-secondary">
           Firma *

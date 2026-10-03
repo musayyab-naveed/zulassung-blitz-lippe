@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
+import Honigtopf from "@/components/Honigtopf";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { telefonGueltig, useSpamschutz } from "@/lib/spamschutz";
 import { CheckCircle, ImagePlus, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -60,6 +62,7 @@ const AnkaufFormular = () => {
   const [fehler, setFehler] = useState("");
   const [sendet, setSendet] = useState(false);
   const [gesendet, setGesendet] = useState(false);
+  const { honigtopf, pruefwerte } = useSpamschutz();
 
   const feld = (name: keyof typeof daten) => ({
     value: daten[name],
@@ -97,6 +100,10 @@ const AnkaufFormular = () => {
       setFehler("Bitte mindestens Marke und Telefonnummer angeben.");
       return;
     }
+    if (!telefonGueltig(daten.telefon)) {
+      setFehler("Bitte eine gültige Telefonnummer mit Vorwahl angeben, z. B. 0151 …");
+      return;
+    }
     setSendet(true);
     setFehler("");
     try {
@@ -113,8 +120,13 @@ const AnkaufFormular = () => {
           fahrzeugbilder: bilder.map(({ name, type, size }) => ({ name, type, size })),
           imageAttachments: bilder,
           submittedAt: new Date().toISOString(),
+          ...pruefwerte(),
         }),
       });
+      if (antwort.status === 400) {
+        setFehler("Bitte prüfen Sie Ihre Telefonnummer.");
+        return;
+      }
       if (!antwort.ok) throw new Error(`HTTP ${antwort.status}`);
       setGesendet(true);
       window.gtag?.("event", "generate_lead", { method: "formular", quelle: "ankauf" });
@@ -141,6 +153,7 @@ const AnkaufFormular = () => {
 
   return (
     <form onSubmit={absenden} className="space-y-4">
+      <Honigtopf ref={honigtopf} />
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
           <Label htmlFor="ank-marke">Marke *</Label>

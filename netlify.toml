@@ -13,11 +13,6 @@
   to = "/.netlify/functions/lead"
   status = 200
 
-[[redirects]]
-  from = "/api/smtp/test"
-  to = "/.netlify/functions/smtp-test"
-  status = 200
-
 # Alte Blog-Adressen dauerhaft auf die FAQ leiten
 [[redirects]]
   from = "/blog"

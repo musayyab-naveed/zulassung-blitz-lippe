@@ -9,10 +9,20 @@ const {
   parseJsonBody,
   json,
 } = require("./_mail.cjs");
+const { pruefeAnfrage } = require("./_spamschutz.cjs");
 
 exports.handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return json(405, { ok: false, error: "method_not_allowed" });
+  }
+
+  const body = parseJsonBody(event) || {};
+  const pruefung = pruefeAnfrage(body);
+  if (pruefung) {
+    console.log(`Spamschutz: Anfrage abgewiesen (${pruefung.grund})`);
+    // Programme bekommen "ok", damit sie nicht weiter probieren – eine E-Mail geht aber nicht raus
+    if (pruefung.ergebnis === "programm") return json(200, { ok: true });
+    return json(400, { ok: false, error: "ungueltige_angaben" });
   }
 
   const config = getSmtpConfig();
@@ -24,8 +34,8 @@ exports.handler = async (event) => {
     });
   }
 
-  const body = parseJsonBody(event);
-  const attachments = normalizeImageAttachments(body || {});
+  // Fotos gibt es nur beim Fahrzeugankauf
+  const attachments = body.eventType === "website.ankauf" ? normalizeImageAttachments(body) : [];
   const lead = {
     eventType: body?.eventType || "website.manual",
     bookingId: body?.bookingId,
