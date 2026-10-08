@@ -11,6 +11,7 @@ import Seo from "@/components/Seo";
 import { ArrowRight, Car, FileCheck, MapPin, MessageCircle, Navigation, Phone, Tag, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
 import hero480 from "@/assets/hero-480.webp";
+import hero680 from "@/assets/hero-680.webp";
 import hero800 from "@/assets/hero-800.webp";
 import hero1200 from "@/assets/hero-1200.webp";
 import faqSchema from "@/content/faqSchema.json";
@@ -110,7 +111,7 @@ const Fahrzeugankauf = () => {
           <figure className="relative">
             <img
               src={hero800}
-              srcSet={`${hero480} 480w, ${hero800} 800w, ${hero1200} 1200w`}
+              srcSet={`${hero480} 480w, ${hero680} 680w, ${hero800} 800w, ${hero1200} 1200w`}
               sizes="(min-width: 1024px) 544px, calc(100vw - 32px)"
               width={1200}
               height={900}

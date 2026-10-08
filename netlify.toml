@@ -28,6 +28,15 @@
 # Unbekannte Adressen bekommen so die echte Fehlerseite (404.html) mit Status 404 –
 # vorher lieferte der Server die Startseite aus ("Soft 404", schlecht für Google).
 
+# Übliche Sicherheits-Header: kein MIME-Raten, keine Einbettung auf fremden Seiten, sparsamer Referrer
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+
 # Dateien mit Prüfsumme im Namen ändern sich nie – Browser dürfen sie ein Jahr behalten
 [[headers]]
   for = "/assets/*"

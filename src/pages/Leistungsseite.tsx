@@ -176,7 +176,19 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
             <div key={abschnitt.titel}>
               <h2 className="mb-3 text-2xl font-bold text-secondary">{abschnitt.titel}</h2>
               {abschnitt.text && <p className="text-muted-foreground">{abschnitt.text}</p>}
-              {abschnitt.punkte && (
+              {abschnitt.punkte && abschnitt.nummeriert && (
+                <ol className="mt-4 space-y-3">
+                  {abschnitt.punkte.map((punkt, index) => (
+                    <li key={punkt} className="flex items-start gap-3 text-muted-foreground">
+                      <span className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-primary text-sm font-bold text-secondary">
+                        {index + 1}
+                      </span>
+                      <span className="pt-0.5">{punkt}</span>
+                    </li>
+                  ))}
+                </ol>
+              )}
+              {abschnitt.punkte && !abschnitt.nummeriert && (
                 <ul className="space-y-2">
                   {abschnitt.punkte.map((punkt) => (
                     <li key={punkt} className="flex items-start gap-2 text-muted-foreground">

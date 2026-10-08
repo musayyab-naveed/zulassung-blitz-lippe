@@ -156,6 +156,7 @@ export const vorgangChecklists: VorgangChecklist[] = [
       "SEPA-Lastschriftmandat für die KFZ-Steuer, vom Kontoinhaber unterschrieben",
       "Fahrzeugschein und Fahrzeugbrief (amtlich „Teil I“ und „Teil II“)",
       "Bei Neuwagen: COC-Papiere",
+      "Bei Gebrauchtwagen: TÜV-Bericht – nur nötig, wenn der TÜV-Stempel nicht im Fahrzeugschein steht",
     ],
     hint: "Vollmacht und SEPA-Mandat gibt es unter Formulare zum Ausdrucken.",
   },

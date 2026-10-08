@@ -21,6 +21,8 @@ export interface Abschnitt {
   titel: string;
   text?: string;
   punkte?: string[];
+  /** Punkte als nummerierte Schritte statt mit Haken zeigen */
+  nummeriert?: boolean;
   link?: { href: string; text: string };
 }
 
@@ -355,15 +357,16 @@ export const WUNSCHKENNZEICHEN: LeistungsSeite = {
 
 export const GEWERBEKUNDEN: LeistungsSeite = {
   path: "/gewerbekunden",
-  kicker: "Für Autohändler, Werkstätten, Vermieter und Firmenflotten im Kreis Lippe",
+  kicker: "Für Autohäuser, Werkstätten, Vermieter und Firmenflotten – vor Ort oder per Post",
   h1: "Zulassungen abgeben statt zum Amt fahren – Zulassungsservice für Händler und Firmen im Kreis Lippe",
   intro:
-    "Sie geben die Unterlagen ab, wir erledigen Anmeldung, Ummeldung und Abmeldung – ohne Termin beim Straßenverkehrsamt. Ein Fahrzeug oder mehrere auf einmal, bezahlt wird per Rechnung. Die Konditionen für regelmäßige Aufträge besprechen wir persönlich – am schnellsten am Telefon.",
+    "Sie geben die Unterlagen ab, wir erledigen Anmeldung, Ummeldung und Abmeldung – ohne Termin beim Straßenverkehrsamt. Ihr Autohaus ist woanders und Ihr Kunde wohnt im Kreis Lippe? Dann schicken Sie uns die Unterlagen einfach per Post. Ein Fahrzeug oder mehrere auf einmal, bezahlt wird per Rechnung. Die Konditionen für regelmäßige Aufträge besprechen wir persönlich – am schnellsten am Telefon.",
   chips: [
     "✓ Ohne Behördentermin",
     "✓ Mehrere Fahrzeuge in einem Auftrag",
     "✓ Zahlung per Rechnung",
     "✓ Abholung der Unterlagen möglich",
+    "✓ Auch per Post – egal, wo Ihr Autohaus ist",
     `✓ ${OEFFNUNG}`,
   ],
   preis: {
@@ -388,6 +391,19 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
     },
   ],
   abschnitte: [
+    {
+      titel: "Ihr Kunde wohnt im Kreis Lippe? So geht's per Post",
+      text: "Ein Auto wird dort zugelassen, wo der Halter wohnt. Verkaufen Sie ein Auto an jemanden aus dem Kreis Lippe, übernehmen wir die Zulassung für Sie – egal, wo Ihr Autohaus ist.",
+      nummeriert: true,
+      punkte: [
+        "Kurz Bescheid geben – per Telefon, WhatsApp oder E-Mail: welches Fahrzeug, wer der Halter ist und ob ein Wunschkennzeichen gewünscht ist.",
+        "Unterlagen zusammenstellen (Checkliste oben). Im Original: Vollmacht, SEPA-Mandat, Fahrzeugbrief und bei Neuwagen die COC-Papiere, bei Gebrauchtwagen auch der Fahrzeugschein. Vom Ausweis des Halters reicht eine Kopie der Vorder- und Rückseite.",
+        "Per Post oder Kurier an uns schicken: KFZ-Sofortzulassung, Werler Straße 68, 32105 Bad Salzuflen – am besten mit Sendungsverfolgung.",
+        "Wir lassen das Fahrzeug beim Straßenverkehrsamt Kreis Lippe zu – einen Termin brauchen Sie dafür nicht.",
+        "Kennzeichen und Papiere schicken wir per Express zurück – an Sie oder an eine Adresse, die Sie uns nennen. Abgerechnet wird per Rechnung.",
+      ],
+      link: { href: "/dokumente", text: "Vollmacht und SEPA-Mandat zum Ausdrucken" },
+    },
     {
       titel: "Was Sie davon haben",
       punkte: [

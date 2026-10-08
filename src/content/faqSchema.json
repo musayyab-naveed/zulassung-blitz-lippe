@@ -226,7 +226,23 @@
   "/gewerbekunden": [
     {
       "question": "Arbeiten Sie auch für Autohäuser und Händler?",
-      "answer": "Ja. Wir übernehmen Zulassungen, Umschreibungen und Abmeldungen für Autohändler, Werkstätten, Vermieter und Firmen im Kreis Lippe – auch mehrere Fahrzeuge auf einmal."
+      "answer": "Ja. Wir übernehmen Zulassungen, Umschreibungen und Abmeldungen für Autohändler, Werkstätten, Vermieter und Firmen im Kreis Lippe – auch mehrere Fahrzeuge auf einmal. Und für Autohäuser von außerhalb, deren Kunden im Kreis Lippe wohnen."
+    },
+    {
+      "question": "Unser Autohaus liegt nicht im Kreis Lippe – können Sie für unseren Kunden zulassen?",
+      "answer": "Ja. Wohnt Ihr Kunde im Kreis Lippe, wird das Auto hier zugelassen – und das übernehmen wir. Sie schicken uns die Unterlagen per Post oder Kurier, wir lassen zu und schicken Kennzeichen und Papiere per Express zurück. Wo Ihr Autohaus ist, spielt keine Rolle."
+    },
+    {
+      "question": "Welche Unterlagen müssen im Original zu Ihnen?",
+      "answer": "Vollmacht und SEPA-Lastschriftmandat (beide unterschrieben), der Fahrzeugbrief (Teil II) und bei Neuwagen die COC-Papiere, bei Gebrauchtwagen auch der Fahrzeugschein (Teil I). Vom Personalausweis des Halters reicht eine Kopie der Vorder- und Rückseite – beim Reisepass zusätzlich die Meldebescheinigung. Die eVB-Nummer schicken Sie uns einfach per E-Mail oder WhatsApp."
+    },
+    {
+      "question": "Wohin schicke ich die Unterlagen?",
+      "answer": "An KFZ-Sofortzulassung, Werler Straße 68, 32105 Bad Salzuflen – am besten mit Sendungsverfolgung. Geben Sie uns vorher kurz Bescheid, dann wissen wir, dass etwas kommt."
+    },
+    {
+      "question": "Wie kommen Kennzeichen und Papiere zurück?",
+      "answer": "Per Express – an Sie oder an eine Adresse, die Sie uns nennen, zum Beispiel direkt an Ihren Kunden. Die Kennzeichen kommen fertig mit Plaketten."
     },
     {
       "question": "Was kostet die Zusammenarbeit?",
@@ -238,7 +254,7 @@
     },
     {
       "question": "Brauche ich einen Termin?",
-      "answer": "Nein. Sie bringen die Unterlagen vorbei – Montag bis Freitag 9 bis 18 Uhr, Samstag 15 bis 18 Uhr – oder wir holen sie im Raum Bad Salzuflen ab."
+      "answer": "Nein. Sie bringen die Unterlagen vorbei – Montag bis Freitag 9 bis 18 Uhr, Samstag 15 bis 18 Uhr – oder wir holen sie im Raum Bad Salzuflen ab. Von außerhalb schicken Sie sie uns einfach per Post."
     },
     {
       "question": "Können Sie per Rechnung abrechnen?",
