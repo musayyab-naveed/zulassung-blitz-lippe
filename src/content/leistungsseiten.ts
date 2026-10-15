@@ -360,11 +360,10 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
   kicker: "Für Autohäuser, Werkstätten, Vermieter und Firmenflotten – vor Ort oder per Post",
   h1: "Zulassungen abgeben statt zum Amt fahren – Zulassungsservice für Händler und Firmen im Kreis Lippe",
   intro:
-    "Sie geben die Unterlagen ab, wir erledigen Anmeldung, Ummeldung und Abmeldung – ohne Termin beim Straßenverkehrsamt. Ihr Autohaus ist woanders und Ihr Kunde wohnt im Kreis Lippe? Dann schicken Sie uns die Unterlagen einfach per Post. Ein Fahrzeug oder mehrere auf einmal, bezahlt wird per Rechnung. Die Konditionen für regelmäßige Aufträge besprechen wir persönlich – am schnellsten am Telefon.",
+    "Sie geben die Unterlagen ab, wir erledigen Anmeldung, Ummeldung und Abmeldung – ohne Termin beim Straßenverkehrsamt. Ihr Autohaus ist woanders und Ihr Kunde wohnt im Kreis Lippe? Dann schicken Sie uns die Unterlagen einfach per Post. Ein Fahrzeug oder mehrere auf einmal. Bezahlt wird, sobald die Zulassung fertig ist – danach bekommen Sie Kennzeichen und Papiere. Die Konditionen für regelmäßige Aufträge besprechen wir persönlich – am schnellsten am Telefon.",
   chips: [
     "✓ Ohne Behördentermin",
     "✓ Mehrere Fahrzeuge in einem Auftrag",
-    "✓ Zahlung per Rechnung",
     "✓ Abholung der Unterlagen möglich",
     "✓ Auch per Post – egal, wo Ihr Autohaus ist",
     `✓ ${OEFFNUNG}`,
@@ -386,8 +385,8 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
       text: "Ohne Termin vorbeibringen – Mo–Fr 9–18, Sa 15–18 Uhr – oder wir holen sie im Raum Bad Salzuflen bei Ihnen ab.",
     },
     {
-      titel: "Fertig zurück, per Rechnung",
-      text: "Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag. Papiere und Rechnung bekommen Sie von uns zurück.",
+      titel: "Bezahlen und fertig zurück",
+      text: "Digital in ca. 20 Minuten oder klassisch bis zum nächsten Werktag. Sie bekommen die Rechnung – sobald sie bezahlt ist, gibt es Kennzeichen und Papiere.",
     },
   ],
   abschnitte: [
@@ -400,7 +399,7 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
         "Unterlagen zusammenstellen (Checkliste oben). Im Original: Vollmacht, SEPA-Mandat, Fahrzeugbrief und bei Neuwagen die COC-Papiere, bei Gebrauchtwagen auch der Fahrzeugschein. Vom Ausweis des Halters reicht eine Kopie der Vorder- und Rückseite.",
         "Per Post oder Kurier an uns schicken: KFZ-Sofortzulassung, Werler Straße 68, 32105 Bad Salzuflen – am besten mit Sendungsverfolgung.",
         "Wir lassen das Fahrzeug beim Straßenverkehrsamt Kreis Lippe zu – einen Termin brauchen Sie dafür nicht.",
-        "Kennzeichen und Papiere schicken wir per Express zurück – an Sie oder an eine Adresse, die Sie uns nennen. Abgerechnet wird per Rechnung.",
+        "Sie bekommen die Rechnung per E-Mail. Sobald sie bezahlt ist, schicken wir Kennzeichen und Papiere per Express zurück – an Sie oder an eine Adresse, die Sie uns nennen. Am schnellsten geht es mit einer Echtzeitüberweisung.",
       ],
       link: { href: "/dokumente", text: "Vollmacht und SEPA-Mandat zum Ausdrucken" },
     },

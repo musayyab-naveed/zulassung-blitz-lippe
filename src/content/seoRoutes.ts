@@ -107,7 +107,7 @@ export const ROUTE_SEO: RouteSeo[] = [
     path: "/gewerbekunden",
     title: "Zulassungsdienst für Autohäuser & Firmen – Kreis Lippe",
     description:
-      "Zulassungen für Autohäuser und Firmen im Kreis Lippe – ohne Termin, per Rechnung. Kunde aus Lippe? Unterlagen per Post, Kennzeichen kommen per Express zurück.",
+      "Zulassungen für Autohäuser und Firmen im Kreis Lippe – ohne Termin. Kunde aus Lippe? Unterlagen per Post, Kennzeichen kommen nach Zahlung per Express zurück.",
   },
   {
     path: "/kfz-versicherung",
