@@ -23,6 +23,8 @@ export interface Abschnitt {
   punkte?: string[];
   /** Punkte als nummerierte Schritte statt mit Haken zeigen */
   nummeriert?: boolean;
+  /** Sprungmarke, z. B. "per-post" für /gewerbekunden#per-post */
+  id?: string;
   link?: { href: string; text: string };
 }
 
@@ -40,6 +42,8 @@ export interface LeistungsSeite {
   kicker: string;
   h1: string;
   intro: string;
+  /** Wichtiger Hinweis direkt im Kopfbereich – für Besucher, die nicht weiterscrollen */
+  hinweis?: { text: string; link: { href: string; text: string } };
   chips: string[];
   preis: { betrag: string; text: string };
   /** Statt Preis ein Anfrageformular zeigen (Firmenkunden und Partner) */
@@ -357,15 +361,19 @@ export const WUNSCHKENNZEICHEN: LeistungsSeite = {
 
 export const GEWERBEKUNDEN: LeistungsSeite = {
   path: "/gewerbekunden",
-  kicker: "Für Autohäuser, Werkstätten, Vermieter und Firmenflotten – vor Ort oder per Post",
+  kicker: "Für Autohäuser, Werkstätten und Firmen – vor Ort oder per Post",
   h1: "Zulassungen abgeben statt zum Amt fahren – Zulassungsservice für Händler und Firmen im Kreis Lippe",
   intro:
-    "Sie geben die Unterlagen ab, wir erledigen Anmeldung, Ummeldung und Abmeldung – ohne Termin beim Straßenverkehrsamt. Ihr Autohaus ist woanders und Ihr Kunde wohnt im Kreis Lippe? Dann schicken Sie uns die Unterlagen einfach per Post. Ein Fahrzeug oder mehrere auf einmal. Bezahlt wird, sobald die Zulassung fertig ist – danach bekommen Sie Kennzeichen und Papiere. Die Konditionen für regelmäßige Aufträge besprechen wir persönlich – am schnellsten am Telefon.",
+    "Sie geben die Unterlagen ab, wir erledigen Anmeldung, Ummeldung und Abmeldung – ohne Termin beim Straßenverkehrsamt. Ein Fahrzeug oder mehrere auf einmal. Bezahlt wird, sobald die Zulassung fertig ist – danach bekommen Sie Kennzeichen und Papiere.",
+  hinweis: {
+    text: "Autohaus von außerhalb, Kunde aus dem Kreis Lippe? Unterlagen per Post schicken – wir lassen zu und schicken Kennzeichen und Papiere per Express zurück, sobald die Rechnung bezahlt ist.",
+    link: { href: "#per-post", text: "So geht's per Post" },
+  },
   chips: [
     "✓ Ohne Behördentermin",
     "✓ Mehrere Fahrzeuge in einem Auftrag",
     "✓ Abholung der Unterlagen möglich",
-    "✓ Auch per Post – egal, wo Ihr Autohaus ist",
+    "✓ Per Post – mit Express-Rückversand",
     `✓ ${OEFFNUNG}`,
   ],
   preis: {
@@ -392,6 +400,7 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
   abschnitte: [
     {
       titel: "Ihr Kunde wohnt im Kreis Lippe? So geht's per Post",
+      id: "per-post",
       text: "Ein Auto wird dort zugelassen, wo der Halter wohnt. Verkaufen Sie ein Auto an jemanden aus dem Kreis Lippe, übernehmen wir die Zulassung für Sie – egal, wo Ihr Autohaus ist.",
       nummeriert: true,
       punkte: [

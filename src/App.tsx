@@ -23,11 +23,14 @@ import RatgeberArtikel from "./pages/RatgeberArtikel";
 import { AUTO_ABMELDEN, AUTO_ANMELDEN, AUTO_UMMELDEN, GEWERBEKUNDEN, WUNSCHKENNZEICHEN } from "./content/leistungsseiten";
 
 const ScrollToTop = () => {
-  const { pathname, search } = useLocation();
+  const { pathname, search, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [pathname, search]);
+    // Link mit Sprungmarke (z. B. /gewerbekunden#per-post): direkt zum Abschnitt, sonst nach oben
+    const ziel = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+    if (ziel) ziel.scrollIntoView({ block: "start" });
+    else window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname, search, hash]);
 
   return null;
 };

@@ -12,7 +12,7 @@ import {
 import GewerbeAnfrage from "@/components/GewerbeAnfrage";
 import Checkliste from "@/components/Checkliste";
 import type { LeistungsSeite } from "@/content/leistungsseiten";
-import { ArrowRight, CheckCircle, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
+import { ArrowRight, CheckCircle, MapPin, MessageCircle, Navigation, Phone, Truck } from "lucide-react";
 import { BUSINESS } from "@/content/seoRoutes";
 import { Link } from "react-router-dom";
 
@@ -32,6 +32,17 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
           </p>
           <h1 className="mb-4 text-3xl font-bold text-white sm:text-4xl">{seite.h1}</h1>
           <p className="mx-auto max-w-3xl text-lg text-primary-foreground/90">{seite.intro}</p>
+          {seite.hinweis && (
+            <div className="mx-auto mt-5 flex max-w-2xl items-start gap-3 rounded-xl border border-white/30 bg-white/15 px-4 py-3 text-left">
+              <Truck className="mt-0.5 h-5 w-5 flex-none text-white" />
+              <p className="text-sm text-white sm:text-base">
+                {seite.hinweis.text}{" "}
+                <a href={seite.hinweis.link.href} className="font-semibold underline underline-offset-2">
+                  {seite.hinweis.link.text}
+                </a>
+              </p>
+            </div>
+          )}
           <div className="mt-6 flex flex-wrap justify-center gap-2">
             {seite.chips.map((chip) => (
               <span
@@ -173,7 +184,7 @@ const Leistungsseite = ({ seite }: { seite: LeistungsSeite }) => {
       <section className="py-14">
         <div className="mx-auto max-w-3xl space-y-10 px-4 sm:px-6 lg:px-8">
           {seite.abschnitte.map((abschnitt) => (
-            <div key={abschnitt.titel}>
+            <div key={abschnitt.titel} id={abschnitt.id} className={abschnitt.id ? "scroll-mt-32" : undefined}>
               <h2 className="mb-3 text-2xl font-bold text-secondary">{abschnitt.titel}</h2>
               {abschnitt.text && <p className="text-muted-foreground">{abschnitt.text}</p>}
               {abschnitt.punkte && abschnitt.nummeriert && (

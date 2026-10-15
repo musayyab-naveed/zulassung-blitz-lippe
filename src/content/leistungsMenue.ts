@@ -15,7 +15,7 @@ export const ZULASSUNGSSERVICE: MenuePunkt[] = [
   { name: "Saisonkennzeichen", href: "/ratgeber/saisonkennzeichen" },
   { name: "Hol- und Bringservice", href: "/preise" },
   { name: "Kfz-Versicherung vergleichen", href: "/kfz-versicherung" },
-  { name: "Für Firmen & Partner", href: "/gewerbekunden" },
+  { name: "Für Autohäuser & Firmen", href: "/gewerbekunden" },
 ];
 
 /** Seiten, auf denen "Zulassungsservice" im Menü als aktiv markiert wird */

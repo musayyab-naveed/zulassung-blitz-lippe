@@ -46,7 +46,7 @@ const HAUPTMENUE: Hauptpunkt[] = [
   },
   { name: "eVB & Versicherung", href: "/kfz-versicherung", pfade: ["/kfz-versicherung", "/evb-nummer"] },
   { name: "Autoankauf", href: "/fahrzeugankauf", pfade: ["/fahrzeugankauf"] },
-  { name: "Firmen & Partner", href: "/gewerbekunden", pfade: ["/gewerbekunden"] },
+  { name: "Autohäuser & Firmen", href: "/gewerbekunden", pfade: ["/gewerbekunden"] },
   {
     name: "Ratgeber",
     href: RATGEBER_PFAD,

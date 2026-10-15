@@ -11,7 +11,7 @@ import hero480 from "@/assets/hero-480.webp";
 import hero680 from "@/assets/hero-680.webp";
 import hero800 from "@/assets/hero-800.webp";
 import hero1200 from "@/assets/hero-1200.webp";
-import { Car, FileText, Shield, ShieldCheck, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle } from "lucide-react";
+import { Car, FileText, Shield, ShieldCheck, CheckCircle, ArrowRight, Phone, MapPin, Mail, Zap, AlertCircle, Truck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { RATGEBER, ratgeberPfad } from "@/content/ratgeber";
 import { ALLE_ORTE_LIPPE, ORTSSEITEN } from "@/content/ortsseiten";
@@ -327,6 +327,28 @@ const Home = () => {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Für Autohäuser: viele Händler schauen nur auf die Startseite, ob wir per Post zulassen und zurückschicken */}
+      <section className="border-y border-border bg-primary/10 py-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 text-center sm:px-6 md:flex-row md:justify-between md:text-left lg:px-8">
+          <div className="flex items-center gap-3">
+            <Truck className="hidden h-10 w-10 flex-none text-link sm:block" />
+            <div>
+              <p className="text-lg font-bold text-secondary">Für Autohäuser: Ihr Kunde wohnt im Kreis Lippe?</p>
+              <p className="text-sm text-muted-foreground">
+                Unterlagen per Post schicken – wir lassen zu und schicken Kennzeichen und Papiere per Express
+                zurück, sobald die Rechnung bezahlt ist. Egal, wo Ihr Autohaus ist.
+              </p>
+            </div>
+          </div>
+          <Button size="lg" variant="outline" asChild className="w-full flex-none md:w-auto">
+            <Link to="/gewerbekunden#per-post">
+              So geht's für Autohäuser
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
         </div>
       </section>
 
