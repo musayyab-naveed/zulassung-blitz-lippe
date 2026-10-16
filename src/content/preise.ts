@@ -4,6 +4,7 @@
 //   - /angebot  (Paketauswahl im Assistenten + Buchung)
 //   - /preise   (Preisseite)
 //   - seoRoutes.ts (Angebots-Schema für Google)
+//   - /gewerbekunden und Startseite (VERSAND_PREIS = PREMIUM, Zulassung per Post für Autohäuser)
 //
 // Wer einen Preis ändern will, ändert ihn hier – und nur hier.
 
@@ -163,6 +164,9 @@ export const PACKAGES: PackageDef[] = [
  * Zeilen der Preisübersicht auf /preise.
  * Die Preise werden aus PACKAGES gezogen – nie hier hart eintragen.
  */
+/** Zulassung per Post mit Express-Rückversand – entspricht dem PREMIUM-Paket */
+export const VERSAND_PREIS = PACKAGES.find((pkg) => pkg.key === "premium")?.price ?? "159 €";
+
 export interface TabellenZeile {
   leistung: string;
   dauer: string;

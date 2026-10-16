@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { RATGEBER, ratgeberPfad } from "@/content/ratgeber";
 import { ALLE_ORTE_LIPPE, ORTSSEITEN } from "@/content/ortsseiten";
 import { BUSINESS } from "@/content/seoRoutes";
+import { VERSAND_PREIS } from "@/content/preise";
 
 const ROUTE_URL = BUSINESS.routeUrl;
 
@@ -339,7 +340,8 @@ const Home = () => {
               <p className="text-lg font-bold text-secondary">Für Autohäuser: Ihr Kunde wohnt im Kreis Lippe?</p>
               <p className="text-sm text-muted-foreground">
                 Unterlagen per Post schicken – wir lassen zu und schicken Kennzeichen und Papiere per Express
-                zurück, sobald die Rechnung bezahlt ist. Egal, wo Ihr Autohaus ist.
+                zurück, sobald die Rechnung bezahlt ist. {VERSAND_PREIS} pro Fahrzeug inklusive Gebühren, Kennzeichen
+                und Rückversand – egal, wo Ihr Autohaus ist.
               </p>
             </div>
           </div>

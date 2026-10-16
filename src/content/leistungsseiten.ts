@@ -1,5 +1,6 @@
 import faqSchema from "./faqSchema.json";
 import type { FaqItem } from "./faqs";
+import { VERSAND_PREIS } from "./preise";
 
 /**
  * Inhalte der Leistungsseiten (Abmelden, Ummelden, Wunschkennzeichen, Gewerbekunden).
@@ -366,7 +367,7 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
   intro:
     "Sie geben die Unterlagen ab, wir erledigen Anmeldung, Ummeldung und Abmeldung – ohne Termin beim Straßenverkehrsamt. Ein Fahrzeug oder mehrere auf einmal. Bezahlt wird, sobald die Zulassung fertig ist – danach bekommen Sie Kennzeichen und Papiere.",
   hinweis: {
-    text: "Autohaus von außerhalb, Kunde aus dem Kreis Lippe? Unterlagen per Post schicken – wir lassen zu und schicken Kennzeichen und Papiere per Express zurück, sobald die Rechnung bezahlt ist.",
+    text: `Autohaus von außerhalb, Kunde aus dem Kreis Lippe? Unterlagen per Post schicken – Kennzeichen und Papiere kommen nach Zahlung per Express zurück. ${VERSAND_PREIS} pro Fahrzeug inklusive Gebühren, Kennzeichen und Rückversand.`,
     link: { href: "#per-post", text: "So geht's per Post" },
   },
   chips: [
@@ -401,7 +402,7 @@ export const GEWERBEKUNDEN: LeistungsSeite = {
     {
       titel: "Ihr Kunde wohnt im Kreis Lippe? So geht's per Post",
       id: "per-post",
-      text: "Ein Auto wird dort zugelassen, wo der Halter wohnt. Verkaufen Sie ein Auto an jemanden aus dem Kreis Lippe, übernehmen wir die Zulassung für Sie – egal, wo Ihr Autohaus ist.",
+      text: `Ein Auto wird dort zugelassen, wo der Halter wohnt. Verkaufen Sie ein Auto an jemanden aus dem Kreis Lippe, übernehmen wir die Zulassung für Sie – egal, wo Ihr Autohaus ist. Preis: ${VERSAND_PREIS} pro Fahrzeug – inklusive Verwaltungsgebühren, Kennzeichen und Express-Rückversand; den Versand zu uns übernehmen Sie. Wunschkennzeichen (+13 €) und Feinstaubplakette (+6 €) sind Gebühren des Straßenverkehrsamts.`,
       nummeriert: true,
       punkte: [
         "Kurz Bescheid geben – per Telefon, WhatsApp oder E-Mail: welches Fahrzeug, wer der Halter ist und ob ein Wunschkennzeichen gewünscht ist.",
