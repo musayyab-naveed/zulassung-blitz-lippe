@@ -10,7 +10,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import faqSchema from "@/content/faqSchema.json";
-import { ArrowRight, CheckCircle, Info } from "lucide-react";
+import { ArrowRight, CheckCircle, Info, MessageCircle, Phone } from "lucide-react";
+import { TELEFON_ANZEIGE, TELEFON_LINK, whatsappLink } from "@/content/whatsappAnfrage";
 import { Link } from "react-router-dom";
 
 const FAQS: { question: string; answer: string }[] = faqSchema["/kfz-versicherung"];
@@ -78,14 +79,38 @@ const KfzVersicherung = () => {
         </div>
       </section>
 
-      {/* Rechner */}
-      <section className="bg-muted/50 py-14">
+      {/* Rechner – Sprungziel aus der Anfrage („Noch keine eVB-Nummer") */}
+      <section id="vergleich" className="scroll-mt-32 bg-muted/50 py-14">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <h2 className="section-title mb-4 text-center">Kfz-Versicherung vergleichen und abschließen</h2>
           <p className="section-subtitle mx-auto mb-8 max-w-2xl text-center">
             Bitte nutzen Sie den Vergleich nur, wenn Sie das Fahrzeug auch wirklich versichern und
             zulassen möchten.
           </p>
+          {/* Wer nicht weiterkommt, ruft an oder schreibt – Daten tippt der Kunde aber immer selbst ein */}
+          <div className="mx-auto mb-6 flex max-w-2xl flex-col items-center gap-3 rounded-xl border border-primary/30 bg-background p-4 text-center sm:flex-row sm:text-left">
+            <p className="flex-1 text-sm text-secondary">
+              <span className="font-semibold">Kommen Sie nicht weiter?</span> Wir helfen Ihnen gern – am Telefon oder per WhatsApp.
+            </p>
+            <div className="flex flex-none gap-2">
+              <Button size="sm" variant="outline" asChild>
+                <a href={TELEFON_LINK}>
+                  <Phone className="mr-1.5 h-4 w-4" />
+                  {TELEFON_ANZEIGE}
+                </a>
+              </Button>
+              <Button size="sm" asChild className="bg-[#15803d] text-white hover:bg-[#166534]">
+                <a
+                  href={whatsappLink("Hallo! Ich möchte ein Auto zulassen, habe aber noch keine eVB-Nummer und komme beim Versicherungsvergleich nicht weiter.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="mr-1.5 h-4 w-4" />
+                  WhatsApp
+                </a>
+              </Button>
+            </div>
+          </div>
           <TarifcheckRechner />
           <p className="mt-4 text-xs text-muted-foreground">
             * Werbung: Der Vergleichsrechner stammt von TARIFCHECK24 GmbH. Schließen Sie darüber einen

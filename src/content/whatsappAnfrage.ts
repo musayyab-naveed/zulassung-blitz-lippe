@@ -1,180 +1,69 @@
 import { vorgangChecklists, type VorgangChecklist } from "./faqs";
+import { PACKAGES } from "./preise";
 
 /**
  * Anfrage per WhatsApp statt Terminkalender.
  *
- * Der Kunde beantwortet höchstens drei Fragen durch Antippen, danach steht eine
- * fertige WhatsApp-Nachricht bereit. Kein Termin, kein Formular. Die Antworten
- * stehen in der Adresse (?vorgang=…&art=…&evb=…&wunsch=1), damit Zurück und Vorwärts im
- * Browser und das Neuladen der Seite ohne Zusatzlogik funktionieren.
+ * Der Kunde tippt höchstens drei Antworten an, danach steht eine fertige WhatsApp-Nachricht
+ * bereit. Kein Termin, kein Formular. Die Antworten stehen in der Adresse
+ * (?vorgang=…&kz=…&evb=…&wunsch=1), damit Zurück, Vorwärts und Neuladen ohne Zusatzlogik funktionieren.
+ *
+ * Wunsch des Betreibers (18.10.2026): Bei Zulassung und Ummeldung nicht nach dem Fall fragen
+ * (neu, gebraucht, Umzug …), sondern nur „mit oder ohne Kennzeichen“ – mit Preis, damit der Kunde
+ * gleich weiß, was er zahlt. Keine „Weiß ich nicht“-Antworten, möglichst wenig Text.
  */
 
 export const WHATSAPP_NUMMER = "4915142462280";
 export const TELEFON_ANZEIGE = "01514 2462280";
 export const TELEFON_LINK = "tel:+4915142462280";
 
+/** "frage" gibt es nur noch über direkte Links (z. B. von der Firmen-Seite), nicht als Auswahl */
 export type Vorgang = "zulassen" | "abmelden" | "sonder" | "verkaufen" | "frage";
-export type Art =
-  | "neu"
-  | "gebraucht"
-  | "wieder"
-  | "umzug"
-  | "kennzeichen"
-  | "unklar"
-  | "kurzzeit"
-  | "ausfuhr";
-export type Evb = "ja" | "vergleich" | "nein";
+export type Kennzeichen = "mit" | "ohne" | "bleiben";
+export type SonderArt = "kurzzeit" | "ausfuhr";
+export type Evb = "ja" | "nein";
 
 export interface Auswahl<T extends string> {
   wert: T;
   titel: string;
   text?: string;
+  preis?: string;
 }
+
+const preisVon = (key: string) => PACKAGES.find((pkg) => pkg.key === key)?.price ?? "";
 
 export const VORGAENGE: Auswahl<Vorgang>[] = [
-  { wert: "zulassen", titel: "Fahrzeug zulassen oder ummelden", text: "Neu, gebraucht, wieder anmelden oder Umzug" },
-  { wert: "abmelden", titel: "Fahrzeug abmelden", text: "Sofortabmeldung direkt vor Ort" },
+  { wert: "zulassen", titel: "Auto anmelden oder ummelden", text: "Neu, gebraucht oder umgezogen" },
+  { wert: "abmelden", titel: "Auto abmelden", text: `Sofortabmeldung · ${preisVon("abmeldung")}` },
+  { wert: "verkaufen", titel: "Auto an uns verkaufen", text: "Kostenloses, unverbindliches Angebot" },
   { wert: "sonder", titel: "Kurzzeit- oder Ausfuhrkennzeichen", text: "Überführung, Probefahrt oder Export" },
-  { wert: "verkaufen", titel: "Auto an uns verkaufen", text: "Unverbindliches Angebot holen – kostenlos" },
-  { wert: "frage", titel: "Ich habe nur eine Frage", text: "Direkt zu WhatsApp" },
 ];
 
-export const ARTEN: Auswahl<Art>[] = [
-  { wert: "neu", titel: "Neuwagen", text: "Fabrikneu, noch nie zugelassen" },
-  { wert: "gebraucht", titel: "Gebrauchtwagen gekauft", text: "Das Auto kommt auf Ihren Namen" },
-  { wert: "wieder", titel: "Abgemeldetes Auto wieder anmelden", text: "Wiederzulassung" },
-  { wert: "umzug", titel: "Umgezogen – Adresse ändern", text: "Innerhalb von Lippe oder neu zugezogen" },
-  { wert: "kennzeichen", titel: "Nur neues Kennzeichen", text: "Gleiches Auto, anderes Kennzeichen – z. B. DT oder LE" },
-  { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
+export const KENNZEICHEN_OPTIONEN: Auswahl<Kennzeichen>[] = [
+  { wert: "mit", titel: "Mit Kennzeichen", text: "Fertig am nächsten Werktag", preis: preisVon("basis") },
+  { wert: "ohne", titel: "Ohne Kennzeichen", text: "Digital in ca. 20 Minuten", preis: preisVon("sofort") },
+  { wert: "bleiben", titel: "Kennzeichen bleiben dran", text: "Bei Umzug oder Halterwechsel", preis: preisVon("ummeldung") },
 ];
 
-/** Auswahl bei Kurzzeit- oder Ausfuhrkennzeichen */
-export const SONDER_ARTEN: Auswahl<Art>[] = [
+export const SONDER_ARTEN: Auswahl<SonderArt>[] = [
   { wert: "kurzzeit", titel: "Kurzzeitkennzeichen", text: "5 Tage – für Überführung oder Probefahrt" },
   { wert: "ausfuhr", titel: "Ausfuhrkennzeichen", text: "Für den Export ins Ausland" },
-  { wert: "unklar", titel: "Weiß ich nicht genau", text: "Kein Problem – das klären wir im Chat" },
 ];
 
-/** Hat der Kunde schon eine Versicherung? Nur bei Zulassungen, die eine neue eVB brauchen */
+/** Ohne eVB-Nummer geht es direkt zum Versicherungsvergleich */
 export const EVB_OPTIONEN: Auswahl<Evb>[] = [
-  { wert: "ja", titel: "Ja, ich habe die Nummer", text: "Code aus 7 Zeichen von meiner Versicherung" },
-  {
-    wert: "vergleich",
-    titel: "Ja – aber ich möchte Preise vergleichen",
-    text: "Vielleicht gibt es eine günstigere Versicherung",
-  },
-  { wert: "nein", titel: "Nein – oder ich weiß es nicht", text: "Kein Problem – Sie können die Nachricht trotzdem gleich senden" },
+  { wert: "ja", titel: "Ja, habe ich" },
+  { wert: "nein", titel: "Nein, noch nicht", text: "Dann gleich hier Kfz-Versicherung vergleichen" },
 ];
 
-/** Neuzulassung, Umschreibung und Wiederzulassung brauchen eine eVB – Umzug und Kennzeichenwechsel nicht */
-export const brauchtEvbFrage = ({ vorgang, art }: { vorgang?: Vorgang; art?: Art }) =>
-  vorgang === "zulassen" && (art === "neu" || art === "gebraucht" || art === "wieder" || art === "unklar");
+/** Neue Schilder heißt neue Zulassung – dafür braucht es eine eVB. Bleiben die Kennzeichen dran, fragen wir nicht. */
+export const brauchtEvbFrage = ({ vorgang, kz }: { vorgang?: Vorgang; kz?: Kennzeichen }) =>
+  vorgang === "zulassen" && (kz === "mit" || kz === "ohne");
 
-const EVB_IN_NACHRICHT: Record<Evb, string> = {
-  ja: "Eine eVB-Nummer habe ich schon.",
-  vergleich: "Eine eVB-Nummer habe ich, ich schaue aber noch nach einer günstigeren Versicherung.",
-  nein: "Eine eVB-Nummer habe ich noch nicht.",
-};
+/** Pakete von der Preisseite (?paket=…) beantworten die Kennzeichen-Frage schon */
+export const kennzeichenAusPaket = (paket?: string | null): Kennzeichen | undefined =>
+  paket === "basis" || paket === "premium" ? "mit" : paket === "sofort" ? "ohne" : paket === "ummeldung" ? "bleiben" : undefined;
 
-/** Erster Satz der Nachricht – so, wie ein Kunde es selbst schreiben würde */
-const ZULASSEN_IN_NACHRICHT: Record<Art, string> = {
-  neu: "Hallo! Ich möchte einen Neuwagen zulassen.",
-  gebraucht: "Hallo! Ich habe einen Gebrauchtwagen gekauft und möchte ihn auf mich zulassen.",
-  wieder: "Hallo! Ich möchte mein abgemeldetes Auto wieder anmelden.",
-  umzug: "Hallo! Ich bin umgezogen und möchte die Adresse im Fahrzeugschein ändern lassen.",
-  kennzeichen: "Hallo! Ich möchte für mein Auto ein neues Kennzeichen.",
-  unklar: "Hallo! Ich möchte ein Fahrzeug zulassen, weiß aber nicht genau, welcher Fall das ist.",
-  kurzzeit: "Hallo! Ich brauche ein Kurzzeitkennzeichen.",
-  ausfuhr: "Hallo! Ich brauche ein Ausfuhrkennzeichen.",
-};
-
-/** Paketnamen, wie sie von der Preisseite (?paket=…) mitkommen */
-const PAKET_IN_NACHRICHT: Record<string, string> = {
-  ummeldung: "UMMELDUNG (Kennzeichen bleiben dran)",
-  sofort: "SOFORT (digital in ca. 20 Minuten)",
-  basis: "BASIS (nächster Werktag, mit Kennzeichen)",
-  premium: "PREMIUM (Hol- und Bringservice)",
-  abmeldung: "SOFORTABMELDUNG",
-  sonderkennzeichen: "KURZZEIT- / AUSFUHRKENNZEICHEN",
-};
-
-/** Die Ummeldung (99 €, Kennzeichen bleiben dran) passt nicht zu Neuwagen, Wiederzulassung oder neuem Kennzeichen */
-export const paketPasst = (paket?: string | null, art?: Art) =>
-  !(paket === "ummeldung" && (art === "neu" || art === "wieder" || art === "kennzeichen"));
-
-export interface AnfrageAntworten {
-  vorgang?: Vorgang;
-  art?: Art;
-  evb?: Evb;
-  paket?: string;
-  /** Kommt von der Wunschkennzeichen-Seite (?wunsch=1) */
-  wunsch?: boolean;
-}
-
-export const baueNachricht = ({ vorgang, art, evb, paket, wunsch }: AnfrageAntworten): string => {
-  if (vorgang === "verkaufen") {
-    return [
-      "Hallo! Ich hätte gern ein unverbindliches Angebot für mein Auto.",
-      "",
-      "Marke/Modell: ",
-      "Baujahr: ",
-      "Kilometerstand: ",
-      "",
-      "Fotos schicke ich gern hinterher.",
-    ].join("\n");
-  }
-
-  if (vorgang === "frage") {
-    return "Hallo! Ich habe eine Frage zur KFZ-Zulassung: ";
-  }
-
-  const ersteZeile =
-    vorgang === "abmelden"
-      ? "Hallo! Ich möchte mein Auto abmelden."
-      : vorgang === "sonder"
-        ? art === "kurzzeit" || art === "ausfuhr"
-          ? ZULASSEN_IN_NACHRICHT[art]
-          : "Hallo! Ich brauche ein Kurzzeit- oder Ausfuhrkennzeichen."
-        : art
-          ? ZULASSEN_IN_NACHRICHT[art]
-          : "Hallo! Ich möchte ein Fahrzeug zulassen.";
-  const evbZeile = evb && brauchtEvbFrage({ vorgang, art }) ? EVB_IN_NACHRICHT[evb] : null;
-  const wunschZeile = wunsch && vorgang === "zulassen" ? "Ich hätte gern ein Wunschkennzeichen (LIP, DT oder LE)." : null;
-  const paketZeile =
-    paket && PAKET_IN_NACHRICHT[paket] && vorgang !== "sonder" && paketPasst(paket, art)
-      ? `Am liebsten mit dem Paket ${PAKET_IN_NACHRICHT[paket]}.`
-      : null;
-
-  return [ersteZeile, evbZeile, wunschZeile, paketZeile, "Wie geht es weiter?"]
-    .filter((zeile) => zeile !== null)
-    .join("\n");
-};
-
-export const whatsappLink = (nachricht: string) =>
-  `https://wa.me/${WHATSAPP_NUMMER}?text=${encodeURIComponent(nachricht)}`;
-
-/** Welche Unterlagen-Liste passt zur Antwort? Bei "weiß ich nicht" die häufigste. */
-export const checklisteFuer = ({ vorgang, art }: AnfrageAntworten): VorgangChecklist | null => {
-  const zulassenListe: Partial<Record<Art, string>> = {
-    neu: "neuzulassung",
-    wieder: "wiederzulassung",
-    umzug: "adressaenderung",
-    kennzeichen: "umkennzeichnung",
-  };
-  const key =
-    vorgang === "abmelden"
-      ? "abmeldung"
-      : vorgang === "zulassen"
-        ? (art && zulassenListe[art]) || "umschreibung"
-        : vorgang === "sonder"
-          ? art === "ausfuhr"
-            ? "ausfuhrkennzeichen"
-            : "kurzzeitkennzeichen"
-          : null;
-  return key ? vorgangChecklists.find((liste) => liste.key === key) ?? null : null;
-};
-
-/** Pakete von der Preisseite in eine Startantwort übersetzen */
 export const vorgangAusPaket = (paket: string | null): Vorgang | undefined => {
   if (!paket) return undefined;
   if (paket === "abmeldung") return "abmelden";
@@ -182,4 +71,116 @@ export const vorgangAusPaket = (paket: string | null): Vorgang | undefined => {
   if (paket === "ankauf_only") return "verkaufen";
   if (["ummeldung", "sofort", "basis", "premium"].includes(paket)) return "zulassen";
   return undefined;
+};
+
+const ZULASSEN_IN_NACHRICHT: Record<Kennzeichen, string> = {
+  mit: "Hallo! Ich möchte ein Auto zulassen – mit Kennzeichen von Ihnen.",
+  ohne: "Hallo! Ich möchte ein Auto zulassen – digital, die Schilder besorge ich selbst.",
+  bleiben: "Hallo! Ich möchte mein Auto ummelden – die Kennzeichen bleiben dran.",
+};
+
+export interface AnkaufDaten {
+  modell: string;
+  baujahr: string;
+  km: string;
+}
+
+export interface AnfrageAntworten {
+  vorgang?: Vorgang;
+  kz?: Kennzeichen;
+  sonder?: SonderArt;
+  evb?: Evb;
+  paket?: string;
+  /** Kommt von der Wunschkennzeichen-Seite (?wunsch=1) */
+  wunsch?: boolean;
+  ankauf?: AnkaufDaten;
+}
+
+export const baueNachricht = ({ vorgang, kz, sonder, evb, paket, wunsch, ankauf }: AnfrageAntworten): string => {
+  if (vorgang === "verkaufen") {
+    return [
+      "Hallo! Ich hätte gern ein unverbindliches Angebot für mein Auto.",
+      "",
+      `Marke/Modell: ${ankauf?.modell.trim() ?? ""}`,
+      `Baujahr: ${ankauf?.baujahr.trim() ?? ""}`,
+      `Kilometerstand: ${ankauf?.km.trim() ?? ""}`,
+      "",
+      "Fotos schicke ich gern hinterher.",
+    ].join("\n");
+  }
+
+  if (vorgang === "frage") {
+    return "Hallo! Ich habe eine Frage: ";
+  }
+
+  const ersteZeile =
+    vorgang === "abmelden"
+      ? "Hallo! Ich möchte mein Auto abmelden."
+      : vorgang === "sonder"
+        ? sonder === "ausfuhr"
+          ? "Hallo! Ich brauche ein Ausfuhrkennzeichen."
+          : sonder === "kurzzeit"
+            ? "Hallo! Ich brauche ein Kurzzeitkennzeichen."
+            : "Hallo! Ich brauche ein Kurzzeit- oder Ausfuhrkennzeichen."
+        : kz
+          ? ZULASSEN_IN_NACHRICHT[kz]
+          : "Hallo! Ich möchte ein Auto zulassen.";
+  const evbZeile =
+    evb && brauchtEvbFrage({ vorgang, kz })
+      ? evb === "ja"
+        ? "Eine eVB-Nummer habe ich schon."
+        : "Eine eVB-Nummer habe ich noch nicht."
+      : null;
+  const wunschZeile = wunsch && vorgang === "zulassen" ? "Ich hätte gern ein Wunschkennzeichen (LIP, DT oder LE)." : null;
+  const premiumZeile = paket === "premium" && vorgang === "zulassen" ? "Am liebsten mit Hol- und Bringservice (PREMIUM)." : null;
+
+  return [ersteZeile, evbZeile, wunschZeile, premiumZeile, "Wie geht es weiter?"]
+    .filter((zeile) => zeile !== null)
+    .join("\n");
+};
+
+export const whatsappLink = (nachricht: string) =>
+  `https://wa.me/${WHATSAPP_NUMMER}?text=${encodeURIComponent(nachricht)}`;
+
+const AUSWEIS = "Personalausweis – oder Reisepass mit Meldebescheinigung";
+
+/** Kurze Listen für die Anfrage – die ausführlichen stehen auf /faq */
+const KURZLISTEN: Record<"zulassung" | "ummeldung" | "abmeldung", VorgangChecklist> = {
+  zulassung: {
+    key: "zulassung-kurz",
+    title: "Zulassung",
+    items: [
+      AUSWEIS,
+      "eVB-Nummer Ihrer Kfz-Versicherung",
+      "Fahrzeugbrief (Teil II) – und, falls vorhanden, Fahrzeugschein (Teil I)",
+      "Bei Neuwagen: COC-Papiere",
+      "Noch angemeldet? Die alten Kennzeichen",
+      "Bankkarte oder IBAN – davon bucht der Zoll die Kfz-Steuer ab",
+    ],
+  },
+  ummeldung: {
+    key: "ummeldung-kurz",
+    title: "Ummeldung",
+    items: [
+      AUSWEIS,
+      "Fahrzeugschein (Teil I)",
+      "Bei Halterwechsel zusätzlich: Fahrzeugbrief (Teil II), eVB-Nummer und Bankkarte oder IBAN",
+    ],
+  },
+  abmeldung: {
+    key: "abmeldung-kurz",
+    title: "Sofortabmeldung",
+    items: ["Beide Kennzeichen", "Fahrzeugschein (Teil I)", AUSWEIS],
+    hint: "Sicherheitscodes auf Fahrzeugschein und Plaketten bitte nicht freirubbeln – das machen wir.",
+  },
+};
+
+export const checklisteFuer = ({ vorgang, kz, sonder }: AnfrageAntworten): VorgangChecklist | null => {
+  if (vorgang === "abmelden") return KURZLISTEN.abmeldung;
+  if (vorgang === "zulassen") return kz === "bleiben" ? KURZLISTEN.ummeldung : KURZLISTEN.zulassung;
+  if (vorgang === "sonder") {
+    const key = sonder === "ausfuhr" ? "ausfuhrkennzeichen" : "kurzzeitkennzeichen";
+    return vorgangChecklists.find((liste) => liste.key === key) ?? null;
+  }
+  return null;
 };
