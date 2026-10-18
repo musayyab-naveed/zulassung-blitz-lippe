@@ -34,7 +34,7 @@ const preisVon = (key: string) => PACKAGES.find((pkg) => pkg.key === key)?.price
 
 export const VORGAENGE: Auswahl<Vorgang>[] = [
   { wert: "zulassen", titel: "Auto anmelden oder ummelden", text: "Neu, gebraucht oder umgezogen" },
-  { wert: "abmelden", titel: "Auto abmelden", text: `Sofortabmeldung · ${preisVon("abmeldung")}` },
+  { wert: "abmelden", titel: "Auto abmelden", text: "Sofortabmeldung direkt vor Ort" },
   { wert: "verkaufen", titel: "Auto an uns verkaufen", text: "Kostenloses, unverbindliches Angebot" },
   { wert: "sonder", titel: "Kurzzeit- oder Ausfuhrkennzeichen", text: "Überführung, Probefahrt oder Export" },
 ];
