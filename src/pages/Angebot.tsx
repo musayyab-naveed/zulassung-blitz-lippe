@@ -102,13 +102,13 @@ const PreisKasten = ({ vorgang, kz, paket }: { vorgang?: Vorgang; kz?: Kennzeich
   const zeilen: { name: string; preis: string; aktiv?: boolean }[] =
     vorgang === "zulassen" && kz === "mit"
       ? [
-          { name: "Zulassung mit Kennzeichen (nächster Werktag)", preis: preisVon("basis"), aktiv: paket !== "premium" },
+          { name: "Bis zum nächsten Werktag, mit Kennzeichen", preis: preisVon("basis"), aktiv: paket !== "premium" },
           { name: "Mit Hol- und Bringservice", preis: preisVon("premium"), aktiv: paket === "premium" },
           { name: "Wunschkennzeichen (Gebühr des Amts)", preis: WUNSCH_PREIS },
         ]
       : vorgang === "zulassen" && kz === "ohne"
         ? [
-            { name: "Sofort-Zulassung, ca. 20 Min. – Schilder besorgen Sie selbst", preis: preisVon("sofort"), aktiv: true },
+            { name: "Online direkt vor Ort, ca. 20 Min. – Schilder besorgen Sie selbst", preis: preisVon("sofort"), aktiv: true },
             { name: "Wunschkennzeichen (Gebühr des Amts)", preis: WUNSCH_PREIS },
           ]
         : vorgang === "zulassen"
@@ -238,7 +238,7 @@ const Angebot = () => {
     schritt === "was"
       ? "Was möchten Sie erledigen?"
       : schritt === "kz"
-        ? "Mit oder ohne Kennzeichen?"
+        ? "Wie möchten Sie zulassen?"
         : schritt === "sonder"
           ? "Welches Kennzeichen brauchen Sie?"
           : schritt === "evb"

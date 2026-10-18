@@ -9,8 +9,9 @@ import { PACKAGES } from "./preise";
  * (?vorgang=…&kz=…&evb=…&wunsch=1), damit Zurück, Vorwärts und Neuladen ohne Zusatzlogik funktionieren.
  *
  * Wunsch des Betreibers (18.10.2026): Bei Zulassung und Ummeldung nicht nach dem Fall fragen
- * (neu, gebraucht, Umzug …), sondern nur „mit oder ohne Kennzeichen“ – mit Preis, damit der Kunde
- * gleich weiß, was er zahlt. Keine „Weiß ich nicht“-Antworten, möglichst wenig Text.
+ * (neu, gebraucht, Umzug …), sondern nur, wie es laufen soll – „Online direkt vor Ort“ oder „Bis zum
+ * nächsten Werktag“ (beide 129 €, deshalb nicht „mit/ohne Kennzeichen“ nennen, das verwirrt) oder
+ * „Kennzeichen bleiben dran“ – mit Preis, damit der Kunde gleich weiß, was er zahlt.
  */
 
 export const WHATSAPP_NUMMER = "4915142462280";
@@ -39,9 +40,10 @@ export const VORGAENGE: Auswahl<Vorgang>[] = [
   { wert: "sonder", titel: "Kurzzeit- oder Ausfuhrkennzeichen", text: "Überführung, Probefahrt oder Export" },
 ];
 
+/** Interne Werte: "ohne" = SOFORT (digital, Schilder selbst), "mit" = BASIS (Schilder von uns), "bleiben" = UMMELDUNG */
 export const KENNZEICHEN_OPTIONEN: Auswahl<Kennzeichen>[] = [
-  { wert: "mit", titel: "Mit Kennzeichen", text: "Fertig am nächsten Werktag", preis: preisVon("basis") },
-  { wert: "ohne", titel: "Ohne Kennzeichen", text: "Digital in ca. 20 Minuten", preis: preisVon("sofort") },
+  { wert: "ohne", titel: "Online – direkt vor Ort", text: "In ca. 20 Minuten – Schilder holen Sie selbst", preis: preisVon("sofort") },
+  { wert: "mit", titel: "Bis zum nächsten Werktag", text: "Mit Kennzeichen von uns", preis: preisVon("basis") },
   { wert: "bleiben", titel: "Kennzeichen bleiben dran", text: "Bei Umzug oder Halterwechsel", preis: preisVon("ummeldung") },
 ];
 
@@ -74,8 +76,8 @@ export const vorgangAusPaket = (paket: string | null): Vorgang | undefined => {
 };
 
 const ZULASSEN_IN_NACHRICHT: Record<Kennzeichen, string> = {
-  mit: "Hallo! Ich möchte ein Auto zulassen – mit Kennzeichen von Ihnen.",
-  ohne: "Hallo! Ich möchte ein Auto zulassen – digital, die Schilder besorge ich selbst.",
+  mit: "Hallo! Ich möchte ein Auto zulassen – bis zum nächsten Werktag, mit Kennzeichen von Ihnen.",
+  ohne: "Hallo! Ich möchte ein Auto online direkt bei Ihnen vor Ort zulassen – die Schilder besorge ich selbst.",
   bleiben: "Hallo! Ich möchte mein Auto ummelden – die Kennzeichen bleiben dran.",
 };
 
