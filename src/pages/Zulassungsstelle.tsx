@@ -171,7 +171,7 @@ const Zulassungsstelle = () => {
               Von der Zulassungsstelle zu uns in die Werler Straße 68 sind es {ENTFERNUNG_ZU_UNS}. Bei uns
               brauchen Sie keinen Termin: Montag bis Freitag 9–18 Uhr, Samstag 15–18 Uhr.
             </p>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button size="lg" variant="cta-large" asChild>
                 <a href={BUSINESS.routeUrl} target="_blank" rel="noopener noreferrer">
                   <Navigation className="mr-2 h-5 w-5" />
@@ -416,7 +416,7 @@ const Zulassungsstelle = () => {
             Werler Straße 68 in Bad Salzuflen – Mo bis Fr von 9 bis 18 Uhr, samstags von 15 bis
             18 Uhr. Ohne Termin, ohne Wartenummer.
           </p>
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Button size="lg" variant="cta-large" asChild>
               <Link to="/angebot">
                 JETZT KOSTENLOS ANFRAGEN

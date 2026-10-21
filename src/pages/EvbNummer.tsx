@@ -235,7 +235,7 @@ const EvbNummer = () => {
                     Eine kurze Nachricht per WhatsApp oder ein Anruf genügt – wir sagen Ihnen,
                     worauf es ankommt. Das kostet Sie nichts.
                   </p>
-                  <div className="flex flex-col gap-3 sm:flex-row">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                     <Button size="lg" asChild className="bg-[#15803d] text-white hover:bg-[#166534]">
                       <a href={WHATSAPP_EVB_URL} target="_blank" rel="noopener noreferrer">
                         <MessageCircle className="mr-2 h-5 w-5" />

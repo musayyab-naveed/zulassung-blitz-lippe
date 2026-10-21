@@ -91,7 +91,7 @@ const Fahrzeugankauf = () => {
                 )
               )}
             </ul>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Button size="lg" variant="cta-large" asChild>
                 <Link to="/angebot?start=verkauf">
                   Unverbindliches Angebot holen
@@ -197,7 +197,7 @@ const Fahrzeugankauf = () => {
           <p className="section-subtitle mx-auto mb-6 max-w-2xl">
             Ein kurzer Fingertipp – dann steht Ihre WhatsApp-Nachricht bereit. Kostenlos und unverbindlich.
           </p>
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Button size="lg" variant="cta-large" asChild>
               <Link to="/angebot?start=verkauf">
                 <MessageCircle className="mr-2 h-5 w-5" />
