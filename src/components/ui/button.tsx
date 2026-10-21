@@ -12,8 +12,10 @@ const buttonVariants = cva(
         default: "bg-primary text-secondary hover:bg-primary/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        // Ruhiger Hover nur über den Rahmen: Früher wurde die Schrift beim Drüberfahren/Antippen weiß –
+        // auf weißen Knöpfen (z. B. „Anrufen: 01514 …“) war die Telefonnummer dann unsichtbar.
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-input bg-background hover:border-primary",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
